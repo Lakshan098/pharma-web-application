@@ -1,0 +1,44 @@
+.container{
+    height: 10vh;
+    background: linear-gradient(to right, #0a5279, #196284, #368297);
+    display: flex;
+    justify-content: space-between;
+}
+img{
+    padding-left: 50px;
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+    padding-top: 1.5%;
+}
+
+.user{
+    color: #fff;
+    font-size: 40px;
+    margin-left: 10px;
+}
+
+.downarrow{
+    color: #fff;
+    font-size: 30px;
+    padding-top: 5px;
+
+}
+
+.links-container{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.profile-container{
+    padding-right: 50px;
+    padding-top: 1%;
+    display: flex;
+}
+
+label{
+    color:#fff
+}

@@ -1,5 +1,13 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
 .container{
     height: 10vh;
+    top: 0;
+    left: 0;
+    width: 100%;
     background: linear-gradient(to right, #0a5279, #196284, #368297);
     display: flex;
     justify-content: space-between;

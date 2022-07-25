@@ -13,13 +13,19 @@
     justify-content: space-between;
 }
 img{
-    padding-left: 50px;
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 a{
     color: #fff;
     text-decoration: none;
-    padding-top: 1.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-top: 1.5%; */
 }
 
 .user{
@@ -42,11 +48,17 @@ a{
 }
 
 .profile-container{
-    padding-right: 50px;
-    padding-top: 1%;
+    padding-right: 30px;
+    /* padding-top: 1%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     display: flex;
 }
 
 label{
-    color:#fff
+    color:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

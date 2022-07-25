@@ -6,5 +6,8 @@
     width: 100%;
     background: linear-gradient(to right, #0a5279, #196284, #368297);;
     color: white;
-    text-align: center;
+    /* text-align: center; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -1,14 +1,17 @@
 import Navbar from '../../Components/Navbar/Admin/Navbar';
 import Footer from '../../Components/Footer/Footer';
+import SearchBar from '../../Components/SearchBar/Search';
 
-function Signup(){
+
+function Pharmacies(){
     return (
         <div>
-            <Navbar/>
-            <h1>This is signup page</h1>
+          <Navbar/>
+          <SearchBar/>
           <Footer/>
         </div>
+        
       );
 }
 
-export default Signup;
+export default Pharmacies;

@@ -1,0 +1,16 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+.header-search{
+    background-color: #CCE1F4;
+    width: 500px;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 4px;
+    font-family: FontAwesome;
+}
+
+.search-bar{
+    padding-top: 35px;
+    padding-left: 40px;
+}
+

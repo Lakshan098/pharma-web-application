@@ -19,6 +19,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Pharmacies from './Pages/Pharmacies/Pharmacies';
 import SearchBar from "./Components/SearchBar/Search";
+import DeliveryAgent from './Pages/DeliveryAgent/DeliveryAgent';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 export default function App() {
   return (
@@ -27,6 +29,8 @@ export default function App() {
         <Route index element={<Login />} />
           <Route path="pharmacies" element={<Pharmacies />} />
           <Route path="search" element={<SearchBar />} />
+          <Route path="deliveryagent" element={<DeliveryAgent />} />
+          <Route path="dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );

@@ -10,8 +10,8 @@ function Navbar() {
             <img src={logo} alt="Logo" className='logo' width={175} height={70} />
 
             <a href="#">Home</a>
-            <a href="#">Pharmacies</a>
-            <a href="#">Delivery Agents</a>
+            <a href="pharmacies">Pharmacies</a>
+            <a href="deliveryagent">Delivery Agents</a>
             <a href="#">Statistics</a>
             <a href="#">Complaints</a>
 

@@ -1,3 +1,70 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
 .login-container{
     margin-top: 5rem!important;
 }
+
+.main-div{
+    margin-left: 40rem;
+    border-radius:10px;
+    background-color: rgb(247, 248, 249);
+    height: 47rem;
+}
+
+.co-main{
+    align-items:center;
+    justify-content:'center';
+    width:50%;
+    
+    padding-top: 10px;
+    
+}
+
+.login-image{
+    align-items:center;
+    margin-left:10rem;
+    padding-top: 1rem;
+}
+
+.logo-image{
+    align-items:center;
+    margin-left:20rem;
+    padding-top: 1rem;
+}
+
+.login-text{
+    text-align: center;
+    font-family: "Tahoma";
+    padding-top: 2rem;
+}
+.Email,.password{
+    border-radius: 10px;
+    height:2rem;
+    background-color: rgb(231, 225, 225);
+    width:500px;
+    
+}
+.forgot-password{
+    font-family: "Tahoma";
+    padding-top: 2rem;
+    margin-left:36rem;
+
+}
+
+.login-btn{
+    margin:center;
+    border-radius: 10px;
+    background-color: #32BBC3;
+    width: 200px;
+    margin-left: 21rem;
+    height: 30px;
+    margin-top:2rem;
+    color: white;
+    font-size:20px;
+}
+
+.sin-up-btn{
+    margin-left: 31rem;
+    padding-top:1rem;
+}
+

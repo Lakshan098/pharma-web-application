@@ -3,14 +3,15 @@
 .header-search{
     background-color: #CCE1F4;
     width: 500px;
-    height: 30px;
+    height: 35px;
     border-radius: 10px;
     padding-left: 4px;
     font-family: FontAwesome;
+    border-color: #1789AD;
 }
 
 .search-bar{
-    padding-top: 35px;
-    padding-left: 40px;
+    padding-top: 40px;
+    padding-left: 226px;
 }
 

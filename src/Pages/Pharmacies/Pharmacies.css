@@ -1,0 +1,41 @@
+.member-list{
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 5px;
+}
+  
+td {
+    border: 0px solid black;
+    padding: 12px;
+}
+  
+th{
+    padding: 12px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+  
+thead {
+    background-color: #1789AD;
+    color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+  
+tbody{
+    background-color: white;
+}
+  
+tbody tr{
+    border-bottom: 1px solid #ddd;;
+}

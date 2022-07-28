@@ -1,14 +1,11 @@
 .home-section{
     position: relative;
     min-height: 100vh;
-    /* width: calc(100% - 240px); */
-    /* left: 240px; */
-    /* transition: all 0.5s ease; */
   }
 
 
   .home-section .home-content{
-    position: relative;
+    display: flex;
     padding-top: 104px;
     padding-left: 100px;
     padding-right: 100px;
@@ -16,32 +13,29 @@
   }
 
   .member-stats{
-    display: flex;
+    /* display: flex; */
     margin-top: 25px;
     margin-bottom: 20px;
     background-color: white;
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
-    box-shadow: 1px 2px 9px #a19c9c;
-    /* border: 1px #e5e5e5 solid; */
+    box-shadow: 4px 4px 4px 4px #a19c9c;
+    border-radius: 20px;
 }
   
   .member-stats .one{
     width: 33%;
     text-align: center;
-
   }
   
   .member-stats .two{
     width: 33%;
     text-align: center;
-    border-left: 1px solid #ddd;
   }
   .member-stats .three{
     width: 33%;
     text-align: center;
-    border-left: 1px solid #ddd;
   }
 
   .member-stats .value{

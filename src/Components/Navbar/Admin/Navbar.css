@@ -10,6 +10,7 @@
     width: 100%;
     background: linear-gradient(to right, #0a5279, #196284, #368297);
     display: flex;
+    overflow: hidden;
     justify-content: space-between;
 }
 img{

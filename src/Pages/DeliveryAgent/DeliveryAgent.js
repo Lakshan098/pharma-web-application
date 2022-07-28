@@ -1,10 +1,10 @@
 import Navbar from '../../Components/Navbar/Admin/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import SearchBar from '../../Components/SearchBar/Search';
-import './Pharmacies.css';
+import './DeliveryAgent.css';
 
 
-function Pharmacies(){
+function DeliveryAgent(){
     return (
         <div>
           <div className='header'>
@@ -17,8 +17,8 @@ function Pharmacies(){
                     <thead>
                         <tr>
 
-                            <th>Pharmacy ID</th>
-                            <th>Pharmacy Name</th>
+                            <th>Agent ID</th>
+                            <th>Agent Name</th>
                             <th>Register Number</th>
                             <th>Province</th>
                             <th>Contact Number</th>
@@ -186,4 +186,4 @@ function Pharmacies(){
       );
 }
 
-export default Pharmacies;
+export default DeliveryAgent;

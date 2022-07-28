@@ -1,0 +1,51 @@
+.home-section{
+    position: relative;
+    min-height: 100vh;
+  }
+
+
+  .home-section .home-content{
+    display: flex;
+    padding-top: 104px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+  }
+
+  .member-stats{
+    /* display: flex; */
+    margin-top: 25px;
+    margin-bottom: 20px;
+    background-color: white;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 4px 4px 4px 4px #a19c9c;
+    border-radius: 20px;
+}
+  
+  .member-stats .one{
+    width: 33%;
+    text-align: center;
+  }
+  
+  .member-stats .two{
+    width: 33%;
+    text-align: center;
+  }
+  .member-stats .three{
+    width: 33%;
+    text-align: center;
+  }
+
+  .member-stats .value{
+    font-family: 'Azonix';
+    font-size: small;
+    color: #000000;
+  }
+  
+  .member-stats .name{
+    margin-top: 10px;
+    font-size: large;
+    color: #000000;
+  }

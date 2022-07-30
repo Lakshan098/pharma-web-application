@@ -4,6 +4,7 @@ import './PharmacyHome.css';
 import pharmacyLogo from '../../Assets/Brand/hospital-pharmacy.jpg';
 import profilelogo from '../../Assets/Brand/imgprofile.jpg';
 import SearchBar from '../../Components/SearchBar/Search';
+import Card from '../../Components/card/card';
 
 function PharmacyHome() {
     return (

@@ -21,6 +21,7 @@ import Pharmacies from './Pages/Pharmacies/Pharmacies';
 import SearchBar from "./Components/SearchBar/Search";
 import PharmacyProfile from "./Pages/PharmacyProfile/PharmacyProfile";
 import PharmacyHome from "./Pages/PharmacyHome/PharmacyHome";
+import Card from './Components/card/card';
 
 import DeliveryAgent from './Pages/DeliveryAgent/DeliveryAgent';
 import Dashboard from './Components/Dashboard/Dashboard';
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="deliveryagent" element={<DeliveryAgent />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="PharmacyHome" element={<PharmacyHome />} />
+          <Route path="Card" element={<Card />} />
       </Routes>
     </BrowserRouter>
   );

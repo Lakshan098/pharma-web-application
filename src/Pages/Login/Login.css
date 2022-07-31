@@ -1,5 +1,10 @@
 @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
 
+
+.Email,.password{
+    font-family: FontAwesome;
+}
+
 .login-container{
     margin-top: 5rem!important;
 }
@@ -8,7 +13,7 @@
     margin-left: 40rem;
     border-radius:10px;
     background-color: rgb(247, 248, 249);
-    height: 47rem;
+    height: 54rem;
 }
 
 .co-main{
@@ -42,12 +47,13 @@
     height:2rem;
     background-color: rgb(231, 225, 225);
     width:500px;
+    padding-left: 1rem;
     
 }
 .forgot-password{
     font-family: "Tahoma";
     padding-top: 2rem;
-    margin-left:36rem;
+    margin-left:24rem;
 
 }
 
@@ -64,7 +70,36 @@
 }
 
 .sin-up-btn{
-    margin-left: 31rem;
-    padding-top:1rem;
+    margin-left: 22rem;
+    margin-top:1rem;
+    display: flex;
+    flex-direction: row;
+    padding-bottom:5rem;
 }
 
+.psw{
+    color:blue;
+    text-decoration: underline;
+    
+}
+
+.forget-password{
+    color:blue;
+    text-decoration: underline;  
+}
+
+.aaa{
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    background-color:rebeccapurple;
+}
+
+.eye{
+    /* background-color:red; */
+    position: absolute;
+    top:77.8%;
+    left:86%;
+    color:rgb(69, 69, 69);
+    cursor: pointer;
+}

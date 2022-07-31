@@ -8,6 +8,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { AiTwotoneMail } from 'react-icons/ai';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"></link>
 
 
 
@@ -27,37 +33,43 @@ function Login() {
                 </div>
 
 
-                <Container fluid="md">
-                    <Row className="login-text">
-                        <Col>
 
-                            <input type="Email" className="Email" placeholder='Email' />
-                        </Col>
 
-                    </Row>
 
-                    <Row className="login-text">
-                        <Col>
-                            <input type="Password" className="password" placeholder='Password' />
-                        </Col>
 
-                    </Row>
-                </Container>
 
-                <div className="forgot-password">
-                    <h5>Forgot password?</h5>
-                </div>
+                <form>
+                    <Container fluid="md">
+                        <Row className="login-text">
+                            <Col>
+                            <i class="bi bi-envelope-fill"></i>
+                                <input type="Email" className="Email" placeholder='&#xf0e0;  Email' />
+                            </Col>
 
-                <div>
-                    <button className="login-btn">Login</button>
-                </div>
+                        </Row>
 
-                <Container className="sin-up-btn" fluid="md">
-                    <Col><h5>Don't have an account ?Sin-UP</h5></Col>
-                    
+                        <Row className="login-text">
+                            <Col>
+                                <input type="Password" className="password" placeholder='&#xf084; Password' />
+                            </Col>
+
+                        </Row>
                     </Container>
-                    
-                
+
+
+                    <div className="forgot-password">
+                        <span><h5><a href="#" class="forget-password">Forgot password?</a></h5></span>
+                    </div>
+
+                    <div>
+                        <button className="login-btn">Login</button>
+                    </div>
+
+                    <div class="sin-up-btn">
+                        <span >Don't have an account?<a class="psw" href="#">Sign in</a></span>
+                    </div>
+                </form>
+
 
 
 

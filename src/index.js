@@ -25,6 +25,7 @@ import Card from './Components/card/card';
 
 import DeliveryAgent from './Pages/DeliveryAgent/DeliveryAgent';
 import Dashboard from './Components/Dashboard/Dashboard';
+import DashboardPage from "./Pages/DashboardPage/DashboardPage";
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="PharmacyHome" element={<PharmacyHome />} />
           <Route path="Card" element={<Card />} />
+          <Route path="dashboardpage" element={<DashboardPage />} />
       </Routes>
     </BrowserRouter>
   );

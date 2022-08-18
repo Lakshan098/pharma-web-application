@@ -1,4 +1,8 @@
 import "./Dashboard.css";
+import ProgressBar from "@ramonak/react-progress-bar";
+import React, { useState } from 'react';
+import { Rating } from 'react-simple-star-rating';
+import logo from '../../Assets/Brand/wellness.png';
 
 import {
   ResponsiveContainer,
@@ -21,6 +25,7 @@ const data2 = [
   { name: "Finished", value: 42, fill: "#0047AB" },
   { name: "Cancelled", value: 18, fill: "#ffcccb" },
 ];
+
 
 const data = [
   {
@@ -128,7 +133,7 @@ function Dashboard() {
                     left: 20,
                   }}
                 >
-                  {/* <CartesianGrid stroke="#f5f5f5" /> */}
+                 <CartesianGrid stroke="#DCDCDC" strokeDasharray="5 5"/>
                   <XAxis dataKey="name" scale="Month" />
                   <YAxis />
                   <Tooltip />
@@ -156,6 +161,7 @@ function Dashboard() {
                   <Pie
                     dataKey="value"
                     startAngle={360}
+                    
                     endAngle={0}
                     data={data2}
                     cx={180}
@@ -171,25 +177,227 @@ function Dashboard() {
           </div>
         </div>
 
-        <div class="home-content">
-          <div className="one">
-            <div>
-              <p class="icon">&#xf0c0; </p>
+        <div class="home-content3">
+          <div className="best-da">
+            <div className="best-da-header">
+              <h3>Best Delivery Agents</h3>
             </div>
-            <div>
-              <p class="value">Customers</p>
-              <p class="name">2548 Customers</p>
-            </div>
-          </div>
+            <div className="agent-details">
+                <div className="agent-name1">
+                    <h5>G.L.U.Maduranga</h5>
+                </div>
+                <div className="p-bar">
+                    <ProgressBar completed={91} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
+                </div>
+            
 
-          <div class="two">
-            <div>
-              <p class="icon">&#xf7f2; </p>
+            
+                <div className="agent-name1">
+                    <h5>N.S.Wimalaweera</h5>
+                </div>
+                <div className="p-bar">
+                    <ProgressBar completed={84} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
+                </div>
+            
+
+            
+                <div className="agent-name1">
+                    <h5>M.S.Dewanarayana</h5>
+                </div>
+                <div className="p-bar">
+                    <ProgressBar completed={75} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
+                </div>
+            
+
+            
+                <div className="agent-name1">
+                    <h5>K.G.L.Mihiranga</h5>
+                </div>
+                <div className="p-bar">
+                    <ProgressBar completed={71} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
+                </div>
+            
+
+            
+                <div className="agent-name1">
+                    <h5>K.K.S.Dilshan</h5>
+                </div>
+                <div className="p-bar">
+                    <ProgressBar completed={60} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
+                </div>
+            
+
+            
+                <div className="agent-name1">
+                    <h5>H.K.P.S.Perera</h5>
+                </div>
+                <div className="p-bar">
+                    <ProgressBar completed={45} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
+                </div>
+            </div>
+            </div>
+          
+
+          <div class="best-p">
+            <div className="best-p-header">
+              <h3>Best Pharmacies</h3>
             </div>
             <div>
-              <p class="value">Pharmacies</p>
-              <p class="name">589 Pharmacies</p>
+              <div className="p-rating-1">
+                  <div className="p-rating-co">
+                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
+                  </div>
+                  <div className="p-rating-co">
+                    <h5>Central Pharmacy</h5>
+                  </div>
+                  <div className="p-rating-co">
+                    <Rating 
+                      readonly="true"
+                      initialValue={5}
+                      size="25"
+                    />
+                  </div>
+              </div>
+              <hr
+                style={{
+                  color: 'black',
+                  background: 'black',
+                  width: '82%',
+                  marginLeft: '50px',
+                }}
+              />
             </div>
+
+            <div>
+              <div className="p-rating">
+                  <div className="p-rating-co">
+                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
+                  </div>
+                  <div className="p-rating-co">
+                    <h5>Ragama Pharmacy</h5>
+                  </div>
+                  <div className="p-rating-co">
+                    <Rating 
+                      readonly="true"
+                      initialValue={4}
+                      size="25"
+                    />
+                  </div>
+              </div>
+              <hr
+                style={{
+                  color: 'black',
+                  background: 'black',
+                  width: '82%',
+                  marginLeft: '50px',
+                }}
+              />
+            </div>
+
+            <div>
+              <div className="p-rating">
+                  <div className="p-rating-co">
+                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
+                  </div>
+                  <div className="p-rating-co">
+                    <h5>HealthCare Pharmacy</h5>
+                  </div>
+                  <div className="p-rating-co">
+                    <Rating 
+                      readonly="true"
+                      initialValue={4}
+                      size="25"
+                    />
+                  </div>
+              </div>
+              <hr
+                style={{
+                  color: 'black',
+                  background: 'black',
+                  width: '82%',
+                  marginLeft: '50px',
+                }}
+              />
+            </div>
+
+            <div>
+              <div className="p-rating">
+                  <div className="p-rating-co">
+                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
+                  </div>
+                  <div className="p-rating-co">
+                    <h5>Union Pharmacy</h5>
+                  </div>
+                  <div className="p-rating-co">
+                    <Rating 
+                      readonly="true"
+                      initialValue={3}
+                      size="25"
+                    />
+                  </div>
+              </div>
+              <hr
+                style={{
+                  color: 'black',
+                  background: 'black',
+                  width: '82%',
+                  marginLeft: '50px',
+                }}
+              />
+            </div>
+
+            <div>
+              <div className="p-rating">
+                  <div className="p-rating-co">
+                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
+                  </div>
+                  <div className="p-rating-co">
+                    <h5>Pharma Pharmacy</h5>
+                  </div>
+                  <div className="p-rating-co">
+                    <Rating 
+                      readonly="true"
+                      initialValue={3}
+                      size="25"
+                    />
+                  </div>
+              </div>
+              <hr
+                style={{
+                  color: 'black',
+                  background: 'black',
+                  width: '82%',
+                  marginLeft: '50px',
+                }}
+              />
+            </div>
+
+            <div>
+              <div className="p-rating">
+                  <div className="p-rating-co">
+                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
+                  </div>
+                  <div className="p-rating-co">
+                    <h5>Sethma Pharmacy</h5>
+                  </div>
+                  <div className="p-rating-co">
+                    <Rating 
+                      readonly="true"
+                      initialValue={2}
+                      size="25"
+                    />
+                  </div>
+              </div>
+              <hr
+                style={{
+                  color: 'black',
+                  background: 'black',
+                  width: '82%',
+                  marginLeft: '50px',
+                }}
+              />
+            </div>
+            
           </div>
         </div>
       </section>

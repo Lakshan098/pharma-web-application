@@ -1,0 +1,113 @@
+.admin-home-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px;
+}
+.admin-card{
+    width: 48%;
+    height: 55rem;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-bottom: 70px;
+}
+
+.admin-name{
+    display: flex;
+    /* background-color: red; */
+    height:10rem;
+}
+.admin-details{
+    /* background-color: blue; */
+    height:20rem;
+    text-align: left;
+    padding-top: 60px;
+}
+
+.admin-password{
+    /* background-color: yellow; */
+    height:15rem;
+    text-align: left;
+    padding-top: 50px;
+}
+
+.prof-pic {
+    /* background-color: brown; */
+    width: 30%;
+}
+
+.prof-name {
+    /* background-color: white; */
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-list{
+    /* background-color: red; */
+    width: 75%;
+    height: 80%;
+    margin-left: 65px;
+    margin-top: 20px;
+}
+.detail-one{
+    display: flex;
+    padding-right: 20px;
+    padding-top: 25px;  
+}
+
+.detail-obj{
+    width: 33%;
+    text-align: center;
+}
+
+.detail-des{
+    width: 33%;
+    text-align: left;
+    margin-left: 60px;
+    padding-top: 10px;
+}
+
+.detail-ico{
+    width: 33%;
+    text-align: right;
+    padding-top: 10px;
+}
+.btn-detail{
+    width: 99%;
+    padding-top: 30px;
+    text-align: right;
+}
+
+.prof-label{
+    color: black;
+}
+
+.prof-form{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.prof-input{
+    margin-left: 60px;
+}
+
+.label-head{
+    
+    width: 70%;
+    margin-right:120px;
+    padding-top: 25px;
+    text-align: right;
+}
+.logo2{
+    padding-top: 20px;
+    margin-left: 20px;
+    
+}
+

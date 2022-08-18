@@ -3,8 +3,8 @@
     padding: 0%;
 }
 
-.container{
-    height: 10vh;
+.nav-container{
+    height: 11vh;
     top: 0;
     left: 0;
     width: 100%;
@@ -14,17 +14,17 @@
     justify-content: space-between;
 }
 img{
-    padding-left: 30px;
-    display: flex;
+    padding-left: 20px;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
-a{
+.nav-tabs{
     color: #fff;
     text-decoration: none;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     /* padding-top: 1.5%; */
 }
@@ -51,15 +51,14 @@ a{
 .profile-container{
     padding-right: 30px;
     /* padding-top: 1%; */
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
-    display: flex;
+    justify-content: center; */
 }
 
 label{
     color:#fff;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }

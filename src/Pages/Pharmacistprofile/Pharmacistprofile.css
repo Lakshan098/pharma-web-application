@@ -1,0 +1,192 @@
+.pharmacist-home-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px;
+}
+.pharmacist-card{
+    width: 72%;
+    height: 81rem;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-bottom: 70px;
+}
+
+.pharmacist-name{
+    display: flex;
+    /* background-color: red; */
+    height:10rem;
+}
+.pharmacist-details{
+    /* background-color: blue; */
+    height:20rem;
+    text-align: left;
+    padding-top: 60px;
+}
+
+.pharmacist-password{
+    text-align: left;
+    padding-top: 160px;
+}
+
+.pharmacist-stat-card{
+    height:15rem;
+    text-align: left;
+    padding-top: 200px;
+}
+
+.pharmacist-prof-pic {
+    width: 30%;
+}
+
+.pharmacist-prof-name {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pharmacist-detail-list{
+    width: 100%;
+    height: 80%;
+    margin-left: 65px;
+    margin-top: 20px;
+}
+.pharmacist-detail-one{
+    display: flex;
+    padding-right: 20px;
+    padding-top: 25px;  
+}
+
+.pharmacist-detail-obj{
+    width: 50%;
+    text-align: center;
+}
+
+.pharmacist-detail-des{
+    width: 50%;
+    text-align: left;
+    margin-left: 60px;
+    padding-top: 10px;
+}
+
+.pharmacist-prof-label{
+    color: black;
+}
+
+.logo2{
+    padding-top: 20px;
+    margin-left: 20px;   
+}
+
+.pharmacist-home-content3{
+    display: flex;
+    padding-left: 15px;
+}
+
+.pharmacist-best-da{
+    width: 100%;
+    height: 20rem;  
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+}
+
+.pharmacist-best-da-header {
+    text-align: center; 
+    padding-right:20px;
+    width: 100%;
+    
+}
+
+.pharmacist-details {
+    padding-top: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+.vl {
+    border-left: 6px solid #8B7EDF;
+    height: 88px;
+}
+
+.pharmacist-complaint {
+    display: flex;
+    width: 26rem;
+    padding-top: 40px;
+}
+
+.pharmacist-icon-prof {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.pharmacist-complaint-by{
+    display: flex;
+}
+.complainant-name{
+    font-size: 80%;
+}
+.complaint-desc{
+    padding-left: 15px;
+    padding-top: 8px;
+}
+.complaint-date{
+    width: 22rem;
+    text-align: right;
+    padding-right: 20px;
+}
+.complaint-time{
+    width: 5rem;
+    text-align: right;
+    padding-right: 20px;
+}
+.complaint-date-time{
+    display: flex;
+    padding-top: 8px;
+    width: 26rem;
+    text-align: right;
+}
+
+.panalty-marks{
+    display: flex;
+    width: 96.5%;
+    height: 4rem; 
+    margin-left: 1.5%;
+    margin-right: 2%;
+    background-color: white;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-top: 15px;
+    padding-top: 30px;
+} 
+.panelty-progress1 {
+    width: 19%;
+    padding-left: 2px;
+}
+.panelty-progress2 {
+    width: 55%;
+    padding-left: 10px;
+}
+.panelty-progress3 {
+    width: 13%;
+    padding-left: 10px;
+}
+
+
+
+

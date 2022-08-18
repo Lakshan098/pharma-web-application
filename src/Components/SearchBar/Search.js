@@ -5,9 +5,9 @@ import { IconContext } from 'react-icons/lib';
 
 function SearchBar () {
     return(
-        <form className='search-bar'>
+        <form className='admin-search-bar'>
             <input
-                className='header-search'
+                className='admin-header-search'
                 placeholder="&#61442; search by using name or id"
                 name="s" 
             />

@@ -1,0 +1,199 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+
+.stat-home-section{
+    position: relative;
+    min-height: 100vh;
+}
+
+
+.stat-home-content{
+    display: flex;
+    padding-top: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 5px;
+  }
+
+.stat-home-content3{
+    display: flex;
+    padding-top: -5px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+}
+  
+
+  .stat-product-sales{
+    width: 50%;
+    height: 35rem;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 30px;
+  }
+
+  .stat-monthly-sales1{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-left: 20px;
+  }
+
+  .stat-monthly-sales{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    /* padding-left: 20px; */
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    /* margin-right: 20px; */
+  }
+
+  
+  
+  
+  
+  .stat-product-sales-header {
+    text-align: center; 
+    padding-right:20px;
+    width: 100%;
+}
+
+.stat-one{
+    width: 80%;
+    height: 175px;
+    display: flex;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .stat-two{
+    width: 80%;
+    height: 75px;
+    display: flex;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .stat-three{
+    width: 80%;
+    height: 175px;
+    display: flex;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .stat-four{
+    width: 80%;
+    height: 75px;
+    display: flex;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .stat-value{
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: large;
+    color: #000000;
+  }
+  
+  .stat-name{
+    margin-top: 5px;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    font-size: x-large;
+    color: #000000;
+  }
+
+.stat-col {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin-right: 10px;
+  }
+
+  .stat-p-rating-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding-bottom: 5px;
+    padding-top: 20px;
+  }
+  
+  
+  .stat-p-rating-co {
+    width: 30%;
+    padding-right: 20px;
+    padding-left: 100px;
+  }
+
+  .stat-monthly-p-rating-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding-top: 20px;
+  }
+  
+  
+  .stat-monthly-p-rating-co {
+    width: 30%;
+    padding-right: 10px;
+    padding-left: 50px;
+  }

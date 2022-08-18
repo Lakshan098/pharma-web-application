@@ -10,7 +10,10 @@ function Pharmacies(){
           <div className='header'>
             <Navbar/>
           </div>
+          <h2 className='p-head'>Pharmacies</h2>
+          <div className='p-search'>
           <SearchBar/>
+          </div>
 
           <div class="member-list">
                 <table class="table table-hover">
@@ -19,7 +22,7 @@ function Pharmacies(){
 
                             <th>Pharmacy ID</th>
                             <th>Pharmacy Name</th>
-                            <th>Register Number</th>
+                            <th>Registration Number</th>
                             <th>Province</th>
                             <th>Contact Number</th>
                             <th>Email</th>

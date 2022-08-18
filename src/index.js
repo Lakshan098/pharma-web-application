@@ -1,26 +1,23 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-// import './index.css';
-// import App from './App';
-
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Pharmacies from './Pages/Pharmacies/Pharmacies';
 import SearchBar from "./Components/SearchBar/Search";
+import PharmacyHome from "./Pages/PharmacyHome/PharmacyHome";
+import Card from './Components/card/card';
+
 import DeliveryAgent from './Pages/DeliveryAgent/DeliveryAgent';
 import Dashboard from './Components/Dashboard/Dashboard';
+import DashboardPage from "./Pages/DashboardPage/DashboardPage";
+import { Rating } from 'react-simple-star-rating';
+import Statistics from './Components/Statistics/Statistics';
+import StatisticsPage from "./Pages/StatisticsPage/StatisticsPage";
+import Adminprofile from './Pages/Adminprofile/Adminprofile';
+import Agentprofile from './Pages/Agentprofile/Agentprofile';
+import Pharmacistprofile from "./Pages/Pharmacistprofile/Pharmacistprofile";
+import Complaints from "./Pages/Complaints/Complaints";
+
+
 
 export default function App() {
   return (
@@ -29,8 +26,19 @@ export default function App() {
         <Route index element={<Login />} />
           <Route path="pharmacies" element={<Pharmacies />} />
           <Route path="search" element={<SearchBar />} />
+
           <Route path="deliveryagent" element={<DeliveryAgent />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="PharmacyHome" element={<PharmacyHome />} />
+          <Route path="Card" element={<Card />} />
+          <Route path="dashboardpage" element={<DashboardPage />} />
+          <Route path="rating" element={<Rating />} />
+          <Route path="statistics" element={<Statistics />} />
+          <Route path="statisticspage" element={<StatisticsPage />} />
+          <Route path="adminprofile" element={<Adminprofile />} />
+          <Route path="agentprofile" element={<Agentprofile />} />
+          <Route path="pharmacistprofile" element={<Pharmacistprofile />} />
+          <Route path="complaints" element={<Complaints />} />
       </Routes>
     </BrowserRouter>
   );

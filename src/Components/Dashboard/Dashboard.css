@@ -1,57 +1,228 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+
+
+.icon{
+    font-family: 'FontAwesome';
+    display: flex;
+    font-size: 45px;
+    padding-right: 15px;
+}
+
+.p-bar {
+  align-items: center;
+  padding-right: 20px;
+}
+
+.p-rating-1 {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  text-align: center;
+  padding-bottom: 5px;
+  padding-top: 65px;
+}
+
+.p-rating {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  text-align: center;
+  padding-bottom: 5px;
+  padding-top: 20px;
+}
+
+.p-rating-co {
+  width: 30%;
+}
+
+.agent-details {
+  padding-top: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.agent-name1 {
+  padding-top: 25px;
+  padding-bottom: 10px;
+  padding-left: 2px;
+}
+
 .home-section{
     position: relative;
     min-height: 100vh;
-    /* width: calc(100% - 240px); */
-    /* left: 240px; */
-    /* transition: all 0.5s ease; */
+    
   }
 
 
-  .home-section .home-content{
-    position: relative;
-    padding-top: 104px;
+.home-content{
+    display: flex;
+    padding-top: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 5px;
+  }
+
+  .home-content2{
+    display: flex;
+    padding-top: 5px;
     padding-left: 100px;
     padding-right: 100px;
     padding-bottom: 50px;
   }
 
-  .member-stats{
+  .home-content3{
     display: flex;
+    padding-top: -5px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+}
+  
+  .one{
+    width: 30%;
+    display: flex;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .best-da{
+    width: 50%;
+    height: 35rem;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .best-p{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .orders{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: left;
     margin-top: 25px;
     margin-bottom: 20px;
     background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .order-header {
+    text-align: center;
+    padding-right:20px;
+  }
+
+  .best-da-header {
+    text-align: center; 
+    padding-right:20px;
     width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    box-shadow: 1px 2px 9px #a19c9c;
-    /* border: 1px #e5e5e5 solid; */
-}
-  
-  .member-stats .one{
-    width: 33%;
-    text-align: center;
-
-  }
-  
-  .member-stats .two{
-    width: 33%;
-    text-align: center;
-    border-left: 1px solid #ddd;
-  }
-  .member-stats .three{
-    width: 33%;
-    text-align: center;
-    border-left: 1px solid #ddd;
   }
 
-  .member-stats .value{
-    font-family: 'Azonix';
+  .best-p-header {
+    text-align: center;
+    padding-right:20px;
+    width: 100%;
+  }
+
+  .sales{
+    width: 63%;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .sales-header {
+    text-align: center;
+  }
+  
+  .two{
+    width: 30%;
+    display: flex;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .three{
+    width: 30%;
+    display: flex;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+
+  .value{
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
     font-size: small;
     color: #000000;
   }
   
-  .member-stats .name{
-    margin-top: 10px;
-    font-size: large;
+  .name{
+    margin-top: 5px;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    font-size: x-large;
     color: #000000;
   }

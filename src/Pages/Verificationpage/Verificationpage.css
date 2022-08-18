@@ -1,0 +1,14 @@
+.verification-div{
+    display: flex;
+    flex-direction:row;
+    margin-top: 9rem;
+    margin-left:14rem
+}
+
+.f-main-topic{
+    margin-left: 5rem;
+}
+
+.f-main-p{
+    margin-left:3rem;
+}

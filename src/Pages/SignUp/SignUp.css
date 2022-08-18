@@ -11,16 +11,16 @@
   flex-direction: row;
  }
 
- .wrapper2-login{
+ .wrapper2{
   background-color: rgb(54, 54, 87);
   width: 30%;
-  height: 120vh;
+  height: 160vh;
   border-bottom-right-radius:25px;
   border-top-right-radius:25px;
  }
   
-  .wrapper-login{
-    height: 120vh;
+  .wrapper {
+    height: 160vh;
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -53,10 +53,11 @@
     color: #222;
   }
   
-  .p-login-form {
+  .p-sinup-form {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    padding-top: 10px;
   }
   
   .info {
@@ -71,7 +72,7 @@
     font-weight: lighter;
   }
   
-  .login-input{
+  .signup-input{
     padding: 10px 10px;
     border-radius: 5px;
     outline: none;
@@ -83,7 +84,7 @@
   input::placeholder {
     font-size: 1.2em;
     font-weight: lighter;
-    color: rgb(9, 9, 9);
+    color: #bbb;
   }
   
   
@@ -106,17 +107,16 @@
   
   
   .login-email,
-  .p-login-password {
+  .p-login-password,
+  .p-login-location {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+    width: 200%;
   }
   
 
-  .login-email,.p-login-password
-  {
-    width: 200%;
-  }
+  
 
 
   
@@ -129,7 +129,7 @@
 
   }
 
-  .p-login-btn{
+  .p-signup-btn{
     background-color: #32BBC3;
     border-radius:2px;
     width:45% ;
@@ -138,7 +138,7 @@
 
  
 
-.brandname-login{
+.brandname-signup{
     align-items:center;
     margin-left:26rem;
     margin-top: -3rem;
@@ -146,7 +146,7 @@
     
 }
 
-.login-image-login{
+.signup-image-signup{
     align-items:center;
     justify-content:'center';
     width:50%;
@@ -160,7 +160,7 @@
     display:flex;
     flex-direction: column;
     font-size: 12px;
-    margin-left: 3.5rem;
+    margin-left: 3rem;
 }
 
 .p-Forget-password{
@@ -171,16 +171,16 @@
 
 
 
-.p-fromLogin-signup{
+.p-fromsinup-login{
     text-align: center;
-    color:blue
+    margin-left: -1rem;
+    color:blue;
     
 }
 
 .p-fromLogin-forgot{
     text-align: center;
     margin-left: 3rem;
-    color:blue
 }
 
 

@@ -3,19 +3,19 @@
     text-align: center;
     color: white;
     margin-top:5rem;
-    
+    padding-right: 20rem;
 }
 
 .bottom-left1 {
     position: absolute;
     bottom: 3rem;
-    left: 4rem;
+    left: 5rem;
   }
 
   .bottom-left2{
     position: absolute;
     bottom: 1rem;
-    left: 4rem;
+    left: 5rem;
   }
 
 .logo-tag{
@@ -31,20 +31,26 @@
     /* background-size: cover; */
 }
 
-.process-button{
+
+
+.process-button-div{
     margin-top:2rem;
     margin-left: 3rem;
     display: flex;
     flex-direction: row;
+    
+
 }
 
 .searchbar{
-    margin-left:14rem;
-    padding-bottom: 2rem;
+    margin-left:16.5rem;
+    padding-top: 1rem;
+    
+    
     
 }
 
-.button{
+.process-button{
     background-color: #1279ef; /* Green */
     border: none;
     color: rgb(243, 236, 236);
@@ -90,45 +96,54 @@
   .title2 {
     color: grey;
     font-size: 12px;
-    margin-left: 5rem;
+    margin-left: 4rem;
     margin-top: 1rem;
     padding-bottom: 1rem;
+    padding-right:15px;
   }
 
   .view-btn{
-    background-color: #1279ef; 
+    background-color: #32BBC3; 
     border: none;
     color: rgb(243, 236, 236);
     text-align: center;
     border-radius: 10px;
     width: 100px;
     height: 25px;
-    margin-top: 1rem;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    
   }
-
+.home-date{
+  font-size:10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
   .Accept-btn,.Reject-btn{
     border: none;
     color: rgb(16, 16, 16);
     text-align: center;
     border-radius: 5px;
-    width: 50px;
+    width: 60px;
     height: 25px;
+    
   }
 
   .Accept-btn{
-    background-color: #12ef3e;
+    background-color: #29FC16;
   }
 
   .Reject-btn{
-    background-color: #d30c0c;
+    background-color: #ED1111;
     margin-left: 1rem;
   }
 
   .ar-button{
     display: flex;
     flex-direction: row;
-    margin-left: 5.5rem;
-    margin-top: 1rem;
+    margin-left: 57px;
+    margin-top: 1px;
+    padding-left: 10px;
   }
 
    .card {
@@ -139,11 +154,30 @@
     font-family: arial;
     margin-bottom: 3rem;
     margin-top: 2rem;
+    width:250px
     
+  }
+
+  .neworder{
+    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 100px;
+    max-height: 30px;
+    border-radius: 20px;
+    text-align: center;
+    margin-left: 70px;
+    margin-top: 20px;
+    color: #1789AD;
+    font-size: 18px;
+  }
+
+  .orderId{
+    margin-top:15px;
   }
 
   .profile-cards{
     display: flex;
     flex-direction:row;
-    margin-left: 2rem;
+    justify-content: space-around;
+
+    /* margin-left: 2rem; */
   }

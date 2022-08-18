@@ -3,7 +3,7 @@
     padding: 0%;
 }
 
-.container{
+.a-container{
     height: 10vh;
     top: 0;
     left: 0;
@@ -13,14 +13,14 @@
     overflow: hidden;
     justify-content: space-between;
 }
-img{
+.logo{
     padding-left: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-a{
+.bar-link{
     color: #fff;
     text-decoration: none;
     display: flex;
@@ -57,7 +57,7 @@ a{
     display: flex;
 }
 
-label{
+.lable-tag{
     color:#fff;
     display: flex;
     align-items: center;

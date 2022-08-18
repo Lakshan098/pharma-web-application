@@ -5,18 +5,18 @@ import { FaUserCircle, FaAngleDown } from 'react-icons/fa';
 
 function Navbar() {
     return (
-      <div className="container">
+      <div className="a-container">
 
             <img src={logo} alt="Logo" className='logo' width={175} height={70} />
 
-            <a href="#">Home</a>
-            <a href="pharmacies">Pharmacies</a>
-            <a href="deliveryagent">Delivery Agents</a>
-            <a href="#">Statistics</a>
-            <a href="#">Complaints</a>
+            <a class="bar-link"  href="#">Home</a>
+            <a class="bar-link" href="pharmacies">Pharmacies</a>
+            <a class="bar-link" href="deliveryagent">Delivery Agents</a>
+            <a class="bar-link" href="#">Statistics</a>
+            <a class="bar-link" href="#">Complaints</a>
 
         <div className="profile-container">
-            <label>A.W.S.Rashmika<br/>Admin User</label>
+            <label class="lable-tag">A.W.S.Rashmika<br/>Admin User</label>
             <FaUserCircle className='user'/>
             <FaAngleDown className='downarrow' />
         </div>

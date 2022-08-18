@@ -5,15 +5,15 @@ import { FaUserCircle, FaAngleDown } from 'react-icons/fa';
 
 function Navbar() {
     return (
-      <div className="a-container">
+      <div className="nav-container">
 
             <img src={logo} alt="Logo" className='logo' width={175} height={70} />
 
-            <a class="bar-link"  href="#">Home</a>
-            <a class="bar-link" href="pharmacies">Pharmacies</a>
-            <a class="bar-link" href="deliveryagent">Delivery Agents</a>
-            <a class="bar-link" href="#">Statistics</a>
-            <a class="bar-link" href="#">Complaints</a>
+            <a className='nav-tabs' href="dashboardpage">Home</a>
+            <a className='nav-tabs' href="pharmacies">Pharmacies</a>
+            <a className='nav-tabs' href="deliveryagent">Delivery Agents</a>
+            <a className='nav-tabs' href="statisticspage">Statistics</a>
+            <a className='nav-tabs' href="complaints">Complaints</a>
 
         <div className="profile-container">
             <label class="lable-tag">A.W.S.Rashmika<br/>Admin User</label>

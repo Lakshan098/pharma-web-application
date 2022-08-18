@@ -1,0 +1,323 @@
+import Navbar from "../../Components/Navbar/Admin/Navbar";
+import { Rating } from "react-simple-star-rating";
+import Footer from "../../Components/Footer/Footer";
+import Button from "@mui/material/Button";
+import logo from "../../Assets/Brand/my.jpg";
+import ProgressBar from "@ramonak/react-progress-bar";
+import "./Agentprofile.css";
+import "../../index.css";
+import {
+  FaUserCircle,
+  FaMailBulk,
+  FaPencilAlt,
+  FaPhoneAlt,
+  FaUserAlt,
+} from "react-icons/fa";
+import {
+    ResponsiveContainer,
+    ComposedChart,
+    Line,
+    Area,
+    Bar,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+    PieChart,
+    Pie,
+  } from "recharts";
+
+  const data = [
+    {
+      name: "Jan",
+      Orders: 26,
+    },
+    {
+      name: "Feb",
+      Orders: 34,
+    },
+    {
+      name: "Mar",
+      Orders: 41,
+    },
+    {
+      name: "Apr",
+      Orders: 48,
+    },
+    {
+      name: "May",
+      Orders: 67,
+    },
+    {
+      name: "Jun",
+      Orders: 42,
+    },
+    {
+      name: "Jul",
+      Orders: 51,
+    },
+    {
+      name: "Aug",
+      Orders: 37,
+    },
+    {
+      name: "Sep",
+      Orders: 43,
+    },
+    {
+      name: "Oct",
+      Orders: 28,
+    },
+    {
+      name: "Nov",
+      Orders: 40,
+    },
+    {
+      name: "Dec",
+      Orders: 66,
+    },
+  ];
+
+function Agentprofile() {
+  return (
+    <div>
+      <Navbar />
+      <div>
+        <section class="agent-home-section">
+          <div class="agent-home-content">
+            <div className="agent-card">
+              <div className="agent-name">
+                <div className="agent-prof-pic">
+                  <img
+                    src={logo}
+                    alt="Logo"
+                    className="logo2"
+                    width={140}
+                    height={140}
+                  />
+                </div>
+                <div className="agent-prof-name">
+                  <h1>N.S.Wimalaweera</h1>
+                  <h6>
+                    <Rating readonly="true" initialValue={4} size="25" />
+                  </h6>
+                </div>
+              </div>
+              <div className="agent-details">
+                <h4 style={{ marginLeft: "50px", color: "#1789AD" }}>
+                  Details
+                </h4>
+                <div
+                  style={{
+                    borderTop: "2px solid #000 ",
+                    width: "80%",
+                    marginTop: "10px",
+                    marginLeft: "50px",
+                  }}
+                ></div>
+                <div className="agent-detail-list">
+                  <div className="agent-detail-one">
+                    <div className="agent-detail-obj">
+                      <FaUserCircle />
+                      <h5>Name</h5>
+                    </div>
+                    <div className="agent-detail-des">
+                      <h5>N.S.Wimalaweera</h5>
+                    </div>
+                  </div>
+                  <div className="agent-detail-one">
+                    <div className="agent-detail-obj">
+                      <FaUserCircle />
+                      <h5>NIC Number</h5>
+                    </div>
+                    <div className="agent-detail-des">
+                      <h5>981343786 V</h5>
+                    </div>
+                  </div>
+                  <div className="agent-detail-one">
+                    <div className="agent-detail-obj">
+                      <FaPhoneAlt />
+                      <h5>Contact Number</h5>
+                    </div>
+                    <div className="agent-detail-des">
+                      <h5>+94 70 218 1481</h5>
+                    </div>
+                  </div>
+                  <div className="agent-detail-one">
+                    <div className="agent-detail-obj">
+                      <FaMailBulk />
+                      <h5>Email</h5>
+                    </div>
+                    <div className="agent-detail-des">
+                      <h5>navodshenz@gmail.com</h5>
+                    </div>
+                  </div>
+                  <div className="agent-detail-one">
+                    <div className="agent-detail-obj">
+                      <FaMailBulk />
+                      <h5>Joined Date</h5>
+                    </div>
+                    <div className="agent-detail-des">
+                      <h5>2022-05-13</h5>
+                    </div>
+                  </div>
+                  <div className="agent-detail-one">
+                    <div className="agent-detail-obj">
+                      <FaMailBulk />
+                      <h5>Address</h5>
+                    </div>
+                    <div className="agent-detail-des">
+                      <h5>Tissamaharama</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="agent-password">
+                <h4 style={{ marginLeft: "80px", color: "#1789AD" }}>
+                  Statistics
+                </h4>
+                <div
+                  style={{
+                    borderTop: "2px solid #000 ",
+                    width: "80%",
+                    marginTop: "10px",
+                    marginLeft: "80px",
+                  }}
+                ></div>
+              </div>
+
+              <div class="agent-home-content3">
+                <div className="agent-best-da">
+                  <div className="agent-best-da-header">
+                    <h3>Monthly sales</h3>
+                  </div>
+
+                  <div style={{ width: "450px", height: 300 }}>
+              <ResponsiveContainer>
+                <ComposedChart
+                  width={400}
+                  height={400}
+                  data={data}
+                  margin={{
+                    top: 30,
+                    right: 40,
+                    bottom: 10,
+                    left: 20,
+                  }}
+                >
+                  <CartesianGrid stroke="#DCDCDC" strokeDasharray="5 5" />
+                  <XAxis dataKey="name" scale="Month" />
+                  <YAxis
+                    label={{
+                      value: "No.Of Orders",
+                      angle: -90,
+                      position: "insideBottomLeft",
+                    }}
+                  />
+                  <Tooltip />
+                  <Legend />
+                  <Area
+                    type="monotone"
+                    dataKey="Orders"
+                    fill="#ffffff"
+                    stroke="#0a5279"
+                  />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+
+                </div>
+
+                <div className="agent-best-da">
+                  <div className="agent-best-da-header">
+                    <h3>Complaints</h3>
+                  </div>
+                  <div>
+                    <div className="agent-complaint">
+                        <div class="vl"></div>
+                        <div>
+                            <div className="agent-complaint-by">
+                                <div className="agent-icon-prof">
+                                <FaUserAlt
+                                    size={30}
+                                />
+                                </div>
+                                <div>
+                                    <p className="complainant-name">A.W.S.Rashmika</p>
+                                    <p className="complainant-name">sandunirashmika727@gmail.com</p>
+                                </div>
+                            </div>
+                            <div className="complaint-desc">
+                                <h4>Delivery is too late. Not satisfied.</h4>
+                            </div>
+                            <div className="complaint-date-time">
+                                <div className="complaint-date">
+                                    2022/07/18
+                                </div>
+                                <div className="complaint-time">
+                                    05:12 pm
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="agent-complaint">
+                        <div class="vl"></div>
+                        <div>
+                            <div className="agent-complaint-by">
+                                <div className="agent-icon-prof">
+                                <FaUserAlt
+                                    size={30}
+                                />
+                                </div>
+                                <div>
+                                    <p className="complainant-name">A.W.S.Rashmika</p>
+                                    <p className="complainant-name">sandunirashmika727@gmail.com</p>
+                                </div>
+                            </div>
+                            <div className="complaint-desc">
+                                <h4>Delivery is too late. Not satisfied.</h4>
+                            </div>
+                            <div className="complaint-date-time">
+                                <div className="complaint-date">
+                                    2022/07/18
+                                </div>
+                                <div className="complaint-time">
+                                    05:12 pm
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <div className="panalty-marks">
+                    <div className="panelty-progress1">
+                        <h4>Panelty Marks</h4>
+                    </div>
+                    <div className="panelty-progress2">
+                        <ProgressBar completed={24} maxCompleted={100} bgColor="#E31723" baseBgColor="#E57676" height="25px"/>
+                    </div>
+                    <div className="panelty-progress3">
+                        <Button size="small" variant="contained">
+                        Alert
+                        </Button>
+                    </div>
+                    <div className="panelty-progress3">
+                        <Button size="small" variant="contained">
+                        Remove
+                        </Button>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <Footer />
+    </div>
+  );
+}
+
+export default Agentprofile;

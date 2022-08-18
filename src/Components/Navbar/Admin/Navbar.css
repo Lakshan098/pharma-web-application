@@ -17,14 +17,14 @@
     padding-left: 30px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
 .bar-link{
     color: #fff;
     text-decoration: none;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     /* padding-top: 1.5%; */
 }
@@ -51,15 +51,14 @@
 .profile-container{
     padding-right: 30px;
     /* padding-top: 1%; */
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
-    display: flex;
+    justify-content: center; */
 }
 
 .lable-tag{
     color:#fff;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }

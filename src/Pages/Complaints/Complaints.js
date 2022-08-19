@@ -2,12 +2,9 @@ import "./Complaints.css";
 import Navbar from "../../Components/Navbar/Admin/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import "../../index.css";
-<<<<<<< HEAD
 import logo from "../../Assets/Brand/wellness.png";
 import { FaAngleDown } from "react-icons/fa";
-=======
 import React from "react";
->>>>>>> a58d61c10d92c6b53e208b177cb06d149da37e0d
 
 function Complaints() {
   return (

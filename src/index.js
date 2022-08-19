@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom/client";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/SignUp/SignUp";
@@ -10,6 +11,8 @@ import PharmacyOrder from "./Pages/PharmacyOrder/PharmacyOrder";
 import Forgetpassword from "./Pages/Forgetpassword/Forgetpassword";
 import Verificationpage from "./Pages/Verificationpage/Verificationpage";
 import ViewDetails from "./Pages/ViewDetails/ViewDetails";
+import PendingOrder from "./Components/PendingOrder/PendingOrder";
+import CompletedOrder from "./Components/CompletedOrder/CompletedOrder";
 
 
 import DeliveryAgent from './Pages/DeliveryAgent/DeliveryAgent';
@@ -33,6 +36,7 @@ export default function App() {
         <Route index element={<Login />} />
           <Route path="pharmacies" element={<Pharmacies />} />
           <Route path="search" element={<SearchBar />} />
+          
 
           <Route path="deliveryagent" element={<DeliveryAgent />} />
           <Route path="dashboard" element={<Dashboard />} />
@@ -52,6 +56,9 @@ export default function App() {
           <Route path="pharmacistprofile" element={<Pharmacistprofile />} />
           <Route path="complaints" element={<Complaints />} />
           <Route path="unionchemistprofile" element={<Unionchemistprofile />} />
+          <Route path="PendingOrder" element={<PendingOrder />} />
+          <Route path="CompletedOrder" element={<CompletedOrder />} />
+          
       </Routes>
     </BrowserRouter>
   );

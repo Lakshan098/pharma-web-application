@@ -3,6 +3,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import React, { useState } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import logo from '../../Assets/Brand/wellness.png';
+import { FaHospitalAlt, FaBiking } from "react-icons/fa";
 
 import {
   ResponsiveContainer,
@@ -20,7 +21,7 @@ import {
 } from "recharts";
 
 const data2 = [
-  { name: "Ongoing", value: 40, fill: "#0a5279" },
+  { name: "Ongoing", value: 40, fill: "#0a5279"},
   { name: "New", value: 23, fill: "#0000FF" },
   { name: "Finished", value: 42, fill: "#0047AB" },
   { name: "Cancelled", value: 18, fill: "#ffcccb" },
@@ -95,7 +96,7 @@ function Dashboard() {
 
           <div class="two">
             <div>
-              <p class="icon">&#xf7f2; </p>
+              <p class="icon"><FaHospitalAlt/></p>
             </div>
             <div>
               <p class="value">Pharmacies</p>
@@ -105,7 +106,7 @@ function Dashboard() {
 
           <div class="three">
             <div>
-              <p class="icon">&#xf84a; </p>
+              <p class="icon"><FaBiking/></p>
             </div>
             <div>
               <p class="value">Delivery Agents</p>
@@ -153,7 +154,7 @@ function Dashboard() {
 
           <div className="orders">
             <div className="order-header">
-              <h3>Orders</h3>
+              <h3>Monthly Orders</h3>
             </div>
             <div style={{ width: "90%", height: 300 }}>
               <ResponsiveContainer>
@@ -182,7 +183,7 @@ function Dashboard() {
             <div className="best-da-header">
               <h3>Best Delivery Agents</h3>
             </div>
-            <div className="agent-details">
+            <div className="agent-details2">
                 <div className="agent-name1">
                     <h5>G.L.U.Maduranga</h5>
                 </div>

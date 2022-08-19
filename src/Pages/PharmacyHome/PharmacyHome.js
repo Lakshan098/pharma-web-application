@@ -1,12 +1,60 @@
 import Footer from '../../Components/Footer/Footer';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
+import React,{ useState } from 'react';
 import './PharmacyHome.css';
+import { MdVerifiedUser, MdOutlineDoNotDisturb } from 'react-icons/md';
 import pharmacyLogo from '../../Assets/Brand/hospital-pharmacy.jpg';
 import profilelogo from '../../Assets/Brand/imgprofile.jpg';
 import SearchBar from '../../Components/SearchBar/Search';
 import Card from '../../Components/card/card';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import Dropdown from 'react-bootstrap/Dropdown';
+import PendingOrder from '../../Components/PendingOrder/PendingOrder'
 
+
+
+//drop dawn function
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+function Tab(e) {
+    if (e.value === 'Item1') {
+        return <PendingOrder />;
+    } else if (e.value === 'Item2') {
+        return <PendingOrder />;
+    } else {
+        return <PendingOrder />;
+    }
+}
+
+
+//when button click navigate function
 function PharmacyHome() {
+
+    const navigate = useNavigate();
+    const navigateViewDetails = () => {
+
+        navigate('/ViewDetails');
+    };
+
+
+
     return (
         <div>
             <Navbar />
@@ -17,72 +65,31 @@ function PharmacyHome() {
 
             </div>
 
-            <div className="process-button" >
-                <button id="process-one" class="button btn-1" type="button" >On going order &#11167;</button>
-                <button id="process-two" class="button disabled btn-2" type="button">Processed order &#11167;</button>
+            <div className="process-button-div" >
+                {/* <button onClick={shoot} id="process-one" class="process-button btn-1" type="button" >Pending order &#11167;</button> */}
+
+                <div class="dropdown">
+                    <button onClick={myFunction} class="dropbtn">Pending order &#11167;</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a  eventKey="Item1" onClick={Tab("Item1")}>Pending order</a>
+                        <a  eventKey="Item2" >On going order </a>
+                        <a  eventKey="Item3">Completed order</a>
+                    </div>
+                </div>
+                
+
+
                 <div class="searchbar"> <SearchBar /> </div>
             </div>
-            
-            
-            <div class="profile-cards">
-            <div class="card">
-                <img className="profiles-logo" src={profilelogo} alt="Avatar" />
-                <h2>K.K.Sahan Dilshan</h2>
-                <p class="title1">172,Egodabadda,kirama</p>
-                <p><button class="view-btn">View Details</button></p>
-                <div class="ar-button">
-                <p><button class="Accept-btn">Accept</button></p>
-                <p><button class="Reject-btn">Reject</button></p>
-                </div>
 
-                <p class="title2">1 minutes ago</p>
-            </div>
+            <div><PendingOrder /></div>
 
+           
 
-            <div class="card">
-                <img className="profiles-logo" src={profilelogo} alt="Avatar" />
-                <h2>K.K.Sahan Dilshan</h2>
-                <p class="title1">172,Egodabadda,kirama</p>
-                <p><button class="view-btn">View Details</button></p>
-                <div class="ar-button">
-                <p><button class="Accept-btn">Accept</button></p>
-                <p><button class="Reject-btn">Reject</button></p>
-                </div>
-
-                <p class="title2">10 minutes ago</p>
-            </div>
-
-            <div class="card">
-                <img className="profiles-logo" src={profilelogo} alt="Avatar" />
-                <h2>K.K.Sahan Dilshan</h2>
-                <p class="title1">172,Egodabadda,kirama</p>
-                <p><button class="view-btn">View Details</button></p>
-                <div class="ar-button">
-                <p><button class="Accept-btn">Accept</button></p>
-                <p><button class="Reject-btn">Reject</button></p>
-                </div>
-
-                <p class="title2">30 minutes ago</p>
-            </div>   
-
-            <div class="card">
-                <img className="profiles-logo" src={profilelogo} alt="Avatar" />
-                <h2>K.K.Sahan Dilshan</h2>
-                <p class="title1">172,Egodabadda,kirama</p>
-                <p><button class="view-btn">View Details</button></p>
-                <div class="ar-button">
-                <p><button class="Accept-btn">Accept</button></p>
-                <p><button class="Reject-btn">Reject</button></p>
-                </div>
-
-                <p class="title2">40 minutes ago</p>
-            </div>
-
-            </div>
 
             <div> <Footer /></div>
         </div>
-        
+
     );
 }
 export default PharmacyHome;

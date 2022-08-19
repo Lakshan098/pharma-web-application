@@ -1,4 +1,5 @@
 import Navbar from "../../Components/Navbar/Admin/Navbar";
+import React from "react";
 import { Rating } from "react-simple-star-rating";
 import Footer from "../../Components/Footer/Footer";
 import Button from "@mui/material/Button";
@@ -104,7 +105,7 @@ function Agentprofile() {
                   </h6>
                 </div>
               </div>
-              <div className="agent-details">
+              <div className="agent-details1">
                 <h4 style={{ marginLeft: "50px", color: "#1789AD" }}>
                   Details
                 </h4>

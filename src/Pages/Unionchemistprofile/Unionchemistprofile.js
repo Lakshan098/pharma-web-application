@@ -1,11 +1,10 @@
 import Navbar from "../../Components/Navbar/Admin/Navbar";
-import React from "react";
 import { Rating } from "react-simple-star-rating";
 import Footer from "../../Components/Footer/Footer";
 import Button from "@mui/material/Button";
-import logo from "../../Assets/Brand/centralphar.jpg";
+import logo from "../../Assets/Brand/unionchem.jpg";
 import ProgressBar from "@ramonak/react-progress-bar";
-import "./Pharmacistprofile.css";
+import "./Unionchemistprofile.css";
 import "../../index.css";
 import {
   FaUserCircle,
@@ -80,7 +79,7 @@ import {
     },
   ];
 
-function Pharmacistprofile() {
+function Unionchemistprofile() {
   return (
     <div>
       <Navbar />
@@ -99,7 +98,7 @@ function Pharmacistprofile() {
                   />
                 </div>
                 <div className="pharmacist-prof-name">
-                  <h1>Central Pharmacy</h1>
+                  <h1>Union Chemist</h1>
                   <h6>
                     <Rating readonly="true" initialValue={4} size="25" />
                   </h6>
@@ -124,7 +123,7 @@ function Pharmacistprofile() {
                       <h5>Name</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>Central Pharmacy</h5>
+                      <h5>Union Chemist</h5>
                     </div>
                   </div>
                   <div className="pharmacist-detail-one">
@@ -133,7 +132,7 @@ function Pharmacistprofile() {
                       <h5>ID Number</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>000127</h5>
+                      <h5>000137</h5>
                     </div>
                   </div>
                   <div className="pharmacist-detail-one">
@@ -142,7 +141,7 @@ function Pharmacistprofile() {
                       <h5>Registration Number</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>80270017</h5>
+                      <h5>80240234</h5>
                     </div>
                   </div>
                   <div className="pharmacist-detail-one">
@@ -151,7 +150,7 @@ function Pharmacistprofile() {
                       <h5>Address</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>No 215/3, Habarakada, Homagama</h5>
+                      <h5>No 161/1, Uyanwatta, Matara</h5>
                     </div>
                   </div>
                   <div className="pharmacist-detail-one">
@@ -160,7 +159,7 @@ function Pharmacistprofile() {
                       <h5>Contact Number</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>+94 41 222 4432</h5>
+                      <h5>+94 41 222 9663</h5>
                     </div>
                   </div>
                   <div className="pharmacist-detail-one">
@@ -169,7 +168,7 @@ function Pharmacistprofile() {
                       <h5>Email</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>centralpharma@gmail.com</h5>
+                      <h5>unionchemist@gmail.com</h5>
                     </div>
                   </div>
                 </div>
@@ -298,7 +297,7 @@ function Pharmacistprofile() {
                         <h4>Panelty Marks</h4>
                     </div>
                     <div className="panelty-progress2">
-                        <ProgressBar completed={36} maxCompleted={100} bgColor="#E31723" baseBgColor="#E57676" height="25px"/>
+                        <ProgressBar completed={28} maxCompleted={100} bgColor="#E31723" baseBgColor="#E57676" height="25px"/>
                     </div>
                     <div className="panelty-progress3">
                         <Button size="small" variant="contained">
@@ -321,4 +320,4 @@ function Pharmacistprofile() {
   );
 }
 
-export default Pharmacistprofile;
+export default Unionchemistprofile;

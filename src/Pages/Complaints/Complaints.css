@@ -1,24 +1,136 @@
 .complaints-head-bar{
-    display: flex;
+    /* display: flex; */
     width: 75%;
     height: 8rem;
     margin-left: 12.5%;
     margin-left: 12.5;
     box-shadow: 2px 2px 2px 2px #a19c9c;
     border-radius: 20px;
-    margin-top: 15px;
-} 
+    margin-top: 50px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+.complaints-head-bar2{
+    /* display: flex; */
+    width: 75%;
+    height: 28rem;
+    margin-left: 12.5%;
+    margin-left: 12.5;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+.complaints-heading{
+    margin-left: 25px;
+}
+
+.com-val-name{
+    width: 100%;
+    
+}
+
+.com-name{
+    padding-left: 20px;
+}
+
+.com-value{
+    text-align: center;
+    padding-top: 10px;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
 .total-complaints{
     width: 33%;
     padding-left: 1%;
+    display: flex;
 }
 .pharmacy-complaints{
     width: 33%;
+    display: flex;
 }
 .agent-complaints{
     width: 33%;
-}
-.complaints-details{
     display: flex;
-    flex-direction: row;
+}
+.complaints-detail{
+    display: flex;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.vl2 {
+    border-left: 6px solid #9AE4E9;
+    height: 80px;
+}
+.complaint-det {
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 40px;
+  }
+  .p-a-logo {
+    width: 15%;
+  }
+  .p-a-logo1 {
+    width: 55%;
+    text-align: left;
+    padding-top: 8px;
+}
+.p-a-logo2 {
+    width: 20%;
+    padding-top: 5px;
+}
+.cmp-det{
+    padding-top: 5px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropbtn {
+    background-color: #1789AD;
+    border-radius: 10px;
+    width: 130px;
+    height: 25px;
+    color: white;
+    padding: 4px;
+    font-size: 16px;
+    border: none;
+  }
+
+  .dropbtn1 {
+    background-color: #1789AD;
+    border-radius: 10px;
+    align-items: right;
+    width: 130px;
+    height: 25px;
+    color: white;
+    padding: 4px;
+    font-size: 16px;
+    border: none;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+  }
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #92b6d8;}
+
+.comp-link{
+    text-decoration: none;
 }

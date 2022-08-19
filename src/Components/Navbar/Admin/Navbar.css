@@ -4,7 +4,7 @@
 }
 
 .nav-container{
-    height: 11vh;
+    height: 10vh;
     top: 0;
     left: 0;
     width: 100%;
@@ -13,18 +13,18 @@
     overflow: hidden;
     justify-content: space-between;
 }
-img{
-    padding-left: 20px;
-    /* display: flex;
+.logo{
+    padding-left: 30px;
+    display: flex;
     align-items: center;
-    justify-content: center; */
+    justify-content: center; 
 }
 
 .nav-tabs{
     color: #fff;
     text-decoration: none;
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
     /* padding-top: 1.5%; */
 }
@@ -36,7 +36,6 @@ img{
 }
 
 .downarrow{
-    color: #fff;
     font-size: 30px;
     padding-top: 5px;
 
@@ -50,14 +49,15 @@ img{
 
 .profile-container{
     padding-right: 30px;
-    /* padding-top: 1%; */
-    /* display: flex;
+    /* padding-top: 1%;
+    display: flex;
     align-items: center;
     justify-content: center; */
 }
 
-label{
+.lable-tag{
     color:#fff;
+    text-decoration: none;
     /* display: flex;
     align-items: center;
     justify-content: center; */

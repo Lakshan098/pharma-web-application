@@ -1,10 +1,19 @@
 import ReactDOM from "react-dom/client";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login/Login";
+import SignUp from "./Pages/SignUp/SignUp";
 import Pharmacies from './Pages/Pharmacies/Pharmacies';
 import SearchBar from "./Components/SearchBar/Search";
 import PharmacyHome from "./Pages/PharmacyHome/PharmacyHome";
 import Card from './Components/card/card';
+import PharmacyOrder from "./Pages/PharmacyOrder/PharmacyOrder";
+import Forgetpassword from "./Pages/Forgetpassword/Forgetpassword";
+import Verificationpage from "./Pages/Verificationpage/Verificationpage";
+import ViewDetails from "./Pages/ViewDetails/ViewDetails";
+import PendingOrder from "./Components/PendingOrder/PendingOrder";
+import CompletedOrder from "./Components/CompletedOrder/CompletedOrder";
+
 
 import DeliveryAgent from './Pages/DeliveryAgent/DeliveryAgent';
 import Dashboard from './Components/Dashboard/Dashboard';
@@ -16,6 +25,7 @@ import Adminprofile from './Pages/Adminprofile/Adminprofile';
 import Agentprofile from './Pages/Agentprofile/Agentprofile';
 import Pharmacistprofile from "./Pages/Pharmacistprofile/Pharmacistprofile";
 import Complaints from "./Pages/Complaints/Complaints";
+import Unionchemistprofile from "./Pages/Unionchemistprofile/Unionchemistprofile";
 
 
 
@@ -26,12 +36,18 @@ export default function App() {
         <Route index element={<Login />} />
           <Route path="pharmacies" element={<Pharmacies />} />
           <Route path="search" element={<SearchBar />} />
+          
 
           <Route path="deliveryagent" element={<DeliveryAgent />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="PharmacyHome" element={<PharmacyHome />} />
           <Route path="Card" element={<Card />} />
           <Route path="dashboardpage" element={<DashboardPage />} />
+          <Route path="SignUp" element={<SignUp />} />
+          <Route path="PharmacyOrder" element={<PharmacyOrder />} />
+          <Route path="Forgetpassword" element={<Forgetpassword />} />
+          <Route path="Verificationpage" element={<Verificationpage />} />
+          <Route path="ViewDetails" element={<ViewDetails />} />
           <Route path="rating" element={<Rating />} />
           <Route path="statistics" element={<Statistics />} />
           <Route path="statisticspage" element={<StatisticsPage />} />
@@ -39,6 +55,10 @@ export default function App() {
           <Route path="agentprofile" element={<Agentprofile />} />
           <Route path="pharmacistprofile" element={<Pharmacistprofile />} />
           <Route path="complaints" element={<Complaints />} />
+          <Route path="unionchemistprofile" element={<Unionchemistprofile />} />
+          <Route path="PendingOrder" element={<PendingOrder />} />
+          <Route path="CompletedOrder" element={<CompletedOrder />} />
+          
       </Routes>
     </BrowserRouter>
   );

@@ -1,20 +1,60 @@
 import Footer from '../../Components/Footer/Footer';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
-import React from 'react';
+import React,{ useState } from 'react';
 import './PharmacyHome.css';
-import { MdVerifiedUser,MdOutlineDoNotDisturb } from 'react-icons/md';
+import { MdVerifiedUser, MdOutlineDoNotDisturb } from 'react-icons/md';
 import pharmacyLogo from '../../Assets/Brand/hospital-pharmacy.jpg';
 import profilelogo from '../../Assets/Brand/imgprofile.jpg';
 import SearchBar from '../../Components/SearchBar/Search';
 import Card from '../../Components/card/card';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import Dropdown from 'react-bootstrap/Dropdown';
+import PendingOrder from '../../Components/PendingOrder/PendingOrder'
 
+
+
+//drop dawn function
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+function Tab(e) {
+    if (e.value === 'Item1') {
+        return <PendingOrder />;
+    } else if (e.value === 'Item2') {
+        return <PendingOrder />;
+    } else {
+        return <PendingOrder />;
+    }
+}
+
+
+//when button click navigate function
 function PharmacyHome() {
+
     const navigate = useNavigate();
     const navigateViewDetails = () => {
-        
+
         navigate('/ViewDetails');
-      };
+    };
+
+
+
     return (
         <div>
             <Navbar />
@@ -26,82 +66,26 @@ function PharmacyHome() {
             </div>
 
             <div className="process-button-div" >
-                <button id="process-one" class="process-button btn-1" type="button" >Pending order &#11167;</button>
-                {/* <button id="process-one" class="process-button btn-1" type="button" >Ongoing order &#11167;</button> */}
-                <button id="process-two" class="process-button disabled btn-2" type="button">Completed order &#11167;</button>
+                {/* <button onClick={shoot} id="process-one" class="process-button btn-1" type="button" >Pending order &#11167;</button> */}
+
+                <div class="dropdown">
+                    <button onClick={myFunction} class="dropbtn">Pending order &#11167;</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a  eventKey="Item1" onClick={Tab("Item1")}>Pending order</a>
+                        <a  eventKey="Item2" >On going order </a>
+                        <a  eventKey="Item3">Completed order</a>
+                    </div>
+                </div>
+                
+
+
                 <div class="searchbar"> <SearchBar /> </div>
             </div>
-            
-            
-            <div class="profile-cards">
-            <div class="card">
-                    <div class="neworder"><p>New order</p></div>
-                    <div class="orderId"><p>Order Id:12345xer</p></div>
-                    <div class="home-date"><p>20 july 2022 2pm</p></div>
-                    <div><p>Delivary <MdVerifiedUser color="green"/></p></div>
-                    <div><p>Prescription <MdVerifiedUser color="green"/></p> </div>
 
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    <div class="ar-button">
-                        <p><button class="Accept-btn">Accept</button></p>
-                        <p><button class="Reject-btn">Reject</button></p>
-                    </div>
+            <div><PendingOrder /></div>
 
-                    <p class="title2">40 minutes ago</p>
-                </div>
+           
 
-
-                <div class="card">
-                    <div class="neworder"><p>New order</p></div>
-                    <div class="orderId"><p>Order Id:12345xer</p></div>
-                    <div class="home-date"><p>20 july 2022 2pm</p></div>
-                    <div><p>Delivary <MdOutlineDoNotDisturb color="red"/></p></div>
-                    <div><p>Prescription <MdVerifiedUser color="green"/></p> </div>
-
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    <div class="ar-button">
-                        <p><button class="Accept-btn">Accept</button></p>
-                        <p><button class="Reject-btn">Reject</button></p>
-                    </div>
-
-                    <p class="title2">40 minutes ago</p>
-                </div>
-
-                <div class="card">
-                    <div class="neworder"><p>New order</p></div>
-                    <div class="orderId"><p>Order Id:12345xer</p></div>
-                    <div class="home-date"><p>20 july 2022 2pm</p></div>
-                    <div><p>Delivary <MdVerifiedUser color="green"/></p></div>
-                    <div><p>Prescription <MdOutlineDoNotDisturb color="red"/></p> </div>
-
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    <div class="ar-button">
-                        <p><button class="Accept-btn">Accept</button></p>
-                        <p><button class="Reject-btn">Reject</button></p>
-                    </div>
-
-                    <p class="title2">40 minutes ago</p>
-                </div>
-
-                <div class="card">
-                    <div class="neworder"><p>New order</p></div>
-                    <div class="orderId"><p>Order Id:12345xer</p></div>
-                    <div class="home-date"><p>20 july 2022 2pm</p></div>
-                    <div><p>Delivary <MdVerifiedUser color="green"/></p></div>
-                    <div><p>Prescription <MdVerifiedUser color="green"/></p> </div>
-
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    <div class="ar-button">
-                        <p><button class="Accept-btn">Accept</button></p>
-                        <p><button class="Reject-btn">Reject</button></p>
-                    </div>
-
-                    <p class="title2">40 minutes ago</p>
-                </div>
-
-            </div>
-
-            
 
             <div> <Footer /></div>
         </div>

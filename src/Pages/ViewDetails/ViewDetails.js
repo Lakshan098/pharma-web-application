@@ -1,4 +1,5 @@
 import Footer from '../../Components/Footer/Footer';
+import React from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import './ViewDetails.css';
 import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';

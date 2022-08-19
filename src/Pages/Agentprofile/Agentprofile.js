@@ -1,4 +1,5 @@
 import Navbar from "../../Components/Navbar/Admin/Navbar";
+import React from "react";
 import { Rating } from "react-simple-star-rating";
 import Footer from "../../Components/Footer/Footer";
 import Button from "@mui/material/Button";

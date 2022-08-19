@@ -2,6 +2,7 @@ import "./Complaints.css";
 import Navbar from "../../Components/Navbar/Admin/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import "../../index.css";
+import React from "react";
 
 function Complaints() {
   return (

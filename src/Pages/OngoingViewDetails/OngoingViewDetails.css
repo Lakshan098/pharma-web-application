@@ -1,0 +1,62 @@
+.viewdetails-card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 1200px;
+    height: 210%;
+    margin-bottom: 6rem;
+    margin-left: 8rem;
+    margin-top: 4rem;
+    border-radius:10px;
+    margin-right: 4rem;
+    text-align: center;
+ }
+
+ .v-order-details{
+    color: #1789AD;
+    padding-top: 10px;
+ }
+ .status-div-ongoing{
+   background-color:rgb(215, 110, 23);
+   width: 122px;
+   color:#fff;
+   text-align: center;
+   border-radius: 5px;
+   padding: 5px;
+   
+ }
+
+ .viewdetails-hr-line{
+    width: 90%;
+    margin-left: 1.5rem;
+    border: 1px solid black;
+
+ }
+
+ .agent-details{
+    display: flex;
+    flex-direction:row;
+ }
+
+ 
+
+ .v-order-tbl{
+    text-align: left;
+    width: 100%;
+    margin-left: 8rem;
+ }
+
+ .v-order-tbl2{
+    margin-left: 13rem;
+ }
+
+ .agent-photo{
+    width: 10rem;
+    height: 10rem;
+    border-radius:50%;
+    margin-left: 4rem;
+ }
+
+ .v-agent-name{
+    margin-left: 4rem;
+    width: 90%;
+ }

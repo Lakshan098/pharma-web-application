@@ -13,6 +13,16 @@
 
  .v-order-details{
     color: #1789AD;
+    padding-top: 10px;
+ }
+ .status-div-pending{
+   background-color:rgb(42, 13, 229);
+   width: 120px;
+   color:#fff;
+   text-align: center;
+   border-radius: 5px;
+   padding: 5px;
+   
  }
 
  .viewdetails-hr-line{

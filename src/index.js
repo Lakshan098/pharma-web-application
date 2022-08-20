@@ -10,9 +10,12 @@ import Card from './Components/card/card';
 import PharmacyOrder from "./Pages/PharmacyOrder/PharmacyOrder";
 import Forgetpassword from "./Pages/Forgetpassword/Forgetpassword";
 import Verificationpage from "./Pages/Verificationpage/Verificationpage";
-import ViewDetails from "./Pages/ViewDetails/ViewDetails";
+import CompletedViewDetails from "./Pages/CompletedViewDetails/CompletedViewDetails";
 import PendingOrder from "./Components/PendingOrder/PendingOrder";
 import CompletedOrder from "./Components/CompletedOrder/CompletedOrder";
+import OngoingOrder from "./Components/OngoingOrder/OngoingOrder";
+import PendingViewDetails from "./Pages/PendingViewDetails/PendingViewDetails";
+import OngoingViewDetails from "./Pages/OngoingViewDetails/OngoingViewDetails";
 
 
 import DeliveryAgent from './Pages/DeliveryAgent/DeliveryAgent';
@@ -25,6 +28,7 @@ import Adminprofile from './Pages/Adminprofile/Adminprofile';
 import Agentprofile from './Pages/Agentprofile/Agentprofile';
 import Pharmacistprofile from "./Pages/Pharmacistprofile/Pharmacistprofile";
 import Complaints from "./Pages/Complaints/Complaints";
+
 
 
 
@@ -46,7 +50,7 @@ export default function App() {
           <Route path="PharmacyOrder" element={<PharmacyOrder />} />
           <Route path="Forgetpassword" element={<Forgetpassword />} />
           <Route path="Verificationpage" element={<Verificationpage />} />
-          <Route path="ViewDetails" element={<ViewDetails />} />
+          <Route path="CompletedViewDetails" element={<CompletedViewDetails />} />
           <Route path="rating" element={<Rating />} />
           <Route path="statistics" element={<Statistics />} />
           <Route path="statisticspage" element={<StatisticsPage />} />
@@ -56,6 +60,9 @@ export default function App() {
           <Route path="complaints" element={<Complaints />} />
           <Route path="PendingOrder" element={<PendingOrder />} />
           <Route path="CompletedOrder" element={<CompletedOrder />} />
+          <Route path="OngoingOrder" element={<OngoingOrder />} />
+          <Route path="PendingViewDetails" element={<PendingViewDetails />} />
+          <Route path="OngoingViewDetails" element={<OngoingViewDetails />} />
           
       </Routes>
     </BrowserRouter>

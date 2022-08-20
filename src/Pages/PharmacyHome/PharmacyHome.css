@@ -39,6 +39,7 @@
     display: flex;
     flex-direction: row;
     color: #1279ef;
+    justify-content:flex-start;
 
 }
 
@@ -64,8 +65,8 @@
 
 /* .show {display:block;} */
 .searchbar{
-    margin-left:35rem;
-    padding-top: 1rem;
+    margin-left:5.7rem;
+    /* padding-top: 1rem; */
     
     
     
@@ -75,16 +76,25 @@
     background-color: #1279ef; /* Green */
     border: none;
     color: rgb(243, 236, 236);
-    padding: 15px 32px;
+    /* padding: 15px 32px; */
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display:inline-box;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 5px 5px;
     height: 50px;
+    width: 200px;
+    
+  }
+  .btn-2{
+    margin-left: 2rem;
+  }
+
+  .btn-3{
+    margin-left: 2rem;
   }
 
   .disabled {

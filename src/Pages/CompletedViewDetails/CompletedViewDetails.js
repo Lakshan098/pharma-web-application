@@ -1,13 +1,13 @@
 import Footer from '../../Components/Footer/Footer';
 import React from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
-import './ViewDetails.css';
+import './CompletedViewDetails.css';
 import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
 import { MdVerifiedUser} from 'react-icons/md';
 import { AiFillFilePdf} from 'react-icons/ai';
 
 
-function ViewDetails() {
+function CompletedViewDetails() {
     return (
         <div>
             <Navbar />
@@ -32,7 +32,7 @@ function ViewDetails() {
 
                         <tr>
                             <td><b>Status :</b></td>
-                            <td>Completed</td>
+                            <td><div class="status-div"><b>Completed</b></div></td>
                         </tr>
 
                         <tr>
@@ -120,4 +120,4 @@ function ViewDetails() {
     );
 }
 
-export default ViewDetails;
+export default CompletedViewDetails;

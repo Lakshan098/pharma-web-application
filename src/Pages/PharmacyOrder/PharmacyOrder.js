@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import './PharmacyOrder.css';
 import Searchbar from '../../Components/SearchBar/Search';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 
 
@@ -11,10 +11,22 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 function PharmacyOrder() {
 
     const navigate = useNavigate();
+    const navigate2 = useNavigate();
+    const navigate3 = useNavigate();
     const navigateViewDetails = () => {
-        
-        navigate('/ViewDetails');
-      };
+
+        navigate('/OngoingViewDetails');
+    };
+
+    const navigateViewDetails2 = () => {
+
+        navigate('/PendingViewDetails');
+    };
+
+    const navigateViewDetails3 = () => {
+
+        navigate('/CompletedViewDetails');
+    };
     return (
         <div>
             <Navbar />
@@ -29,63 +41,63 @@ function PharmacyOrder() {
                             <th>Placed date</th>
                             <th>Status</th>
                             <th></th>
-                            
+
                         </tr>
-                        
-                       
+
+
                         <tr>
                             <td>IN001</td>
                             <td>Manuka Dewanarayana</td>
                             <td>22 july 2022</td>
                             <td><button className="progress-btn progress-btn1"><b>On going</b></button></td>
                             <td><button onClick={navigateViewDetails} className="order-viewbtn"><b>View details</b></button></td>
-                            
+
                         </tr>
-                        <hr class="order-hr-line"/>
+                        <hr class="order-hr-line" />
                         <tr>
                             <td>IN002</td>
                             <td>Navod Wimalaweera</td>
                             <td>22 july 2022</td>
                             <td><button className="progress-btn progress-btn2"><b>Delivery</b></button></td>
-                            <td><button onClick={navigateViewDetails} className="order-viewbtn"><b>View details</b></button></td>
+                            <td><button onClick={navigateViewDetails2} className="order-viewbtn"><b>View details</b></button></td>
                         </tr>
-                        <hr class="order-hr-line"/>
+                        <hr class="order-hr-line" />
 
                         <tr>
                             <td>IN003</td>
                             <td>Sanduni Rashmika</td>
                             <td>22 july 2021</td>
                             <td><button className="progress-btn progress-btn3 "><b>Completed</b></button></td>
-                            <td><button onClick={navigateViewDetails} className="order-viewbtn"><b>View details</b></button></td>
+                            <td><button onClick={navigateViewDetails3} className="order-viewbtn"><b>View details</b></button></td>
                         </tr>
-                        <hr class="order-hr-line"/>
+                        <hr class="order-hr-line" />
 
                         <tr>
                             <td>IN004</td>
                             <td>Sahan Dilshan</td>
                             <td>21 july 2022</td>
-                            <td><button className="progress-btn progress-btn4 "><b>New order</b></button></td>
-                            <td><button onClick={navigateViewDetails} className="order-viewbtn"><b>View details</b></button></td>
+                            <td><button className="progress-btn progress-btn4 "><b>Pending order</b></button></td>
+                            <td><button onClick={navigateViewDetails2} className="order-viewbtn"><b>View details</b></button></td>
                         </tr>
-                        <hr class="order-hr-line"/>
+                        <hr class="order-hr-line" />
                         <tr>
                             <td>IN004</td>
                             <td>Sahan Dilshan</td>
                             <td>21 july 2022</td>
                             <td><button className="progress-btn progress-btn4 "><b>Completed</b></button></td>
-                            <td><button onClick={navigateViewDetails} className="order-viewbtn"><b>View details</b></button></td>
+                            <td><button onClick={navigateViewDetails3} className="order-viewbtn"><b>View details</b></button></td>
                         </tr>
-                        <hr class="order-hr-line"/>
+                        <hr class="order-hr-line" />
                         <tr>
                             <td>IN002</td>
                             <td>Navod Wimalaweera</td>
                             <td>22 july 2022</td>
                             <td><button className="progress-btn progress-btn2"><b>Delivery</b></button></td>
-                            <td><button onClick={navigateViewDetails} className="order-viewbtn"><b>View details</b></button></td>
+                            <td><button onClick={navigateViewDetails2} className="order-viewbtn"><b>View details</b></button></td>
                         </tr>
-                        <hr class="order-hr-line"/>
+                        <hr class="order-hr-line" />
 
-                        
+
                     </table>
                 </div>
 
@@ -93,7 +105,7 @@ function PharmacyOrder() {
             <Footer />
         </div>
 
-        
+
 
     );
 }

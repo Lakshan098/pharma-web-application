@@ -1,15 +1,15 @@
 import React from 'react';
 import { MdVerifiedUser, MdOutlineDoNotDisturb } from 'react-icons/md';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import "./PendingOrder.css";
+import "./OngoingOrder.css";
 
- function PendingOrder(){
+ function OngoingOrder(){
     
 
     const navigate = useNavigate();
     const navigateViewDetails = () => {
 
-        navigate('/PendingViewDetails');
+        navigate('/OngoingViewDetails');
     };
     return(
         <div class="profile-cards">
@@ -31,7 +31,7 @@ import "./PendingOrder.css";
 
 
                 <div class="card">
-                    <div class="neworder"><p>Pending Order</p></div>
+                    <div class="neworder"><p>Ongoing Order</p></div>
                     <div class="orderId"><p>Order Id:12345xer</p></div>
                     <div class="home-date"><p>20 july 2022 2pm</p></div>
                     <div><p>Delivary <MdOutlineDoNotDisturb color="red" /></p></div>
@@ -47,7 +47,7 @@ import "./PendingOrder.css";
                 </div>
 
                 <div class="card">
-                    <div class="neworder"><p>Pending Order</p></div>
+                    <div class="neworder"><p>Ongoing Order</p></div>
                     <div class="orderId"><p>Order Id:12345xer</p></div>
                     <div class="home-date"><p>20 july 2022 2pm</p></div>
                     <div><p>Delivary <MdVerifiedUser color="green" /></p></div>
@@ -63,7 +63,7 @@ import "./PendingOrder.css";
                 </div>
 
                 <div class="card">
-                    <div class="neworder"><p>Pending Order</p></div>
+                    <div class="neworder"><p>Ongoing Order</p></div>
                     <div class="orderId"><p>Order Id:12345xer</p></div>
                     <div class="home-date"><p>20 july 2022 2pm</p></div>
                     <div><p>Delivary <MdVerifiedUser color="green" /></p></div>
@@ -83,4 +83,4 @@ import "./PendingOrder.css";
     );
  }
 
- export default PendingOrder;
+ export default OngoingOrder;

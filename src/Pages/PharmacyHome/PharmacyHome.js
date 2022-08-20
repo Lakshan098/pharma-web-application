@@ -1,6 +1,6 @@
 import Footer from '../../Components/Footer/Footer';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import './PharmacyHome.css';
 import { MdVerifiedUser, MdOutlineDoNotDisturb } from 'react-icons/md';
 import pharmacyLogo from '../../Assets/Brand/hospital-pharmacy.jpg';
@@ -9,39 +9,11 @@ import SearchBar from '../../Components/SearchBar/Search';
 import Card from '../../Components/card/card';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
-import PendingOrder from '../../Components/PendingOrder/PendingOrder'
+import PendingOrder from '../../Components/PendingOrder/PendingOrder';
+import OngoingOrder from '../../Components/OngoingOrder/OngoingOrder';
+import CompletedOrder from '../../Components/CompletedOrder/CompletedOrder';
+import Button from 'react-bootstrap/Button';
 
-
-
-//drop dawn function
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function (event) {
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
-
-function Tab(e) {
-    if (e.value === 'Item1') {
-        return <PendingOrder />;
-    } else if (e.value === 'Item2') {
-        return <PendingOrder />;
-    } else {
-        return <PendingOrder />;
-    }
-}
 
 
 //when button click navigate function
@@ -53,6 +25,48 @@ function PharmacyHome() {
         navigate('/ViewDetails');
     };
 
+
+    const [show, setShow] = useState(true);
+    const handleOpen = () => {
+        if(show == true){
+            setShow(!show);
+        }
+        if(show2 == true){
+            setShow(!show2);
+        }
+        if(show3 == true){
+            setShow(!show3);
+        }
+        setShow(!show);
+    };
+
+    const [show2, setShow2] = useState(false);
+    const handleOpen2 = () => {
+        if(show == true){
+            setShow(!show);
+        }
+        if(show2 == true){
+            setShow(!show2);
+        }
+        if(show3 == true){
+            setShow(!show3);
+        }
+        setShow2(!show2);
+    };
+
+    const [show3, setShow3] = useState(false);
+    const handleOpen3 = () => {
+        if(show == true){
+            setShow(!show);
+        }
+        if(show2 == true){
+            setShow(!show2);
+        }
+        if(show3 == true){
+            setShow(!show3);
+        }
+        setShow3(!show3);
+    };
 
 
     return (
@@ -66,25 +80,22 @@ function PharmacyHome() {
             </div>
 
             <div className="process-button-div" >
-                {/* <button onClick={shoot} id="process-one" class="process-button btn-1" type="button" >Pending order &#11167;</button> */}
-
-                <div class="dropdown">
-                    <button onClick={myFunction} class="dropbtn">Pending order &#11167;</button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a  eventKey="Item1" onClick={Tab("Item1")}>Pending order</a>
-                        <a  eventKey="Item2" >On going order </a>
-                        <a  eventKey="Item3">Completed order</a>
-                    </div>
-                </div>
-                
+                <div ><button onClick={handleOpen} id="process-one" class="process-button" type="button" >Pending order</button></div>
+                <div><button onClick={handleOpen2} id="process-one" class="process-button btn-3" type="button" >On going order</button></div>
+                <div><button onClick={handleOpen3} id="process-one" class="process-button btn-3" type="button" >Completed order</button></div>
 
 
                 <div class="searchbar"> <SearchBar /> </div>
             </div>
 
-            <div><PendingOrder /></div>
+                { show ? <PendingOrder /> : ''
+                }
+                { show2 ? <OngoingOrder /> : ''
+                }
+                { show3 ? <CompletedOrder /> : ''
+                }
 
-           
+
 
 
             <div> <Footer /></div>

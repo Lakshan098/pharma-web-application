@@ -104,7 +104,7 @@ export default class SignUp extends React.Component {
                         <img src={loginlogo} className='signup-image-signup' width={500} height={300} />
                     </div>
                     <div className='form-wrapper'>
-                        <h2><b>Sign Up</b></h2>
+                        <h2 className='Sign-Up-topic'><b>Sign Up</b></h2>
 
                         <form id="login-form" action="pharmacyHome" method="GET" className="p-sinup-form" onSubmit={this.handleSubmit} noValidate>
 

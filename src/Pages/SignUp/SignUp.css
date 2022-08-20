@@ -69,7 +69,12 @@
   .login-lable {
     margin-bottom: 0.5em;
     color: #444;
-    font-weight: lighter;
+    font-weight: Bold;
+    font-size:12px;
+  }
+
+  .Sign-Up-topic{
+    margin-bottom: 10px;
   }
   
   .signup-input{
@@ -132,8 +137,11 @@
   .p-signup-btn{
     background-color: #32BBC3;
     border-radius:2px;
-    width:45% ;
-    color:#f7f7f7
+    width:55% ;
+    color:#f7f7f7;
+    padding: 5px;
+    font-size:16px;
+
   }
 
  

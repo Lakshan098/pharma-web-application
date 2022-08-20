@@ -9,7 +9,7 @@ import "./CompletedOrder.css";
     const navigate = useNavigate();
     const navigateViewDetails = () => {
 
-        navigate('/ViewDetails');
+        navigate('/CompletedViewDetails');
     };
     return(
         <div class="profile-cards">

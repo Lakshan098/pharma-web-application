@@ -126,14 +126,18 @@
     flex-wrap: wrap;
     margin-left: 4rem;
     margin-top: 1rem;
+    
 
   }
 
   .p-login-btn{
     background-color: #32BBC3;
     border-radius:2px;
-    width:45% ;
-    color:#f7f7f7
+    width:55% ;
+    color:#f7f7f7;
+    padding: 5px;
+    font-size:16px;
+    margin-left:1rem;
   }
 
  
@@ -160,12 +164,13 @@
     display:flex;
     flex-direction: column;
     font-size: 12px;
-    margin-left: 3.5rem;
+    margin-left: 4.3rem;
+    margin-top: 10px;
 }
 
 .p-Forget-password{
     font-size: 12px;
-    margin-left: 1.5rem;
+    margin-left: 3rem;
    
 }
 
@@ -179,7 +184,7 @@
 
 .p-fromLogin-forgot{
     text-align: center;
-    margin-left: 3rem;
+    margin-left: 4rem;
     color:blue
 }
 

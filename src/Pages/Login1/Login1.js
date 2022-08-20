@@ -31,20 +31,16 @@ function Login1() {
                 name="name"
                 className="username-password1"
                 placeholder="Email"
-                required
               />
               <input
                 type="password"
                 name="name"
                 className="username-password2"
                 placeholder="Passsword"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                required
               />
             </form>
             <div className="forget-pw">
-              <a href="#" className="forget-pw-link">
+              <a href="Forgetpassword" className="forget-pw-link">
                 <h6>Forget Password?</h6>
               </a>
             </div>
@@ -58,7 +54,7 @@ function Login1() {
                 <h6>Don't have an account?</h6>
               </div>
               <div className="to-signup2">
-                <a href="#" className="forget-pw-link1">
+                <a href="signup1" className="forget-pw-link1">
                   <h6>SignUp</h6>
                 </a>
               </div>

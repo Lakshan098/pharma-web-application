@@ -26,6 +26,7 @@ import Agentprofile from './Pages/Agentprofile/Agentprofile';
 import Pharmacistprofile from "./Pages/Pharmacistprofile/Pharmacistprofile";
 import Complaints from "./Pages/Complaints/Complaints";
 import Unionchemistprofile from "./Pages/Unionchemistprofile/Unionchemistprofile";
+import Login1 from './Pages/Login1/Login1';
 
 
 
@@ -58,6 +59,7 @@ export default function App() {
           <Route path="unionchemistprofile" element={<Unionchemistprofile />} />
           <Route path="PendingOrder" element={<PendingOrder />} />
           <Route path="CompletedOrder" element={<CompletedOrder />} />
+          <Route path="login1" element={<Login1 />} />
           
       </Routes>
     </BrowserRouter>

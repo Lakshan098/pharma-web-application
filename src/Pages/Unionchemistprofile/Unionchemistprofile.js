@@ -6,6 +6,7 @@ import logo from "../../Assets/Brand/unionchem.jpg";
 import ProgressBar from "@ramonak/react-progress-bar";
 import "./Unionchemistprofile.css";
 import "../../index.css";
+import React from "react"; 
 import {
   FaUserCircle,
   FaMailBulk,

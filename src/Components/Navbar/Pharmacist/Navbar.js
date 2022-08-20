@@ -12,8 +12,8 @@ function Navbar() {
             <a class="bar-link" href="/PharmacyHome">Home</a>
             <a class="bar-link"href="/PharmacyOrder">Orders</a>
             <a class="bar-link"href="#">Notifications</a>
-            <a class="bar-link"href="#">Inventory</a>
-            <a class="bar-link"href="#">Statistics</a>
+            <a class="bar-link"href="/PharmacyInventory">Inventory</a>
+            <a class="bar-link"href="/PharmacyStatistics">Statistics</a>
 
         <div className="profile-container">
             <label class="lable-tag">PharmacyX</label>

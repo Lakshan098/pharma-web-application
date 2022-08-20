@@ -27,6 +27,9 @@ import Pharmacistprofile from "./Pages/Pharmacistprofile/Pharmacistprofile";
 import Complaints from "./Pages/Complaints/Complaints";
 import Unionchemistprofile from "./Pages/Unionchemistprofile/Unionchemistprofile";
 
+import PharmacyStatistics from "./Pages/PharmacyStatistics/PharmacyStatistics";
+import PharmacyInventory from "./Pages/PharmacyInventory/PharmacyInventory";
+import DrugDetails from "./Pages/DrugDetails/DrugDetails";
 
 
 export default function App() {
@@ -58,6 +61,9 @@ export default function App() {
           <Route path="unionchemistprofile" element={<Unionchemistprofile />} />
           <Route path="PendingOrder" element={<PendingOrder />} />
           <Route path="CompletedOrder" element={<CompletedOrder />} />
+          <Route path="pharmacystatistics" element={<PharmacyStatistics />} />
+          <Route path="pharmacyinventory" element={<PharmacyInventory />} />
+          <Route path="drugdetails" element={<DrugDetails />} />
           
       </Routes>
     </BrowserRouter>

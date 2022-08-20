@@ -1,0 +1,107 @@
+.big-container{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.title-container{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.title{
+    font-size: xx-large;
+    font-weight: 700;
+    color: gray;
+    text-align: center;
+    padding-right:20px;
+}
+.listTitle {
+    font-weight: 600;
+    font-size: larger;
+    color: gray;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+    float: left;
+}
+.total {
+    font-weight: 600;
+    font-size: larger;
+    color: gray;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-right: 50px;
+    float: right;
+}
+.image-container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    height: 400px;
+    width: 30%;
+    padding: 10px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+}
+.drug-container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    height: 400px;
+    width: 60%;
+    padding: 10px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+}
+.inventory-container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    height: 400px;
+    width: 95%;
+    padding: 10px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+}
+
+.cellAction {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.viewButton {
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: darkblue;
+    border: 1px dotted rgba(0, 0, 139, 0.596);
+    cursor: pointer;
+}
+
+.deleteButton {
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: crimson;
+    border: 1px dotted rgba(220, 20, 60, 0.6);
+    cursor: pointer;
+}
+  .link{
+    text-decoration: none;
+    color: green;
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 40px;
+    float: right;
+    border: 1px solid green;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .totalDiv{
+    width: 100%;
+    padding-right: 20px;
+  }

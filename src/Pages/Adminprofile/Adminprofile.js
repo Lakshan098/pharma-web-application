@@ -1,11 +1,17 @@
+import * as React from "react";
 import Navbar from "../../Components/Navbar/Admin/Navbar";
 import React from "react";
 import Footer from "../../Components/Footer/Footer";
 import Button from "@mui/material/Button";
-import logo from '../../Assets/Brand/sanduni.jpg';
+import logo from "../../Assets/Brand/sanduni.jpg";
 import "./Adminprofile.css";
 import "../../index.css";
-import { FaUserCircle,FaMailBulk,FaPencilAlt, FaPhoneAlt} from 'react-icons/fa';
+import {
+  FaUserCircle,
+  FaMailBulk,
+  FaPencilAlt,
+  FaPhoneAlt,
+} from "react-icons/fa";
 
 function Adminprofile() {
   return (
@@ -45,50 +51,50 @@ function Adminprofile() {
                 <div className="detail-list">
                   <div className="detail-one">
                     <div className="detail-obj">
-                    <FaUserCircle />
+                      <FaUserCircle />
                       <h5>Name</h5>
                     </div>
                     <div className="detail-des">
                       <h5>A.W.S.Rashmika</h5>
                     </div>
                     <div className="detail-ico">
-                      <FaPencilAlt/>
+                      <button><FaPencilAlt /></button>
                     </div>
                   </div>
                   <div className="detail-one">
                     <div className="detail-obj">
-                    <FaUserCircle />
+                      <FaUserCircle />
                       <h5>Username</h5>
                     </div>
                     <div className="detail-des">
-                      <h5>A.W.S.Rashmika</h5>
+                      <h5>Sanduni</h5>
                     </div>
                     <div className="detail-ico">
-                      <FaPencilAlt/>
+                      <FaPencilAlt />        
                     </div>
                   </div>
                   <div className="detail-one">
                     <div className="detail-obj">
-                        <FaPhoneAlt/>
+                      <FaPhoneAlt />
                       <h5>Contact Number</h5>
                     </div>
                     <div className="detail-des">
-                      <h5>A.W.S.Rashmika</h5>
+                      <h5>+94 70 203 7127</h5>
                     </div>
                     <div className="detail-ico">
-                      <FaPencilAlt/>
+                              <FaPencilAlt />  
                     </div>
                   </div>
                   <div className="detail-one">
                     <div className="detail-obj">
-                        <FaMailBulk/>
+                      <FaMailBulk />
                       <h5>Email</h5>
                     </div>
                     <div className="detail-des">
-                      <h5>A.W.S.Rashmika</h5>
+                      <h5>sandunirashmika727@gmail.com</h5>
                     </div>
                     <div className="detail-ico">
-                      <FaPencilAlt/>
+                              <FaPencilAlt />  
                     </div>
                   </div>
                   <div className="btn-detail">

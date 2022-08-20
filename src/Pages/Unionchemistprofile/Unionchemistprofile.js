@@ -1,11 +1,10 @@
 import Navbar from "../../Components/Navbar/Admin/Navbar";
-import React from "react";
 import { Rating } from "react-simple-star-rating";
 import Footer from "../../Components/Footer/Footer";
 import Button from "@mui/material/Button";
-import logo from "../../Assets/Brand/my.jpg";
+import logo from "../../Assets/Brand/unionchem.jpg";
 import ProgressBar from "@ramonak/react-progress-bar";
-import "./Agentprofile.css";
+import "./Unionchemistprofile.css";
 import "../../index.css";
 import {
   FaUserCircle,
@@ -80,16 +79,16 @@ import {
     },
   ];
 
-function Agentprofile() {
+function Unionchemistprofile() {
   return (
     <div>
       <Navbar />
       <div>
-        <section class="agent-home-section">
-          <div class="agent-home-content">
-            <div className="agent-card">
-              <div className="agent-name">
-                <div className="agent-prof-pic">
+        <section class="pharmacist-home-section">
+          <div class="pharmacist-home-content">
+            <div className="pharmacist-card">
+              <div className="pharmacist-name">
+                <div className="pharmacist-prof-pic">
                   <img
                     src={logo}
                     alt="Logo"
@@ -98,14 +97,14 @@ function Agentprofile() {
                     height={140}
                   />
                 </div>
-                <div className="agent-prof-name">
-                  <h1>N.S.Wimalaweera</h1>
+                <div className="pharmacist-prof-name">
+                  <h1>Union Chemist</h1>
                   <h6>
                     <Rating readonly="true" initialValue={4} size="25" />
                   </h6>
                 </div>
               </div>
-              <div className="agent-details1">
+              <div className="pharmacist-details">
                 <h4 style={{ marginLeft: "50px", color: "#1789AD" }}>
                   Details
                 </h4>
@@ -117,64 +116,64 @@ function Agentprofile() {
                     marginLeft: "50px",
                   }}
                 ></div>
-                <div className="agent-detail-list">
-                  <div className="agent-detail-one">
-                    <div className="agent-detail-obj">
+                <div className="pharmacist-detail-list">
+                  <div className="pharmacist-detail-one">
+                    <div className="pharmacist-detail-obj">
                       <FaUserCircle />
                       <h5>Name</h5>
                     </div>
-                    <div className="agent-detail-des">
-                      <h5>N.S.Wimalaweera</h5>
+                    <div className="pharmacist-detail-des">
+                      <h5>Union Chemist</h5>
                     </div>
                   </div>
-                  <div className="agent-detail-one">
-                    <div className="agent-detail-obj">
+                  <div className="pharmacist-detail-one">
+                    <div className="pharmacist-detail-obj">
                       <FaUserCircle />
-                      <h5>NIC Number</h5>
+                      <h5>ID Number</h5>
                     </div>
-                    <div className="agent-detail-des">
-                      <h5>981343786 V</h5>
+                    <div className="pharmacist-detail-des">
+                      <h5>000137</h5>
                     </div>
                   </div>
-                  <div className="agent-detail-one">
-                    <div className="agent-detail-obj">
+                  <div className="pharmacist-detail-one">
+                    <div className="pharmacist-detail-obj">
                       <FaPhoneAlt />
-                      <h5>Contact Number</h5>
+                      <h5>Registration Number</h5>
                     </div>
-                    <div className="agent-detail-des">
-                      <h5>+94 70 218 1481</h5>
-                    </div>
-                  </div>
-                  <div className="agent-detail-one">
-                    <div className="agent-detail-obj">
-                      <FaMailBulk />
-                      <h5>Email</h5>
-                    </div>
-                    <div className="agent-detail-des">
-                      <h5>navodshenz@gmail.com</h5>
+                    <div className="pharmacist-detail-des">
+                      <h5>80240234</h5>
                     </div>
                   </div>
-                  <div className="agent-detail-one">
-                    <div className="agent-detail-obj">
-                      <FaMailBulk />
-                      <h5>Joined Date</h5>
-                    </div>
-                    <div className="agent-detail-des">
-                      <h5>2022-05-13</h5>
-                    </div>
-                  </div>
-                  <div className="agent-detail-one">
-                    <div className="agent-detail-obj">
+                  <div className="pharmacist-detail-one">
+                    <div className="pharmacist-detail-obj">
                       <FaMailBulk />
                       <h5>Address</h5>
                     </div>
-                    <div className="agent-detail-des">
-                      <h5>Tissamaharama</h5>
+                    <div className="pharmacist-detail-des">
+                      <h5>No 161/1, Uyanwatta, Matara</h5>
+                    </div>
+                  </div>
+                  <div className="pharmacist-detail-one">
+                    <div className="pharmacist-detail-obj">
+                      <FaMailBulk />
+                      <h5>Contact Number</h5>
+                    </div>
+                    <div className="pharmacist-detail-des">
+                      <h5>+94 41 222 9663</h5>
+                    </div>
+                  </div>
+                  <div className="pharmacist-detail-one">
+                    <div className="pharmacist-detail-obj">
+                      <FaMailBulk />
+                      <h5>Email</h5>
+                    </div>
+                    <div className="pharmacist-detail-des">
+                      <h5>unionchemist@gmail.com</h5>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="agent-password">
+              <div className="pharmacist-password">
                 <h4 style={{ marginLeft: "80px", color: "#1789AD" }}>
                   Statistics
                 </h4>
@@ -188,9 +187,9 @@ function Agentprofile() {
                 ></div>
               </div>
 
-              <div class="agent-home-content3">
-                <div className="agent-best-da">
-                  <div className="agent-best-da-header">
+              <div class="pharmacist-home-content3">
+                <div className="pharmacist-best-da">
+                  <div className="pharmacist-best-da-header">
                     <h3>Monthly sales</h3>
                   </div>
 
@@ -230,16 +229,16 @@ function Agentprofile() {
 
                 </div>
 
-                <div className="agent-best-da">
-                  <div className="agent-best-da-header">
+                <div className="pharmacist-best-da">
+                  <div className="pharmacist-best-da-header">
                     <h3>Complaints</h3>
                   </div>
                   <div>
-                    <div className="agent-complaint">
+                    <div className="pharmacist-complaint">
                         <div class="vl"></div>
                         <div>
-                            <div className="agent-complaint-by">
-                                <div className="agent-icon-prof">
+                            <div className="pharmacist-complaint-by">
+                                <div className="pharmacist-icon-prof">
                                 <FaUserAlt
                                     size={30}
                                 />
@@ -262,11 +261,11 @@ function Agentprofile() {
                             </div>
                         </div>
                     </div>
-                    <div className="agent-complaint">
+                    <div className="pharmacist-complaint">
                         <div class="vl"></div>
                         <div>
-                            <div className="agent-complaint-by">
-                                <div className="agent-icon-prof">
+                            <div className="pharmacist-complaint-by">
+                                <div className="pharmacist-icon-prof">
                                 <FaUserAlt
                                     size={30}
                                 />
@@ -298,7 +297,7 @@ function Agentprofile() {
                         <h4>Panelty Marks</h4>
                     </div>
                     <div className="panelty-progress2">
-                        <ProgressBar completed={24} maxCompleted={100} bgColor="#E31723" baseBgColor="#E57676" height="25px"/>
+                        <ProgressBar completed={28} maxCompleted={100} bgColor="#E31723" baseBgColor="#E57676" height="25px"/>
                     </div>
                     <div className="panelty-progress3">
                         <Button size="small" variant="contained">
@@ -321,4 +320,4 @@ function Agentprofile() {
   );
 }
 
-export default Agentprofile;
+export default Unionchemistprofile;

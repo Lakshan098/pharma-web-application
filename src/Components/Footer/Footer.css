@@ -1,4 +1,5 @@
 .footer-container{
+    position: fixed;
     height: 5vh;
     left: 0;
     bottom: 0;

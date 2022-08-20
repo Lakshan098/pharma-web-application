@@ -28,6 +28,7 @@ import Adminprofile from './Pages/Adminprofile/Adminprofile';
 import Agentprofile from './Pages/Agentprofile/Agentprofile';
 import Pharmacistprofile from "./Pages/Pharmacistprofile/Pharmacistprofile";
 import Complaints from "./Pages/Complaints/Complaints";
+import Unionchemistprofile from "./Pages/Unionchemistprofile/Unionchemistprofile";
 
 
 
@@ -58,6 +59,7 @@ export default function App() {
           <Route path="agentprofile" element={<Agentprofile />} />
           <Route path="pharmacistprofile" element={<Pharmacistprofile />} />
           <Route path="complaints" element={<Complaints />} />
+          <Route path="unionchemistprofile" element={<Unionchemistprofile />} />
           <Route path="PendingOrder" element={<PendingOrder />} />
           <Route path="CompletedOrder" element={<CompletedOrder />} />
           <Route path="OngoingOrder" element={<OngoingOrder />} />

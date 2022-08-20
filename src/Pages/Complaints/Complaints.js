@@ -2,12 +2,9 @@ import "./Complaints.css";
 import Navbar from "../../Components/Navbar/Admin/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import "../../index.css";
-<<<<<<< HEAD
 import logo from "../../Assets/Brand/wellness.png";
 import { FaAngleDown } from "react-icons/fa";
-=======
 import React from "react";
->>>>>>> a58d61c10d92c6b53e208b177cb06d149da37e0d
 
 function Complaints() {
   return (
@@ -56,15 +53,15 @@ function Complaints() {
             <div>
               <div className="complaint-det">
                 <div className="p-a-logo2">
-                  <div class="dropdown">
+                  <div class="dropdown1">
                     <button class="dropbtn1">
-                      All
-                      <FaAngleDown className="arrow-key" />
+                      All Complaints
+                      <FaAngleDown />
                     </button>
-                    <div class="dropdown-content">
-                      <a href="#">Link 1</a>
-                      <a href="#">Link 2</a>
-                      <a href="#">Link 3</a>
+                    <div class="dropdown-content1">
+                      <a>All Complaints</a>
+                      <a>Pharmacy Complaints</a>
+                      <a>Agent Complaints</a>
                     </div>
                   </div>
                 </div>
@@ -100,15 +97,15 @@ function Complaints() {
                   </a>
                 </div>
                 <div className="p-a-logo2">
-                  <div class="dropdown">
-                    <button class="dropbtn">
+                  <div class="dropdown1">
+                    <button class="dropbtn2">
                       On progress
-                      <FaAngleDown className="arrow-key" />
+                      <FaAngleDown />
                     </button>
-                    <div class="dropdown-content">
-                      <a href="#">Link 1</a>
-                      <a href="#">Link 2</a>
-                      <a href="#">Link 3</a>
+                    <div class="dropdown-content1">
+                    <a href="#">New</a>
+                      <a href="#">On progress</a>
+                      <a href="#">Resolved</a>
                     </div>
                   </div>
                 </div>
@@ -145,15 +142,15 @@ function Complaints() {
                   
                 </div>
                 <div className="p-a-logo2">
-                  <div class="dropdown">
-                    <button class="dropbtn">
+                  <div class="dropdown1">
+                    <button class="dropbtn2">
                       Resolved
-                      <FaAngleDown className="arrow-key" />
+                      <FaAngleDown />
                     </button>
-                    <div class="dropdown-content">
-                      <a href="#">Link 1</a>
-                      <a href="#">Link 2</a>
-                      <a href="#">Link 3</a>
+                    <div class="dropdown-content1">
+                    <a href="#">New</a>
+                      <a href="#">On progress</a>
+                      <a href="#">Resolved</a>
                     </div>
                   </div>
                 </div>
@@ -189,12 +186,12 @@ function Complaints() {
                   </a>
                 </div>
                 <div className="p-a-logo2">
-                  <div class="dropdown">
-                    <button class="dropbtn">
+                  <div class="dropdown1">
+                    <button class="dropbtn2">
                       New
-                      <FaAngleDown className="arrow-key" />
+                      <FaAngleDown/>
                     </button>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content1">
                       <a href="#">New</a>
                       <a href="#">On progress</a>
                       <a href="#">Resolved</a>

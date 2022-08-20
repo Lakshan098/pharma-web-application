@@ -32,7 +32,6 @@ import Unionchemistprofile from "./Pages/Unionchemistprofile/Unionchemistprofile
 
 
 
-
 export default function App() {
   return (
     <BrowserRouter>
@@ -65,6 +64,7 @@ export default function App() {
           <Route path="OngoingOrder" element={<OngoingOrder />} />
           <Route path="PendingViewDetails" element={<PendingViewDetails />} />
           <Route path="OngoingViewDetails" element={<OngoingViewDetails />} />
+          <Route path="login1" element={<Login1 />} />
           
       </Routes>
     </BrowserRouter>

@@ -196,13 +196,13 @@ function PharmacyStatistics(){
             <Widget type="earning" />
             <Widget type="profit" />
           </div>
-          <div className='big-container'>
+          <div className='big-container' style={{marginBottom:60}}>
             <div className='line-chart'>
               <span className='listTitle'>Line Chart</span>
               <AreaChart data={lineChartData} dataKey={"uv"}/>
             </div>
           </div>
-          <div className='big-container' style={{marginBottom: 60}}>
+          <div className='big-container'style={{marginBottom:60}}>
             <div className='bar-chart'>
               <span className='listTitle'>Bar Chart</span>
               <BarChart data={barChartData} x={"value"} y={"name"}/>

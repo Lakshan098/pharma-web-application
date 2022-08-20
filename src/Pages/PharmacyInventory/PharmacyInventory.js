@@ -3,6 +3,8 @@ import Footer from '../../Components/Footer/Footer';
 import Table from '../../Components/Table/Table';
 import './PharmacyInventory.css';
 import React , {useState} from 'react';
+import { Link } from "react-router-dom";
+
 
 const tableData=[
   {
@@ -54,6 +56,23 @@ const tableData=[
     total:25000
   },
 ]
+
+const actionColumn = [
+  {
+    field: "action",
+    headerName: "Action",
+    width: 200,
+    renderCell: (params) => {
+      return (
+        <div className="cellAction">
+          <Link to="/Edit" style={{ textDecoration: "none" }}>
+            <div className="viewButton">Edit</div>
+          </Link>
+        </div>
+      );
+    },
+  },
+];
 
 const tableColumns = [{ field: "id", headerName: "ID", width: 70 },
 {
@@ -114,10 +133,16 @@ function PharmacyInventory(){
           <div className='header'>
             <Navbar/>
           </div>
-          <div className='big-container'>
+          <div className='big-container max-height'>
             <div className='grid-container'>
               <span className='listTitle'>Inventory</span>
-              <Table rows={rows} columns={columns} />
+              <div className="datatableTitle">
+              <button to="/users/new" className="link">
+                Add new
+              </button>
+              </div>
+
+              <Table rows={rows} columns={columns.concat(actionColumn)} />
             </div>
           </div>
 

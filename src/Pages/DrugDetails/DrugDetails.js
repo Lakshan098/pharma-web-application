@@ -84,6 +84,8 @@ function DrugDetails(){
           </div>
           <div className='big-container'>
             <div className='image-container'>
+            <img src="https://www.madeformedical.com/wp-content/uploads/2018/07/vio-4.jpg" width="450" height="400"/>
+
 
             </div>
             <div className='drug-container'>

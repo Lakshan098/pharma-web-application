@@ -7,7 +7,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import "./Unionchemistprofile.css";
 import React from "react";
 import "../../index.css";
-import React from "react"; 
+
 import {
   FaUserCircle,
   FaMailBulk,

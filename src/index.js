@@ -30,6 +30,7 @@ import Complaints from "./Pages/Complaints/Complaints";
 import Unionchemistprofile from "./Pages/Unionchemistprofile/Unionchemistprofile";
 import Signup1 from './Pages/Signup1/Signup1';
 import Confirmotp from "./Pages/Confirmotp/Confirmotp";
+import Example from "./Components/Popup/Popup";
 
 
 export default function App() {
@@ -66,6 +67,7 @@ export default function App() {
           <Route path="login1" element={<Login1 />} />
           <Route path="signup1" element={<Signup1 />} />
           <Route path="confirmotp" element={<Confirmotp />} />
+          <Route path="example" element={<Example />} />
 
           
       </Routes>

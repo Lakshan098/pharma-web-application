@@ -97,7 +97,7 @@ export default class Login extends React.Component {
                     <div className='form-wrapper'>
                         <h2><b>Login</b></h2>
 
-                        <form id="login-form" action="pharmacyHome" method="GET" className="p-login-form" onSubmit={this.handleSubmit} noValidate>
+                        <form id="login-form" method="GET" className="p-login-form" noValidate>
 
                             <div className='login-email'>
                                 <label  className="login-lable" htmlFor="email">Email</label>

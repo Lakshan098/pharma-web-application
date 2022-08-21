@@ -14,15 +14,15 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top: 8rem;
 }
 
 .login-container2 {
     display: flex;
-    position: absolute;
     box-shadow: 2px 2px 2px 2px #a19c9c;
     border-radius: 20px;
-    width: 80%;
-    height: 72%;
+    width: 60%;
+    height: 90%;
 }
 
 

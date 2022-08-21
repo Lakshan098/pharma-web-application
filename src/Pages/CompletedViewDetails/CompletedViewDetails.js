@@ -11,10 +11,10 @@ function CompletedViewDetails() {
     return (
         <div>
             <Navbar />
-            <div className="viewdetails-card">
-                <h4 className="v-order-details"><b>Order Details</b></h4>
+            <div className="Completeviewdetails-card">
+                <h4 className="Completeorder-details"><b>Order Details</b></h4>
                 <div>
-                    <table className="v-order-tbl">
+                    <table className="Completeorder-tbl">
                         <tr>
                             <th></th>
                             <th></th>
@@ -67,9 +67,9 @@ function CompletedViewDetails() {
                     </table>
                 </div>
                 <div>
-                    <hr class="viewdetails-hr-line" />
+                    
                 </div>
-                <h4 className="v-order-details"><b>Delivary Details</b></h4>
+                <h4 className="Completeorder-details"><b>Delivary Details</b></h4>
                 <div className='agent-details'>
                     <div className="agent-photo">
                         <img className="agent-photo" src={DeliveryAgent} />

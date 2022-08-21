@@ -13,7 +13,7 @@ import "./PendingOrder.css";
     };
     return(
         <div class="profile-cards">
-                <div class="card">
+                <div class="card item1">
                     <div class="neworder"><p>Pending Order</p></div>
                     <div class="orderId"><p>Order Id:12345xer</p></div>
                     <div class="home-date"><p>20 july 2022 2pm</p></div>
@@ -30,7 +30,7 @@ import "./PendingOrder.css";
                 </div>
 
 
-                <div class="card">
+                <div class="card item2">
                     <div class="neworder"><p>Pending Order</p></div>
                     <div class="orderId"><p>Order Id:12345xer</p></div>
                     <div class="home-date"><p>20 july 2022 2pm</p></div>
@@ -46,7 +46,7 @@ import "./PendingOrder.css";
                     <p class="title2">40 minutes ago</p>
                 </div>
 
-                <div class="card">
+                <div class="card item3">
                     <div class="neworder"><p>Pending Order</p></div>
                     <div class="orderId"><p>Order Id:12345xer</p></div>
                     <div class="home-date"><p>20 july 2022 2pm</p></div>
@@ -62,7 +62,7 @@ import "./PendingOrder.css";
                     <p class="title2">40 minutes ago</p>
                 </div>
 
-                <div class="card">
+                <div class="card item4">
                     <div class="neworder"><p>Pending Order</p></div>
                     <div class="orderId"><p>Order Id:12345xer</p></div>
                     <div class="home-date"><p>20 july 2022 2pm</p></div>

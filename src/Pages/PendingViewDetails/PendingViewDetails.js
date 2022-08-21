@@ -3,18 +3,18 @@ import React from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import './PendingViewDetails.css';
 import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
-import { MdVerifiedUser} from 'react-icons/md';
-import { AiFillFilePdf} from 'react-icons/ai';
+import { MdVerifiedUser } from 'react-icons/md';
+import { AiFillFilePdf } from 'react-icons/ai';
 
 
 function PendingViewDetails() {
     return (
         <div>
             <Navbar />
-            <div className="viewdetails-card">
-                <h4 className="v-order-details"><b>Order Details</b></h4>
+            <div className="Pendingviewdetails-card">
+                <h4 className="pendingorder-details"><b>Order Details</b></h4>
                 <div>
-                    <table className="v-order-tbl">
+                    <table className="pending-details-tbl">
                         <tr>
                             <th></th>
                             <th></th>
@@ -47,26 +47,27 @@ function PendingViewDetails() {
 
                         <tr>
                             <td><b>Prescription :</b></td>
-                            <td><AiFillFilePdf color="blue"/></td>
+                            <td><AiFillFilePdf color="blue" /></td>
                         </tr>
 
                         <tr>
                             <td><b>Delivary :</b></td>
-                            <td><MdVerifiedUser color="green"/></td>
+                            <td><MdVerifiedUser color="green" /></td>
                         </tr>
 
                         <tr>
                             <td><b>Feedback report :</b></td>
-                            <td><AiFillFilePdf color="blue"/></td>
+                            <td><AiFillFilePdf color="blue" /></td>
                         </tr>
 
                         <tr>
                             <td><b>Payment :</b></td>
-                            <td><MdVerifiedUser color="green"/></td>
+                            <td><MdVerifiedUser color="green" /></td>
                         </tr>
                     </table>
+                    <div className="addCartBtn-div" ><button className="add-cart-btn">Add to cart</button></div>
                 </div>
-                
+
 
             </div>
             <Footer />

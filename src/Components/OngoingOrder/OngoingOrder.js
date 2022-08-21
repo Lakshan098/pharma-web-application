@@ -14,7 +14,7 @@ import "./OngoingOrder.css";
     return(
         <div class="profile-cards">
                 <div class="card">
-                    <div class="neworder"><p>Pending Order</p></div>
+                    <div class="neworder"><p>Ongoing Order</p></div>
                     <div class="orderId"><p>Order Id:12345xer</p></div>
                     <div class="home-date"><p>20 july 2022 2pm</p></div>
                     <div><p>Delivary <MdVerifiedUser color="green" /></p></div>

@@ -39,7 +39,7 @@ function Navbar() {
         <div class="dropdown-div">
           <button onClick={myFunction} class="dropbtn-pnav"><FaAngleDown className='downarrow' /></button>
           <div id="myDropdown" class="dropdown-content-pnav">
-            <a href="/SignUp">Log Out</a>
+            <a href="/Login1">Log Out</a>
             <a href="#about">About us</a>
             <a href="#contact">Edit Profile</a>
           </div>

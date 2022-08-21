@@ -1,19 +1,22 @@
-.viewdetails-card{
+.Completeviewdetails-card{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    width: 90%;
+    width: 120%;
     max-width: 1200px;
     height: 210%;
     margin-bottom: 6rem;
-    margin-left: 8rem;
+    margin-left: 4rem;
     margin-top: 4rem;
     border-radius:10px;
-    margin-right: 4rem;
+    /* margin-right: 4rem; */
     text-align: center;
+    padding-bottom: 30px;
+    padding-right: 200px;
  }
 
- .v-order-details{
+ .Completeorder-details{
     color: #1789AD;
     padding-top: 10px;
+    margin-left: 10rem;
  }
  .status-div{
    background-color:rgb(1, 211, 43);
@@ -39,10 +42,12 @@
 
  
 
- .v-order-tbl{
+ .Completeorder-tbl{
     text-align: left;
-    width: 100%;
+    width: 1200px;
     margin-left: 8rem;
+    padding-left:20px;
+    padding-bottom:50px
  }
 
  .v-order-tbl2{
@@ -59,4 +64,9 @@
  .v-agent-name{
     margin-left: 4rem;
     width: 90%;
+ }
+
+ .Completeorder-tbl tr:nth-child(even) {
+   background-color: #b6c2ef;
+   
  }

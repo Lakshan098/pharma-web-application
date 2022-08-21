@@ -11,10 +11,10 @@ function OngoingViewDetails() {
     return (
         <div>
             <Navbar />
-            <div className="viewdetails-card">
-                <h4 className="v-order-details"><b>Order Details</b></h4>
+            <div className="ongoingviewdetails-card">
+                <h4 className="Ongoingorder-details"><b>Order Details</b></h4>
                 <div>
-                    <table className="v-order-tbl">
+                    <table className="Ongoingorder-tbl">
                         <tr>
                             <th></th>
                             <th></th>
@@ -67,9 +67,9 @@ function OngoingViewDetails() {
                     </table>
                 </div>
                 <div>
-                    <hr class="viewdetails-hr-line" />
+                    
                 </div>
-                <h4 className="v-order-details"><b>Delivary Details</b></h4>
+                <h4 className="Ongoingorder-details"><b>Delivary Details</b></h4>
                 <div className='agent-details'>
                     <div className="agent-photo">
                         <img className="agent-photo" src={DeliveryAgent} />
@@ -111,7 +111,7 @@ function OngoingViewDetails() {
 
                     </div>
                 </div>
-
+                <div className="addCartBtn-div" ><button className="add-cart-btn">Add to cart</button></div>
             </div>
             <Footer />
 

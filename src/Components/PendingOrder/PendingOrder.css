@@ -4,16 +4,22 @@
     justify-content: space-around;
     margin-left: 10px; */
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    padding: 5px;
+    width:90%;
+    
   }
 
   .profile-cards > div {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
     padding: 20px 0;
-    margin-left: 1rem;
+    margin-left: 6rem;
     
   }
+
+  
 
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

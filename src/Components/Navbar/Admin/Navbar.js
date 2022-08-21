@@ -1,9 +1,13 @@
 import "./Navbar.css";
 import "../../../index.css";
 import logo from "../../../Assets/Brand/Logo1.png";
+import { FaUserCircle, FaAngleDown } from "react-icons/fa";
 import Dropdown from 'react-bootstrap/Dropdown';
+// import './Navbar.css';
 import React from 'react';
-import { FaUserCircle, FaAngleDown } from 'react-icons/fa';
+// import '../../../index.css';
+// import logo from '../../../Assets/Brand/Logo1.png';
+// import { FaUserCircle, FaAngleDown } from 'react-icons/fa';
 
 function Navbar() {
   return (

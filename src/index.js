@@ -28,7 +28,6 @@ import Agentprofile from './Pages/Agentprofile/Agentprofile';
 import Pharmacistprofile from "./Pages/Pharmacistprofile/Pharmacistprofile";
 import Complaints from "./Pages/Complaints/Complaints";
 import Unionchemistprofile from "./Pages/Unionchemistprofile/Unionchemistprofile";
-import Login1 from './Pages/Login1/Login1';
 import Signup1 from './Pages/Signup1/Signup1';
 
 

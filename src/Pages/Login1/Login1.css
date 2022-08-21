@@ -105,7 +105,7 @@
 }
 
 .login-btn {
-    padding-top: 25px;
+    
     width: 60%;
     display: flex;
     align-items: center;
@@ -136,4 +136,17 @@
 
 .signin-form-label{
     font-weight: bold;
+}
+
+.form-error-message{
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.form-error-message-password{
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+    margin-top: 7px;
 }

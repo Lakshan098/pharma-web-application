@@ -91,18 +91,19 @@ function Login1() {
           </div>
           <div className="login-header">
             <h1>LOGIN</h1>
-            <div
+            {/* <div
               style={{
                 borderTop: "3px solid #091f48 ",
                 width: "35%",
               }}
-            ></div>
+            ></div> */}
           </div>
 
           <div className="login-form-input">
 
 
             <form className="input-form">
+              <label className="signin-form-label">Email</label>
               <input
                 type="text"
                 name="email"
@@ -112,9 +113,10 @@ function Login1() {
                 autoComplete="off"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
+
               />
 
+              <label className="signin-form-label">Password</label>
               <input
                 type="password"
                 name="password"
@@ -122,7 +124,7 @@ function Login1() {
                 className="username-password2"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Passsword"
+
               />
               <div className="login-btn">
                 <Button size="small" variant="contained" className="btn-btn" onClick={HandleSignIn}>

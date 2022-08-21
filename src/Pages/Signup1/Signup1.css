@@ -5,7 +5,7 @@
 
 .signup-container{
     width: 100%;
-    height: 60rem;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,25 +22,25 @@
     box-shadow: 2px 2px 2px 2px #a19c9c;
     border-radius: 20px;
     width: 80%;
-    height: 114%;
+    height: 100%;
 }
 
 
 .signup-input {
     width: 50%;
-    height: 720px;
+    height: 820px;
     background-color: white;
     border: none;
 }
 
 .signup-image {
     width: 50%;
-    height: 825px;
+    height: 850px;
 }
 
 .logo-signup {
     width: 100%;
-    height: 743px;
+    height: 840px;
     border-radius: 0 20px 20px 0;
 }
 
@@ -60,8 +60,8 @@
 .signup-header {
     width: 50%;
     height: 18%;
+    margin-left: -35px;
     display: flex;
-    padding-left: 15px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -108,8 +108,9 @@
     justify-content: center;
 }
 .signup-btn-btn {
-    width: 100%;
-    
+    width: 50%;
+    color: white;
+    background-color: aqua;
 }
 .to-login {
     width: 70%;
@@ -121,8 +122,14 @@
     width: 83%;
     text-align: right;
     color: #091f48;
+    font-size: 22px;
 }
 .to-login2{
     width: 17%;
     text-align: center;
+    font-size: 22px;
+}
+
+.signup-form-label{
+    font-weight: bold;
 }

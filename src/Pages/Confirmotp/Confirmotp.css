@@ -19,11 +19,6 @@
      
 }
 
-.error-display{
-  text-align: left;
-  padding-left: 1px;
-}
-
 .forgot-lable{
     margin-bottom: 0.5em;
     color: #444;
@@ -39,7 +34,7 @@
     color:red;
     font-size: 0.630em;
     font-weight: bold;
-    display: relative;
+    display: relative; 
   }
   
   .p-reset-btn{

@@ -29,6 +29,7 @@ import Pharmacistprofile from "./Pages/Pharmacistprofile/Pharmacistprofile";
 import Complaints from "./Pages/Complaints/Complaints";
 import Unionchemistprofile from "./Pages/Unionchemistprofile/Unionchemistprofile";
 import Signup1 from './Pages/Signup1/Signup1';
+import Confirmotp from "./Pages/Confirmotp/Confirmotp";
 
 
 export default function App() {
@@ -64,6 +65,8 @@ export default function App() {
           <Route path="OngoingViewDetails" element={<OngoingViewDetails />} />
           <Route path="login1" element={<Login1 />} />
           <Route path="signup1" element={<Signup1 />} />
+          <Route path="confirmotp" element={<Confirmotp />} />
+
           
       </Routes>
     </BrowserRouter>

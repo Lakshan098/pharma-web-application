@@ -17,8 +17,6 @@ import CompletedOrder from "./Components/CompletedOrder/CompletedOrder";
 import OngoingOrder from "./Components/OngoingOrder/OngoingOrder";
 import PendingViewDetails from "./Pages/PendingViewDetails/PendingViewDetails";
 import OngoingViewDetails from "./Pages/OngoingViewDetails/OngoingViewDetails";
-
-
 import DeliveryAgent from './Pages/DeliveryAgent/DeliveryAgent';
 import Dashboard from './Components/Dashboard/Dashboard';
 import DashboardPage from "./Pages/DashboardPage/DashboardPage";
@@ -30,6 +28,8 @@ import Agentprofile from './Pages/Agentprofile/Agentprofile';
 import Pharmacistprofile from "./Pages/Pharmacistprofile/Pharmacistprofile";
 import Complaints from "./Pages/Complaints/Complaints";
 import Unionchemistprofile from "./Pages/Unionchemistprofile/Unionchemistprofile";
+import Login1 from './Pages/Login1/Login1';
+import Signup1 from './Pages/Signup1/Signup1';
 
 
 export default function App() {
@@ -64,6 +64,7 @@ export default function App() {
           <Route path="PendingViewDetails" element={<PendingViewDetails />} />
           <Route path="OngoingViewDetails" element={<OngoingViewDetails />} />
           <Route path="login1" element={<Login1 />} />
+          <Route path="signup1" element={<Signup1 />} />
           
       </Routes>
     </BrowserRouter>

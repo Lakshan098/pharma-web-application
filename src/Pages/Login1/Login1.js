@@ -113,7 +113,6 @@ function Login1() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
-                required
               />
 
               <input
@@ -124,9 +123,6 @@ function Login1() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Passsword"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                required
               />
               <div className="login-btn">
                 <Button size="small" variant="contained" className="btn-btn" onClick={HandleSignIn}>
@@ -135,7 +131,7 @@ function Login1() {
               </div>
             </form>
             <div className="forget-pw">
-              <a href="#" className="forget-pw-link">
+              <a href="Forgetpassword" className="forget-pw-link">
                 <h6>Forget Password?</h6>
               </a>
             </div>
@@ -144,7 +140,7 @@ function Login1() {
                 <h6>Don't have an account?</h6>
               </div>
               <div className="to-signup2">
-                <a href="#" className="forget-pw-link1">
+                <a href="signup1" className="forget-pw-link1">
                   <h6>SignUp</h6>
                 </a>
               </div>

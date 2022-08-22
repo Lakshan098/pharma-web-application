@@ -134,7 +134,7 @@ function Unionchemistprofile() {
                       <h5>ID Number</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>000137</h5>
+                      <h5>002</h5>
                     </div>
                   </div>
                   <div className="pharmacist-detail-one">

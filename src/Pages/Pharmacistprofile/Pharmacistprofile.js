@@ -1,4 +1,4 @@
-import Navbar from "../../Components/Navbar/Pharmacist/Navbar";
+import Navbar from "../../Components/Navbar/Admin/Navbar";
 import React from "react";
 import { Rating } from "react-simple-star-rating";
 import Footer from "../../Components/Footer/Footer";
@@ -7,13 +7,6 @@ import logo from "../../Assets/Brand/centralphar.jpg";
 import ProgressBar from "@ramonak/react-progress-bar";
 import "./Pharmacistprofile.css";
 import "../../index.css";
-import Popup1 from "../../Components/Popup1/Popup1";
-import Popup from "../../Components/Popup/Popup";
-import Popup2 from "../../Components/Popup2/Popup2";
-import Popup3 from "../../Components/Popup3/Popup3";
-import Popup4 from "../../Components/Popup4/Popup4";
-import Popup5 from "../../Components/Popup5/Popup5";
-import Popup6 from "../../Components/Popup6/Popup6";
 import {
   FaUserCircle,
   FaMailBulk,
@@ -133,9 +126,7 @@ function Pharmacistprofile() {
                     <div className="pharmacist-detail-des">
                       <h5>Central Pharmacy</h5>
                     </div>
-                    <div className="pharmacy-detail-ico">
-                      <Popup />
-                    </div>
+                    
                   </div>
                   <div className="pharmacist-detail-one">
                     <div className="pharmacist-detail-obj">
@@ -143,11 +134,9 @@ function Pharmacistprofile() {
                       <h5>ID Number</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>000127</h5>
+                      <h5>001</h5>
                     </div>
-                    <div className="pharmacy-detail-ico">
-                      <Popup4 />
-                    </div>
+                    
                   </div>
                   <div className="pharmacist-detail-one">
                     <div className="pharmacist-detail-obj">
@@ -157,9 +146,7 @@ function Pharmacistprofile() {
                     <div className="pharmacist-detail-des">
                       <h5>80270017</h5>
                     </div>
-                    <div className="pharmacy-detail-ico">
-                      <Popup5 />
-                    </div>
+                    
                   </div>
                   <div className="pharmacist-detail-one">
                     <div className="pharmacist-detail-obj">
@@ -169,9 +156,7 @@ function Pharmacistprofile() {
                     <div className="pharmacist-detail-des">
                       <h5>No 215/3, Habarakada, Homagama</h5>
                     </div>
-                    <div className="pharmacy-detail-ico">
-                      <Popup6 />
-                    </div>
+                    
                   </div>
                   <div className="pharmacist-detail-one">
                     <div className="pharmacist-detail-obj">
@@ -181,9 +166,7 @@ function Pharmacistprofile() {
                     <div className="pharmacist-detail-des">
                       <h5>+94 41 222 4432</h5>
                     </div>
-                    <div className="pharmacy-detail-ico">
-                      <Popup2 />
-                    </div>
+                    
                   </div>
                   <div className="pharmacist-detail-one">
                     <div className="pharmacist-detail-obj">
@@ -193,9 +176,7 @@ function Pharmacistprofile() {
                     <div className="pharmacist-detail-des">
                       <h5>centralpharma@gmail.com</h5>
                     </div>
-                    <div className="pharmacy-detail-ico">
-                      <Popup3 />
-                    </div>
+                    
                   </div>
                 </div>
               </div>

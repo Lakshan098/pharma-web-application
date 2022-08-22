@@ -1,0 +1,57 @@
+.big-container{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+    
+}
+.max-height{
+    height:100vh;
+}
+.listTitle {
+    font-weight: 500;
+    color: gray;
+    margin-bottom: 15px;
+    text-align: center;
+    padding-right:20px;
+}
+.grid-container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-top: 30px;
+    height: 90vh;
+    width: 94%;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+}
+
+.link{
+    text-decoration: none;
+    color: green;
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 40px;
+    float: right;
+    border: 1px solid green;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .cellAction {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.viewButton {
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: darkblue;
+    border: 1px dotted rgba(0, 0, 139, 0.596);
+    cursor: pointer;
+}
+

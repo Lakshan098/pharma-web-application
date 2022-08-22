@@ -34,6 +34,9 @@ import Popup1 from "./Components/Popup1/Popup1";
 import Popup2 from "./Components/Popup2/Popup2";
 import Popup3 from "./Components/Popup3/Popup3";
 import Search from "./Components/Search/Search";
+import PharmacyStatistics from "./Pages/PharmacyStatistics/PharmacyStatistics";
+import PharmacyInventory from "./Pages/PharmacyInventory/PharmacyInventory";
+import DrugDetails from "./Pages/DrugDetails/DrugDetails";
 
 
 export default function App() {
@@ -75,6 +78,9 @@ export default function App() {
           <Route path="search" element={<Search />} />
           
 
+          <Route path="pharmacystatistics" element={<PharmacyStatistics />} />
+          <Route path="pharmacyinventory" element={<PharmacyInventory />} />
+          <Route path="drugdetails" element={<DrugDetails />} />
           
       </Routes>
     </BrowserRouter>

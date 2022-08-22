@@ -1,0 +1,28 @@
+.widget{
+  width: 30%;
+  display: flex;
+  text-align: left;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  background-color: white;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  box-shadow: 2px 2px 2px 2px #a19c9c;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+.value{
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  font-size: small;
+  color: #000000;
+}
+
+.name{
+  margin-top: 5px;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+  font-size: x-large;
+  color: #000000;
+}

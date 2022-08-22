@@ -11,6 +11,10 @@ import "./PendingOrder.css";
 
         navigate('/PendingViewDetails');
     };
+    const navigateDrugDetails = () => {
+
+        navigate('/DrugDetails');
+    };
     return(
         <div class="profile-cards">
                 <div class="card item1">
@@ -22,7 +26,7 @@ import "./PendingOrder.css";
 
                     <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
                     <div class="ar-button">
-                        <p><button class="Accept-btn">Accept</button></p>
+                        <p><button onClick={navigateDrugDetails} class="Accept-btn">Accept</button></p>
                         <p><button class="Reject-btn">Reject</button></p>
                     </div>
 

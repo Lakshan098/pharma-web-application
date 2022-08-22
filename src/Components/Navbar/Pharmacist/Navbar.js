@@ -9,7 +9,7 @@ function myFunction() {
 
 window.onclick = function (event) {
   if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var dropdowns = document.getElementsByClassName("dropdown-content-pnv");
     var i;
     for (i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
@@ -34,16 +34,17 @@ function Navbar() {
       
 
       <div className="profile-container">
-        <label class="lable-tag">PharmacyX</label>
+        <label class="lable-tag">K.K.S.Dilshan</label>
         <FaUserCircle className='user' />
         <div class="dropdown-div">
           <button onClick={myFunction} class="dropbtn-pnav"><FaAngleDown className='downarrow' /></button>
           <div id="myDropdown" class="dropdown-content-pnav">
+            <a href="/Pharmacistprofile">My Profile</a>
+            <a href="#contact">About Us</a>
             <a href="/Login1">Log Out</a>
-            <a href="#about">About us</a>
-            <a href="#contact">Edit Profile</a>
           </div>
         </div>
+
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ export default function Popup() {
       <FaPencilAlt />
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Edit Your Name</DialogTitle>
+        <DialogTitle>Edit Your Username</DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
             To subscribe to this website, please enter your email address here. We
@@ -37,7 +37,7 @@ export default function Popup() {
             autoFocus
             margin="dense"
             id="name"
-            label="Name"
+            label="Username"
             type="email"
             fullWidth
             variant="standard"

@@ -18,9 +18,9 @@
     padding-top: 15px;
     margin-left: 10rem;
  }
- .status-div-ongoing{
+ .Accepted-div-ongoing{
    background-color:rgb(215, 110, 23);
-   width: 122px;
+   width: 125px;
    color:#fff;
    text-align: center;
    border-radius: 5px;
@@ -98,23 +98,4 @@
    
  }
 
- .add-delivary-btn{
-   background-color: #06b40f;
-   border: none;
-   color: white;
-   padding: 15px 32px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 16px;
-   margin: 4px 2px;
-   cursor: pointer;
-   border-radius: 10px;
-  
  
- }
-
- .addDelivery-div{
-   margin-top: 15px;
-   margin-left: 10rem;
-}

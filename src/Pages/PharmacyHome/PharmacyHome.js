@@ -12,6 +12,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import PendingOrder from '../../Components/PendingOrder/PendingOrder';
 import OngoingOrder from '../../Components/OngoingOrder/OngoingOrder';
 import CompletedOrder from '../../Components/CompletedOrder/CompletedOrder';
+import DeliveryOrder from '../../Components/DeliveryOrder/DeliveryOrder';
 import Button from 'react-bootstrap/Button';
 
 
@@ -28,45 +29,68 @@ function PharmacyHome() {
 
     const [show, setShow] = useState(true);
     const handleOpen = () => {
-        if(show == true){
-            setShow(!show);
+
+        if (show2 == true) {
+            setShow2(false);
         }
-        if(show2 == true){
-            setShow(!show2);
+        if (show3 == true) {
+            setShow3(false);
         }
-        if(show3 == true){
-            setShow(!show3);
+        if (show4 == true) {
+            setShow4(false);
         }
-        setShow(!show);
+        setShow(true);
     };
 
     const [show2, setShow2] = useState(false);
     const handleOpen2 = () => {
-        if(show == true){
-            setShow(!show);
+        if (show == true) {
+            setShow(false);
         }
-        if(show2 == true){
-            setShow(!show2);
+
+        if (show3 == true) {
+            setShow3(false);
         }
-        if(show3 == true){
-            setShow(!show3);
+        if (show4 == true) {
+            setShow4(false);
         }
-        setShow2(!show2);
+        setShow2(true);
     };
 
     const [show3, setShow3] = useState(false);
     const handleOpen3 = () => {
-        if(show == true){
-            setShow(!show);
+        if (show == true) {
+            setShow(false);
         }
-        if(show2 == true){
-            setShow(!show2);
+        if (show2 == true) {
+            setShow2(false);
         }
-        if(show3 == true){
-            setShow(!show3);
+        if (show4 == true) {
+            setShow4(false);
         }
-        setShow3(!show3);
+        setShow3(true);
     };
+
+    const [show4, setShow4] = useState(false);
+    const handleOpen4 = () => {
+        if (show == true) {
+            setShow(false);
+        }
+        if (show2 == true) {
+            setShow2(false);
+        }
+        if (show3 == true) {
+            setShow3(false);
+        }
+        setShow4(true);
+    };
+
+    // const btn = document.getElementById('process-one1');
+
+    // btn.addEventListener('click', function handleOpen() {
+    //     btn.style.backgroundColor = 'salmon';
+    //     btn.style.color = 'white';
+    // });
 
 
     return (
@@ -80,20 +104,25 @@ function PharmacyHome() {
             </div>
 
             <div className="process-button-div" >
-                <div ><button onClick={handleOpen} id="process-one" class="process-button" type="button" >Pending order</button></div>
-                <div><button onClick={handleOpen2} id="process-one" class="process-button btn-3" type="button" >On going order</button></div>
-                <div><button onClick={handleOpen3} id="process-one" class="process-button btn-3" type="button" >Completed order</button></div>
+                <div ><button onClick={handleOpen} id="process-one1" class="process-button" type="button" >Pending order</button></div>
+                <div><button onClick={handleOpen2} id="process-one2" class="process-button btn-3" type="button" >On going order</button></div>
+                <div><button onClick={handleOpen3} id="process-one3" class="process-button btn-3" type="button" >Completed order</button></div>
+                <div><button onClick={handleOpen4} id="process-one3" class="process-button btn-3" type="button" >Delivering order</button></div>
 
 
-                <div class="searchbar"> <SearchBar /> </div>
+                {/* <div class="searchbar"> <SearchBar /> </div> */}
             </div>
 
-                { show ? <PendingOrder /> : ''
-                }
-                { show2 ? <OngoingOrder /> : ''
-                }
-                { show3 ? <CompletedOrder /> : ''
-                }
+
+
+            {show ? <PendingOrder /> : ''
+            }
+            {show2 ? <OngoingOrder /> : ''
+            }
+            {show3 ? <CompletedOrder /> : ''
+            }
+            {show4 ? <DeliveryOrder /> : ''
+            }
 
 
 

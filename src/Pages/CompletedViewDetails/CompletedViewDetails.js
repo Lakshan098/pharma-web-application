@@ -5,7 +5,7 @@ import './CompletedViewDetails.css';
 import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
 import { MdVerifiedUser} from 'react-icons/md';
 import { AiFillFilePdf} from 'react-icons/ai';
-
+import {FaTimesCircle,FaCheckCircle  } from 'react-icons/fa';
 
 function CompletedViewDetails() {
     return (
@@ -22,7 +22,7 @@ function CompletedViewDetails() {
 
                         <tr>
                             <td><b>Order Id: </b></td>
-                            <td>1234rew</td>
+                            <td>9</td>
                         </tr>
 
                         <tr>
@@ -37,7 +37,7 @@ function CompletedViewDetails() {
 
                         <tr>
                             <td><b>Customer name :</b></td>
-                            <td>K.K.S.Dilshan</td>
+                            <td>M.Dewanarayane</td>
                         </tr>
 
                         <tr>
@@ -47,22 +47,22 @@ function CompletedViewDetails() {
 
                         <tr>
                             <td><b>Prescription :</b></td>
-                            <td><AiFillFilePdf color="blue"/></td>
+                            <td><a href="#"><b>Prescription.jpg</b></a></td>
                         </tr>
 
                         <tr>
                             <td><b>Delivary :</b></td>
-                            <td><MdVerifiedUser color="green"/></td>
+                            <td><FaCheckCircle color="green" /></td>
                         </tr>
 
                         <tr>
                             <td><b>Feedback report :</b></td>
-                            <td><AiFillFilePdf color="blue"/></td>
+                            <td><a href="#"><b>Feedback_report.pdf</b></a></td>
                         </tr>
 
                         <tr>
                             <td><b>Payment :</b></td>
-                            <td><MdVerifiedUser color="green"/></td>
+                            <td><FaCheckCircle color="green" /></td>
                         </tr>
                     </table>
                 </div>
@@ -73,7 +73,7 @@ function CompletedViewDetails() {
                 <div className='agent-details'>
                     <div className="agent-photo">
                         <img className="agent-photo" src={DeliveryAgent} />
-                        <div className="v-agent-name"><p >K.k.Sahan Dilshan</p>
+                        <div className="v-agent-name"><p >M.Dewanarayane</p>
                             </div>
                     </div>
 

@@ -1,14 +1,14 @@
 import Footer from '../../Components/Footer/Footer';
 import React from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
-import './OngoingViewDetails.css';
+import './OngoingViewDetailsSetDelivary.css';
 import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
 import { MdVerifiedUser} from 'react-icons/md';
 import { AiFillFilePdf} from 'react-icons/ai';
 import {FaTimesCircle,FaCheckCircle  } from 'react-icons/fa';
 
 
-function OngoingViewDetails() {
+function OngoingViewDetailsSetDelivary() {
     return (
         <div>
             <Navbar />
@@ -23,12 +23,12 @@ function OngoingViewDetails() {
 
                         <tr>
                             <td><b>Order Id: </b></td>
-                            <td>5</td>
+                            <td>13</td>
                         </tr>
 
                         <tr>
                             <td><b>Placed time stamp :</b></td>
-                            <td>20 Auguest 2022</td>
+                            <td>21 Auguest 2022</td>
                         </tr>
 
                         <tr>
@@ -38,7 +38,7 @@ function OngoingViewDetails() {
 
                         <tr>
                             <td><b>Customer name :</b></td>
-                            <td>K.G.L.Mihirange</td>
+                            <td>S.Rashmika</td>
                         </tr>
 
                         <tr>
@@ -70,16 +70,18 @@ function OngoingViewDetails() {
                             <td><b>Customer Approvel:</b></td>
                             <td><b><FaCheckCircle color="green"/></b></td>
                         </tr>
+
+                        <tr>
+                            <td><b>Delivery status:</b></td>
+                            <td><div class="Accepted-div-ongoing"><b>On Delivery</b></div></td>
+                        </tr>
                     </table>
                 </div>
                 <div>
                     
-                </div>
-
+                </div>  
                 
-                <div className="addDelivery-div" ><button className="add-delivary-btn">Set for delivery</button></div>
-                
-                {/* <h4 className="Ongoingorder-details"><b>Delivary Details</b></h4>
+                <h4 className="Ongoingorder-details"><b>Delivary Details</b></h4>
                 <div className='agent-details'>
                     <div className="agent-photo">
                         <img className="agent-photo" src={DeliveryAgent} />
@@ -120,7 +122,7 @@ function OngoingViewDetails() {
                         </table>
 
                     </div>
-                </div> */}
+                </div>
                 
             </div>
             <Footer />
@@ -130,4 +132,4 @@ function OngoingViewDetails() {
     );
 }
 
-export default OngoingViewDetails;
+export default OngoingViewDetailsSetDelivary;

@@ -1,6 +1,5 @@
 import * as React from "react";
 import Navbar from "../../Components/Navbar/Admin/Navbar";
-import React from "react";
 import Footer from "../../Components/Footer/Footer";
 import Button from "@mui/material/Button";
 import Popup from "../../Components/Popup/Popup";
@@ -10,7 +9,6 @@ import Popup3 from "../../Components/Popup3/Popup3";
 import logo from "../../Assets/Brand/sanduni.jpg";
 import "./Adminprofile.css";
 import "../../index.css";
-//import React from "react";
 import {
   FaUserCircle,
   FaMailBulk,

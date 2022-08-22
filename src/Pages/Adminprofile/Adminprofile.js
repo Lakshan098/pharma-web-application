@@ -86,7 +86,7 @@ function Adminprofile() {
                       <h5>+94 70 203 7127</h5>
                     </div>
                     <div className="detail-ico">
-                              <Popup2/>  
+                      <Popup2/>  
                     </div>
                   </div>
                   <div className="detail-one">
@@ -98,7 +98,7 @@ function Adminprofile() {
                       <h5>sandunirashmika727@gmail.com</h5>
                     </div>
                     <div className="detail-ico">
-                              <Popup3/> 
+                      <Popup3/> 
                     </div>
                   </div>
                   

@@ -3,6 +3,10 @@ import Navbar from "../../Components/Navbar/Admin/Navbar";
 import React from "react";
 import Footer from "../../Components/Footer/Footer";
 import Button from "@mui/material/Button";
+import Popup from "../../Components/Popup/Popup";
+import Popup1 from "../../Components/Popup1/Popup1";
+import Popup2 from "../../Components/Popup2/Popup2";
+import Popup3 from "../../Components/Popup3/Popup3";
 import logo from "../../Assets/Brand/sanduni.jpg";
 import "./Adminprofile.css";
 import "../../index.css";
@@ -58,7 +62,7 @@ function Adminprofile() {
                       <h5>A.W.S.Rashmika</h5>
                     </div>
                     <div className="detail-ico">
-                      <button><FaPencilAlt /></button>
+                      <Popup/>
                     </div>
                   </div>
                   <div className="detail-one">
@@ -70,7 +74,7 @@ function Adminprofile() {
                       <h5>Sanduni</h5>
                     </div>
                     <div className="detail-ico">
-                      <FaPencilAlt />        
+                      <Popup1/>       
                     </div>
                   </div>
                   <div className="detail-one">
@@ -82,7 +86,7 @@ function Adminprofile() {
                       <h5>+94 70 203 7127</h5>
                     </div>
                     <div className="detail-ico">
-                              <FaPencilAlt />  
+                              <Popup2/>  
                     </div>
                   </div>
                   <div className="detail-one">
@@ -94,14 +98,10 @@ function Adminprofile() {
                       <h5>sandunirashmika727@gmail.com</h5>
                     </div>
                     <div className="detail-ico">
-                              <FaPencilAlt />  
+                              <Popup3/> 
                     </div>
                   </div>
-                  <div className="btn-detail">
-                    <Button size="small" variant="contained">
-                      Update
-                    </Button>
-                  </div>
+                  
                 </div>
               </div>
               <div className="admin-password">

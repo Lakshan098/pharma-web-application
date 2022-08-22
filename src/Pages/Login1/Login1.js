@@ -13,12 +13,17 @@ import Axios from '../../api/axios';
 const LOGIN_URL = '/Signup/SignIn';
 
 function Login1() {
+
+  const initialValues = {email:"", password:""};
+
   const navigate = useNavigate();
   const userRef = useRef();
   const errRef = useRef();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [formErrors, setFormErrors] = useState('');
+  const [isSubmit, setIsSubmit] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -27,60 +32,90 @@ function Login1() {
   const HandleSignIn = (e) => {
     e.preventDefault()
     const data = { email: email, password: password };
-    console.log(data);
-    Axios.post("http://localhost:3000/Signup/SignIn", {
-        email: email,
-        password: password,
-    })
-        .then((response) => {
-            console.log(response.data)
+    setFormErrors(validate(data));
+    setIsSubmit(true)
+};
 
-            if (response.data.error) {
-                alert(response.data.error);
+const sendData = () => {
+  Axios.post("http://localhost:3000/Signup/SignIn", {
+    email: email,
+    password: password,
+})
+    .then((response) => {
+        console.log(response.data)
+
+        if (response.data.error) {
+            alert(response.data.error);
+        }
+        else {
+            // alert("successfully Logged in!");
+            const token = response.data;
+            console.log(token);
+            sessionStorage.setItem("token", token);
+            let sessionToken = sessionStorage.getItem("token");
+            //console.log("Appjs", sessionToken);
+            //console.log(response.data.token)
+
+            if (sessionToken) {
+                const users = jwt_decode(response.data.token);
+                console.log(users);
+                window.loggedUserType = users.User_type;
+                window.loggedUserId = users.User_ID;
+                //Navigate("/");
+                //<Navigate to="/" replace={true} />
+                console.log(users.User_type);
+
+                if (window.loggedUserType == "admin") {
+                    console.log("Admin dashboard called", window.loggedUserType);
+                    //Navigate("/Adminprofile");
+                    //return (<Navigate to='/Adminprofile' />)
+                    //<Navigate to="/Adminprofile" replace={true} />
+                    navigate('/DashboardPage')
+                }
+
+                else if (window.loggedUserType == "pharmacy") {
+                    console.log("Pharmacy dashboard called", window.loggedUserType);
+                    //Navigate("/PharmacyHome");
+                    //return (<Navigate to='/' />)
+                    //<Navigate to="/PharmacyHome" replace={true} />
+                    navigate('/PharmacyHome')
+                    
+                }
+
             }
             else {
-                // alert("successfully Logged in!");
-                const token = response.data;
-                console.log(token);
-                sessionStorage.setItem("token", token);
-                let sessionToken = sessionStorage.getItem("token");
-                //console.log("Appjs", sessionToken);
-                //console.log(response.data.token)
-
-                if (sessionToken) {
-                    const users = jwt_decode(response.data.token);
-                    console.log(users);
-                    window.loggedUserType = users.User_type;
-                    window.loggedUserId = users.User_ID;
-                    //Navigate("/");
-                    //<Navigate to="/" replace={true} />
-                    console.log(users.User_type);
-
-                    if (window.loggedUserType == "admin") {
-                        console.log("Admin dashboard called", window.loggedUserType);
-                        //Navigate("/Adminprofile");
-                        //return (<Navigate to='/Adminprofile' />)
-                        //<Navigate to="/Adminprofile" replace={true} />
-                        navigate('/DashboardPage')
-                    }
-
-                    else if (window.loggedUserType == "pharmacy") {
-                        console.log("Pharmacy dashboard called", window.loggedUserType);
-                        //Navigate("/PharmacyHome");
-                        //return (<Navigate to='/' />)
-                        //<Navigate to="/PharmacyHome" replace={true} />
-                        navigate('/PharmacyHome')
-                        
-                    }
-
-                }
-                else {
-                    window.loggedUserType = null;
-                    window.loggedUserId = null;
-                }
+                window.loggedUserType = null;
+                window.loggedUserId = null;
             }
-        });
-};
+        }
+    });
+}
+
+useEffect(() => {
+  console.log(formErrors)
+  if(Object.keys(formErrors).length === 0 && isSubmit){
+    sendData()
+  }
+}, [formErrors])
+
+const validate = (values) => {
+  const errors = {};
+  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const pRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+
+  if(!values.email){
+    errors.email = "Email is required";
+  }else if (!regex.test(values.email)) {
+    errors.email = "This is not a valid email";
+  }
+
+  if(!values.password){
+    errors.password = "Password is required";
+  }else if (!pRegex.test(values.password)) {
+    errors.password = "Incorrect password";
+  }
+  return errors;
+}
 
   return (
     <div className="login-container">
@@ -113,8 +148,8 @@ function Login1() {
                 autoComplete="off"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-
               />
+              <p className="form-error-message">{formErrors.email}</p>
 
               <label className="signin-form-label">Password</label>
               <input
@@ -124,8 +159,8 @@ function Login1() {
                 className="username-password2"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-
               />
+              <p className="form-error-message-password">{formErrors.password}</p>
               <div className="login-btn">
                 <Button size="small" variant="contained" className="btn-btn" onClick={HandleSignIn}>
                   LOGIN

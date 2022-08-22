@@ -1,7 +1,7 @@
 import Navbar from '../../Components/Navbar/Admin/Navbar';
 import React from 'react';
 import Footer from '../../Components/Footer/Footer';
-import SearchBar from '../../Components/SearchBar/Search';
+// import SearchBar from '../../Components/SearchBar/Search';
 import './DeliveryAgent.css';
 
 
@@ -12,7 +12,7 @@ function DeliveryAgent(){
             <Navbar/>
           </div>
           <h2 className='d-head'>Delivery Agents</h2>
-          <SearchBar/>
+          {/* <SearchBar/> */}
 
           <div class="member-list">
                 <table class="table table-hover">

@@ -1,7 +1,6 @@
 import Navbar from '../../Components/Navbar/Admin/Navbar';
 import React from 'react';
 import Footer from '../../Components/Footer/Footer';
-import SearchBar from '../../Components/SearchBar/Search';
 import './Pharmacies.css';
 
 
@@ -13,7 +12,7 @@ function Pharmacies(){
           </div>
           <h2 className='p-head'>Pharmacies</h2>
           <div className='p-search'>
-          <SearchBar/>
+            
           </div>
 
           <div class="member-list">

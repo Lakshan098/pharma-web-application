@@ -86,7 +86,7 @@ export default class Login extends React.Component {
               </div>
 
               <div className="reset-pswd">
-                <Button size="small" variant="contained" className="p-reset-btn">
+                <Button href="Verificationpage" size="small" variant="contained" className="p-reset-btn">
                 RESET
               </Button>
               </div>

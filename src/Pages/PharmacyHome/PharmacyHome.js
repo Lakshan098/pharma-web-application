@@ -5,7 +5,7 @@ import './PharmacyHome.css';
 import { MdVerifiedUser, MdOutlineDoNotDisturb } from 'react-icons/md';
 import pharmacyLogo from '../../Assets/Brand/hospital-pharmacy.jpg';
 import profilelogo from '../../Assets/Brand/imgprofile.jpg';
-import SearchBar from '../../Components/SearchBar/Search';
+// import SearchBar from '../../Components/SearchBar/Search';
 import Card from '../../Components/card/card';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -85,7 +85,7 @@ function PharmacyHome() {
                 <div><button onClick={handleOpen3} id="process-one" class="process-button btn-3" type="button" >Completed order</button></div>
 
 
-                <div class="searchbar"> <SearchBar /> </div>
+                {/* <div class="searchbar"> <SearchBar /> </div> */}
             </div>
 
                 { show ? <PendingOrder /> : ''

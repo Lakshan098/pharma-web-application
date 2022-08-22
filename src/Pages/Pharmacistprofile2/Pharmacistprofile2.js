@@ -5,7 +5,7 @@ import Footer from "../../Components/Footer/Footer";
 import Button from "@mui/material/Button";
 import logo from "../../Assets/Brand/centralphar.jpg";
 import ProgressBar from "@ramonak/react-progress-bar";
-import "./Pharmacistprofile.css";
+import "./Pharmacistprofile2.css";
 import "../../index.css";
 import Popup1 from "../../Components/Popup1/Popup1";
 import Popup from "../../Components/Popup/Popup";
@@ -87,7 +87,7 @@ const data = [
   },
 ];
 
-function Pharmacistprofile() {
+function Pharmacistprofile2() {
   return (
     <div>
       <Navbar />
@@ -346,4 +346,4 @@ function Pharmacistprofile() {
   );
 }
 
-export default Pharmacistprofile;
+export default Pharmacistprofile2;

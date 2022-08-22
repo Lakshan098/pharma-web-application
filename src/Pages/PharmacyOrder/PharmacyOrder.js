@@ -69,6 +69,29 @@ const tableData=[
     },
   ]
 
+  const tableColumns = [{ field: "id", headerName: "Order ID", width: 230 },
+  {
+    field: "customer_name",
+    headerName: "Customer Name",
+    width: 230,
+  },
+  {
+    field: "placed_date",
+    headerName: "Placed Date",
+    width: 230,
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 230,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.status}`}>
+          {params.row.status}
+        </div>
+      );
+    },
+  },]
 
   
   const tableColumns = [{ field: "id", headerName: "Order ID", width: 230 },

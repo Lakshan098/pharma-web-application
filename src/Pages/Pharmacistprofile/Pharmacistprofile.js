@@ -1,4 +1,4 @@
-import Navbar from "../../Components/Navbar/Admin/Navbar";
+import Navbar from "../../Components/Navbar/Pharmacist/Navbar";
 import React from "react";
 import { Rating } from "react-simple-star-rating";
 import Footer from "../../Components/Footer/Footer";

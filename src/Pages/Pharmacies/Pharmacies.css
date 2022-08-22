@@ -11,6 +11,11 @@
     color: #1789AD;
 }
 
+.p-search1{
+    padding-left: 8rem;
+    width: 50%;
+}
+
 table {
     border-collapse: collapse;
     border-radius: 5px;

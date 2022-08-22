@@ -5,6 +5,7 @@ import { FaUserCircle, FaAngleDown } from "react-icons/fa";
 import Dropdown from 'react-bootstrap/Dropdown';
 // import './Navbar.css';
 import React from 'react';
+import BasicMenu from "../../BasicMenu/BasicMenu";
 // import '../../../index.css';
 // import logo from '../../../Assets/Brand/Logo1.png';
 // import { FaUserCircle, FaAngleDown } from 'react-icons/fa';
@@ -52,14 +53,7 @@ function Navbar() {
           Admin User
         </a>
         <FaUserCircle className="user" />
-        <div class="dropdown-div-admin">
-          <button onClick={myFunction} class="dropbtn-pnav"><FaAngleDown className='downarrow' /></button>
-          <div id="myDropdown-admin" class="dropdown-content-admin">
-            <a href="/Adminprofile">Admin Profile</a>
-            <a href="#">About Us</a>
-            <a href="/Login1">Log Out</a>
-          </div>
-        </div>
+        <BasicMenu/>
         
       </div>
     </div>

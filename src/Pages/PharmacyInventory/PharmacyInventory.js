@@ -24,36 +24,36 @@ const tableData=[
     batch_no : "00100",
     name:"Omeprazole",
     manufacturer_name:"Prilosec",
-    manufacturer_id:"456789123",
-    manufacturing_date:"23/01/2022",
-    expiry_date:"23/01/2025",
-    quantity:1000,
+    manufacturer_id:"456778623",
+    manufacturing_date:"24/01/2022",
+    expiry_date:"24/01/2025",
+    quantity:2000,
     unit_price:25,
-    total:25000
+    total:50000
   },
   {
     id: 3,
     batch_no : "00100",
     name:"Omeprazole",
     manufacturer_name:"Prilosec",
-    manufacturer_id:"456789123",
-    manufacturing_date:"23/01/2022",
-    expiry_date:"23/01/2025",
+    manufacturer_id:"456657823",
+    manufacturing_date:"25/01/2022",
+    expiry_date:"25/01/2025",
     quantity:1000,
-    unit_price:25,
-    total:25000
+    unit_price:30,
+    total:30000
   },
   {
     id: 4,
     batch_no : "00100",
     name:"Omeprazole",
     manufacturer_name:"Prilosec",
-    manufacturer_id:"456789123",
-    manufacturing_date:"23/01/2022",
-    expiry_date:"23/01/2025",
-    quantity:1000,
-    unit_price:25,
-    total:25000
+    manufacturer_id:"451234123",
+    manufacturing_date:"02/02/2022",
+    expiry_date:"02/02/2025",
+    quantity:1500,
+    unit_price:50,
+    total:75000
   },
 ]
 

@@ -90,6 +90,7 @@ export default function App() {
           <Route path="popup6" element={<Popup6 />} />
           <Route path="search" element={<Search />} />
           <Route path="Pharmacistprofile2" element={<Pharmacistprofile2 />} />
+          {/* <Route path="basicmenu" element={<BasicMenu />} /> */}
           
 
           <Route path="pharmacystatistics" element={<PharmacyStatistics />} />

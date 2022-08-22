@@ -48,5 +48,6 @@ tbody tr{
 
 .search-bar{
     width: 50%;
+    margin-left: 4rem;
     text-align: center;
 }

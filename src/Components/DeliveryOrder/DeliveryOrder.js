@@ -1,26 +1,26 @@
 import React from 'react';
 import {FaTimesCircle,FaCheckCircle  } from 'react-icons/fa';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import "./OngoingOrder.css";
+import "./DeliveryOrder.css";
 
- function OngoingOrder(){
+ function DeliveryOrder(){
     
 
     const navigate = useNavigate();
     const navigateViewDetails = () => {
 
-        navigate('/OngoingViewDetails');
+        navigate('/OngoingViewDetailsSetDelivary');
     };
-    const OngoingViewDetailsNoDelivary = () => {
+    // const OngoingViewDetailsNoDelivary = () => {
 
-        navigate('/OngoingViewDetailsNoDelivary');
-    };
+    //     navigate('/OngoingViewDetailsNoDelivary');
+    // };
     return(
         <div class="profile-cards">
                 <div class="card">
-                    <div class="neworder"><p>Ongoing Order</p></div>
-                    <div class="orderId"><p>Order Id:5</p></div>
-                    <div class="home-date"><p>20 Auguest 2022 7am</p></div>
+                    <div class="neworder"><p>Delivery Order</p></div>
+                    <div class="orderId"><p>Order Id:13</p></div>
+                    <div class="home-date"><p>21 Auguest 2022 2pm</p></div>
                     <div><p>Delivary <FaCheckCircle color="green" /></p></div>
                     <div><p>Prescription <FaCheckCircle color="green" /></p></div>
 
@@ -32,38 +32,38 @@ import "./OngoingOrder.css";
 
 
                 <div class="card">
-                    <div class="neworder"><p>Ongoing Order</p></div>
-                    <div class="orderId"><p>Order Id:6</p></div>
-                    <div class="home-date"><p>20 Auguest 2022 5am</p></div>
-                    <div><p>Delivary <FaTimesCircle color="red" /></p></div>
+                    <div class="neworder"><p>Delivery Order</p></div>
+                    <div class="orderId"><p>Order Id:14</p></div>
+                    <div class="home-date"><p>16 Auguest 2022 8am</p></div>
+                    <div><p>Delivary <FaCheckCircle color="green" /></p></div>
                     <div><p>Prescription <FaCheckCircle color="green" /></p> </div>
 
-                    <div><button class="view-btn" onClick={OngoingViewDetailsNoDelivary} >View Details</button></div>
+                    <div><button class="view-btn" onClick={navigateViewDetails} >View Details</button></div>
 
-                    <p class="title2">40 minutes ago</p>
+                    <p class="title2">1 hours ago</p>
                 </div>
 
                 <div class="card">
-                    <div class="neworder"><p>Ongoing Order</p></div>
-                    <div class="orderId"><p>Order Id:7</p></div>
-                    <div class="home-date"><p>20 Auguest 2022 8am</p></div>
+                    <div class="neworder"><p>Delivery Order</p></div>
+                    <div class="orderId"><p>Order Id:15</p></div>
+                    <div class="home-date"><p>27 July 2022 3pm</p></div>
                     <div><p>Delivary <FaCheckCircle color="green" /></p></div>
                     <div><p>Prescription <FaTimesCircle color="red" /></p> </div>
 
                     <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
 
-                    <p class="title2">40 minutes ago</p>
+                    <p class="title2">5 days ago</p>
                 </div>
 
                 <div class="card">
-                    <div class="neworder"><p>Ongoing Order</p></div>
-                    <div class="orderId"><p>Order Id:8</p></div>
-                    <div class="home-date"><p>20 Auguest 2022 9am</p></div>
+                    <div class="neworder"><p>Delivery Order</p></div>
+                    <div class="orderId"><p>Order Id:16</p></div>
+                    <div class="home-date"><p>20 July 2022 1pm</p></div>
                     <div><p>Delivary <FaCheckCircle color="green" /></p></div>
                     <div><p>Prescription <FaTimesCircle color="red" /></p> </div>
 
                     <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    <p class="title2">40 minutes ago</p>
+                    <p class="title2">4 Weeks ago</p>
                 </div>
 
             </div>
@@ -71,4 +71,4 @@ import "./OngoingOrder.css";
     );
  }
 
- export default OngoingOrder;
+ export default DeliveryOrder;

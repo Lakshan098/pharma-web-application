@@ -5,7 +5,7 @@ import './PendingViewDetails.css';
 import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
 import { MdVerifiedUser } from 'react-icons/md';
 import { AiFillFilePdf } from 'react-icons/ai';
-
+import {FaTimesCircle,FaCheckCircle  } from 'react-icons/fa';
 
 function PendingViewDetails() {
     return (
@@ -22,12 +22,12 @@ function PendingViewDetails() {
 
                         <tr>
                             <td><b>Order Id: </b></td>
-                            <td>1234rew</td>
+                            <td>1</td>
                         </tr>
 
                         <tr>
                             <td><b>Placed time stamp :</b></td>
-                            <td>20 July 2022</td>
+                            <td>20 Auguest 2022</td>
                         </tr>
 
                         <tr>
@@ -47,22 +47,22 @@ function PendingViewDetails() {
 
                         <tr>
                             <td><b>Prescription :</b></td>
-                            <td><AiFillFilePdf color="blue" /></td>
+                            <td><a href="#"><b>Prescription.jpg</b></a></td>
                         </tr>
 
                         <tr>
                             <td><b>Delivary :</b></td>
-                            <td><MdVerifiedUser color="green" /></td>
+                            <td><FaCheckCircle color="green" /></td>
                         </tr>
 
-                        <tr>
+                        {/* <tr>
                             <td><b>Feedback report :</b></td>
-                            <td><AiFillFilePdf color="blue" /></td>
-                        </tr>
+                            <td><a href="#"><b>Feedback_report.pdf</b></a></td>
+                        </tr> */}
 
                         <tr>
                             <td><b>Payment :</b></td>
-                            <td><MdVerifiedUser color="green" /></td>
+                            <td><FaCheckCircle color="green" /></td>
                         </tr>
                     </table>
                     <div className="addCartBtn-div" ><button className="add-cart-btn">Add to cart</button></div>

@@ -28,6 +28,9 @@ import Pharmacistprofile from "./Pages/Pharmacistprofile/Pharmacistprofile";
 import Complaints from "./Pages/Complaints/Complaints";
 import Unionchemistprofile from "./Pages/Unionchemistprofile/Unionchemistprofile";
 import Signup1 from './Pages/Signup1/Signup1';
+import OngoingViewDetailsNoDelivary from './Pages/OngoingViewDetailsNoDelivary/OngoingViewDetailsNoDelivary';
+import OngoingViewDetailsSetDelivary from './Pages/OngoingViewDetailsSetDelivary/OngoingViewDetailsSetDelivary';
+import DeliveryOrder from './Components/DeliveryOrder/DeliveryOrder';
 import Confirmotp from "./Pages/Confirmotp/Confirmotp";
 import Popup from "./Components/Popup/Popup";
 import Popup1 from "./Components/Popup1/Popup1";
@@ -70,6 +73,9 @@ export default function App() {
           <Route path="OngoingViewDetails" element={<OngoingViewDetails />} />
           <Route path="login1" element={<Login1 />} />
           <Route path="signup1" element={<Signup1 />} />
+          <Route path="OngoingViewDetailsNoDelivary" element={<OngoingViewDetailsNoDelivary />} />
+          <Route path="OngoingViewDetailsSetDelivary" element={<OngoingViewDetailsSetDelivary />} />
+          <Route path="DeliveryOrder" element={<DeliveryOrder />} />
           <Route path="confirmotp" element={<Confirmotp />} />
           <Route path="popup" element={<Popup />} />
           <Route path="popup1" element={<Popup1 />} />

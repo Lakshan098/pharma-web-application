@@ -98,8 +98,8 @@
    
  }
 
- .add-delivary-btn{
-   background-color: #06b40f;
+ .add-complete-btn{
+   background-color: #060cb4;
    border: none;
    color: white;
    padding: 15px 32px;
@@ -114,7 +114,7 @@
  
  }
 
- .addDelivery-div{
+ .Completed-div{
    margin-top: 15px;
    margin-left: 10rem;
 }

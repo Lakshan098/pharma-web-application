@@ -43,6 +43,7 @@ import Search from "./Components/Search/Search";
 import PharmacyStatistics from "./Pages/PharmacyStatistics/PharmacyStatistics";
 import PharmacyInventory from "./Pages/PharmacyInventory/PharmacyInventory";
 import DrugDetails from "./Pages/DrugDetails/DrugDetails";
+import Pharmacistprofile2 from "./Pages/Pharmacistprofile2/Pharmacistprofile2";
 
 
 export default function App() {
@@ -88,6 +89,7 @@ export default function App() {
           <Route path="popup5" element={<Popup5 />} />
           <Route path="popup6" element={<Popup6 />} />
           <Route path="search" element={<Search />} />
+          <Route path="Pharmacistprofile2" element={<Pharmacistprofile2 />} />
           
 
           <Route path="pharmacystatistics" element={<PharmacyStatistics />} />

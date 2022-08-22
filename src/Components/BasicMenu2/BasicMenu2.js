@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { FaAngleDown } from "react-icons/fa";
-import "./BasicMenu.css";
+import "./BasicMenu2.css";
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -38,7 +38,7 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <a className='admin-mypro'>
+        <a href="Pharmacistprofile2" className='admin-mypro'>
         <MenuItem onClick={handleClose} >My Profile</MenuItem>
         </a>
         <a href='login1' className='admin-mypro'>

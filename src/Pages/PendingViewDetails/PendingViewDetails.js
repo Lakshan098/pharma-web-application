@@ -6,6 +6,14 @@ import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
 import { MdVerifiedUser } from 'react-icons/md';
 import { AiFillFilePdf } from 'react-icons/ai';
 import {FaTimesCircle,FaCheckCircle  } from 'react-icons/fa';
+import {Routes, Route, useNavigate} from 'react-router-dom';
+
+// const navigate = useNavigate();
+
+// const navigateDrugDetails = () => {
+        
+//     navigate('/DrugDetails');
+//   };
 
 function PendingViewDetails() {
     return (
@@ -65,7 +73,7 @@ function PendingViewDetails() {
                             <td><FaCheckCircle color="green" /></td>
                         </tr>
                     </table>
-                    <div className="addCartBtn-div" ><button className="add-cart-btn">Add to cart</button></div>
+                    <div  className="addCartBtn-div" ><button className="add-cart-btn">Add to cart</button></div>
                 </div>
 
 

@@ -36,6 +36,9 @@ import Popup from "./Components/Popup/Popup";
 import Popup1 from "./Components/Popup1/Popup1";
 import Popup2 from "./Components/Popup2/Popup2";
 import Popup3 from "./Components/Popup3/Popup3";
+import Popup4 from "./Components/Popup4/Popup4";
+import Popup5 from "./Components/Popup5/Popup5";
+import Popup6 from "./Components/Popup6/Popup6";
 import Search from "./Components/Search/Search";
 import PharmacyStatistics from "./Pages/PharmacyStatistics/PharmacyStatistics";
 import PharmacyInventory from "./Pages/PharmacyInventory/PharmacyInventory";
@@ -81,6 +84,9 @@ export default function App() {
           <Route path="popup1" element={<Popup1 />} />
           <Route path="popup2" element={<Popup2 />} />
           <Route path="popup3" element={<Popup3 />} />
+          <Route path="popup4" element={<Popup4 />} />
+          <Route path="popup5" element={<Popup5 />} />
+          <Route path="popup6" element={<Popup6 />} />
           <Route path="search" element={<Search />} />
           
 

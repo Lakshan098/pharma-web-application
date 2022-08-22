@@ -198,17 +198,17 @@ function PharmacyStatistics(){
           </div>
           <div className='big-container' style={{marginBottom:60}}>
             <div className='line-chart'>
-              <span className='listTitle'>Line Chart</span>
+              <span className='listTitle'>Monthly Profit</span>
               <AreaChart data={lineChartData} dataKey={"uv"}/>
             </div>
           </div>
           <div className='big-container'style={{marginBottom:60}}>
             <div className='bar-chart'>
-              <span className='listTitle'>Bar Chart</span>
+              <span className='listTitle'>Monthly Income</span>
               <BarChart data={barChartData} x={"value"} y={"name"}/>
             </div>
             <div className='pie-chart-container'>
-              <span className='listTitle'>Pie Chart</span>
+              <span className='listTitle'>Overview of Orders</span>
               <div className='pie-chart'>
                 <PieChart data={pieChartData}/>
               </div>
@@ -216,7 +216,7 @@ function PharmacyStatistics(){
           </div>
           <div className='big-container'>
             <div className='grid-container'>
-              <span className='listTitle'>Recent Orders</span>
+              <span className='listTitle'>Order History</span>
               <Table rows={rows} columns={columns.concat(actionColumn)} />
             </div>
           </div>

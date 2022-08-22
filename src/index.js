@@ -40,6 +40,7 @@ import Search from "./Components/Search/Search";
 import PharmacyStatistics from "./Pages/PharmacyStatistics/PharmacyStatistics";
 import PharmacyInventory from "./Pages/PharmacyInventory/PharmacyInventory";
 import DrugDetails from "./Pages/DrugDetails/DrugDetails";
+// import BasicMenu from './Components/BasicMenu/BasicMenu';
 
 
 export default function App() {
@@ -82,6 +83,7 @@ export default function App() {
           <Route path="popup2" element={<Popup2 />} />
           <Route path="popup3" element={<Popup3 />} />
           <Route path="search" element={<Search />} />
+          {/* <Route path="basicmenu" element={<BasicMenu />} /> */}
           
 
           <Route path="pharmacystatistics" element={<PharmacyStatistics />} />

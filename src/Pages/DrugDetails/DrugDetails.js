@@ -3,6 +3,7 @@ import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import './DrugDetails.css';
 import Table from '../../Components/Table/Table';
+import { noAuto } from '@fortawesome/fontawesome-svg-core';
 
 const drugTable=[
   {
@@ -49,6 +50,85 @@ const drugColumns = [{ field: "id", headerName: "ID", width: 70 },
   width: 100,
 },
 ]
+
+
+const drugTable1=[
+  {
+    id: 1,
+    batch_no: 2,
+    name: "snow",
+    manufacturer: 35,
+    manufacturing_date:2142,
+    expiry_date:325,
+    quantity:24,
+  },
+  {
+    id: 2,
+    batch_no: 2,
+    name: "snow",
+    manufacturer: 35,
+    manufacturing_date:2142,
+    expiry_date:325,
+    quantity:24,
+  },
+  {
+    id: 1,
+    batch_no: 2,
+    name: "snow",
+    manufacturer: 35,
+    manufacturing_date:2142,
+    expiry_date:325,
+    quantity:24,
+  },
+  {
+    id: 1,
+    batch_no: 2,
+    name: "snow",
+    manufacturer: 35,
+    manufacturing_date:2142,
+    expiry_date:325,
+    quantity:24,
+  },
+]
+
+const drugColumns1 = [{ field: "id", headerName: "ID", width: 70 },
+{
+  field: "batch_no",
+  headerName: "Batch No.",
+  width: 200,
+},
+{
+  field: "name",
+  headerName: "Name",
+  width: 200,
+},
+
+{
+  field: "manufacturer",
+  headerName: "Manufacturer",
+  width: 100,
+},
+
+{
+  field: "manufacturing_date",
+  headerName: "Manufacturing Date",
+  width: 100,
+},
+
+{
+  field: "expiry_date",
+  headerName: "Expiry Date",
+  width: 100,
+},
+
+{
+  field: "quantity",
+  headerName: "Quantity",
+  width: 100,
+},
+]
+
+
 
 function DrugDetails(){
 
@@ -101,7 +181,7 @@ function DrugDetails(){
           <div className='big-container'>
             <div className='inventory-container'>
               <span className='listTitle'>Inventory</span>
-              <Table rows={drugTable} columns={drugColumns} />
+              <Table rows={drugTable1} columns={drugColumns1} />
               <div className="datatableTitle">
               <button to="/users/new" className="link">
                 Feedback

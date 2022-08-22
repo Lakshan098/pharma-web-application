@@ -10,7 +10,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function Popup() {
+export default function Popup2() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -27,7 +27,7 @@ export default function Popup() {
       <FaPencilAlt />
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Edit Your Name</DialogTitle>
+        <DialogTitle>Edit Your Contact Number</DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
             To subscribe to this website, please enter your email address here. We
@@ -37,8 +37,8 @@ export default function Popup() {
             autoFocus
             margin="dense"
             id="name"
-            label="Name"
-            type="email"
+            label="Contact Number"
+            type="text"
             fullWidth
             variant="standard"
           />

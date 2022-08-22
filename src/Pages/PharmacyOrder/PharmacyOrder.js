@@ -2,7 +2,7 @@ import Footer from '../../Components/Footer/Footer';
 import React from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import './PharmacyOrder.css';
-import Searchbar from '../../Components/SearchBar/Search';
+// import Searchbar from '../../Components/SearchBar/Search';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 
@@ -32,7 +32,7 @@ function PharmacyOrder() {
             <Navbar />
             <div className="order-card">
                 <h2 className="order-main-headertopic"><b>Order Details</b></h2>
-                <div className="order-search"><Searchbar /></div>
+                {/* <div className="order-search"><Searchbar /></div> */}
                 <div className="order-table">
                     <table className="order-table">
                         <tr>

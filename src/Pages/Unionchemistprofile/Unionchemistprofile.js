@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import logo from "../../Assets/Brand/unionchem.jpg";
 import ProgressBar from "@ramonak/react-progress-bar";
 import "./Unionchemistprofile.css";
-import React from "react";
 import "../../index.css";
 
 import {

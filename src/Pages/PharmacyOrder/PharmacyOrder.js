@@ -2,7 +2,7 @@ import Footer from '../../Components/Footer/Footer';
 import React ,{useState} from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import './PharmacyOrder.css';
-import Searchbar from '../../Components/SearchBar/Search';
+import Searchbar from '../../Components/Search/Search';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import Table from '../../Components/Table/Table';
 

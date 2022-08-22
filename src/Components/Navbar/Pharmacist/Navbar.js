@@ -23,13 +23,6 @@ window.onclick = function (event) {
 function Navbar() {
   return (
     <div className="p-container">
-=======
-            <a class="bar-link" href="/PharmacyHome">Home</a>
-            <a class="bar-link"href="/PharmacyOrder">Orders</a>
-            <a class="bar-link"href="#">Notifications</a>
-            <a class="bar-link"href="/PharmacyInventory">Inventory</a>
-            <a class="bar-link"href="/PharmacyStatistics">Statistics</a>
->>>>>>> sanduni
 
       <img src={logo} alt="Logo" className='logo' width={175} height={70} />
       

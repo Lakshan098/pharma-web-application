@@ -21,7 +21,7 @@ import "./DeliveryOrder.css";
                     <div class="neworder"><p>Delivery Order</p></div>
                     <div class="orderId"><p>Order Id:13</p></div>
                     <div class="home-date"><p>21 Auguest 2022 2pm</p></div>
-                    <div><p>Delivary <FaCheckCircle color="green" /></p></div>
+                    <div><p>Delivery <FaCheckCircle color="green" /></p></div>
                     <div><p>Prescription <FaCheckCircle color="green" /></p></div>
 
                     <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
@@ -35,7 +35,7 @@ import "./DeliveryOrder.css";
                     <div class="neworder"><p>Delivery Order</p></div>
                     <div class="orderId"><p>Order Id:14</p></div>
                     <div class="home-date"><p>16 Auguest 2022 8am</p></div>
-                    <div><p>Delivary <FaCheckCircle color="green" /></p></div>
+                    <div><p>Delivery <FaCheckCircle color="green" /></p></div>
                     <div><p>Prescription <FaCheckCircle color="green" /></p> </div>
 
                     <div><button class="view-btn" onClick={navigateViewDetails} >View Details</button></div>
@@ -47,7 +47,7 @@ import "./DeliveryOrder.css";
                     <div class="neworder"><p>Delivery Order</p></div>
                     <div class="orderId"><p>Order Id:15</p></div>
                     <div class="home-date"><p>27 July 2022 3pm</p></div>
-                    <div><p>Delivary <FaCheckCircle color="green" /></p></div>
+                    <div><p>Delivery <FaCheckCircle color="green" /></p></div>
                     <div><p>Prescription <FaTimesCircle color="red" /></p> </div>
 
                     <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
@@ -59,7 +59,7 @@ import "./DeliveryOrder.css";
                     <div class="neworder"><p>Delivery Order</p></div>
                     <div class="orderId"><p>Order Id:16</p></div>
                     <div class="home-date"><p>20 July 2022 1pm</p></div>
-                    <div><p>Delivary <FaCheckCircle color="green" /></p></div>
+                    <div><p>Delivery <FaCheckCircle color="green" /></p></div>
                     <div><p>Prescription <FaTimesCircle color="red" /></p> </div>
 
                     <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>

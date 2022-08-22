@@ -59,7 +59,7 @@ function PendingViewDetails() {
                         </tr>
 
                         <tr>
-                            <td><b>Delivary :</b></td>
+                            <td><b>Delivery :</b></td>
                             <td><FaCheckCircle color="green" /></td>
                         </tr>
 

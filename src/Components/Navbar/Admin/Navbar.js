@@ -9,6 +9,23 @@ import React from 'react';
 // import logo from '../../../Assets/Brand/Logo1.png';
 // import { FaUserCircle, FaAngleDown } from 'react-icons/fa';
 
+function myFunction() {
+  document.getElementById("myDropdown-admin").classList.toggle("show");
+}
+
+window.onclick = function (event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
 function Navbar() {
   return (
     <div className="nav-container">
@@ -35,7 +52,14 @@ function Navbar() {
           Admin User
         </a>
         <FaUserCircle className="user" />
-        <FaAngleDown className="downarrow" />
+        <div class="dropdown-div-admin">
+          <button onClick={myFunction} class="dropbtn-pnav"><FaAngleDown className='downarrow' /></button>
+          <div id="myDropdown-admin" class="dropdown-content-admin">
+            <a href="/Adminprofile">Admin Profile</a>
+            <a href="#">About Us</a>
+            <a href="/Login1">Log Out</a>
+          </div>
+        </div>
         
       </div>
     </div>

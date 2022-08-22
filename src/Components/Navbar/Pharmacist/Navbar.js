@@ -2,23 +2,10 @@ import './Navbar.css';
 import React from 'react';
 import logo from '../../../Assets/Brand/Logo1.png';
 import { FaUserCircle, FaAngleDown } from 'react-icons/fa';
+import BasicMenu2 from "../../BasicMenu2/BasicMenu2";
 
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 
-window.onclick = function (event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content-pnv");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
+
 
 function Navbar() {
   return (
@@ -34,16 +21,9 @@ function Navbar() {
       
 
       <div className="profile-container">
-        <label class="lable-tag">K.K.S.Dilshan</label>
+        <label class="lable-tag">Lanka Pharmacy</label>
         <FaUserCircle className='user' />
-        <div class="dropdown-div">
-          <button onClick={myFunction} class="dropbtn-pnav"><FaAngleDown className='downarrow' /></button>
-          <div id="myDropdown" class="dropdown-content-pnav">
-            <a href="/Pharmacistprofile">My Profile</a>
-            <a href="#contact">About Us</a>
-            <a href="/Login1">Log Out</a>
-          </div>
-        </div>
+        <BasicMenu2 />
 
       </div>
     </div>

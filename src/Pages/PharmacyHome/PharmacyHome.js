@@ -3,7 +3,7 @@ import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import React, { useState } from 'react';
 import './PharmacyHome.css';
 import { MdVerifiedUser, MdOutlineDoNotDisturb } from 'react-icons/md';
-import pharmacyLogo from '../../Assets/Brand/hospital-pharmacy.jpg';
+import pharmacyLogo from '../../Assets/Brand/gg.jpg';
 import profilelogo from '../../Assets/Brand/imgprofile.jpg';
 // import SearchBar from '../../Components/SearchBar/Search';
 import Card from '../../Components/card/card';

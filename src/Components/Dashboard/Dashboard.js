@@ -24,7 +24,7 @@ const data2 = [
   { name: "Ongoing", value: 40, fill: "#0a5279"},
   { name: "New", value: 23, fill: "#0000FF" },
   { name: "Finished", value: 42, fill: "#0047AB" },
-  { name: "Cancelled", value: 18, fill: "#ffcccb" },
+  { name: "Cancelled", value: 18, fill: "red" },
 ];
 
 

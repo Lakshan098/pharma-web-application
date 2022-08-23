@@ -45,3 +45,9 @@ tbody{
 tbody tr{
     border-bottom: 1px solid #ddd;;
 }
+
+.search-bar{
+    width: 50%;
+    margin-left: 4rem;
+    text-align: center;
+}

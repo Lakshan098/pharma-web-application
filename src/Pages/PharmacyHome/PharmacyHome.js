@@ -98,7 +98,7 @@ function PharmacyHome() {
             <Navbar />
             <div className="mainLogo">
                 <img className="logo-tag" src={pharmacyLogo} alt="Snow" />
-                <div class="bottom-left1"><h1><b>Central Pharmacy</b></h1></div>
+                <div class="bottom-left1"><h1><b>Lanka Pharmacy</b></h1></div>
                 <div class="bottom-left2"><h3><b>Colombo 07</b></h3></div>
 
             </div>

@@ -5,9 +5,9 @@
     text-align: center;
     padding-top: 60px;
 }
-.pharmacist-card{
+.pharmacist2-card{
     width: 72%;
-    height: 81rem;
+    height: 52rem;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -185,4 +185,43 @@
 .panelty-progress3 {
     width: 13%;
     padding-left: 10px;
+}
+
+
+
+.pharmacy-detail-ico{
+    width: 50%;
+    /* text-align: right; */
+    padding-top: 10px;
+}
+
+
+
+.admin-password{
+    /* background-color: yellow; */
+    height:15rem;
+    text-align: left;
+    padding-top: 50px;
+}
+
+.prof-form{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.label-head{
+    
+    width: 70%;
+    margin-right:120px;
+    padding-top: 25px;
+    text-align: right;
+}
+
+.prof-label{
+    color: black;
+}
+
+.prof-input{
+    margin-left: 60px;
 }

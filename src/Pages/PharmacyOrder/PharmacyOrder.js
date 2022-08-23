@@ -10,49 +10,49 @@ const tableData=[
     {
       id: 1,
       customer_name: "Snow",
-      placed_date: "22/08/2022",
-      status: "ongoing",
+      placed_date: "20/08/2022",
+      status: "pending",
     },
     {
       id: 2,
       customer_name: "Jamie Lannister",
-      placed_date: "22/08/2022",
+      placed_date: "18/08/2022",
       status: "delivery",
     },
     {
       id: 3,
       customer_name: "Lannister",
-      placed_date: "22/08/2022",
+      placed_date: "15/08/2022",
       status: "completed",
     },
     {
       id: 4,
       customer_name: "Stark",
-      placed_date: "22/08/2022",
+      placed_date: "12/08/2022",
       status: "pending",
     },
     {
       id: 5,
       customer_name: "Targaryen",
-      placed_date: "22/08/2022",
+      placed_date: "29/07/2022",
       status: "pending",
     },
     {
       id: 6,
       customer_name: "Melisandre",
-      placed_date: "22/08/2022",
+      placed_date: "22/07/2022",
       status: "completed",
     },
     {
       id: 7,
       customer_name: "Clifford",
-      placed_date: "22/08/2022",
+      placed_date: "21/07/2022",
       status: "delivery",
     },
     {
       id: 8,
       customer_name: "Frances",
-      placed_date: "22/08/2022",
+      placed_date: "12/07/2022",
       status: "delivery",
     },
     {
@@ -69,7 +69,11 @@ const tableData=[
     },
   ]
   
-  const tableColumns = [{ field: "id", headerName: "Order ID", width: 230 },
+  const tableColumns = [
+    { field: "id", 
+    headerName: "Order ID", 
+    width: 230 },
+
   {
     field: "customer_name",
     headerName: "Customer Name",
@@ -101,7 +105,7 @@ function PharmacyOrder() {
     const navigate3 = useNavigate();
     const navigateViewDetails = () => {
         
-        navigate('/ViewDetails');
+        navigate('/PendingViewDetails');
       };
         
     const actionColumn = [

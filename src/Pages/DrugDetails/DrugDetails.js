@@ -13,7 +13,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-
+import { noAuto } from '@fortawesome/fontawesome-svg-core';
 
 const invoiceTable=[
   {
@@ -110,6 +110,8 @@ const invoiceColumns = [{ field: "id", headerName: "ID", width: 70 },
   width: 100,
 },
 ]
+
+
 
 const drugTable=[
   {
@@ -305,6 +307,7 @@ const cartColumns = [{ field: "id", headerName: "ID", width: 70 },
 },
 ]
 
+
 function FeedbackDialog(props) {
   const { onClose,feedback, open } = props;
 
@@ -434,6 +437,83 @@ InvoiceDialog.propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
+const drugTable1=[
+  {
+    id: 1,
+    batch_no: 2,
+    name: "snow",
+    manufacturer: 35,
+    manufacturing_date:2142,
+    expiry_date:325,
+    quantity:24,
+  },
+  {
+    id: 2,
+    batch_no: 2,
+    name: "snow",
+    manufacturer: 35,
+    manufacturing_date:2142,
+    expiry_date:325,
+    quantity:24,
+  },
+  {
+    id: 1,
+    batch_no: 2,
+    name: "snow",
+    manufacturer: 35,
+    manufacturing_date:2142,
+    expiry_date:325,
+    quantity:24,
+  },
+  {
+    id: 1,
+    batch_no: 2,
+    name: "snow",
+    manufacturer: 35,
+    manufacturing_date:2142,
+    expiry_date:325,
+    quantity:24,
+  },
+]
+
+const drugColumns1 = [{ field: "id", headerName: "ID", width: 70 },
+{
+  field: "batch_no",
+  headerName: "Batch No.",
+  width: 200,
+},
+{
+  field: "name",
+  headerName: "Name",
+  width: 200,
+},
+
+{
+  field: "manufacturer",
+  headerName: "Manufacturer",
+  width: 100,
+},
+
+{
+  field: "manufacturing_date",
+  headerName: "Manufacturing Date",
+  width: 100,
+},
+
+{
+  field: "expiry_date",
+  headerName: "Expiry Date",
+  width: 100,
+},
+
+{
+  field: "quantity",
+  headerName: "Quantity",
+  width: 100,
+},
+]
+
+
 function DrugDetails(){
 
   const [feedback, setFeedback] = useState("");
@@ -504,6 +584,7 @@ function DrugDetails(){
           <div className='big-container'>
             <div className='inventory-container'>
               <span className='listTitle'>Inventory</span>
+
               <Table rows={drugTable} columns={drugColumns.concat(actionColumnInventory)} />
               <div className="datatableTitle">
               <button onClick={handleClickOpenFeedback} className="link">

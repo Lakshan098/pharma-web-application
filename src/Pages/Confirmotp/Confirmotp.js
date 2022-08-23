@@ -30,7 +30,7 @@ function confirmotp() {
 
       <div className="forgetpassword-div">
         <div className="forget-logo">
-          <img src={forgetlogo} className="#" width={800} height={500} />
+          <img src={forgetlogo} className="#" width={500} height={500} />
         </div>
         <div>
           <div class="brandname-div">

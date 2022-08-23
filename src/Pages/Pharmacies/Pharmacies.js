@@ -1,6 +1,7 @@
 import Navbar from '../../Components/Navbar/Admin/Navbar';
 import React from 'react';
 import Footer from '../../Components/Footer/Footer';
+import Search from '../../Components/Search/Search';
 import './Pharmacies.css';
 
 
@@ -11,8 +12,8 @@ function Pharmacies(){
             <Navbar/>
           </div>
           <h2 className='p-head'>Pharmacies</h2>
-          <div className='p-search'>
-            
+          <div className='p-search1'>
+            <Search/>
           </div>
 
           <div class="member-list">
@@ -33,21 +34,21 @@ function Pharmacies(){
                         <tr>
                           <td>001</td>
                           <td>Central Pharmacy</td>
-                          <td>8003431</td>
+                          <td>80270017</td>
                           <td>Western Province</td>
-                          <td>0702181481</td>
+                          <td>+94 41 222 4432</td>
                           <td>centralpharma@gmail.com</td>
                           <td>4.7</td>
                         </tr>
 
                         <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
+                          <td>002</td>
+                          <td>Union Chemist</td>
+                          <td>80240234</td>
+                          <td>Southern Province</td>
+                          <td>+94 41 222 9663</td>
+                          <td>unionchemist@gmail.com</td>
+                          <td>4.5</td>
                         </tr>
 
                         <tr>

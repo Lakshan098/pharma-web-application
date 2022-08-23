@@ -1,7 +1,7 @@
 import Navbar from '../../Components/Navbar/Admin/Navbar';
 import React from 'react';
 import Footer from '../../Components/Footer/Footer';
-// import SearchBar from '../../Components/SearchBar/Search';
+import Search from '../../Components/Search/Search';
 import './DeliveryAgent.css';
 
 
@@ -12,8 +12,10 @@ function DeliveryAgent(){
             <Navbar/>
           </div>
           <h2 className='d-head'>Delivery Agents</h2>
-          {/* <SearchBar/> */}
-
+          <div className='search-bar'>
+            <Search/>
+          </div>
+          
           <div class="member-list">
                 <table class="table table-hover">
                     <thead>
@@ -43,7 +45,7 @@ function DeliveryAgent(){
                           <td>002</td>
                           <td>Manuka Dewanarayana</td>
                           {/* <td>8003256</td> */}
-                          <td>Western Province</td>
+                          <td>18, Uyanwatta, Matara</td>
                           <td>0767832469</td>
                           <td>manukad@gmail.com</td>
                           <td>4.6</td>
@@ -53,7 +55,7 @@ function DeliveryAgent(){
                           <td>003</td>
                           <td>Lakshan Mihiranga</td>
                           {/* <td>8005733</td> */}
-                          <td>Western Province</td>
+                          <td>121, Polommaruwa, Tangalle</td>
                           <td>0773245887</td>
                           <td>lmihiranga98@gmail.com</td>
                           <td>4.3</td>
@@ -63,7 +65,7 @@ function DeliveryAgent(){
                           <td>004</td>
                           <td>Sahan Dilshan</td>
                           {/* <td>8005478</td> */}
-                          <td>Western Province</td>
+                          <td>14, Kirama, Walasmulla</td>
                           <td>0718723468</td>
                           <td>kksdilshan@gmail.com</td>
                           <td>4.8</td>
@@ -73,7 +75,7 @@ function DeliveryAgent(){
                           <td>005</td>
                           <td>Prabath Udayanga</td>
                           {/* <td>8009235</td> */}
-                          <td>Western Province</td>
+                          <td>19, Hiththatiya, Matara</td>
                           <td>0712452365</td>
                           <td>pudayanga@gmail.com</td>
                           <td>4.7</td>
@@ -83,7 +85,7 @@ function DeliveryAgent(){
                           <td>006</td>
                           <td>Harsha Perera</td>
                           {/* <td>8008475</td> */}
-                          <td>Western Province</td>
+                          <td>134, Unawatuna, Galle</td>
                           <td>0786728835</td>
                           <td>harshaperera89@gmail.com</td>
                           <td>4.2</td>
@@ -93,7 +95,7 @@ function DeliveryAgent(){
                           <td>007</td>
                           <td>Udara Kaushalya</td>
                           {/* <td>8007373</td> */}
-                          <td>Western Province</td>
+                          <td>131/2, Dodampahala, Dickwella</td>
                           <td>0776378681</td>
                           <td>ukaushalya@gmail.com</td>
                           <td>4.4</td>
@@ -103,80 +105,10 @@ function DeliveryAgent(){
                           <td>008</td>
                           <td>Nimesh Hansaka</td>
                           {/* <td>8006767</td> */}
-                          <td>Western Province</td>
+                          <td>14, Obesekarapura, Rajagiriya</td>
                           <td>0740866411</td>
                           <td>hansaka88@gmail.com</td>
                           <td>4.3</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          {/* <td>8003431</td> */}
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          {/* <td>8003431</td> */}
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          {/* <td>8003431</td> */}
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          {/* <td>8003431</td> */}
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          {/* <td>8003431</td> */}
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          {/* <td>8003431</td> */}
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          {/* <td>8003431</td> */}
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
                         </tr>
                     </tbody>
                 </table>

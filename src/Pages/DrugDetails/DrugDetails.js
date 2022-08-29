@@ -228,7 +228,7 @@ const actionColumnInventory = [
           <div
           className="addButton"
           >
-          Remove
+          Add to cart
           </div>
       </div>
       );

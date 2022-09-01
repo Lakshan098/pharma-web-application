@@ -8,6 +8,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import { Navigate, Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import UserProfile from "../../UserProfile";
 
 import Axios from "../../api/axios";
 import {useParams, Route,} from "react-router-dom";
@@ -42,41 +43,37 @@ function Login1() {
       email: email,
       password: password,
     }).then((response) => {
-      console.log(response.data);
+      //console.log(response.data);
 
-      if (response.data.error) {
-        alert(response.data.error);
+      if (!response.data.success) {
+        setFormErrors(authErr());
+
       } else {
-        // alert("successfully Logged in!");
-        const token = response.data;
-        console.log(token);
-        sessionStorage.setItem("token", token);
-        let sessionToken = sessionStorage.getItem("token");
+          const token = response.data;
+          //console.log(token);
+          sessionStorage.setItem("token", token);
+          let sessionToken = sessionStorage.getItem("token");
+      
         //console.log("Appjs", sessionToken);
         //console.log(response.data.token)
 
         if (sessionToken) {
           const users = jwt_decode(response.data.token);
-          console.log(users);
+          //console.log(users.User_name);
           window.loggedUserType = users.User_type;
           window.loggedUserId = users.User_ID;
-          //Navigate("/");
-          //<Navigate to="/" replace={true} />
-          console.log(users.User_type);
+          window.loggedUserName = users.User_name;
+          window.loggedUserEmail = users.User_email;
+          UserProfile.setName(window.loggedUserName);
+          UserProfile.setEmail(window.loggedUserEmail);
+          UserProfile.setUserId(window.loggedUserId);
 
           if (window.loggedUserType == "admin") {
             console.log("Admin dashboard called", window.loggedUserType);
-            //Navigate("/Adminprofile");
-            //return (<Navigate to='/Adminprofile' />)
-            //<Navigate to="/Adminprofile" replace={true} />
             navigate("/DashboardPage");
           } else if (window.loggedUserType == "pharmacy") {
             console.log("Pharmacy dashboard called", window.loggedUserType);
-            //Navigate("/PharmacyHome");
-            //return (<Navigate to='/' />)
-            //<Navigate to="/PharmacyHome" replace={true} />
-            navigate("/PharmacyHome/"+window.loggedUserId);
-            // <Route path="/PharmacyHome /:window.loggedUserId" />
+            navigate("/PharmacyHome");
           }
         } else {
           window.loggedUserType = null;
@@ -85,6 +82,12 @@ function Login1() {
       }
     });
   };
+  const authErr = () => {
+    const errors = {};
+    errors.email = "Authentication error";
+    errors.password = "Authentication error";
+    return errors;
+  }
 
   useEffect(() => {
     console.log(formErrors);

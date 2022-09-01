@@ -10,6 +10,7 @@ import { Navigate, Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 import Axios from "../../api/axios";
+import {useParams, Route,} from "react-router-dom";
 const LOGIN_URL = "/Signup/SignIn";
 
 function Login1() {
@@ -37,7 +38,7 @@ function Login1() {
   };
 
   const sendData = () => {
-    Axios.post("http://localhost:3000/Signup/SignIn", {
+    Axios.post("http://localhost:3001/Signup/SignIn", {
       email: email,
       password: password,
     }).then((response) => {
@@ -74,7 +75,8 @@ function Login1() {
             //Navigate("/PharmacyHome");
             //return (<Navigate to='/' />)
             //<Navigate to="/PharmacyHome" replace={true} />
-            navigate("/PharmacyHome");
+            navigate("/PharmacyHome/"+window.loggedUserId);
+            // <Route path="/PharmacyHome /:window.loggedUserId" />
           }
         } else {
           window.loggedUserType = null;

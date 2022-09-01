@@ -40,7 +40,7 @@ function Signup1() {
   };
 
   const sendData = () => {
-    Axios.post("http://localhost:3000/Signup", {
+    Axios.post("http://localhost:3001/Signup", {
       username: username,
       email: email,
       password: password,

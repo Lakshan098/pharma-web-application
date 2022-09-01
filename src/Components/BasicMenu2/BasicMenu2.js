@@ -41,7 +41,7 @@ export default function BasicMenu() {
         <a href="Pharmacistprofile2" className='admin-mypro'>
         <MenuItem onClick={handleClose} >My Profile</MenuItem>
         </a>
-        <a href='login1' className='admin-mypro'>
+        <a href='../../login1' className='admin-mypro'>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
         </a>
         

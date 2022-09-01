@@ -54,7 +54,7 @@ export default function App() {
           <Route path="pharmacies" element={<Pharmacies />} />
           <Route path="deliveryagent" element={<DeliveryAgent />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="PharmacyHome" element={<PharmacyHome />} />
+          <Route path="PharmacyHome/:uid" element={<PharmacyHome />} />
           <Route path="Card" element={<Card />} />
           <Route path="dashboardpage" element={<DashboardPage />} />
           <Route path="SignUp" element={<SignUp />} />

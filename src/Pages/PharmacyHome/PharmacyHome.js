@@ -7,13 +7,17 @@ import pharmacyLogo from '../../Assets/Brand/gg.jpg';
 import profilelogo from '../../Assets/Brand/imgprofile.jpg';
 // import SearchBar from '../../Components/SearchBar/Search';
 import Card from '../../Components/card/card';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation, useSearchParams, useParams } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import PendingOrder from '../../Components/PendingOrder/PendingOrder';
 import OngoingOrder from '../../Components/OngoingOrder/OngoingOrder';
 import CompletedOrder from '../../Components/CompletedOrder/CompletedOrder';
 import DeliveryOrder from '../../Components/DeliveryOrder/DeliveryOrder';
 import Button from 'react-bootstrap/Button';
+
+
+import Axios from "../../api/axios";
+import { useEffect } from 'react';
 
 
 
@@ -92,14 +96,54 @@ function PharmacyHome() {
     //     btn.style.color = 'white';
     // });
 
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    // const id =this.props.match.params.uid;
+
+
+
+
+
+    // const getData=()=>{
+    //     Axios.get("http://localhost:3001/PharmacyHome/:Id").then((response) => {
+    //         console.log(response.data);});
+    // };
+
+    var params = useParams();
+    var Id = params.uid;
+    //console.log(Id);
+    //var SId = Id.toString();
+    //console.log(SId);
+
+    var config = {
+        method: 'get',
+        url: 'http://localhost:3001/PharmacyHome/"PHA0000085"',
+        headers: {},
+    };
+    var [data, setData] = React.useState([]);
+
+    useEffect(() => {
+        Axios(config)
+            .then((response) => {
+                // console.log(response.data.result[0].username);
+                setData(response.data.result[0].username);
+                // console.log(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    })
+    console.log(data);
+
 
     return (
         <div>
             <Navbar />
+
             <div className="mainLogo">
                 <img className="logo-tag" src={pharmacyLogo} alt="Snow" />
-                <div class="bottom-left1"><h1><b>Lanka Pharmacy</b></h1></div>
-                <div class="bottom-left2"><h3><b>Colombo 07</b></h3></div>
+                <div class="bottom-left1"><h1><b>{data}</b></h1></div>
+                <div class="bottom-left2"><h3><b>Colombo 07 </b></h3></div>
 
             </div>
 

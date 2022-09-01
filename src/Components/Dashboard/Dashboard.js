@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import logo from '../../Assets/Brand/wellness.png';
 import { FaHospitalAlt, FaBiking } from "react-icons/fa";
-
 import {
   ResponsiveContainer,
   ComposedChart,

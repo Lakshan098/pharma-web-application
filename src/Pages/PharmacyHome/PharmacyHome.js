@@ -5,7 +5,6 @@ import './PharmacyHome.css';
 import { MdVerifiedUser, MdOutlineDoNotDisturb } from 'react-icons/md';
 import pharmacyLogo from '../../Assets/Brand/gg.jpg';
 import profilelogo from '../../Assets/Brand/imgprofile.jpg';
-// import SearchBar from '../../Components/SearchBar/Search';
 import Card from '../../Components/card/card';
 import { Routes, Route, useNavigate, useLocation, useSearchParams, useParams } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -117,7 +116,7 @@ function PharmacyHome() {
 
     var config = {
         method: 'get',
-        url: 'http://localhost:3001/PharmacyHome/"PHA0000085"',
+        url: 'http://localhost:3000/PharmacyHome/"PHA0000085"',
         headers: {},
     };
     var [data, setData] = React.useState([]);
@@ -134,7 +133,6 @@ function PharmacyHome() {
             });
     })
     console.log(data);
-
 
     return (
         <div>

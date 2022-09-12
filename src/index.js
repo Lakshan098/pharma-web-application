@@ -44,6 +44,7 @@ import PharmacyStatistics from "./Pages/PharmacyStatistics/PharmacyStatistics";
 import PharmacyInventory from "./Pages/PharmacyInventory/PharmacyInventory";
 import DrugDetails from "./Pages/DrugDetails/DrugDetails";
 import Pharmacistprofile2 from "./Pages/Pharmacistprofile2/Pharmacistprofile2";
+import CompletedViewDetailsNoDelivery from "./Pages/CompletedViewDetailsNoDelivery/CompletedViewDetailsNoDelivery";
 
 
 export default function App() {
@@ -54,7 +55,7 @@ export default function App() {
           <Route path="pharmacies" element={<Pharmacies />} />
           <Route path="deliveryagent" element={<DeliveryAgent />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="PharmacyHome/:uid" element={<PharmacyHome />} />
+          <Route path="PharmacyHome" element={<PharmacyHome />} />
           <Route path="Card" element={<Card />} />
           <Route path="dashboardpage" element={<DashboardPage />} />
           <Route path="SignUp" element={<SignUp />} />
@@ -90,6 +91,7 @@ export default function App() {
           <Route path="popup6" element={<Popup6 />} />
           <Route path="search" element={<Search />} />
           <Route path="Pharmacistprofile2" element={<Pharmacistprofile2 />} />
+          <Route path="CompletedViewDetailsNoDelivery" element={<CompletedViewDetailsNoDelivery />} />
           {/* <Route path="basicmenu" element={<BasicMenu />} /> */}
           
 

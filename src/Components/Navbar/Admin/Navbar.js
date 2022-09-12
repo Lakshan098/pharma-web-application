@@ -48,7 +48,7 @@ function Navbar() {
 
       <div className="profile-container">
         <a className="lable-tag" href="adminprofile">
-          A.W.S.Rashmika
+           {localStorage.getItem('username')}
           <br />
           Admin User
         </a>

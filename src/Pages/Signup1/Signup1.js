@@ -11,7 +11,7 @@ import Axios from '../../api/axios';
 
 function Signup1() {
 
-  const initialValues = {username:"", email:"", regNo:"", address:"", telephone:"", accNo:"", password:""};
+  const initialValues = {username:"", email:"", regNo:"", address:"", telephone:"", bName:"", accNo:"", password:""};
 
   const navigate = useNavigate();
   const userRef = useRef();
@@ -22,6 +22,7 @@ function Signup1() {
   const [regNo, setRegNo] = useState('');
   const [address, setAddress] = useState('');
   const [telephone, setTelephone] = useState('');
+  const [bName, setBName] = useState('');
   const [accNo, setAccNo] = useState('');
   const [password, setPassword] = useState('');
   const [formErrors, setFormErrors] = useState('');
@@ -33,7 +34,7 @@ function Signup1() {
 
   const HandleSignup = (e) => {
     e.preventDefault()
-    const data = { username: username, email: email, address:address, password: password, telephone: telephone, regNo: regNo, accNo: accNo, user_type: pharmacy };
+    const data = { username: username, email: email, address:address, password: password, telephone: telephone, regNo: regNo, bName: bName, accNo: accNo, user_type: pharmacy };
     setFormErrors(validate(data));
     setIsSubmit(true)
 
@@ -43,6 +44,7 @@ function Signup1() {
     Axios.post("http://localhost:3000/Signup", {
       username: username,
       email: email,
+      address: address,
       password: password,
       telephone: telephone,
       regNo: regNo,
@@ -84,6 +86,9 @@ function Signup1() {
     }
     if(!values.accNo){
       errors.accNo = "Bank account number is required";
+    }
+    if(!values.bName){
+      errors.bName = "Bank name is required";
     }
 
     if(!values.password){
@@ -165,7 +170,19 @@ function Signup1() {
                 value={telephone}
                 onChange={(e) => setTelephone(e.target.value)}
               />
-              <p className="form-error-message">{formErrors.telephone}</p>
+              <p className="form-error-message">{formErrors.bName}</p>
+              <label className="signup-form-label">Bank Name</label>
+              <input
+                type="text"
+                name="bName"
+                id="bName"
+                className="signup-username-password1"
+                ref={userRef}
+                autoComplete="off"
+                value={bName}
+                onChange={(e) => setBName(e.target.value)}
+              />
+              <p className="form-error-message">{formErrors.bName}</p>
               <label className="signup-form-label">Bank Account Number</label>
               <input
                 type="text"

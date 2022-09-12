@@ -88,51 +88,47 @@ function PharmacyHome() {
         setShow4(true);
     };
 
-    // const btn = document.getElementById('process-one1');
-
-    // btn.addEventListener('click', function handleOpen() {
-    //     btn.style.backgroundColor = 'salmon';
-    //     btn.style.color = 'white';
-    // });
-
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    // const id =this.props.match.params.uid;
-
-
-
-
-
-    // const getData=()=>{
-    //     Axios.get("http://localhost:3001/PharmacyHome/:Id").then((response) => {
-    //         console.log(response.data);});
-    // };
-
-    var params = useParams();
-    var Id = params.uid;
-    //console.log(Id);
-    //var SId = Id.toString();
-    //console.log(SId);
+    var Id = localStorage.getItem('userId');
+    var SId = Id.toString();
 
     var config = {
         method: 'get',
-        url: 'http://localhost:3000/PharmacyHome/"PHA0000085"',
+
+        url: ('http://localhost:3000/PharmacyHome/' + SId),
+
         headers: {},
     };
-    var [data, setData] = React.useState([]);
 
-    useEffect(() => {
-        Axios(config)
+    // var [data, setData] = React.useState([]);
+    var [pending, setPending] = React.useState([]);
+    var [ongoing, setOngoing] = React.useState([]);
+    var [delivery, setDelivery] = React.useState([]);
+    var [complted, setCompleted] = React.useState([]);
+
+
+    useEffect(async () => {
+        await Axios(config)
             .then((response) => {
-                // console.log(response.data.result[0].username);
-                setData(response.data.result[0].username);
-                // console.log(data);
+
+                response.data.map((item) => {
+                    if (item.status === 'pending') {
+                        setPending(prevState => [...prevState, item]);
+                    }
+                    else if (item.status === 'delivery' && item.delivery_need === 1) {
+                        setDelivery(prevState => [...prevState, item]);
+                    }
+                    else if (item.status === 'ongoing') {
+                        setOngoing(prevState => [...prevState, item]);
+                    } else {
+                        setCompleted(prevState => [...prevState, item]);
+                    }
+                })
+
             })
             .catch(function (err) {
                 console.log(err);
             });
-    })
-    console.log(data);
+    }, [])
 
     return (
         <div>
@@ -140,13 +136,13 @@ function PharmacyHome() {
 
             <div className="mainLogo">
                 <img className="logo-tag" src={pharmacyLogo} alt="Snow" />
-                <div class="bottom-left1"><h1><b>{data}</b></h1></div>
-                <div class="bottom-left2"><h3><b>Colombo 07 </b></h3></div>
+                <div class="bottom-left1"><h1><b>{localStorage.getItem('username')}</b></h1></div>
+                <div class="bottom-left2"><h3><b></b></h3></div>
 
             </div>
 
             <div className="process-button-div" >
-                <div ><button onClick={handleOpen} id="process-one1" class="process-button" type="button" >Pending order</button></div>
+                <div><button onClick={handleOpen} id="process-one1" class="process-button" type="button" >Pending order</button></div>
                 <div><button onClick={handleOpen2} id="process-one2" class="process-button btn-3" type="button" >On going order</button></div>
                 <div><button onClick={handleOpen3} id="process-one3" class="process-button btn-3" type="button" >Completed order</button></div>
                 <div><button onClick={handleOpen4} id="process-one3" class="process-button btn-3" type="button" >Delivering order</button></div>
@@ -157,13 +153,14 @@ function PharmacyHome() {
 
 
 
-            {show ? <PendingOrder /> : ''
+            {
+            show & pending.length != 0 ? <PendingOrder test={pending} /> : ''
             }
-            {show2 ? <OngoingOrder /> : ''
+            {show2 & ongoing.length != 0 ? <OngoingOrder test={ongoing} /> : ''
             }
-            {show3 ? <CompletedOrder /> : ''
+            {show3 & complted.length != 0 ? <CompletedOrder test={complted} /> : ''
             }
-            {show4 ? <DeliveryOrder /> : ''
+            {show4 & delivery.length != 0 ? <DeliveryOrder test={delivery} /> : ''
             }
 
 

@@ -3,52 +3,33 @@ import { MdVerifiedUser, MdOutlineDoNotDisturb } from 'react-icons/md';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import "./CompletedOrder.css";
 
- function CompletedOrder(){
-    
+function CompletedOrder({ test }) {
+
 
     const navigate = useNavigate();
-    const navigateViewDetails = () => {
+    const navigateViewDetails = (test) => {
 
-        navigate('/CompletedViewDetails');
+        if (Number(test) == 1) {
+            navigate('/CompletedViewDetails');
+        } else {
+
+            //need to create another page complete order but not set delivery
+            navigate('/CompletedViewDetailsNoDelivery'); 
+        }
     };
-    return(
+    return test.map((order) => (
         <div class="profile-cards">
-                <div class="card">
-                    <div class="complete-order"><p>Completed Order</p></div>
-                    <div class="orderId"><p>Order Id:9</p></div>
-                    <div class="home-date"><p>20 July 2022 2pm</p></div>
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    <p class="title2">40 minutes ago</p>
-                </div>
-
-
-                <div class="card">
-                    <div class="complete-order"><p>Completed Order</p></div>
-                    <div class="orderId"><p>Order Id:10</p></div>
-                    <div class="home-date"><p>19 July 2022 3pm</p></div>
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    <p class="title2">40 minutes ago</p>
-                </div>
-
-                <div class="card">
-                    <div class="complete-order"><p>Completed Order</p></div>
-                    <div class="orderId"><p>Order Id:11</p></div>
-                    <div class="home-date"><p>18 July 2022 4pm</p></div>
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    <p class="title2">40 minutes ago</p>
-                </div>
-
-                <div class="card">
-                    <div class="complete-order"><p>Completed Order</p></div>
-                    <div class="orderId"><p>Order Id:12</p></div>
-                    <div class="home-date"><p>17 July 2022 5pm</p></div>
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    <p class="title2">40 minutes ago</p>
-                </div>
-
+            <div class="card">
+                <div class="complete-order"><p>{order.status} Order</p></div>
+                <div class="orderId"><p>Order Id: {order.order_id}</p></div>
+                <div class="home-date"><p>{order.time_stamp}</p></div>
+                <div><button class="view-btn" onClick={() => navigateViewDetails(order.delivery_need)}>View Details</button></div>
+                <p class="title2">40 minutes ago</p>
             </div>
+        </div>
 
-    );
- }
+    ));
 
- export default CompletedOrder;
+}
+
+export default CompletedOrder;

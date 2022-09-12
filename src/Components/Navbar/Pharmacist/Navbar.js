@@ -21,7 +21,7 @@ function Navbar() {
       
 
       <div className="profile-container">
-        <label class="lable-tag">Lanka Pharmacy</label>
+        <label class="lable-tag">{localStorage.getItem('username')}</label>
         <FaUserCircle className='user' />
         <BasicMenu2 />
 

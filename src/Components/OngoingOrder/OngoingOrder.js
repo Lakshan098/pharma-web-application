@@ -1,74 +1,42 @@
 import React from 'react';
-import {FaTimesCircle,FaCheckCircle  } from 'react-icons/fa';
+import { FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import "./OngoingOrder.css";
 
- function OngoingOrder(){
-    
+function OngoingOrder({ test }) {
 
+//    
     const navigate = useNavigate();
-    const navigateViewDetails = () => {
 
-        navigate('/OngoingViewDetails');
+    const navigateViewDetails = (test) => {
+        
+        if (Number(test) == 1) {
+            navigate('/OngoingViewDetails');
+        } else {
+            navigate('/OngoingViewDetailsNoDelivary');
+        }
     };
-    const OngoingViewDetailsNoDelivary = () => {
-
-        navigate('/OngoingViewDetailsNoDelivary');
-    };
-    return(
+    
+    return test.map((order) => (
         <div class="profile-cards">
-                <div class="card">
-                    <div class="neworder"><p>Ongoing Order</p></div>
-                    <div class="orderId"><p>Order Id:5</p></div>
-                    <div class="home-date"><p>20 Auguest 2022 7am</p></div>
-                    <div><p>Delivery <FaCheckCircle color="green" /></p></div>
-                    <div><p>Prescription <FaCheckCircle color="green" /></p></div>
+            <div class="card">
+                <div class="neworder"><p>{order.status} Order</p></div>
+                <div class="orderId"><p>Order Id: {order.order_id}</p></div>
+                <div class="home-date"><p>{order.time_stamp}</p></div>
+                <div><p>Delivery {Number(order.delivery_need) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</p></div>
+                <div><p>Prescription{Number(order.has_prescription) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</p></div>
 
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    
-
-                    <p class="title2">40 minutes ago</p>
-                </div>
+                <div><button class="view-btn" onClick={()=>navigateViewDetails(order.delivery_need)} >View Details</button></div>
 
 
-                <div class="card">
-                    <div class="neworder"><p>Ongoing Order</p></div>
-                    <div class="orderId"><p>Order Id:6</p></div>
-                    <div class="home-date"><p>20 Auguest 2022 5am</p></div>
-                    <div><p>Delivery <FaTimesCircle color="red" /></p></div>
-                    <div><p>Prescription <FaCheckCircle color="green" /></p> </div>
-
-                    <div><button class="view-btn" onClick={OngoingViewDetailsNoDelivary} >View Details</button></div>
-
-                    <p class="title2">40 minutes ago</p>
-                </div>
-
-                <div class="card">
-                    <div class="neworder"><p>Ongoing Order</p></div>
-                    <div class="orderId"><p>Order Id:7</p></div>
-                    <div class="home-date"><p>20 Auguest 2022 8am</p></div>
-                    <div><p>Delivery <FaCheckCircle color="green" /></p></div>
-                    <div><p>Prescription <FaTimesCircle color="red" /></p> </div>
-
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-
-                    <p class="title2">40 minutes ago</p>
-                </div>
-
-                <div class="card">
-                    <div class="neworder"><p>Ongoing Order</p></div>
-                    <div class="orderId"><p>Order Id:8</p></div>
-                    <div class="home-date"><p>20 Auguest 2022 9am</p></div>
-                    <div><p>Delivery <FaCheckCircle color="green" /></p></div>
-                    <div><p>Prescription <FaTimesCircle color="red" /></p> </div>
-
-                    <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
-                    <p class="title2">40 minutes ago</p>
-                </div>
-
+                <p class="title2">40 minutes ago</p>
             </div>
+        </div>
 
-    );
- }
+    ));
 
- export default OngoingOrder;
+
+
+}
+
+export default OngoingOrder;

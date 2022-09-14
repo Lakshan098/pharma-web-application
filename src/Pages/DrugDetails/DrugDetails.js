@@ -11,11 +11,11 @@ import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import FlatList from 'flatlist-react';
 
 const invoiceTable=[
   {
@@ -365,11 +365,33 @@ FeedbackDialog.propTypes = {
   feedback: PropTypes.string.isRequired,
 };
 
-function InvoiceDialog(props) {
-  const { onClose,feedback, open } = props;
+const renderItem = (item) => {
+  console.log(item);
+  return (<>
+    <Grid item xs={6}>
+      <div className='dialog-text'>{item.drug_name}</div>
+    </Grid>
+    <Grid item xs={3}>
+      <div className='dialog-text' style={{paddingLeft:35}}>{item.quantity}</div>
+    </Grid>
+    <Grid item xs={3}>
+      <div className='dialog-text'>{item.amount}</div>
+    </Grid>
+    </>);
+}
 
+function calculateTotal(list){
+  var sum = 0;
+  list.forEach(item =>{
+    sum = sum+ item.amount;
+  });
+  return sum;
+}
+
+function InvoiceDialog(props) {
+  const { onClose,itemList, open } = props;
   const handleClose = () => {
-    onClose(feedback);
+    onClose();
   };
 
 
@@ -389,38 +411,18 @@ function InvoiceDialog(props) {
             <Grid item xs={3}>
               <div className='dialog-title'>Price</div>
             </Grid>
+            <FlatList
+              list={itemList}
+              renderItem={renderItem}
+            />
             <Grid item xs={6}>
-              <div className='dialog-text'>Penadol</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text' style={{paddingLeft:35}}>15</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text'>75.00</div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className='dialog-text'>Penadol</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text' style={{paddingLeft:35}}>15</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text'>75.00</div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className='dialog-text'>Penadol</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text' style={{paddingLeft:35}}>15</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text'>75.00</div>
-            </Grid>
-            <Grid item xs={9}>
               <div className='dialog-title'>Total</div>
             </Grid>
             <Grid item xs={3}>
-              <div className='dialog-title'>225.00</div>
+              <div className='dialog-title'></div>
+            </Grid>
+            <Grid item xs={3}>
+              <div className='dialog-title'>{calculateTotal(itemList)}</div>
             </Grid>
           </Grid>
         </Box>
@@ -771,7 +773,7 @@ const actionColumnCart = [
               <Button variant="contained" onClick={handleClickOpenInvoice} style={{margineLeft: 60}}>
                 Send
               </Button>
-                <span className='total'>Total :</span>
+                <span className='total'>Total :{calculateTotal(feedbackData)}</span>
               </div>
             </div>
           </div>
@@ -784,6 +786,7 @@ const actionColumnCart = [
 
           <InvoiceDialog
             open={openInvoice}
+            itemList={feedbackData}
             onClose={handleCloseInvoice}
           />
           <InventoryAddDialog

@@ -11,9 +11,11 @@ import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { noAuto } from '@fortawesome/fontawesome-svg-core';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import FlatList from 'flatlist-react';
 
 const invoiceTable=[
   {
@@ -122,56 +124,29 @@ const drugTable=[
     brand_name: "ABC",
     manufacture_date: "2022-04-04",
     quantity: 20,
+    unit_price: 10,
     manufacture_batch_no: "ABCD",
   },
   {
     id: 2,
     batch_no: "00A",
-    drug_name: "Vitamine c",
+    drug_name: "Penadol",
     expiry_date: "2024-04-04",
     brand_name: "ABC",
     manufacture_date: "2022-04-04",
     quantity: 20,
+    unit_price: 10,
     manufacture_batch_no: "ABCD",
   },
   {
     id: 3,
     batch_no: "00A",
-    drug_name: "Vitamine c",
+    drug_name: "Vitamine E",
     expiry_date: "2024-04-04",
     brand_name: "ABC",
     manufacture_date: "2022-04-04",
     quantity: 20,
-    manufacture_batch_no: "ABCD",
-  },
-  {
-    id: 4,
-    batch_no: "00A",
-    drug_name: "Vitamine c",
-    expiry_date: "2024-04-04",
-    brand_name: "ABC",
-    manufacture_date: "2022-04-04",
-    quantity: 20,
-    manufacture_batch_no: "ABCD",
-  },
-  {
-    id: 5,
-    batch_no: "00A",
-    drug_name: "Vitamine c",
-    expiry_date: "2024-04-04",
-    brand_name: "ABC",
-    manufacture_date: "2022-04-04",
-    quantity: 20,
-    manufacture_batch_no: "ABCD",
-  },
-  {
-    id: 6,
-    batch_no: "00A",
-    drug_name: "Vitamine c",
-    expiry_date: "2024-04-04",
-    brand_name: "ABC",
-    manufacture_date: "2022-04-04",
-    quantity: 20,
+    unit_price: 10,
     manufacture_batch_no: "ABCD",
   },
 ]
@@ -209,7 +184,11 @@ const drugColumns = [{ field: "id", headerName: "ID", width: 70 },
   headerName: "Quantity",
   width: 200,
 },
-
+{
+  field: "unit_price",
+  headerName: "Unit Price",
+  width: 200,
+},
 {
   field: "manufacture_batch_no",
   headerName: "Manufacture's batch no",
@@ -217,24 +196,6 @@ const drugColumns = [{ field: "id", headerName: "ID", width: 70 },
 },
 ]
 
-const actionColumnInventory = [
-  {
-  field: "action",
-  headerName: "Action",
-  width: 200,
-  renderCell: (params) => {
-      return (
-      <div className="cellAction">
-          <div
-          className="addButton"
-          >
-          Add to cart
-          </div>
-      </div>
-      );
-  },
-  },
-];
 
 const cartTable=[
   {
@@ -269,24 +230,6 @@ const cartTable=[
   },
 ]
 
-const actionColumnCart = [
-  {
-  field: "action",
-  headerName: "Action",
-  width: 200,
-  renderCell: (params) => {
-      return (
-      <div className="cellAction">
-          <div
-          className="removeButton"
-          >
-          Remove
-          </div>
-      </div>
-      );
-  },
-  },
-];
 
 const cartColumns = [{ field: "id", headerName: "ID", width: 70 },
 {
@@ -309,50 +252,108 @@ const cartColumns = [{ field: "id", headerName: "ID", width: 70 },
 
 
 function FeedbackDialog(props) {
-  const { onClose,feedback, open } = props;
+  const { onClose, open } = props;
+  const [type, setType] = useState('');
+  const [drugName, setDrugName] = useState('');
+  const [brandName, setBrandName] = useState('');
+  const [quantity, setQuantity] = useState(0);
+  const [feedback, setFeedback] = useState('');
 
-  const handleClose = () => {
-    onClose(feedback);
+  const handleClose = (e) => {
+    var feedbackRecord = {
+      closeType:e,
+      type:type,
+      drugName:drugName,
+      brandName:brandName,
+      quantity:quantity,
+      feedback:feedback
+    }
+    onClose(feedbackRecord);
+    setType('');
+    setQuantity(0);
+    setDrugName('');
+    setBrandName('');
+    setFeedback('');
   };
-
+  const handleChange = (event) => {
+    setType(event.target.value);
+  };
 
 
   return (
     <Dialog onClose={handleClose} open={open} fullWidth={100}>
       <DialogTitle>Feedback</DialogTitle>
       <DialogContent>
+      <InputLabel id="demo-simple-select-standard-label">Type</InputLabel>
+        <Select
+          autoFocus
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-filled"
+          value={type}
+          onChange={handleChange}
+          label="Type"
+          fullWidth
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={"not available"}>Not Available</MenuItem>
+          <MenuItem value={"alternative"}>Alternative</MenuItem>
+        </Select>
       <TextField
-            autoFocus
+            
             margin="dense"
             id="name"
             label="Drug name"
             type="text"
             fullWidth
             variant="standard"
+            value={drugName}
+            onChange={(val) => setDrugName(val.target.value)}
 
           />
           <TextField
-            autoFocus
+            
             margin="dense"
             id="name"
             label="Brand name"
             type="text"
             fullWidth
             variant="standard"
+            value={brandName}
+            onChange={(val) => setBrandName(val.target.value)}
           />
+          {type=="alternative" ? (
           <TextField
-            autoFocus
+            
+            margin="dense"
+            id="name"
+            label="Quantity"
+            type="number"
+            fullWidth
+            variant="standard"
+            value={quantity}
+            onChange={(val) => setQuantity(val.target.value)}
+          />
+          ):(<></>)
+            
+          }
+          
+          <TextField
+            
             margin="dense"
             id="name"
             label="Feedback message"
             type="text"
             fullWidth
             variant="standard"
+            value={feedback}
+            onChange={(val) => setFeedback(val.target.value)}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add feedback</Button>
+          <Button onClick={()=>handleClose(-1)}>Cancel</Button>
+          <Button onClick={()=>handleClose(1)}>Add feedback</Button>
         </DialogActions>
     </Dialog>
   );
@@ -364,11 +365,33 @@ FeedbackDialog.propTypes = {
   feedback: PropTypes.string.isRequired,
 };
 
-function InvoiceDialog(props) {
-  const { onClose,feedback, open } = props;
+const renderItem = (item) => {
+  console.log(item);
+  return (<>
+    <Grid item xs={6}>
+      <div className='dialog-text'>{item.drug_name}</div>
+    </Grid>
+    <Grid item xs={3}>
+      <div className='dialog-text' style={{paddingLeft:35}}>{item.quantity}</div>
+    </Grid>
+    <Grid item xs={3}>
+      <div className='dialog-text'>{item.amount}</div>
+    </Grid>
+    </>);
+}
 
+function calculateTotal(list){
+  var sum = 0;
+  list.forEach(item =>{
+    sum = sum+ item.amount;
+  });
+  return sum;
+}
+
+function InvoiceDialog(props) {
+  const { onClose,itemList, open } = props;
   const handleClose = () => {
-    onClose(feedback);
+    onClose();
   };
 
 
@@ -388,38 +411,18 @@ function InvoiceDialog(props) {
             <Grid item xs={3}>
               <div className='dialog-title'>Price</div>
             </Grid>
+            <FlatList
+              list={itemList}
+              renderItem={renderItem}
+            />
             <Grid item xs={6}>
-              <div className='dialog-text'>Penadol</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text' style={{paddingLeft:35}}>15</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text'>75.00</div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className='dialog-text'>Penadol</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text' style={{paddingLeft:35}}>15</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text'>75.00</div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className='dialog-text'>Penadol</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text' style={{paddingLeft:35}}>15</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-text'>75.00</div>
-            </Grid>
-            <Grid item xs={9}>
               <div className='dialog-title'>Total</div>
             </Grid>
             <Grid item xs={3}>
-              <div className='dialog-title'>225.00</div>
+              <div className='dialog-title'></div>
+            </Grid>
+            <Grid item xs={3}>
+              <div className='dialog-title'>{calculateTotal(itemList)}</div>
             </Grid>
           </Grid>
         </Box>
@@ -437,81 +440,73 @@ InvoiceDialog.propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
-const drugTable1=[
-  {
-    id: 1,
-    batch_no: 2,
-    name: "snow",
-    manufacturer: 35,
-    manufacturing_date:2142,
-    expiry_date:325,
-    quantity:24,
-  },
-  {
-    id: 2,
-    batch_no: 2,
-    name: "snow",
-    manufacturer: 35,
-    manufacturing_date:2142,
-    expiry_date:325,
-    quantity:24,
-  },
-  {
-    id: 1,
-    batch_no: 2,
-    name: "snow",
-    manufacturer: 35,
-    manufacturing_date:2142,
-    expiry_date:325,
-    quantity:24,
-  },
-  {
-    id: 1,
-    batch_no: 2,
-    name: "snow",
-    manufacturer: 35,
-    manufacturing_date:2142,
-    expiry_date:325,
-    quantity:24,
-  },
-]
+function InventoryAddDialog(props) {
+  const { onClose,amount, open } = props;
+  const [qty, setQty] = useState(0);
 
-const drugColumns1 = [{ field: "id", headerName: "ID", width: 70 },
-{
-  field: "batch_no",
-  headerName: "Batch No.",
-  width: 200,
-},
-{
-  field: "name",
-  headerName: "Name",
-  width: 200,
-},
+  const handleClose = (amount) => {
+    onClose(amount);
+    setQty(0);
+  };
 
-{
-  field: "manufacturer",
-  headerName: "Manufacturer",
-  width: 100,
-},
 
-{
-  field: "manufacturing_date",
-  headerName: "Manufacturing Date",
-  width: 100,
-},
+  return (
+    <Dialog onClose={handleClose} open={open} fullWidth={100}>
+      <DialogTitle>Add</DialogTitle>
+      <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Quantity"
+            type="number"
+            fullWidth
+            variant="standard"
+            value={qty}
+            onChange={val => setQty(val.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleClose(-1)}>Cancel</Button>
+          <Button onClick={() => handleClose(qty)}>Add</Button>
+        </DialogActions>
+    </Dialog>
+  );
+}
 
-{
-  field: "expiry_date",
-  headerName: "Expiry Date",
-  width: 100,
-},
+InventoryAddDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  feedback: PropTypes.string.isRequired,
+};
 
-{
-  field: "quantity",
-  headerName: "Quantity",
-  width: 100,
-},
-]
+function ConfirmDialog(props) {
+  const { onClose,amount, open } = props;
+
+  const handleClose = () => {
+    onClose();
+  };
+
+
+
+  return (
+    <Dialog onClose={handleClose} open={open} fullWidth={100}>
+      <DialogTitle>Successfull</DialogTitle>
+      <DialogContent>
+        <div className='dialog-text'>Remaining balance : {amount}</div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>OK</Button>
+        </DialogActions>
+    </Dialog>
+  );
+}
+
+ConfirmDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  feedback: PropTypes.string.isRequired,
+};
 
 
 function DrugDetails(){
@@ -519,47 +514,235 @@ function DrugDetails(){
   const [feedback, setFeedback] = useState("");
   const [openFeedback, setOpenFeedback] = useState(false);
   const [openInvoice, setOpenInvoice] = useState(false);
+  
+  const [openInventoryAdd, setOpenInventoryAdd] = useState(false);
+  const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
+  const [cartData, setCartData] = useState([]);
+  const [feedbackData, setFeedbackData] = useState([]);
+  const [inventoryData, setInventoryData] = useState(drugTable);
+  const [activeInventory, setActiveInventory] = useState({
+    id:'',
+    batch_no:'',
+    drug_name:'',
+    expiry_date:'',
+    brand_name:'',
+    manufacture_date:'',
+    quantity:'',
+    unit_price:'',
+    manufacture_batch_no:''
+  })
 
 
-  const handleDelete = (id) => {
-  };
 
   const handleClickOpenFeedback = () => {
     setOpenFeedback(true);
   };
 
   const handleCloseFeedback = (value) => {
+    if(value.closeType==1){
+      if(value.type == "alternative"){
+        var BreakErr = "";
+        try{
+          inventoryData.forEach(element => {
+            if(element.drug_name == value.drugName && element.brand_name == element.brand_name){
+              element.quantity = element.quantity - value.quantity;
+              var cartItem = {
+                id:element.id,
+                name:element.drug_name,
+                quantity:value.quantity,
+                amount:value.quantity*element.unit_price,
+              }
+              var cartList = [];
+              cartData.forEach(element => {
+                cartList.push(element);
+              });
+              cartList.push(cartItem);
+              setCartData(cartList);
+
+              var feedBackItem = {
+                id: element.id,
+                brand_name:value.brandName,
+                drug_name:value.drugName,
+                quantity:value.quantity,
+                Issuable:'Yes',
+                reason:value.feedback,
+                unit_price:element.unit_price,
+                amount: value.quantity*element.unit_price,
+              }
+              var feedBackList = [];
+              feedbackData.forEach(element => {
+                feedBackList.push(element);
+              });
+              feedBackList.push(feedBackItem);
+              setFeedbackData(feedBackList);
+              throw BreakErr;
+            }
+          });
+        }catch(err){
+          if (err !== BreakErr) throw err;
+        }
+        
+      }
+      if(value.type == "not available"){
+        var feedBackItem = {
+          id: feedbackData.length + inventoryData.length +1,
+          brand_name:value.brandName,
+          drug_name:value.drugName,
+          quantity:0,
+          Issuable:'No',
+          reason:value.feedback,
+          unit_price:0,
+          amount: 0
+        }
+        var feedBackList = [];
+        feedbackData.forEach(element => {
+          feedBackList.push(element);
+        });
+        feedBackList.push(feedBackItem);
+        setFeedbackData(feedBackList);
+      }
+    }
     setOpenFeedback(false);
-    setFeedback(value);
   };
 
   const handleClickOpenInvoice = () => {
     setOpenInvoice(true);
   };
 
+  const handleClearAll = () => {
+    cartData.forEach(element => {
+      inventoryData.forEach(item => {
+        if(item.id == element.id){
+          item.quantity = item.quantity + parseInt(element.quantity);
+        }
+      });
+    });
+    setCartData([]);
+    setFeedbackData([]);
+  }
+
   const handleCloseInvoice = (value) => {
     setOpenInvoice(false);
   };
+  const handleClickOpenInventoryAdd = (item) => {
+    setActiveInventory(item.row);
+    setOpenInventoryAdd(true);
+  };
 
-  const drugRemoveColumn = [
+  const handleCloseInventoryAdd = (value) => {
+    if(value>0){
+      activeInventory.quantity = activeInventory.quantity-value;
+      var cartItem = {
+        id:activeInventory.id,
+        name:activeInventory.drug_name,
+        quantity:value,
+        amount:value*activeInventory.unit_price,
+      }
+      var cartList = [];
+      cartData.forEach(element => {
+        cartList.push(element);
+      });
+      cartList.push(cartItem);
+      setCartData(cartList);
+      inventoryData.forEach(element => {
+        if(element.id == activeInventory.id){
+          element.quantity = activeInventory.quantity;
+        }
+      });
+
+      var feedBackItem = {
+        id: activeInventory.id,
+        brand_name:activeInventory.brand_name,
+        drug_name:activeInventory.drug_name,
+        quantity:value,
+        Issuable:'Yes',
+        reason:'',
+        unit_price:activeInventory.unit_price,
+        amount: activeInventory.unit_price * value
+      }
+      var feedBackList = [];
+      feedbackData.forEach(element => {
+        feedBackList.push(element);
+      });
+      feedBackList.push(feedBackItem);
+      setFeedbackData(feedBackList);
+      handleClickOpenConfirmDialog();
+    }
+    setOpenInventoryAdd(false);
+  };
+
+  const handleClickOpenConfirmDialog = () => {
+    setOpenConfirmDialog(true)
+  };
+
+  const handleCloseConfirmDialog = (value) => {
+    setOpenConfirmDialog(false);
+  };
+
+  const deleteCartItem = (e) => {
+    var item = e.row;
+    var cartList = [];
+    cartData.forEach(element => {
+      if(element.id != item.id){
+        cartList.push(element);
+      }
+    });
+    var feedbackList = [];
+    feedbackData.forEach(element => {
+      if(element.id != item.id){
+        feedbackList.push(element);
+      }
+    });
+    inventoryData.forEach(element => {
+      if(element.id == item.id){
+        element.quantity = element.quantity + parseInt(item.quantity);
+      }
+    });
+    setCartData(cartList);
+    setFeedbackData(feedbackList);
+  };
+
+  const actionColumnInventory = [
     {
-      field: "remove",
-      headerName: "Remove",
-      width: 200,
-      renderCell: (params) => {
+    field: "action",
+    headerName: "Action",
+    width: 200,
+    renderCell: (params) => {
         return (
-          <div className="cellAction">
+        <div className="cellAction">
             <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+            className="addButton"
+            onClick={()=>handleClickOpenInventoryAdd(params)}
             >
-              Remove
+            Add
             </div>
-          </div>
+        </div>
         );
-      },
+    },
     },
   ];
+
+  
+const actionColumnCart = [
+  {
+  field: "action",
+  headerName: "Action",
+  width: 200,
+  renderCell: (params) => {
+      return (
+      <div className="cellAction">
+          <div
+          className="removeButton"
+          onClick={()=>deleteCartItem(params)}
+          >
+          Remove
+          </div>
+      </div>
+      );
+  },
+  },
+];
+
     return (
         <div>
           <div className='header'>
@@ -578,14 +761,14 @@ function DrugDetails(){
               <span className='listTitle'>Cart</span>
               
               </div>
-              <Table rows={cartTable} columns={cartColumns.concat(actionColumnCart)} />
+              <Table rows={cartData} columns={cartColumns.concat(actionColumnCart)} />
             </div>
           </div>
           <div className='big-container'>
             <div className='inventory-container'>
               <span className='listTitle'>Inventory</span>
 
-              <Table rows={drugTable} columns={drugColumns.concat(actionColumnInventory)} />
+              <Table rows={inventoryData} columns={drugColumns.concat(actionColumnInventory)} />
               <div className="datatableTitle">
               <button onClick={handleClickOpenFeedback} className="link">
                Add Feedback
@@ -597,12 +780,19 @@ function DrugDetails(){
           <div className='big-container' style={{margineBottom: 20}}>
             <div className='inventory-container'>
             <span className='listTitle'>Feedback Report</span>
-              <Table rows={invoiceTable} columns={invoiceColumns} />
+              <Table rows={feedbackData} columns={invoiceColumns} />
               <div className='totalDiv'>
-              <Button variant="contained" onClick={handleClickOpenInvoice} style={{margineLeft: 60}}>
-                Send
-              </Button>
-                <span className='total'>Total :</span>
+                
+             
+                <span className='total'>Total :{calculateTotal(feedbackData)}</span>
+                <div style={{width: 200, flexDirection:'row'}}>
+                <Button variant="contained" onClick={handleClickOpenInvoice} style={{margineLeft: 20}}>
+                  Send
+                </Button>
+                <Button variant="outlined" color="error" onClick={handleClearAll} style={{marginLeft: 20}}>
+                  Clear
+                </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -615,9 +805,18 @@ function DrugDetails(){
 
           <InvoiceDialog
             open={openInvoice}
+            itemList={feedbackData}
             onClose={handleCloseInvoice}
           />
-
+          <InventoryAddDialog
+            open = {openInventoryAdd}
+            onClose = {handleCloseInventoryAdd}
+            />
+          <ConfirmDialog
+            open = {openConfirmDialog}
+            onClose = {handleCloseConfirmDialog}
+            amount = {activeInventory.quantity}
+            />
 
           <Footer/>
         </div>

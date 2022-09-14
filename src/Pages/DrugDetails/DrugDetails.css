@@ -119,12 +119,14 @@
     color: white;
     border-radius: 10px;
     padding: 5px;
+    cursor: pointer;
 }
 .addButton{
     background-color: rgb(41, 209, 187);
     color: black;
     border-radius: 10px;
     padding: 5px;
+    cursor: pointer;
 }
 .image-container{
     display: flex;

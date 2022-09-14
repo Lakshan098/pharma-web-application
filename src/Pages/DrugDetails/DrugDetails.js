@@ -449,7 +449,31 @@ function DrugDetails(){
     setPageNumber(numPages);
   }
 
+  const [searchField, setSearchField] = useState("");
+  const [filteredInventory, setFilteredInventory] =  useState(inventoryData);
 
+  const filterData = (val) =>{
+    console.log(val);
+    if(val !== ""){
+      const filteredList = inventoryData.filter(
+        item => {
+          return (
+            item
+            .drug_name
+            .toLowerCase()
+            .includes(val.toLowerCase()) ||
+            item
+            .brand_name
+            .toLowerCase()
+            .includes(val.toLowerCase())
+          );
+        }
+      );
+      setFilteredInventory(filteredList);
+    }else{
+      setFilteredInventory(inventoryData);
+    }
+  }
 
   const handleClickOpenFeedback = () => {
     setOpenFeedback(true);
@@ -520,6 +544,7 @@ function DrugDetails(){
       }
     }
     setOpenFeedback(false);
+    filterData("");
   };
 
   const handleClickOpenInvoice = () => {
@@ -594,6 +619,7 @@ function DrugDetails(){
 
   const handleCloseConfirmDialog = (value) => {
     setOpenConfirmDialog(false);
+    filterData("");
   };
 
   const deleteCartItem = (e) => {
@@ -685,10 +711,22 @@ const actionColumnCart = [
             </div>
           </div>
           <div className='big-container'>
-            <div className='inventory-container'>
+            <div className='inventory-container-2'>
               <span className='listTitle'>Inventory</span>
-
-              <Table rows={inventoryData} columns={drugColumns.concat(actionColumnInventory)} />
+              <div className='searchbar-container'>
+                <TextField
+                  hiddenLabel
+                  className='searchbar'
+                  id="filled-hidden-label-small"
+                  placeholder="Search"
+                  variant="filled"
+                  size="small"
+                  value={searchField}
+                  onChange={(val)=>{setSearchField(val.target.value);
+                                    filterData(val.target.value);}}
+                />
+              </div>
+              <Table rows={filteredInventory} columns={drugColumns.concat(actionColumnInventory)} />
               <div className="datatableTitle">
               <button onClick={handleClickOpenFeedback} className="link">
                Add Feedback

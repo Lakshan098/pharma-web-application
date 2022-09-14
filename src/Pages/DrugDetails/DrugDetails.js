@@ -609,6 +609,18 @@ function DrugDetails(){
     setOpenInvoice(true);
   };
 
+  const handleClearAll = () => {
+    cartData.forEach(element => {
+      inventoryData.forEach(item => {
+        if(item.id == element.id){
+          item.quantity = item.quantity + parseInt(element.quantity);
+        }
+      });
+    });
+    setCartData([]);
+    setFeedbackData([]);
+  }
+
   const handleCloseInvoice = (value) => {
     setOpenInvoice(false);
   };
@@ -770,10 +782,17 @@ const actionColumnCart = [
             <span className='listTitle'>Feedback Report</span>
               <Table rows={feedbackData} columns={invoiceColumns} />
               <div className='totalDiv'>
-              <Button variant="contained" onClick={handleClickOpenInvoice} style={{margineLeft: 60}}>
-                Send
-              </Button>
+                
+             
                 <span className='total'>Total :{calculateTotal(feedbackData)}</span>
+                <div style={{width: 200, flexDirection:'row'}}>
+                <Button variant="contained" onClick={handleClickOpenInvoice} style={{margineLeft: 20}}>
+                  Send
+                </Button>
+                <Button variant="outlined" color="error" onClick={handleClearAll} style={{marginLeft: 20}}>
+                  Clear
+                </Button>
+                </div>
               </div>
             </div>
           </div>

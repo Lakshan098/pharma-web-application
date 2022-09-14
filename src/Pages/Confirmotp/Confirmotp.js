@@ -18,7 +18,7 @@ function confirmotp() {
     e.preventDefault()
     const data = { otp: otp };
     console.log(data);
-    Axios.post("http://localhost:3000/Signup/VerifyOTP", {
+    Axios.post("http://localhost:3001/Signup/VerifyOTP", {
       otp: otp,
     })
     .then(() => {

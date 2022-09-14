@@ -16,60 +16,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FlatList from 'flatlist-react';
-
-const invoiceTable=[
-  {
-    id: 1,
-    brand_name : "Amazon Elements Vitamin C",
-    drug_name: "Vitamin c",
-    quantity: 20,
-    issuable : "Yes",
-    reason: "",
-    unit_price:50,
-    amount: 80,
-  },
-  {
-    id: 2,
-    brand_name : "Prilosec",
-    drug_name: "Omeprazole",
-    quantity: 20,
-    availability : "Yes",
-    reason: "",
-    unit_price:50,
-    amount: 80,
-  },
-  {
-    id: 3,
-    brand_name : "Allerief",
-    drug_name: "Piriton",
-    quantity: 20,
-    availability : "No",
-    reason: "Not having the asking brand",
-    unit_price:50,
-    amount: 80,
-  },
-  {
-    id: 4,
-    brand_name : "00A",
-    drug_name: "Vitamine c",
-    quantity: 20,
-    availability : "Not-Available",
-    reason: "Not Enough",
-    unit_price:"",
-    amount: "",
-  },
-  {
-    id: 5,
-    brand_name : "00A",
-    drug_name: "Vitamine c",
-    quantity: 20,
-    availability : "NOt-Available",
-    reason: "Not Enough",
-    unit_price:"",
-    amount: "",
-  },
-  
-]
+import pdf from '../../Assets/prescription.pdf'
+import { Document, Page, pdfjs   } from "react-pdf";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const invoiceColumns = [{ field: "id", headerName: "ID", width: 70 },
 
@@ -112,8 +61,6 @@ const invoiceColumns = [{ field: "id", headerName: "ID", width: 70 },
   width: 100,
 },
 ]
-
-
 
 const drugTable=[
   {
@@ -195,41 +142,6 @@ const drugColumns = [{ field: "id", headerName: "ID", width: 70 },
   width: 200,
 },
 ]
-
-
-const cartTable=[
-  {
-    id: 1,
-    name: "Benzodiaze",
-    quantity: 35,
-    amount: 120,
-  },
-  {
-    id: 2,
-    name: "Carbimazole",
-    quantity: 35,
-    amount: 120,
-  },
-  {
-    id: 3,
-    name: "Zin",
-    quantity: 35,
-    amount: 120,
-  },
-  {
-    id: 4,
-    name: "Cet",
-    quantity: 35,
-    amount: 120,
-  },
-  {
-    id: 5,
-    name: "Vitamin D 500mg",
-    quantity: 35,
-    amount: 120,
-  },
-]
-
 
 const cartColumns = [{ field: "id", headerName: "ID", width: 70 },
 {
@@ -531,8 +443,37 @@ function DrugDetails(){
     unit_price:'',
     manufacture_batch_no:''
   })
+  const [pageNumber, setPageNumber] = useState(1);
 
+  function onDocumentLoadSuccess({ numPages }) {
+    setPageNumber(numPages);
+  }
 
+  const [searchField, setSearchField] = useState("");
+  const [filteredInventory, setFilteredInventory] =  useState(inventoryData);
+
+  const filterData = (val) =>{
+    console.log(val);
+    if(val !== ""){
+      const filteredList = inventoryData.filter(
+        item => {
+          return (
+            item
+            .drug_name
+            .toLowerCase()
+            .includes(val.toLowerCase()) ||
+            item
+            .brand_name
+            .toLowerCase()
+            .includes(val.toLowerCase())
+          );
+        }
+      );
+      setFilteredInventory(filteredList);
+    }else{
+      setFilteredInventory(inventoryData);
+    }
+  }
 
   const handleClickOpenFeedback = () => {
     setOpenFeedback(true);
@@ -603,6 +544,7 @@ function DrugDetails(){
       }
     }
     setOpenFeedback(false);
+    filterData("");
   };
 
   const handleClickOpenInvoice = () => {
@@ -677,6 +619,7 @@ function DrugDetails(){
 
   const handleCloseConfirmDialog = (value) => {
     setOpenConfirmDialog(false);
+    filterData("");
   };
 
   const deleteCartItem = (e) => {
@@ -752,8 +695,11 @@ const actionColumnCart = [
             <span className='title'>Drug Details</span>
           </div>
           <div className='big-container'>
-            <div className='image-container'>
-            <img src="https://www.madeformedical.com/wp-content/uploads/2018/07/vio-4.jpg" width="450" height="400"/>
+            <div className='image-container' style={{overflow: 'scroll', padding: 10}}>
+            <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+              <Page pageNumber={pageNumber} width="400" height="300"/>
+            </Document>
+            {/* <img src="https://www.madeformedical.com/wp-content/uploads/2018/07/vio-4.jpg" width="450" height="400"/> */}
 
             </div>
             <div className='drug-container'>
@@ -765,10 +711,22 @@ const actionColumnCart = [
             </div>
           </div>
           <div className='big-container'>
-            <div className='inventory-container'>
+            <div className='inventory-container-2'>
               <span className='listTitle'>Inventory</span>
-
-              <Table rows={inventoryData} columns={drugColumns.concat(actionColumnInventory)} />
+              <div className='searchbar-container'>
+                <TextField
+                  hiddenLabel
+                  className='searchbar'
+                  id="filled-hidden-label-small"
+                  placeholder="Search"
+                  variant="filled"
+                  size="small"
+                  value={searchField}
+                  onChange={(val)=>{setSearchField(val.target.value);
+                                    filterData(val.target.value);}}
+                />
+              </div>
+              <Table rows={filteredInventory} columns={drugColumns.concat(actionColumnInventory)} />
               <div className="datatableTitle">
               <button onClick={handleClickOpenFeedback} className="link">
                Add Feedback

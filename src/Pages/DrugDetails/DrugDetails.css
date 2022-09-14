@@ -67,7 +67,16 @@
     box-shadow: 2px 2px 2px 2px #a19c9c;
     border-radius: 20px;
 }
-
+.inventory-container-2{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    height: 500px;
+    width: 95%;
+    padding: 10px;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+}
 .cellAction {
     display: flex;
     align-items: center;
@@ -137,4 +146,12 @@
     padding: 10px;
     box-shadow: 2px 2px 2px 2px #a19c9c;
     border-radius: 20px;
+}
+::-webkit-scrollbar {
+    width: 10px;
+  }
+.searchbar-container{
+    width: 90%;
+    flex-direction: row;
+    margin-left: 20px;
 }

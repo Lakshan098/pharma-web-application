@@ -41,7 +41,7 @@ function Signup1() {
   };
 
   const sendData = () => {
-    Axios.post("http://localhost:3000/Signup", {
+    Axios.post("http://localhost:3001/Signup", {
       username: username,
       email: email,
       address: address,
@@ -226,7 +226,9 @@ function Signup1() {
           </div>
         </div>
         <div className="signup-image">
-          <img src={logo} alt="Logo" className="logo-signup" />
+          <div className="img-sign">
+            <img src={logo} alt="Logo" className="logo-signup" />
+          </div>
         </div>
       </div>
     </div>

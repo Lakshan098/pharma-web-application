@@ -12,87 +12,6 @@ import Widget from '../../Components/Widget/Widget';
 import Axios from "../../api/axios";
 
 
-const piedata= {
-  labels: [
-    'Red',
-    'Blue',
-    'Yellow'
-  ],
-  datasets: [{
-    label: 'My First Dataset',
-    data: [300, 50, 100],
-    backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
-    hoverOffset: 4
-  }]
-}
-
-const tableData=[
-  {
-    id: 1,
-    customer_name: "Snow",
-    placed_date: "22/08/2022",
-    status: "ongoing",
-  },
-  {
-    id: 2,
-    customer_name: "Jamie Lannister",
-    placed_date: "22/08/2022",
-    status: "delivery",
-  },
-  {
-    id: 3,
-    customer_name: "Lannister",
-    placed_date: "22/08/2022",
-    status: "completed",
-  },
-  {
-    id: 4,
-    customer_name: "Stark",
-    placed_date: "22/08/2022",
-    status: "pending",
-  },
-  {
-    id: 5,
-    customer_name: "Targaryen",
-    placed_date: "22/08/2022",
-    status: "pending",
-  },
-  {
-    id: 6,
-    customer_name: "Melisandre",
-    placed_date: "22/08/2022",
-    status: "completed",
-  },
-  {
-    id: 7,
-    customer_name: "Clifford",
-    placed_date: "22/08/2022",
-    status: "delivery",
-  },
-  {
-    id: 8,
-    customer_name: "Frances",
-    placed_date: "22/08/2022",
-    status: "delivery",
-  },
-  {
-    id: 9,
-    customer_name: "Roxie",
-    placed_date: "22/08/2022",
-    status: "completed",
-  },
-  {
-    id: 10,
-    customer_name: "Roxie",
-    placed_date: "22/08/2022",
-    status: "delivery",
-  },
-]
-
 const tableColumns = [{ field: "id", headerName: "Order ID", width: 230 },
 {
   field: "customer_name",
@@ -162,7 +81,25 @@ const data = [{
 
 function PharmacyStatistics(){
   const navigate = useNavigate();
-  const [pieChartData, setPieChartData] = useState(piedata);
+  const [pieChartData, setPieChartData] = useState({
+    labels: [
+      'Pending',
+      'Ongoing',
+      'Delivery',
+      'Completed'
+    ],
+    datasets: [{
+      label: 'Overview of Orders',
+      data: [0, 0, 0, 0],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+        'rgb(50, 168, 82)'
+      ],
+      hoverOffset: 4
+    }]
+  });
   const [barChartData, setBarChartData] = useState(barData);
   const [lineChartData, setLineChartData] = useState(data);
   const [rows , setRows] = useState([]);
@@ -237,6 +174,26 @@ function PharmacyStatistics(){
               break;
           }
         });
+        var piedata= {
+          labels: [
+            'Pending',
+            'Ongoing',
+            'Delivery',
+            'Completed'
+          ],
+          datasets: [{
+            label: 'Overview of Orders',
+            data: [pending, ongoing, delivery, completed],
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+              'rgb(50, 168, 82)'
+            ],
+            hoverOffset: 4
+          }]
+        };
+        setPieChartData(piedata);
         setRows(orderArr);
         setOngoingOrderCount(ongoing);
         setDeliveryOrderCount(delivery);

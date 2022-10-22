@@ -4,11 +4,13 @@ import BarChart from '../../Components/Charts/barChart';
 import PieChart from '../../Components/Charts/pieChart';
 import AreaChart from '../../Components/Charts/areaChart';
 import './PharmacyStatistics.css';
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import Table from '../../Components/Table/Table';
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from 'react-router-dom';
 import React from 'react';
 import Widget from '../../Components/Widget/Widget';
+import Axios from "../../api/axios";
+
 
 const piedata= {
   labels: [
@@ -159,11 +161,22 @@ const data = [{
 }]
 
 function PharmacyStatistics(){
+  const navigate = useNavigate();
   const [pieChartData, setPieChartData] = useState(piedata);
   const [barChartData, setBarChartData] = useState(barData);
   const [lineChartData, setLineChartData] = useState(data);
-  const [rows , setRows] = useState(tableData)
-  const [columns, setColumns] = useState(tableColumns)
+  const [rows , setRows] = useState([]);
+  const [columns, setColumns] = useState(tableColumns);
+
+  const [completedOrderCount, setCompletedOrderCount] = useState(0);
+  const [pendingOrderCount, setPendingOrderCount] = useState(0);
+  const [ongoingOrderCount, setOngoingOrderCount] = useState(0);
+  const [deliveryOrderCount, setDeliveryOrderCount] = useState(0);
+  const [totalIncome, setTotalIncome] = useState(0);
+
+
+  const [PId , setPID] = useState('');
+  const [loaded,setLoaded] = useState(false);
 
   const handleDelete = (id) => {
   };
@@ -185,16 +198,80 @@ function PharmacyStatistics(){
     },
   ];
 
+  const getOrdersData = async () => {
+    var Id = localStorage.getItem('userId');
+    setPID(Id.toString());
+    
+    await Axios.get('http://localhost:3000/PharmacyOrder/'+Id.toString())
+      .then((response) => {
+        console.log(response.data);
+        var completed = 0;
+        var ongoing = 0;
+        var delivery = 0;
+        var income = 0;
+        var pending = 0;
+        var orderArr=[];
+        response.data.forEach(element => {
+          var orderItem= {
+            id: element.order_id,
+            customer_name: element.username,
+            placed_date: element.time_stamp,
+            status: element.status,
+          };
+          orderArr.push(orderItem);
+          switch (element.status) {
+            case "pending":
+              pending = pending + 1;
+              break;
+            case "ongoing":
+              ongoing = ongoing + 1;
+              break;
+            case "delivery":
+              delivery = delivery + 1;
+              break;
+            case "completed":
+              completed = completed +1;
+              income = income + element.price;
+              break;
+            default:
+              break;
+          }
+        });
+        setRows(orderArr);
+        setOngoingOrderCount(ongoing);
+        setDeliveryOrderCount(delivery);
+        setCompletedOrderCount(completed);
+        setTotalIncome(income);
+        setPendingOrderCount(pending);
+      }).catch(function (err) {
+        console.log(err);
+    });
+  }
+  
+
+  useEffect(async () => {
+    var Id = localStorage.getItem('userId');
+    if(Id != null){
+      setPID(Id.toString());
+      getOrdersData();
+    }else{
+      navigate("/");
+    }
+    
+    
+  }, []);
+
     return (
         <div>
           <div className='header'>
             <Navbar/>
           </div>
           <div className="widgets">
-            <Widget type="pending" />
-            <Widget type="order" />
-            <Widget type="earning" />
-            <Widget type="profit" />
+            <Widget type="pending" amount={pendingOrderCount} />    
+            <Widget type="ongoing" amount={ongoingOrderCount} />
+            <Widget type="delivery" amount={deliveryOrderCount} />
+            <Widget type="completed" amount={completedOrderCount} />
+            <Widget type="profit" amount={totalIncome} />
           </div>
           <div className='big-container' style={{marginBottom:60}}>
             <div className='line-chart'>

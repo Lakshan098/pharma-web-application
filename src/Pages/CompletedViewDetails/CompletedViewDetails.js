@@ -1,5 +1,5 @@
 import Footer from '../../Components/Footer/Footer';
-import React from 'react';
+import React ,{ useState, useEffect } from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import './CompletedViewDetails.css';
 import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
@@ -7,7 +7,55 @@ import { MdVerifiedUser} from 'react-icons/md';
 import { AiFillFilePdf} from 'react-icons/ai';
 import {FaTimesCircle,FaCheckCircle  } from 'react-icons/fa';
 
+import Axios from "../../api/axios";
+import { Routes, Route, useNavigate, createSearchParams,useSearchParams } from 'react-router-dom';
+
 function CompletedViewDetails() {
+
+    const [ searchparams ] = useSearchParams();
+    var id=searchparams.get("id");
+
+    var config = {
+        method: 'get',
+        url: ('http://localhost:3000/PharmacyHome/CompletedViewDetails/'+id),
+        headers: {},
+    };
+
+    var [data, setData] = React.useState([]);
+    const [tableData, setTableData] = useState({});
+
+    useEffect(async () => {
+        await Axios(config)
+            .then((response) => {
+                setData(response.data);
+                response.data.map((object) => {
+                    
+                    setTableData({
+                        id: object.order_id,
+                        customer_name: object.username,
+                        placed_date: object.time_stamp,
+                        status: object.status,
+                        contact: object.contact_number,
+                        prescription: object.prescription,
+                        delivery_need: object.delivery_need,
+                        feedback: object.feedback_report,
+                        payment: object.payment,
+                        customer_approvel: object.customer_approval,
+                        delivery_fee: object.delivery_fee,
+                        destination:object.address,
+
+                      });
+                   
+
+                          
+                  });
+
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }, [])
+
     return (
         <div>
             <Navbar />
@@ -22,47 +70,47 @@ function CompletedViewDetails() {
 
                         <tr>
                             <td><b>Order Id: </b></td>
-                            <td>9</td>
+                            <td>{tableData.id}</td>
                         </tr>
 
                         <tr>
                             <td><b>Placed time stamp :</b></td>
-                            <td>20 July 2022</td>
+                            <td>{tableData.placed_date}</td>
                         </tr>
 
                         <tr>
                             <td><b>Status :</b></td>
-                            <td><div class="status-div"><b>Completed</b></div></td>
+                            <td><div class="status-div"><b>{tableData.status}</b></div></td>
                         </tr>
 
                         <tr>
                             <td><b>Customer name :</b></td>
-                            <td>M.Dewanarayane</td>
+                            <td>{tableData.customer_name}</td>
                         </tr>
 
                         <tr>
                             <td><b>Customer Telephone :</b></td>
-                            <td>0710371977</td>
+                            <td>{tableData.contact}</td>
                         </tr>
 
                         <tr>
                             <td><b>Prescription :</b></td>
-                            <td><a href="#"><b>Prescription.jpg</b></a></td>
+                            <td><a href="#"><b>{tableData.prescription}</b></a></td>
                         </tr>
 
                         <tr>
                             <td><b>Delivary :</b></td>
-                            <td><FaCheckCircle color="green" /></td>
+                            <td>{Number(tableData.delivery_need)== 1 ? <FaCheckCircle color="green"/>:<FaTimesCircle color="red" />}</td>
                         </tr>
 
                         <tr>
                             <td><b>Feedback report :</b></td>
-                            <td><a href="#"><b>Feedback_report.pdf</b></a></td>
+                            <td><a href="#"><b>{tableData.feedback}</b></a></td>
                         </tr>
 
                         <tr>
                             <td><b>Payment :</b></td>
-                            <td><FaCheckCircle color="green" /></td>
+                            <td>{Number(tableData.payment)== 1 ? <FaCheckCircle color="green"/>:<FaTimesCircle color="red" />}</td>
                         </tr>
                     </table>
                 </div>
@@ -86,7 +134,7 @@ function CompletedViewDetails() {
 
                             <tr>
                                 <td><b>Delivery fee :</b></td>
-                                <td> 350</td>
+                                <td>{tableData.delivery_fee}</td>
                             </tr>
 
                             <tr>
@@ -96,7 +144,7 @@ function CompletedViewDetails() {
 
                             <tr>
                                 <td><b>Destination:</b></td>
-                                <td> No.75, Tangalle Rd, Beliatta</td>
+                                <td>{tableData.destination}</td>
                             </tr>
                             <tr>
                                 <td><b>Distance:</b></td>

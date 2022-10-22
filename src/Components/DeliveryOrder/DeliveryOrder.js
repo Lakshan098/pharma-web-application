@@ -1,15 +1,20 @@
 import React from 'react';
 import { FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate,createSearchParams} from 'react-router-dom';
 import "./DeliveryOrder.css";
 
 function DeliveryOrder({ test }) {
 
 
     const navigate = useNavigate();
-    const navigateViewDetails = () => {
 
-        navigate('/OngoingViewDetailsSetDelivary');
+    const navigateViewDetails = (id) => {
+        navigate({ 
+            pathname: '/OngoingViewDetailsSetDelivary/',
+            search: createSearchParams({ 
+                id : id
+            }).toString()
+        })
     };
     
     return test.map((order) => (
@@ -21,7 +26,7 @@ function DeliveryOrder({ test }) {
                 <div><p>Delivery{Number(order.delivery_need) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</p></div>
                 <div><p>Prescription{Number(order.has_prescription) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</p></div>
 
-                <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
+                <div><button class="view-btn" onClick={()=>navigateViewDetails(order.order_id)}>View Details</button></div>
 
 
                 <p class="title2">40 minutes ago</p>

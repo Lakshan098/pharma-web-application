@@ -10,8 +10,8 @@ function PendingOrder({ test }) {
         navigate('/PendingViewDetails');
     };
 
-    const navigateDrugDetails = () => {
-        navigate('/DrugDetails');
+    const navigateDrugDetails = (id) => {
+        navigate('/DrugDetails/'+id);
     };
 
 
@@ -27,7 +27,7 @@ function PendingOrder({ test }) {
                 <div><button class="view-btn" onClick={navigateViewDetails}>View Details</button></div>
                 
                 <div class="ar-button">
-                    <p><button onClick={navigateDrugDetails} class="Accept-btn">Accept</button></p>
+                    <p><button onClick={() => navigateDrugDetails(order.order_id)} class="Accept-btn">Accept</button></p>
                     <p><button class="Reject-btn">Reject</button></p>
                 </div>
 

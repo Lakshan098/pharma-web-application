@@ -97,7 +97,7 @@ export default function App() {
 
           <Route path="pharmacystatistics" element={<PharmacyStatistics />} />
           <Route path="pharmacyinventory" element={<PharmacyInventory />} />
-          <Route path="drugdetails" element={<DrugDetails />} />
+          <Route path="drugdetails/:orderId" element={<DrugDetails />} />
           
       </Routes>
     </BrowserRouter>

@@ -36,28 +36,6 @@ const tableColumns = [{ field: "id", headerName: "Order ID", width: 230 },
   },
 },]
 
-
-const barData=  [{
-  name: 'Jan',
-  value: 4000,
-},
-{
-  name: 'Feb',
-  value: 3000,
-},
-{
-  name: 'Mar',
-  value: 2000,
-},
-{
-  name: 'Apr',
-  value: 2780,
-},
-{
-  name: 'May',
-  value: 1890,
-}]
-
 const data = [{
   name: 'Page A',
   uv: 4000,
@@ -100,7 +78,7 @@ function PharmacyStatistics(){
       hoverOffset: 4
     }]
   });
-  const [barChartData, setBarChartData] = useState(barData);
+  const [barChartData, setBarChartData] = useState([]);
   const [lineChartData, setLineChartData] = useState(data);
   const [rows , setRows] = useState([]);
   const [columns, setColumns] = useState(tableColumns);
@@ -114,9 +92,6 @@ function PharmacyStatistics(){
 
   const [PId , setPID] = useState('');
   const [loaded,setLoaded] = useState(false);
-
-  const handleDelete = (id) => {
-  };
 
   const actionColumn = [
     {
@@ -205,12 +180,31 @@ function PharmacyStatistics(){
     });
   }
   
+  const getLowestInventoryItems = async () => {
+    var Id = localStorage.getItem('userId');
+    setPID(Id.toString());
+    await Axios.get('http://localhost:3000/PharmacyInventory/'+Id.toString()+'/lowest')
+    .then((response) => {
+      var barDataArr = [];
+      response.data.forEach(element => {
+        var item = {
+          name : element.drug_name,
+          quantity: element.quantity
+        }
+        barDataArr.push(item);
+      });
+      setBarChartData(barDataArr);
+    }).catch(function (err) {
+        console.log(err);
+    });
+  }
 
   useEffect(async () => {
     var Id = localStorage.getItem('userId');
     if(Id != null){
       setPID(Id.toString());
       getOrdersData();
+      getLowestInventoryItems();
     }else{
       navigate("/");
     }
@@ -238,8 +232,8 @@ function PharmacyStatistics(){
           </div>
           <div className='big-container'style={{marginBottom:60}}>
             <div className='bar-chart'>
-              <span className='listTitle'>Monthly Income</span>
-              <BarChart data={barChartData} x={"value"} y={"name"}/>
+              <span className='listTitle'>Lowest Drugs</span>
+              <BarChart data={barChartData} x={"quantity"} y={"name"}/>
             </div>
             <div className='pie-chart-container'>
               <span className='listTitle'>Overview of Orders</span>

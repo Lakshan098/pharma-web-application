@@ -165,7 +165,7 @@ function PharmacyStatistics(){
   const [pieChartData, setPieChartData] = useState(piedata);
   const [barChartData, setBarChartData] = useState(barData);
   const [lineChartData, setLineChartData] = useState(data);
-  const [rows , setRows] = useState(tableData);
+  const [rows , setRows] = useState([]);
   const [columns, setColumns] = useState(tableColumns);
 
   const [completedOrderCount, setCompletedOrderCount] = useState(0);
@@ -210,7 +210,15 @@ function PharmacyStatistics(){
         var delivery = 0;
         var income = 0;
         var pending = 0;
+        var orderArr=[];
         response.data.forEach(element => {
+          var orderItem= {
+            id: element.order_id,
+            customer_name: element.username,
+            placed_date: element.time_stamp,
+            status: element.status,
+          };
+          orderArr.push(orderItem);
           switch (element.status) {
             case "pending":
               pending = pending + 1;
@@ -229,6 +237,7 @@ function PharmacyStatistics(){
               break;
           }
         });
+        setRows(orderArr);
         setOngoingOrderCount(ongoing);
         setDeliveryOrderCount(delivery);
         setCompletedOrderCount(completed);

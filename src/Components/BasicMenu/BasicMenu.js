@@ -4,8 +4,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { FaAngleDown } from "react-icons/fa";
 import "./BasicMenu.css";
+import { useNavigate } from "react-router-dom";
 
 export default function BasicMenu() {
+
+  const navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -13,6 +17,13 @@ export default function BasicMenu() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    localStorage.removeItem('useremail');
+    localStorage.removeItem('userId');
+    navigate("/");
   };
 
   return (
@@ -41,9 +52,8 @@ export default function BasicMenu() {
         <a href='adminprofile' className='admin-mypro'>
         <MenuItem onClick={handleClose} >My Profile</MenuItem>
         </a>
-        <a href='login1' className='admin-mypro'>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </a>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+
         
         
       </Menu>

@@ -1,30 +1,24 @@
 import Footer from '../../Components/Footer/Footer';
-import React, { useState, useEffect } from 'react';
+import React ,{ useState, useEffect } from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
-import './PendingViewDetails.css';
+import './CompletedViewDetailsNoDelivery.css';
 import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
-import { MdVerifiedUser } from 'react-icons/md';
-import { AiFillFilePdf } from 'react-icons/ai';
+import { MdVerifiedUser} from 'react-icons/md';
+import { AiFillFilePdf} from 'react-icons/ai';
 import {FaTimesCircle,FaCheckCircle  } from 'react-icons/fa';
-import {Routes, Route, useNavigate} from 'react-router-dom';
 
 import Axios from "../../api/axios";
-import {  createSearchParams,useSearchParams } from 'react-router-dom';
-// const navigate = useNavigate();
+import { Routes, Route, useNavigate, createSearchParams,useSearchParams } from 'react-router-dom';
 
-// const navigateDrugDetails = () => {
-        
-//     navigate('/DrugDetails');
-//   };
 
-function PendingViewDetails() {
+function CompletedViewDetailsNoDelivery() {
 
     const [ searchparams ] = useSearchParams();
     var id=searchparams.get("id");
 
     var config = {
         method: 'get',
-        url: ('http://localhost:3000/PharmacyHome/PendingViewDetails/'+id),
+        url: ('http://localhost:3000/PharmacyHome/CompletedViewDetailsNoDelivery/'+id),
         headers: {},
     };
 
@@ -47,7 +41,10 @@ function PendingViewDetails() {
                         delivery_need: object.delivery_need,
                         feedback: object.feedback_report,
                         payment: object.payment,
-                        customer_approvel: object.customer_approval 
+                        customer_approvel: object.customer_approval,
+                        delivery_fee: object.delivery_fee,
+                        destination:object.address,
+
                       });
                    
 
@@ -63,10 +60,10 @@ function PendingViewDetails() {
     return (
         <div>
             <Navbar />
-            <div className="Pendingviewdetails-card">
-                <h4 className="pendingorder-details"><b>Order Details</b></h4>
+            <div className="ongoingviewdetails-card">
+                <h4 className="Ongoingorder-details"><b>Order Details</b></h4>
                 <div>
-                    <table className="pending-details-tbl">
+                    <table className="Ongoingorder-tbl">
                         <tr>
                             <th></th>
                             <th></th>
@@ -84,7 +81,7 @@ function PendingViewDetails() {
 
                         <tr>
                             <td><b>Status :</b></td>
-                            <td><div class="status-div-pending"><b>{tableData.status}</b></div></td>
+                            <td><div class="status-div-complete"><b>{tableData.status}</b></div></td>
                         </tr>
 
                         <tr>
@@ -94,33 +91,44 @@ function PendingViewDetails() {
 
                         <tr>
                             <td><b>Customer Telephone :</b></td>
-                            <td>{tableData.contact}</td>
+                            <td>{tableData.customer_name}</td>
                         </tr>
 
                         <tr>
                             <td><b>Prescription :</b></td>
-                            <td><a href="#"><b>{tableData.prescription}</b></a></td>
+                            <td><b><a href="#">{tableData.prescription}</a></b></td>
                         </tr>
 
                         <tr>
-                            <td><b>Delivery :</b></td>
+                            <td><b>Delivary :</b></td>
                             <td>{Number(tableData.delivery_need)== 1 ? <FaCheckCircle color="green"/>:<FaTimesCircle color="red" />}</td>
                         </tr>
 
-                        {/* <tr>
+                        <tr>
                             <td><b>Feedback report :</b></td>
-                            <td><a href="#"><b>Feedback_report.pdf</b></a></td>
-                        </tr> */}
+                            <td><b><a href="#">{tableData.feedback}</a></b></td>
+                        </tr>
 
                         <tr>
                             <td><b>Payment :</b></td>
                             <td>{Number(tableData.payment)== 1 ? <FaCheckCircle color="green"/>:<FaTimesCircle color="red" />}</td>
                         </tr>
+                        
+                        <tr>
+                            <td><b>Customer Approvel:</b></td>
+                            <td><b>{Number(tableData.customer_approvel)== 1 ? <FaCheckCircle color="green"/>:<FaTimesCircle color="red" />}</b></td>
+                        </tr>
                     </table>
-                    <div  className="addCartBtn-div" ><button className="add-cart-btn">Add to cart</button></div>
+                </div>
+                <div>
+                    
                 </div>
 
-
+                
+                {/* <div className="Completed-div" ><button className="add-complete-btn">Completed Order</button></div> */}
+                
+           
+                
             </div>
             <Footer />
 
@@ -129,4 +137,4 @@ function PendingViewDetails() {
     );
 }
 
-export default PendingViewDetails;
+export default CompletedViewDetailsNoDelivery;

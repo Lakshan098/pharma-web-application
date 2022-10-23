@@ -1,78 +1,290 @@
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import Table from '../../Components/Table/Table';
+import PropTypes from 'prop-types';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import './PharmacyInventory.css';
 import React , {useState} from 'react';
-import { Link } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
+import Axios from "../../api/axios";
+import { useEffect } from 'react';
 
 
-const tableData=[
-  {
-    id: 1,
-    batch_no : "00100",
-    name:"Omeprazole",
-    manufacturer_name:"Prilosec",
-    manufacturer_id:"456789123",
-    manufacturing_date:"23/01/2022",
-    expiry_date:"23/01/2025",
-    quantity:1000,
-    unit_price:25,
-    total:25000
-  },
-  {
-    id: 2,
-    batch_no : "00100",
-    name:"Omeprazole",
-    manufacturer_name:"Prilosec",
-    manufacturer_id:"456778623",
-    manufacturing_date:"24/01/2022",
-    expiry_date:"24/01/2025",
-    quantity:2000,
-    unit_price:25,
-    total:50000
-  },
-  {
-    id: 3,
-    batch_no : "00100",
-    name:"Omeprazole",
-    manufacturer_name:"Prilosec",
-    manufacturer_id:"456657823",
-    manufacturing_date:"25/01/2022",
-    expiry_date:"25/01/2025",
-    quantity:1000,
-    unit_price:30,
-    total:30000
-  },
-  {
-    id: 4,
-    batch_no : "00100",
-    name:"Omeprazole",
-    manufacturer_name:"Prilosec",
-    manufacturer_id:"451234123",
-    manufacturing_date:"02/02/2022",
-    expiry_date:"02/02/2025",
-    quantity:1500,
-    unit_price:50,
-    total:75000
-  },
-]
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
-const actionColumn = [
-  {
-    field: "action",
-    headerName: "Action",
-    width: 200,
-    renderCell: (params) => {
-      return (
-        <div className="cellAction">
-          <Link to="/Edit" style={{ textDecoration: "none" }}>
-            <div className="viewButton">Edit</div>
-          </Link>
-        </div>
-      );
-    },
-  },
-];
+function EditDialog(props) {
+  const { onClose, open } = props;
+
+
+  const [batch_no,setBatchNo] = useState('');
+  const [name,setName] = useState('');
+  const [manufacturer_id,setManufacturerId] = useState('');
+  const [manufacturing_date,setManufacturingDate] = useState('');
+  const [expiry_date,setExpiryDate] = useState('');
+  const [quantity,setQuantity] = useState(0);
+  const [unit_price,setUnitPrice] = useState(0);
+
+  const handleClose = (e) => {
+    var newDrug = {
+      closeType:e,
+      batch_no:batch_no,
+      name:name,
+      manufacturer_id:manufacturer_id,
+      manufacturing_date:manufacturing_date,
+      expiry_date:expiry_date,
+      quantity:quantity,
+      unit_price:unit_price,
+    }
+    onClose(newDrug);
+    //setType('');
+    //setQuantity(0);
+    //setDrugName('');
+    //setBrandName('');
+  };
+
+
+  return (
+    <Dialog onClose={handleClose} open={open} fullWidth={100}>
+      <DialogTitle>Edit Drug</DialogTitle>
+      <DialogContent>
+          <TextField
+            margin="dense"
+            id="batch_no"
+            label="Batch No"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={batch_no}
+            onChange={(val) => setBatchNo(val.target.value)}
+          />
+          <TextField
+            margin="dense"
+            id="name"
+            label="Brand name"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={name}
+            onChange={(val) => setName(val.target.value)}
+          />
+          <TextField
+            margin="dense"
+            id="manufacturer_id"
+            label="Manufacturer Id"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={manufacturer_id}
+            onChange={(val) => setManufacturerId(val.target.value)}
+          />
+
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              id="manufacturing_date"
+              label="Manufacturing Date"
+              type="date"
+              value={manufacturing_date}
+              fullWidth
+              onChange={(newValue) => {
+                setManufacturingDate(newValue);
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              id="expiry_date"
+              label="Expiry Date"
+              type="date"
+              value={expiry_date}
+              fullWidth
+              onChange={(newValue) => {
+                setExpiryDate(newValue);
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+
+          <TextField
+            margin="dense"
+            id="quantity"
+            label="Quantity"
+            type="number"
+            fullWidth
+            variant="standard"
+            value={quantity}
+            onChange={(val) => setQuantity(val.target.value)}
+          />
+
+          <TextField
+            margin="dense"
+            id="unit_price"
+            label="Unit Price"
+            type="number"
+            fullWidth
+            variant="standard"
+            value={unit_price}
+            onChange={(val) => setUnitPrice(val.target.value)}
+          />
+             
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={()=>handleClose(-1)}>Cancel</Button>
+          <Button onClick={()=>handleClose(1)}>Save</Button>
+        </DialogActions>
+    </Dialog>
+  );
+}
+
+EditDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  newDrug: PropTypes.string.isRequired,
+};
+
+function AddDialog(props) {
+  const { onClose, open } = props;
+
+
+  const [batch_no,setBatchNo] = useState('');
+  const [name,setName] = useState('');
+  const [manufacturer_id,setManufacturerId] = useState('');
+  const [manufacturing_date,setManufacturingDate] = useState('');
+  const [expiry_date,setExpiryDate] = useState('');
+  const [quantity,setQuantity] = useState(0);
+  const [unit_price,setUnitPrice] = useState(0);
+
+  const handleClose = (e) => {
+    var newDrug = {
+      closeType:e,
+      batch_no:batch_no,
+      name:name,
+      manufacturer_id:manufacturer_id,
+      manufacturing_date:manufacturing_date,
+      expiry_date:expiry_date,
+      quantity:quantity,
+      unit_price:unit_price,
+    }
+    onClose(newDrug);
+    //setType('');
+    //setQuantity(0);
+    //setDrugName('');
+    //setBrandName('');
+  };
+
+
+  return (
+    <Dialog onClose={handleClose} open={open} fullWidth={100}>
+      <DialogTitle>Add New Drug</DialogTitle>
+      <DialogContent>
+          <TextField
+            margin="dense"
+            id="batch_no"
+            label="Batch No"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={batch_no}
+            onChange={(val) => setBatchNo(val.target.value)}
+          />
+          <TextField
+            margin="dense"
+            id="name"
+            label="Brand name"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={name}
+            onChange={(val) => setName(val.target.value)}
+          />
+          <TextField
+            margin="dense"
+            id="manufacturer_id"
+            label="Manufacturer Id"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={manufacturer_id}
+            onChange={(val) => setManufacturerId(val.target.value)}
+          />
+
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              id="manufacturing_date"
+              label="Manufacturing Date"
+              type="date"
+              value={manufacturing_date}
+              fullWidth
+              onChange={(newValue) => {
+                setManufacturingDate(newValue);
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              id="expiry_date"
+              label="Expiry Date"
+              type="date"
+              value={expiry_date}
+              fullWidth
+              onChange={(newValue) => {
+                setExpiryDate(newValue);
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+
+          <TextField
+            margin="dense"
+            id="quantity"
+            label="Quantity"
+            type="number"
+            fullWidth
+            variant="standard"
+            value={quantity}
+            onChange={(val) => setQuantity(val.target.value)}
+          />
+
+          <TextField
+            margin="dense"
+            id="unit_price"
+            label="Unit Price"
+            type="number"
+            fullWidth
+            variant="standard"
+            value={unit_price}
+            onChange={(val) => setUnitPrice(val.target.value)}
+          />
+             
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={()=>handleClose(-1)}>Cancel</Button>
+          <Button onClick={()=>handleClose(1)}>Save</Button>
+        </DialogActions>
+    </Dialog>
+  );
+}
+
+AddDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  newDrug: PropTypes.string.isRequired,
+};
 
 const tableColumns = [{ field: "id", headerName: "ID", width: 70 },
 {
@@ -84,12 +296,6 @@ const tableColumns = [{ field: "id", headerName: "ID", width: 70 },
   field: "name",
   headerName: "Name",
   width: 230,
-},
-
-{
-  field: "manufacturer_name",
-  headerName: "Manufacturer",
-  width: 100,
 },
 {
   field: "manufacturer_id",
@@ -116,18 +322,130 @@ const tableColumns = [{ field: "id", headerName: "ID", width: 70 },
   headerName: "Unit Price",
   width: 100,
 },
-{
-  field: "total",
-  headerName: "Total",
-  width: 100,
-},
 ]
 
 function PharmacyInventory(){
 
+  const navigate = useNavigate();
+
+  const [rows , setRows] = useState([]);
+  const [columns, setColumns] = useState(tableColumns);
+
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
+  const [openSnack, setOpenSnack] = React.useState(false);
+  const [snackMessage, setSnackMessage] = useState('');
+  const [snackType, setSnackType] = useState('success');
+
+
+  var [PId , setPID] = React.useState('');
+   
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <button onClick={handleClickOpenEdit} className="viewButton">
+               Edit
+              </button>
+          </div>
+        );
+      },
+    },
+  ];
   
-  const [rows , setRows] = useState(tableData)
-  const [columns, setColumns] = useState(tableColumns)
+  const getData = async () => {
+    var Id = localStorage.getItem('userId');
+      setPID(Id.toString());
+    await Axios.get('http://localhost:3000/PharmacyInventory/'+Id.toString())
+      .then((response) => {
+        let arr =[];
+        let i = 0;
+        response.data.forEach(e => {
+          console.log(e);
+          i = i+1;
+          let element = {
+            id: i,
+            batch_no : e.batch_No,
+            name: e.drug_name,
+            manufacturer_id: e.licenece_No,
+            manufacturing_date: e.manufacture_date,
+            expiry_date: e.expiry_date,
+            quantity:e.quantity,
+            unit_price:e.unit_price
+          }
+          arr.push(element);
+        });
+        setRows(arr);
+      })
+      .catch(function (err) {
+          console.log(err);
+      });
+  }
+
+  const handleClickOpenEdit = () => {
+    setOpenEdit(true);
+  };
+
+  const handleCloseEdit = (value) => {
+    if(value.closeType==1){
+      console.log(value);
+    }
+    setOpenEdit(false);
+  };
+
+  const handleClickOpenAdd = () => {
+    setOpenAdd(true);
+  };
+
+  const handleCloseAdd = (value) => {
+    if(value.closeType==1){
+      console.log(value);
+      Axios.post("http://localhost:3000/PharmacyInventory", {
+        batch_No:value.batch_no,
+        pharmacy_id: PId,
+        brand_name:value.name,
+        drug_name:value.name,
+        quantity:value.quantity,
+        expiry_date:value.expiry_date,
+        manufacture_date:value.manufacturing_date,
+        licenece_No:value.manufacturer_id,
+        unit_price:value.unit_price,
+      }).then((response) =>{
+        if(response.status == '200'){
+          setSnackMessage("Added Successfully!");
+          setSnackType("success");
+          setOpenSnack(true);
+        }
+        getData();
+      });
+    }
+    setOpenAdd(false);
+  };
+
+
+  const handleCloseSnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnack(false);
+  };
+
+  useEffect(async () => {
+      var Id = localStorage.getItem('userId');
+      setPID(Id.toString());
+      
+      if(Id){
+          getData();
+      }else{
+          navigate("/");
+      }
+      
+  }, []);
     return (
         <div>
           <div className='header'>
@@ -137,7 +455,7 @@ function PharmacyInventory(){
             <div className='grid-container'>
               <span className='listTitle'>Inventory</span>
               <div className="datatableTitle">
-              <button to="/users/new" className="link">
+              <button onClick={handleClickOpenAdd} className="link">
                 Add new
               </button>
               </div>
@@ -146,6 +464,23 @@ function PharmacyInventory(){
             </div>
           </div>
 
+          {/* dialog boxes */}
+
+          <EditDialog
+            open={openEdit}
+            onClose={handleCloseEdit}
+          />
+          <AddDialog
+            open={openAdd}
+            onClose={handleCloseAdd}
+          />
+
+          {/* Snackbars */}
+          <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnack}>
+            <Alert onClose={handleCloseSnack} severity={snackType} sx={{ width: '100%' }}>
+              {snackMessage}
+            </Alert>
+          </Snackbar>
           <Footer/>
         </div>
         

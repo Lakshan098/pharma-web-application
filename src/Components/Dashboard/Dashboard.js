@@ -1,10 +1,11 @@
 import "./Dashboard.css";
 import ProgressBar from "@ramonak/react-progress-bar";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Rating } from 'react-simple-star-rating';
 import logo from '../../Assets/Brand/wellness.png';
 import { FaHospitalAlt, FaBiking } from "react-icons/fa";
-
+import Axios from "../../api/axios";
+import { useEffect } from 'react';
 import {
   ResponsiveContainer,
   ComposedChart,
@@ -79,7 +80,33 @@ const data = [
   },
 ];
 
+
+
 function Dashboard() {
+
+
+  var config = {
+    method: 'post',
+    url: 'http://localhost:3000/AdminHome/',
+    headers: {},
+  };
+  var [dataList, setDataList] = React.useState([]);
+  useEffect(() => {
+    Axios(config)
+        .then((response) => {
+            var arr = response.data.result.legth
+            // console.log(response.dataList.result[0].username);
+            //setDataList(response.dataList.result[0].username);
+            //console.log(response);
+            //console.log(response.data.result.length);
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+  })
+
+
+
   return (
     <div className="dashboard">
       <section class="home-section">

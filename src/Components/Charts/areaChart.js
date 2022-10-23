@@ -19,7 +19,7 @@ const areaChart = (props) => {
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
                 <Area type="monotone" dataKey={dataKey} stroke="#8884d8" fill="#8884d8" />

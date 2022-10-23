@@ -21,7 +21,7 @@ import { useEffect } from 'react';
 
 
 //when button click navigate function
-function PharmacyHome() {
+function PharmacyHome({navigation}) {
 
     const navigate = useNavigate();
     const navigateViewDetails = () => {

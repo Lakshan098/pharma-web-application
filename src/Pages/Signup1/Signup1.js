@@ -11,7 +11,7 @@ import Axios from '../../api/axios';
 
 function Signup1() {
 
-  const initialValues = {username:"", email:"", regNo:"", address:"", telephone:"", bName:"", accNo:"", password:""};
+  const initialValues = { username: "", email: "", regNo: "", address: "", telephone: "", bName: "", accNo: "", password: "", openTime: "", closeTime: "", };
 
   const navigate = useNavigate();
   const userRef = useRef();
@@ -21,6 +21,8 @@ function Signup1() {
   const [email, setEmail] = useState('');
   const [regNo, setRegNo] = useState('');
   const [address, setAddress] = useState('');
+  const [openTime, setOpenTime] = useState('');
+  const [closeTime, setCloseTime] = useState('');
   const [telephone, setTelephone] = useState('');
   const [bName, setBName] = useState('');
   const [accNo, setAccNo] = useState('');
@@ -34,7 +36,7 @@ function Signup1() {
 
   const HandleSignup = (e) => {
     e.preventDefault()
-    const data = { username: username, email: email, address:address, password: password, telephone: telephone, regNo: regNo, bName: bName, accNo: accNo, user_type: pharmacy };
+    const data = { username: username, email: email, address: address, password: password, telephone: telephone, regNo: regNo, bName: bName, accNo: accNo, user_type: pharmacy, openTime: openTime, closeTime: closeTime };
     setFormErrors(validate(data));
     setIsSubmit(true)
 
@@ -45,9 +47,12 @@ function Signup1() {
       username: username,
       email: email,
       address: address,
+      openTime: openTime,
+      closeTime: closeTime,
       password: password,
       telephone: telephone,
       regNo: regNo,
+      bName: bName,
       accNo: accNo,
       user_type: pharmacy
     })
@@ -58,7 +63,7 @@ function Signup1() {
 
   useEffect(() => {
     console.log(formErrors)
-    if(Object.keys(formErrors).length === 0 && isSubmit){
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
       sendData()
     }
   }, [formErrors])
@@ -67,33 +72,39 @@ function Signup1() {
     const errors = {};
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const pRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-    if(!values.username){
+    if (!values.username) {
       errors.username = "Username is required";
     }
-    if(!values.regNo){
+    if (!values.regNo) {
       errors.regNo = "Registration number is required";
     }
-    if(!values.email){
+    if (!values.email) {
       errors.email = "Email is required";
-    }else if (!regex.test(values.email)) {
+    } else if (!regex.test(values.email)) {
       errors.email = "This is not a valid email";
     }
-    if(!values.address){
+    if (!values.address) {
       errors.address = "Address is required";
     }
-    if(!values.telephone){
+    if (!values.telephone) {
       errors.telephone = "Telephone number is required";
     }
-    if(!values.accNo){
+    if (!values.accNo) {
       errors.accNo = "Bank account number is required";
     }
-    if(!values.bName){
+    if (!values.bName) {
       errors.bName = "Bank name is required";
     }
+    if (!values.openTime) {
+      errors.openTime = "Open time is required";
+    }
+    if (!values.closeTime) {
+      errors.closeTime = "Close time is required";
+    }
 
-    if(!values.password){
+    if (!values.password) {
       errors.password = "Password is required";
-    }else if (!pRegex.test(values.password)) {
+    } else if (!pRegex.test(values.password)) {
       errors.password = "Password must have at least 8 characters with including uppercase, lowercase, number and special character";
     }
     return errors;
@@ -101,15 +112,14 @@ function Signup1() {
 
   return (
     <div className="signup-container">
+      <div className="signup-logo">
+        <img src={logo3} alt="Logo" className="logo-signup1" />
+      </div>
+      <div className="signup-header">
+        <h1>SIGNUP</h1>
+      </div>
       <div className="signup-container2">
         <div className="signup-input">
-          <div className="signup-logo">
-            <img src={logo3} alt="Logo" className="logo-signup1" />
-          </div>
-          <div className="signup-header">
-            <h1>SIGNUP</h1>
-          </div>
-
           <div className="signup-form-input">
             <form className="signup-input-form">
               <label className="signup-form-label">Pharmacy Name</label>
@@ -147,6 +157,7 @@ function Signup1() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <p className="form-error-message">{formErrors.email}</p>
+
               <label className="signup-form-label">Pharmacy Address</label>
               <input
                 type="text"
@@ -170,7 +181,39 @@ function Signup1() {
                 value={telephone}
                 onChange={(e) => setTelephone(e.target.value)}
               />
-              <p className="form-error-message">{formErrors.bName}</p>
+              <p className="form-error-message">{formErrors.telephone}</p>
+
+
+            </form>
+          </div>
+        </div>
+        <div className="signup-input">
+          <div className="signup-form-input">
+            <form className="signup-input-form">
+              <label className="signup-form-label">Pharmacy Open Time</label>
+              <input
+                type="time"
+                name="openTime"
+                id="openTime"
+                className="signup-username-password1"
+                ref={userRef}
+                autoComplete="off"
+                value={openTime}
+                onChange={(e) => setOpenTime(e.target.value)}
+              />
+              <p className="form-error-message">{formErrors.openTime}</p>
+              <label className="signup-form-label">Pharmacy Close Time</label>
+              <input
+                type="time"
+                name="closeTime"
+                id="closeTime"
+                className="signup-username-password1"
+                ref={userRef}
+                autoComplete="off"
+                value={closeTime}
+                onChange={(e) => setCloseTime(e.target.value)}
+              />
+              <p className="form-error-message">{formErrors.closeTime}</p>
               <label className="signup-form-label">Bank Name</label>
               <input
                 type="text"
@@ -206,7 +249,6 @@ function Signup1() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <p className="form-error-message">{formErrors.password}</p>
-
             </form>
             <div className="signup-btn">
               <Button size="small" variant="contained" className="signup-btn-btn" onClick={HandleSignup}>
@@ -223,11 +265,6 @@ function Signup1() {
                 </a>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="signup-image">
-          <div className="img-sign">
-            <img src={logo} alt="Logo" className="logo-signup" />
           </div>
         </div>
       </div>

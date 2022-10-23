@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, createSearchParams } from 'react-router-dom';
 import "./OngoingOrder.css";
 
 function OngoingOrder({ test }) {
@@ -8,12 +8,24 @@ function OngoingOrder({ test }) {
 //    
     const navigate = useNavigate();
 
-    const navigateViewDetails = (test) => {
+    const navigateViewDetails = (test,id) => {
         
         if (Number(test) == 1) {
-            navigate('/OngoingViewDetails');
+            navigate({ 
+                pathname: '/OngoingViewDetails/',
+                search: createSearchParams({ 
+                    id : id
+                }).toString()
+            })
+            // navigate('/OngoingViewDetails');
         } else {
-            navigate('/OngoingViewDetailsNoDelivary');
+            navigate({ 
+                pathname: '/OngoingViewDetailsNoDelivary/',
+                search: createSearchParams({ 
+                    id : id
+                }).toString()
+            })
+        //    navigate('/OngoingViewDetailsNoDelivary/'+id);
         }
     };
     
@@ -26,7 +38,7 @@ function OngoingOrder({ test }) {
                 <div><p>Delivery {Number(order.delivery_need) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</p></div>
                 <div><p>Prescription{Number(order.has_prescription) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</p></div>
 
-                <div><button class="view-btn" onClick={()=>navigateViewDetails(order.delivery_need)} >View Details</button></div>
+                <div><button class="view-btn" onClick={() => navigateViewDetails(order.delivery_need,order.order_id)} >View Details</button></div>
 
 
                 <p class="title2">40 minutes ago</p>

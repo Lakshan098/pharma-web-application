@@ -416,11 +416,10 @@ function DrugDetails(){
 
   const getData = async () => {
     var Id = localStorage.getItem('userId');
-      setPID(Id.toString());
-      console.log(orderId);
+    setPID(Id.toString());
+    
     await Axios.get('http://localhost:3000/PharmacyInventory/'+Id.toString())
-      .then((response) => {
-        console.log(response);
+      .then(async (response) => {
         let arr =[];
         let i = 0;
         response.data.forEach(e => {
@@ -439,12 +438,17 @@ function DrugDetails(){
         });
         setInventoryData(arr);
         setFilteredInventory(arr);
-        setLoaded(true);
+        
+        await Axios.get('http://localhost:3000/PharmacyOrder/'+Id.toString()+'/'+orderId)
+        .then((orderRes) => {
+          console.log(orderRes);
+          setLoaded(true);
+        });
+
       })
       .catch(function (err) {
           console.log(err);
       });
-      
   }
   
   useEffect(async () => {
@@ -493,7 +497,7 @@ function DrugDetails(){
         var BreakErr = "";
         try{
           inventoryData.forEach(element => {
-            if(element.drug_name == value.drugName && element.brand_name == element.brand_name){
+            if(element.name == value.drugName || element.name == value.brandName){
               element.quantity = element.quantity - value.quantity;
               var cartItem = {
                 id:element.id,
@@ -506,6 +510,7 @@ function DrugDetails(){
                 cartList.push(element);
               });
               cartList.push(cartItem);
+              console.log(cartList);
               setCartData(cartList);
 
               var feedBackItem = {
@@ -524,7 +529,6 @@ function DrugDetails(){
               });
               feedBackList.push(feedBackItem);
               setFeedbackData(feedBackList);
-              throw BreakErr;
             }
           });
         }catch(err){

@@ -1,123 +1,169 @@
-import Navbar from '../../Components/Navbar/Admin/Navbar';
-import React from 'react';
-import Footer from '../../Components/Footer/Footer';
-import Search from '../../Components/Search/Search';
-import './Pharmacies.css';
+import React from "react";
+import FilterableTable from "react-filterable-table";
+import "./Pharmacies.css";
+import Navbar from "../../Components/Navbar/Admin/Navbar";
+import Footer from "../../Components/Footer/Footer";
 
+const Pharmacies = () => {
+  const data = [
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 1,
+      email: "lankapharama@gmail.com",
+      rating: 4,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2555555444,
+      email: "lankapharama@gmail.com",
+      rating: 4,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 0,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 4,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 98,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+  ];
 
-function Pharmacies(){
-    return (
-        <div>
-          <div className='header'>
-            <Navbar/>
-          </div>
-          <h2 className='p-head'>Pharmacies</h2>
-          <div className='p-search1'>
-            <Search/>
-          </div>
+  // Fields to show in the table, and what object properties in the data they bind to
+  const fields = [
+    {
+      name: "pid",
+      displayName: "Pharmacy ID",
+      inputFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "pname",
+      displayName: "Pharmacy Name",
+      inputFilterable: true,
+      exactFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "regnum",
+      displayName: "Register Number",
+      inputFilterable: true,
+      exactFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "address",
+      displayName: "Address",
+      inputFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "contnum",
+      displayName: "Contact Number",
+      inputFilterable: true,
+      exactFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "email",
+      displayName: "Email",
+      inputFilterable: true,
+      exactFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "rating",
+      displayName: "Rating",
+      inputFilterable: true,
+      exactFilterable: true,
+      sortable: true,
+    },
+  ];
 
-          <div class="member-list">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-
-                            <th>Pharmacy ID</th>
-                            <th>Pharmacy Name</th>
-                            <th>Registration Number</th>
-                            <th>Province</th>
-                            <th>Contact Number</th>
-                            <th>Email</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody class="output" id="output">
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>80270017</td>
-                          <td>Western Province</td>
-                          <td>+94 41 222 4432</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>002</td>
-                          <td>Union Chemist</td>
-                          <td>80240234</td>
-                          <td>Southern Province</td>
-                          <td>+94 41 222 9663</td>
-                          <td>unionchemist@gmail.com</td>
-                          <td>4.5</td>
-                        </tr>
-
-                        <tr>
-                          <td>003</td>
-                          <td>Aruna Pharmacy</td>
-                          <td>80233413</td>
-                          <td>Southern Province</td>
-                          <td>+94 41 223 9325</td>
-                          <td>arunapharma@gmail.com</td>
-                          <td>4.6</td>
-                        </tr>
-
-                        <tr>
-                          <td>004</td>
-                          <td>Suwasana Pharmacy</td>
-                          <td>80203394</td>
-                          <td>Western Province</td>
-                          <td>+94 41 222 7357</td>
-                          <td>suwasanapharma@gmail.com</td>
-                          <td>4.4</td>
-                        </tr>
-
-                        <tr>
-                          <td>005</td>
-                          <td>Sahana Pharmacy</td>
-                          <td>80783927</td>
-                          <td>Western Province</td>
-                          <td>+94 41 222 3455</td>
-                          <td>sahanapharma@gmail.com</td>
-                          <td>4.5</td>
-                        </tr>
-
-                        <tr>
-                          <td>006</td>
-                          <td>Lanka Pharmacy</td>
-                          <td>80325535</td>
-                          <td>Central Province</td>
-                          <td>+94 41 222 4556</td>
-                          <td>lankapharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>007</td>
-                          <td>Sethma Pharmacy</td>
-                          <td>80324879</td>
-                          <td>Central Province</td>
-                          <td>+94 41 222 7658</td>
-                          <td>sethmapharma@gmail.com</td>
-                          <td>4.6</td>
-                        </tr>
-
-                        <tr>
-                          <td>008</td>
-                          <td>Ruhunu Pharmacy</td>
-                          <td>80742479</td>
-                          <td>Southern Province</td>
-                          <td>+94 41 222 5353</td>
-                          <td>ruhunupharma@gmail.com</td>
-                          <td>4.5</td>
-                        </tr>
-                    </tbody>
-                </table>
-          </div>
-
-          <Footer/>
-        </div>
-        
-      );
-}
+  return (
+    <div>
+      <Navbar />
+      <h2 className="phead">Pharmacies</h2>
+      <FilterableTable
+        namespace="People"
+        initialSort="name"
+        data={data}
+        fields={fields}
+        noRecordsMessage="There are no people to display"
+        noFilteredRecordsMessage="No people match your filters!"
+      />
+      <Footer />
+    </div>
+  );
+};
 
 export default Pharmacies;

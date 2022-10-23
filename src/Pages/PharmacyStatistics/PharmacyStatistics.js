@@ -12,87 +12,6 @@ import Widget from '../../Components/Widget/Widget';
 import Axios from "../../api/axios";
 
 
-const piedata= {
-  labels: [
-    'Red',
-    'Blue',
-    'Yellow'
-  ],
-  datasets: [{
-    label: 'My First Dataset',
-    data: [300, 50, 100],
-    backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
-    hoverOffset: 4
-  }]
-}
-
-const tableData=[
-  {
-    id: 1,
-    customer_name: "Snow",
-    placed_date: "22/08/2022",
-    status: "ongoing",
-  },
-  {
-    id: 2,
-    customer_name: "Jamie Lannister",
-    placed_date: "22/08/2022",
-    status: "delivery",
-  },
-  {
-    id: 3,
-    customer_name: "Lannister",
-    placed_date: "22/08/2022",
-    status: "completed",
-  },
-  {
-    id: 4,
-    customer_name: "Stark",
-    placed_date: "22/08/2022",
-    status: "pending",
-  },
-  {
-    id: 5,
-    customer_name: "Targaryen",
-    placed_date: "22/08/2022",
-    status: "pending",
-  },
-  {
-    id: 6,
-    customer_name: "Melisandre",
-    placed_date: "22/08/2022",
-    status: "completed",
-  },
-  {
-    id: 7,
-    customer_name: "Clifford",
-    placed_date: "22/08/2022",
-    status: "delivery",
-  },
-  {
-    id: 8,
-    customer_name: "Frances",
-    placed_date: "22/08/2022",
-    status: "delivery",
-  },
-  {
-    id: 9,
-    customer_name: "Roxie",
-    placed_date: "22/08/2022",
-    status: "completed",
-  },
-  {
-    id: 10,
-    customer_name: "Roxie",
-    placed_date: "22/08/2022",
-    status: "delivery",
-  },
-]
-
 const tableColumns = [{ field: "id", headerName: "Order ID", width: 230 },
 {
   field: "customer_name",
@@ -117,28 +36,6 @@ const tableColumns = [{ field: "id", headerName: "Order ID", width: 230 },
   },
 },]
 
-
-const barData=  [{
-  name: 'Jan',
-  value: 4000,
-},
-{
-  name: 'Feb',
-  value: 3000,
-},
-{
-  name: 'Mar',
-  value: 2000,
-},
-{
-  name: 'Apr',
-  value: 2780,
-},
-{
-  name: 'May',
-  value: 1890,
-}]
-
 const data = [{
   name: 'Page A',
   uv: 4000,
@@ -162,9 +59,27 @@ const data = [{
 
 function PharmacyStatistics(){
   const navigate = useNavigate();
-  const [pieChartData, setPieChartData] = useState(piedata);
-  const [barChartData, setBarChartData] = useState(barData);
-  const [lineChartData, setLineChartData] = useState(data);
+  const [pieChartData, setPieChartData] = useState({
+    labels: [
+      'Pending',
+      'Ongoing',
+      'Delivery',
+      'Completed'
+    ],
+    datasets: [{
+      label: 'Overview of Orders',
+      data: [0, 0, 0, 0],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+        'rgb(50, 168, 82)'
+      ],
+      hoverOffset: 4
+    }]
+  });
+  const [barChartData, setBarChartData] = useState([]);
+  const [lineChartData, setLineChartData] = useState([]);
   const [rows , setRows] = useState([]);
   const [columns, setColumns] = useState(tableColumns);
 
@@ -176,10 +91,7 @@ function PharmacyStatistics(){
 
 
   const [PId , setPID] = useState('');
-  const [loaded,setLoaded] = useState(false);
-
-  const handleDelete = (id) => {
-  };
+  const [ordersloaded,setOrdersLoaded] = useState(false);
 
   const actionColumn = [
     {
@@ -204,7 +116,6 @@ function PharmacyStatistics(){
     
     await Axios.get('http://localhost:3000/PharmacyOrder/'+Id.toString())
       .then((response) => {
-        console.log(response.data);
         var completed = 0;
         var ongoing = 0;
         var delivery = 0;
@@ -217,6 +128,7 @@ function PharmacyStatistics(){
             customer_name: element.username,
             placed_date: element.time_stamp,
             status: element.status,
+            amount: element.price
           };
           orderArr.push(orderItem);
           switch (element.status) {
@@ -237,23 +149,125 @@ function PharmacyStatistics(){
               break;
           }
         });
+        var piedata= {
+          labels: [
+            'Pending',
+            'Ongoing',
+            'Delivery',
+            'Completed'
+          ],
+          datasets: [{
+            label: 'Overview of Orders',
+            data: [pending, ongoing, delivery, completed],
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+              'rgb(50, 168, 82)'
+            ],
+            hoverOffset: 4
+          }]
+        };
+        setPieChartData(piedata);
         setRows(orderArr);
         setOngoingOrderCount(ongoing);
         setDeliveryOrderCount(delivery);
         setCompletedOrderCount(completed);
         setTotalIncome(income);
         setPendingOrderCount(pending);
+        generateIncomeData(orderArr);
+        setOrdersLoaded(true);
       }).catch(function (err) {
         console.log(err);
     });
   }
   
+  const generateIncomeData = (orderArr) => {
+    var today = new Date();
+    var startDate = new Date();
+    today.setMonth(today.getMonth()+1);
+    startDate.setFullYear(today.getFullYear());
+    startDate.setDate(1);
+    startDate.setMonth(today.getMonth()-10);
+    var arr = [];
+    while (startDate.getTime() < today.getTime()) {
+      var amount = 0;
+      var month = getMonth(startDate.getMonth());
+      orderArr.forEach(element => {
+        var placed_date = new Date(element.placed_date);
+
+        if(placed_date.getFullYear() == startDate.getFullYear() && placed_date.getMonth() == startDate.getMonth()){
+          amount = amount + element.amount;
+        }
+      });
+      var dataItem = {
+        month : month,
+        income : amount
+      }
+      arr.push(dataItem);
+      startDate.setMonth(startDate.getMonth()+1);
+    }
+    setLineChartData(arr);
+    console.log(arr);
+  }
+
+  const getMonth = (month) => {
+    var str = '';
+    switch (month) {
+      case 0: str = "JAN";
+        break;
+      case 1: str = "FEB";
+        break;
+      case 2: str = "MAR";
+        break;
+      case 3: str = "APR";
+        break;
+      case 4: str = "MAY";
+        break;
+      case 5: str = "JUN";
+        break;
+      case 6: str = "JUL";
+        break;
+      case 7: str = "AUG";
+        break;
+      case 8: str = "SEP";
+        break;
+      case 9: str = "OCT";
+        break;
+      case 10: str = "NOV";
+        break;
+      case 11: str = "DEC";
+        break; 
+      default: str = "";
+        break;
+    }
+    return str;
+  }
+  const getLowestInventoryItems = async () => {
+    var Id = localStorage.getItem('userId');
+    setPID(Id.toString());
+    await Axios.get('http://localhost:3000/PharmacyInventory/'+Id.toString()+'/lowest')
+    .then((response) => {
+      var barDataArr = [];
+      response.data.forEach(element => {
+        var item = {
+          name : element.drug_name,
+          quantity: element.quantity
+        }
+        barDataArr.push(item);
+      });
+      setBarChartData(barDataArr);
+    }).catch(function (err) {
+        console.log(err);
+    });
+  }
 
   useEffect(async () => {
     var Id = localStorage.getItem('userId');
     if(Id != null){
       setPID(Id.toString());
       getOrdersData();
+      getLowestInventoryItems();
     }else{
       navigate("/");
     }
@@ -276,13 +290,13 @@ function PharmacyStatistics(){
           <div className='big-container' style={{marginBottom:60}}>
             <div className='line-chart'>
               <span className='listTitle'>Monthly Profit</span>
-              <AreaChart data={lineChartData} dataKey={"uv"}/>
+              <AreaChart data={lineChartData} dataKey={"income"}/>
             </div>
           </div>
           <div className='big-container'style={{marginBottom:60}}>
             <div className='bar-chart'>
-              <span className='listTitle'>Monthly Income</span>
-              <BarChart data={barChartData} x={"value"} y={"name"}/>
+              <span className='listTitle'>Lowest Drugs</span>
+              <BarChart data={barChartData} x={"quantity"} y={"name"}/>
             </div>
             <div className='pie-chart-container'>
               <span className='listTitle'>Overview of Orders</span>

@@ -79,7 +79,7 @@ function PharmacyStatistics(){
     }]
   });
   const [barChartData, setBarChartData] = useState([]);
-  const [lineChartData, setLineChartData] = useState(data);
+  const [lineChartData, setLineChartData] = useState([]);
   const [rows , setRows] = useState([]);
   const [columns, setColumns] = useState(tableColumns);
 
@@ -91,7 +91,7 @@ function PharmacyStatistics(){
 
 
   const [PId , setPID] = useState('');
-  const [loaded,setLoaded] = useState(false);
+  const [ordersloaded,setOrdersLoaded] = useState(false);
 
   const actionColumn = [
     {
@@ -116,7 +116,6 @@ function PharmacyStatistics(){
     
     await Axios.get('http://localhost:3000/PharmacyOrder/'+Id.toString())
       .then((response) => {
-        console.log(response.data);
         var completed = 0;
         var ongoing = 0;
         var delivery = 0;
@@ -129,6 +128,7 @@ function PharmacyStatistics(){
             customer_name: element.username,
             placed_date: element.time_stamp,
             status: element.status,
+            amount: element.price
           };
           orderArr.push(orderItem);
           switch (element.status) {
@@ -175,11 +175,74 @@ function PharmacyStatistics(){
         setCompletedOrderCount(completed);
         setTotalIncome(income);
         setPendingOrderCount(pending);
+        generateIncomeData(orderArr);
+        setOrdersLoaded(true);
       }).catch(function (err) {
         console.log(err);
     });
   }
   
+  const generateIncomeData = (orderArr) => {
+    var today = new Date();
+    var startDate = new Date();
+    today.setMonth(today.getMonth()+1);
+    startDate.setFullYear(today.getFullYear());
+    startDate.setDate(1);
+    startDate.setMonth(today.getMonth()-10);
+    var arr = [];
+    while (startDate.getTime() < today.getTime()) {
+      var amount = 0;
+      var month = getMonth(startDate.getMonth());
+      orderArr.forEach(element => {
+        var placed_date = new Date(element.placed_date);
+
+        if(placed_date.getFullYear() == startDate.getFullYear() && placed_date.getMonth() == startDate.getMonth()){
+          amount = amount + element.amount;
+        }
+      });
+      var dataItem = {
+        month : month,
+        income : amount
+      }
+      arr.push(dataItem);
+      startDate.setMonth(startDate.getMonth()+1);
+    }
+    setLineChartData(arr);
+    console.log(arr);
+  }
+
+  const getMonth = (month) => {
+    var str = '';
+    switch (month) {
+      case 0: str = "JAN";
+        break;
+      case 1: str = "FEB";
+        break;
+      case 2: str = "MAR";
+        break;
+      case 3: str = "APR";
+        break;
+      case 4: str = "MAY";
+        break;
+      case 5: str = "JUN";
+        break;
+      case 6: str = "JUL";
+        break;
+      case 7: str = "AUG";
+        break;
+      case 8: str = "SEP";
+        break;
+      case 9: str = "OCT";
+        break;
+      case 10: str = "NOV";
+        break;
+      case 11: str = "DEC";
+        break; 
+      default: str = "";
+        break;
+    }
+    return str;
+  }
   const getLowestInventoryItems = async () => {
     var Id = localStorage.getItem('userId');
     setPID(Id.toString());
@@ -227,7 +290,7 @@ function PharmacyStatistics(){
           <div className='big-container' style={{marginBottom:60}}>
             <div className='line-chart'>
               <span className='listTitle'>Monthly Profit</span>
-              <AreaChart data={lineChartData} dataKey={"uv"}/>
+              <AreaChart data={lineChartData} dataKey={"income"}/>
             </div>
           </div>
           <div className='big-container'style={{marginBottom:60}}>

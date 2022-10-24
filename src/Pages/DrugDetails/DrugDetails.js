@@ -675,7 +675,7 @@ function DrugDetails(){
       doc.setFontSize(10);
       doc.text(5,i,row);
     });
-    let row = "Total \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + total;
+    let row = "Total \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + total;
     doc.setFontSize(12);
     doc.text(5,i+10,row);
     var seconds = new Date().getTime();

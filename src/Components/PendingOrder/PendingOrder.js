@@ -19,8 +19,8 @@ function PendingOrder({ test }) {
         })
     };
 
-    const navigateDrugDetails = () => {
-        navigate('/DrugDetails');
+    const navigateDrugDetails = (id) => {
+        navigate('/DrugDetails/'+id);
     };
 
     const id = test[0].order_id;
@@ -42,6 +42,7 @@ function PendingOrder({ test }) {
     return test.map((order) => (
 
         <div class="profile-cards">
+
             <div class="card-items-data">
                 <div class="card item1">
                     <div class="neworder"><p>Pending Order</p></div>
@@ -56,6 +57,7 @@ function PendingOrder({ test }) {
                         <p><button onClick={navigateHome} class="Reject-btn"> Reject</button></p>
                         {/* <DeletePopup /> */}
                     </div>
+
 
                     <p class="title2">40 minutes ago</p>
                 </div>

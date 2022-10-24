@@ -25,7 +25,7 @@ th{
     padding: 12px;
     text-decoration: none;
     margin-bottom: 10px;
-    text-align: left;
+    text-align: center;
     font-size: 15px;
     font-weight: bold;
     text-transform: uppercase;
@@ -46,8 +46,8 @@ tbody tr{
     border-bottom: 1px solid #ddd;;
 }
 
-.search-bar{
+/* .search-bar{
     width: 50%;
     margin-left: 4.5rem;
     text-align: center;
-}
+} */

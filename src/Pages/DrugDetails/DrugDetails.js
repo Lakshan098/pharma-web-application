@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import Footer from '../../Components/Footer/Footer';
@@ -20,6 +21,8 @@ import pdf from '../../Assets/prescription.pdf'
 import { Document, Page, pdfjs } from "react-pdf";
 import Axios from "../../api/axios";
 import DeletePopup from "../../Components/DeletePopup/DeletePopup";
+import {  Link, useNavigate, useParams } from "react-router-dom";
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 
@@ -67,6 +70,7 @@ const invoiceColumns = [{ field: "id", headerName: "ID", width: 70 },
 },
 ]
 
+
 const drugTable = [
   {
     id: 1,
@@ -106,48 +110,40 @@ const drugTable = [
 const drugColumns = [{ field: "id", headerName: "ID", width: 70 },
 {
   field: "batch_no",
-  headerName: "Batch no",
+  headerName: "Batch No.",
   width: 100,
 },
 {
-  field: "drug_name",
-  headerName: "Drug Name",
-  width: 200,
+  field: "name",
+  headerName: "Name",
+  width: 230,
 },
-
+{
+  field: "manufacturer_id",
+  headerName: "Manufacturer ID",
+  width: 100,
+},
+{
+  field: "manufacturing_date",
+  headerName: "Manufacturing Date",
+  width: 100,
+},
 {
   field: "expiry_date",
   headerName: "Expiry Date",
   width: 100,
 },
 {
-  field: "brand_name",
-  headerName: "Brand Name",
-  width: 100,
-},
-
-{
-  field: "manufacture_date",
-  headerName: "Manufactured Date",
-  width: 200,
-},
-{
   field: "quantity",
   headerName: "Quantity",
-  width: 200,
+  width: 100,
 },
 {
   field: "unit_price",
   headerName: "Unit Price",
-  width: 200,
-},
-{
-  field: "manufacture_batch_no",
-  headerName: "Manufacture's batch no",
-  width: 200,
+  width: 100,
 },
 ]
-
 const cartColumns = [{ field: "id", headerName: "ID", width: 70 },
 {
   field: "name",
@@ -469,6 +465,8 @@ function DrugDetails() {
   }, []);
 
 
+  const navigate = useNavigate();
+
   const [feedback, setFeedback] = useState("");
   const [openFeedback, setOpenFeedback] = useState(false);
   const [openInvoice, setOpenInvoice] = useState(false);
@@ -476,25 +474,75 @@ function DrugDetails() {
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const [cartData, setCartData] = useState([]);
   const [feedbackData, setFeedbackData] = useState([]);
-  const [filteredInventory, setFilteredInventory] = useState(inventoryData);
+  const [inventoryData, setInventoryData] = useState([]);
   const [activeInventory, setActiveInventory] = useState({
-    id: '',
-    batch_no: '',
-    drug_name: '',
-    expiry_date: '',
-    brand_name: '',
-    manufacture_date: '',
-    quantity: '',
-    unit_price: '',
-    manufacture_batch_no: ''
+    batch_no:'',
+    expiry_date:'',
+    id:'',
+    manufacturer_id:'',
+    manufacturing_date:'',
+    name:'',
+    quantity:'',
+    unit_price:''
   })
   const [pageNumber, setPageNumber] = useState(1);
-  console.log(inventoryData);
+  const { orderId } = useParams();
+
   function onDocumentLoadSuccess({ numPages }) {
     setPageNumber(numPages);
   }
 
   const [searchField, setSearchField] = useState("");
+
+  const [filteredInventory, setFilteredInventory] =  useState(inventoryData);
+  var [PId , setPID] = useState('');
+  const [loaded,setLoaded] = useState(false);
+
+  const getData = async () => {
+    var Id = localStorage.getItem('userId');
+      setPID(Id.toString());
+      console.log(orderId);
+    await Axios.get('http://localhost:3000/PharmacyInventory/'+Id.toString())
+      .then((response) => {
+        console.log(response);
+        let arr =[];
+        let i = 0;
+        response.data.forEach(e => {
+          i = i+1;
+          let element = {
+            id: i,
+            batch_no : e.batch_No,
+            name: e.drug_name,
+            manufacturer_id: e.licenece_No,
+            manufacturing_date: e.manufacture_date,
+            expiry_date: e.expiry_date,
+            quantity:e.quantity,
+            unit_price:e.unit_price
+          }
+          arr.push(element);
+        });
+        setInventoryData(arr);
+        setFilteredInventory(arr);
+        setLoaded(true);
+      })
+      .catch(function (err) {
+          console.log(err);
+      });
+      
+  }
+  
+  useEffect(async () => {
+    var Id = localStorage.getItem('userId');
+    if(Id != null){
+      setPID(Id.toString());
+        getData();
+    }else{
+        navigate("/");
+    }
+    
+    
+  }, []);
+
 
   console.log(filteredInventory);
   const filterData = (val) => {
@@ -504,13 +552,15 @@ function DrugDetails() {
         item => {
           return (
             item
-              .drug_name
-              .toLowerCase()
-              .includes(val.toLowerCase()) ||
+
+            .name
+            .toLowerCase()
+            .includes(val.toLowerCase()) ||
             item
-              .brand_name
-              .toLowerCase()
-              .includes(val.toLowerCase())
+            .name
+            .toLowerCase()
+            .includes(val.toLowerCase())
+
           );
         }
       );
@@ -620,10 +670,12 @@ function DrugDetails() {
     if (value > 0) {
       activeInventory.quantity = activeInventory.quantity - value;
       var cartItem = {
-        id: activeInventory.id,
-        name: activeInventory.drug_name,
-        quantity: value,
-        amount: value * activeInventory.unit_price,
+
+        id:activeInventory.id,
+        name:activeInventory.name,
+        quantity:value,
+        amount:value*activeInventory.unit_price,
+
       }
       var cartList = [];
       cartData.forEach(element => {
@@ -639,12 +691,13 @@ function DrugDetails() {
 
       var feedBackItem = {
         id: activeInventory.id,
-        brand_name: activeInventory.brand_name,
-        drug_name: activeInventory.drug_name,
-        quantity: value,
-        Issuable: 'Yes',
-        reason: '',
-        unit_price: activeInventory.unit_price,
+
+        brand_name:activeInventory.name,
+        drug_name:activeInventory.name,
+        quantity:value,
+        Issuable:'Yes',
+        reason:'',
+        unit_price:activeInventory.unit_price,
         amount: activeInventory.unit_price * value
       }
       var feedBackList = [];

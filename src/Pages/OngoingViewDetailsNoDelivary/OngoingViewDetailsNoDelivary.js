@@ -3,24 +3,24 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import './OngoingViewDetailsNoDelivary.css';
 import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
-import { MdVerifiedUser} from 'react-icons/md';
-import { AiFillFilePdf} from 'react-icons/ai';
-import {FaTimesCircle,FaCheckCircle  } from 'react-icons/fa';
+import { MdVerifiedUser } from 'react-icons/md';
+import { AiFillFilePdf } from 'react-icons/ai';
+import { FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
 
 import Axios from "../../api/axios";
 
-import { Routes, Route, useNavigate, createSearchParams,useSearchParams } from 'react-router-dom';
+import { Routes, Route, useNavigate, createSearchParams, useSearchParams } from 'react-router-dom';
 
 
 function OngoingViewDetailsNoDelivary() {
-//get order id parameters....  
-    const [ searchparams ] = useSearchParams();
-    var id=searchparams.get("id");
-    
+    //get order id parameters....  
+    const [searchparams] = useSearchParams();
+    var id = searchparams.get("id");
+
 
     var config = {
         method: 'get',
-        url: ('http://localhost:3000/PharmacyHome/OngoingViewDetailsNoDelivery/'+id),
+        url: ('http://localhost:3000/PharmacyHome/OngoingViewDetailsNoDelivery/' + id),
         headers: {},
     };
 
@@ -32,7 +32,7 @@ function OngoingViewDetailsNoDelivary() {
             .then((response) => {
                 setData(response.data);
                 response.data.map((object) => {
-                    
+
                     setTableData({
                         id: object.order_id,
                         customer_name: object.username,
@@ -43,12 +43,12 @@ function OngoingViewDetailsNoDelivary() {
                         delivery_need: object.delivery_need,
                         feedback: object.feedback_report,
                         payment: object.payment,
-                        customer_approvel: object.customer_approval 
-                      });
-                   
+                        customer_approvel: object.customer_approval
+                    });
 
-                          
-                  });
+
+
+                });
 
             })
             .catch(function (err) {
@@ -56,7 +56,24 @@ function OngoingViewDetailsNoDelivary() {
             });
     }, [])
 
+    const orderID = tableData.id;
+    const payment = tableData.payment;
 
+    const navigate = useNavigate();
+    const changeDeliveryStatus = () => {
+
+        if (payment == 1) {
+            var config = {
+                method: 'get',
+                url: ('http://localhost:3000/OngoingViewDetailsNoDelivery/ChangeOngoingViewDetailsNoDelivery/' + id),
+                headers: {},
+            };
+       
+
+        Axios(config);
+        navigate('/PharmacyHome');
+    }
+    };
 
     return (
         <div>
@@ -102,7 +119,7 @@ function OngoingViewDetailsNoDelivary() {
 
                         <tr>
                             <td><b>Delivary :</b></td>
-                            <td>{Number(tableData.delivery_need)== 1 ? <FaCheckCircle color="green"/>:<FaTimesCircle color="red" />}</td>
+                            <td>{Number(tableData.delivery_need) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</td>
                         </tr>
 
                         <tr>
@@ -112,24 +129,24 @@ function OngoingViewDetailsNoDelivary() {
 
                         <tr>
                             <td><b>Payment :</b></td>
-                            <td>{Number(tableData.payment)== 1 ? <FaCheckCircle color="green"/>:<FaTimesCircle color="red" />}</td>
+                            <td>{Number(tableData.payment) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</td>
                         </tr>
-                        
+
                         <tr>
                             <td><b>Customer Approvel:</b></td>
-                            <td><b>{Number(tableData.customer_approvel)== 1 ? <FaCheckCircle color="green"/>:<FaTimesCircle color="red" />}</b></td>
+                            <td><b>{Number(tableData.customer_approvel) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</b></td>
                         </tr>
                     </table>
                 </div>
                 <div>
-                    
+
                 </div>
 
-                
-                <div className="Completed-div" ><button className="add-complete-btn">Completed Order</button></div>
-                
-           
-                
+
+                <div className="Completed-div" ><button onClick={changeDeliveryStatus} className="add-complete-btn">Completed Order</button></div>
+
+
+
             </div>
             <Footer />
 

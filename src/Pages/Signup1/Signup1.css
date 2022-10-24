@@ -20,14 +20,19 @@
     border-radius: 20px;
     width: 80%;
     height:100%;
+    margin-left: 150px;
     background-color: white;
 }
 
-
+.xyz{
+    display: flex;
+    flex-direction: row;
+}
 .signup-input {
     width: 50%;
     height: 558px;
     background-color: white;
+    padding-top: 50px;
     border: none;
 }
 

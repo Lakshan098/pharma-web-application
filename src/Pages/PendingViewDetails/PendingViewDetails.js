@@ -5,26 +5,33 @@ import './PendingViewDetails.css';
 import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
 import { MdVerifiedUser } from 'react-icons/md';
 import { AiFillFilePdf } from 'react-icons/ai';
-import {FaTimesCircle,FaCheckCircle  } from 'react-icons/fa';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import Axios from "../../api/axios";
-import {  createSearchParams,useSearchParams } from 'react-router-dom';
+import { createSearchParams, useSearchParams } from 'react-router-dom';
 // const navigate = useNavigate();
 
 // const navigateDrugDetails = () => {
-        
+
 //     navigate('/DrugDetails');
 //   };
 
+
 function PendingViewDetails() {
 
-    const [ searchparams ] = useSearchParams();
-    var id=searchparams.get("id");
+    const navigate = useNavigate();
+
+    const navigateDrugDetails = () => {
+        navigate('/DrugDetails');
+    };
+
+    const [searchparams] = useSearchParams();
+    var id = searchparams.get("id");
 
     var config = {
         method: 'get',
-        url: ('http://localhost:3000/PharmacyHome/PendingViewDetails/'+id),
+        url: ('http://localhost:3000/PharmacyHome/PendingViewDetails/' + id),
         headers: {},
     };
 
@@ -36,7 +43,7 @@ function PendingViewDetails() {
             .then((response) => {
                 setData(response.data);
                 response.data.map((object) => {
-                    
+
                     setTableData({
                         id: object.order_id,
                         customer_name: object.username,
@@ -47,12 +54,12 @@ function PendingViewDetails() {
                         delivery_need: object.delivery_need,
                         feedback: object.feedback_report,
                         payment: object.payment,
-                        customer_approvel: object.customer_approval 
-                      });
-                   
+                        customer_approvel: object.customer_approval
+                    });
 
-                          
-                  });
+
+
+                });
 
             })
             .catch(function (err) {
@@ -104,7 +111,7 @@ function PendingViewDetails() {
 
                         <tr>
                             <td><b>Delivery :</b></td>
-                            <td>{Number(tableData.delivery_need)== 1 ? <FaCheckCircle color="green"/>:<FaTimesCircle color="red" />}</td>
+                            <td>{Number(tableData.delivery_need) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</td>
                         </tr>
 
                         {/* <tr>
@@ -114,10 +121,10 @@ function PendingViewDetails() {
 
                         <tr>
                             <td><b>Payment :</b></td>
-                            <td>{Number(tableData.payment)== 1 ? <FaCheckCircle color="green"/>:<FaTimesCircle color="red" />}</td>
+                            <td>{Number(tableData.payment) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</td>
                         </tr>
                     </table>
-                    <div  className="addCartBtn-div" ><button className="add-cart-btn">Add to cart</button></div>
+                    <div className="addCartBtn-div" ><button onClick={navigateDrugDetails} className="add-cart-btn">Add to cart</button></div>
                 </div>
 
 

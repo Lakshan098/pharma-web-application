@@ -1,4 +1,5 @@
-import React, {useState,useEffect} from 'react';
+
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import './DrugDetails.css';
@@ -17,10 +18,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FlatList from 'flatlist-react';
 import pdf from '../../Assets/prescription.pdf'
-import { Document, Page, pdfjs   } from "react-pdf";
-import {  Link, useNavigate, useParams } from "react-router-dom";
+import { Document, Page, pdfjs } from "react-pdf";
 import Axios from "../../api/axios";
+import DeletePopup from "../../Components/DeletePopup/DeletePopup";
+import {  Link, useNavigate, useParams } from "react-router-dom";
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+
+
 
 const invoiceColumns = [{ field: "id", headerName: "ID", width: 70 },
 
@@ -62,6 +68,43 @@ const invoiceColumns = [{ field: "id", headerName: "ID", width: 70 },
   headerName: "Amount",
   width: 100,
 },
+]
+
+
+const drugTable = [
+  {
+    id: 1,
+    batch_no: "00A",
+    drug_name: "Vitamine c",
+    expiry_date: "2024-04-04",
+    brand_name: "ABC",
+    manufacture_date: "2022-04-04",
+    quantity: 20,
+    unit_price: 10,
+    manufacture_batch_no: "ABCD",
+  },
+  {
+    id: 2,
+    batch_no: "00A",
+    drug_name: "Penadol",
+    expiry_date: "2024-04-04",
+    brand_name: "ABC",
+    manufacture_date: "2022-04-04",
+    quantity: 20,
+    unit_price: 10,
+    manufacture_batch_no: "ABCD",
+  },
+  {
+    id: 3,
+    batch_no: "00A",
+    drug_name: "Vitamine E",
+    expiry_date: "2024-04-04",
+    brand_name: "ABC",
+    manufacture_date: "2022-04-04",
+    quantity: 20,
+    unit_price: 10,
+    manufacture_batch_no: "ABCD",
+  },
 ]
 
 const drugColumns = [{ field: "id", headerName: "ID", width: 70 },
@@ -122,6 +165,7 @@ const cartColumns = [{ field: "id", headerName: "ID", width: 70 },
 
 
 function FeedbackDialog(props) {
+
   const { onClose, open } = props;
   const [type, setType] = useState('');
   const [drugName, setDrugName] = useState('');
@@ -129,14 +173,16 @@ function FeedbackDialog(props) {
   const [quantity, setQuantity] = useState(0);
   const [feedback, setFeedback] = useState('');
 
+
+
   const handleClose = (e) => {
     var feedbackRecord = {
-      closeType:e,
-      type:type,
-      drugName:drugName,
-      brandName:brandName,
-      quantity:quantity,
-      feedback:feedback
+      closeType: e,
+      type: type,
+      drugName: drugName,
+      brandName: brandName,
+      quantity: quantity,
+      feedback: feedback
     }
     onClose(feedbackRecord);
     setType('');
@@ -154,7 +200,7 @@ function FeedbackDialog(props) {
     <Dialog onClose={handleClose} open={open} fullWidth={100}>
       <DialogTitle>Feedback</DialogTitle>
       <DialogContent>
-      <InputLabel id="demo-simple-select-standard-label">Type</InputLabel>
+        <InputLabel id="demo-simple-select-standard-label">Type</InputLabel>
         <Select
           autoFocus
           labelId="demo-simple-select-standard-label"
@@ -170,32 +216,32 @@ function FeedbackDialog(props) {
           <MenuItem value={"not available"}>Not Available</MenuItem>
           <MenuItem value={"alternative"}>Alternative</MenuItem>
         </Select>
-      <TextField
-            
-            margin="dense"
-            id="name"
-            label="Drug name"
-            type="text"
-            fullWidth
-            variant="standard"
-            value={drugName}
-            onChange={(val) => setDrugName(val.target.value)}
+        <TextField
 
-          />
+          margin="dense"
+          id="name"
+          label="Drug name"
+          type="text"
+          fullWidth
+          variant="standard"
+          value={drugName}
+          onChange={(val) => setDrugName(val.target.value)}
+
+        />
+        <TextField
+
+          margin="dense"
+          id="name"
+          label="Brand name"
+          type="text"
+          fullWidth
+          variant="standard"
+          value={brandName}
+          onChange={(val) => setBrandName(val.target.value)}
+        />
+        {type == "alternative" ? (
           <TextField
-            
-            margin="dense"
-            id="name"
-            label="Brand name"
-            type="text"
-            fullWidth
-            variant="standard"
-            value={brandName}
-            onChange={(val) => setBrandName(val.target.value)}
-          />
-          {type=="alternative" ? (
-          <TextField
-            
+
             margin="dense"
             id="name"
             label="Quantity"
@@ -205,26 +251,26 @@ function FeedbackDialog(props) {
             value={quantity}
             onChange={(val) => setQuantity(val.target.value)}
           />
-          ):(<></>)
-            
-          }
-          
-          <TextField
-            
-            margin="dense"
-            id="name"
-            label="Feedback message"
-            type="text"
-            fullWidth
-            variant="standard"
-            value={feedback}
-            onChange={(val) => setFeedback(val.target.value)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={()=>handleClose(-1)}>Cancel</Button>
-          <Button onClick={()=>handleClose(1)}>Add feedback</Button>
-        </DialogActions>
+        ) : (<></>)
+
+        }
+
+        <TextField
+
+          margin="dense"
+          id="name"
+          label="Feedback message"
+          type="text"
+          fullWidth
+          variant="standard"
+          value={feedback}
+          onChange={(val) => setFeedback(val.target.value)}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => handleClose(-1)}>Cancel</Button>
+        <Button onClick={() => handleClose(1)}>Add feedback</Button>
+      </DialogActions>
     </Dialog>
   );
 }
@@ -242,24 +288,24 @@ const renderItem = (item) => {
       <div className='dialog-text'>{item.drug_name}</div>
     </Grid>
     <Grid item xs={3}>
-      <div className='dialog-text' style={{paddingLeft:35}}>{item.quantity}</div>
+      <div className='dialog-text' style={{ paddingLeft: 35 }}>{item.quantity}</div>
     </Grid>
     <Grid item xs={3}>
       <div className='dialog-text'>{item.amount}</div>
     </Grid>
-    </>);
+  </>);
 }
 
-function calculateTotal(list){
+function calculateTotal(list) {
   var sum = 0;
-  list.forEach(item =>{
-    sum = sum+ item.amount;
+  list.forEach(item => {
+    sum = sum + item.amount;
   });
   return sum;
 }
 
 function InvoiceDialog(props) {
-  const { onClose,itemList, open } = props;
+  const { onClose, itemList, open } = props;
   const handleClose = () => {
     onClose();
   };
@@ -269,7 +315,7 @@ function InvoiceDialog(props) {
   return (
     <Dialog onClose={handleClose} open={open} fullWidth={100}>
       <DialogTitle>Invoice</DialogTitle>
-        <DialogContent>
+      <DialogContent>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={6}>
@@ -296,11 +342,11 @@ function InvoiceDialog(props) {
             </Grid>
           </Grid>
         </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Send feedback</Button>
-        </DialogActions>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose}>Send feedback</Button>
+      </DialogActions>
     </Dialog>
   );
 }
@@ -311,7 +357,7 @@ InvoiceDialog.propTypes = {
 };
 
 function InventoryAddDialog(props) {
-  const { onClose,amount, open } = props;
+  const { onClose, amount, open } = props;
   const [qty, setQty] = useState(0);
 
   const handleClose = (amount) => {
@@ -324,22 +370,22 @@ function InventoryAddDialog(props) {
     <Dialog onClose={handleClose} open={open} fullWidth={100}>
       <DialogTitle>Add</DialogTitle>
       <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Quantity"
-            type="number"
-            fullWidth
-            variant="standard"
-            value={qty}
-            onChange={val => setQty(val.target.value)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => handleClose(-1)}>Cancel</Button>
-          <Button onClick={() => handleClose(qty)}>Add</Button>
-        </DialogActions>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="name"
+          label="Quantity"
+          type="number"
+          fullWidth
+          variant="standard"
+          value={qty}
+          onChange={val => setQty(val.target.value)}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => handleClose(-1)}>Cancel</Button>
+        <Button onClick={() => handleClose(qty)}>Add</Button>
+      </DialogActions>
     </Dialog>
   );
 }
@@ -351,7 +397,7 @@ InventoryAddDialog.propTypes = {
 };
 
 function ConfirmDialog(props) {
-  const { onClose,amount, open } = props;
+  const { onClose, amount, open } = props;
 
   const handleClose = () => {
     onClose();
@@ -364,10 +410,10 @@ function ConfirmDialog(props) {
       <DialogTitle>Successfull</DialogTitle>
       <DialogContent>
         <div className='dialog-text'>Remaining balance : {amount}</div>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>OK</Button>
-        </DialogActions>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>OK</Button>
+      </DialogActions>
     </Dialog>
   );
 }
@@ -379,14 +425,51 @@ ConfirmDialog.propTypes = {
 };
 
 
-function DrugDetails(){
+function DrugDetails() {
+
+  var Id = localStorage.getItem('userId');
+  var SId = Id.toString();
+
+  var config = {
+    method: 'get',
+    url: ('http://localhost:3000/DrugDetails/getDrugDetails/' + SId),
+    headers: {},
+  };
+
+  const [Data, setData] = React.useState([]);
+  const [inventoryData, setInventoryData] = useState([]);
+  
+
+  useEffect(async () => {
+    await Axios(config)
+      .then((response) => {
+        response.data.map((object) => {
+          setInventoryData(prevStats => [...prevStats,
+          {
+            id: object.id,
+            batch_no: object.batch_No,
+            drug_name: object.drug_name,
+            expiry_date: object.expiry_date,
+            brand_name: object.brand_name,
+            manufacture_date: object.manufacture_date,
+            quantity: object.quantity,
+            unit_price: object.unit_price,
+            manufacture_batch_no: object.licenece_No,
+          }]
+          )
+        });
+  
+      }).catch(function (err) {
+        console.log(err);
+      });
+  }, []);
+
 
   const navigate = useNavigate();
 
   const [feedback, setFeedback] = useState("");
   const [openFeedback, setOpenFeedback] = useState(false);
   const [openInvoice, setOpenInvoice] = useState(false);
-  
   const [openInventoryAdd, setOpenInventoryAdd] = useState(false);
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const [cartData, setCartData] = useState([]);
@@ -410,6 +493,7 @@ function DrugDetails(){
   }
 
   const [searchField, setSearchField] = useState("");
+
   const [filteredInventory, setFilteredInventory] =  useState(inventoryData);
   var [PId , setPID] = useState('');
   const [loaded,setLoaded] = useState(false);
@@ -460,13 +544,15 @@ function DrugDetails(){
   }, []);
 
 
-  const filterData = (val) =>{
+  console.log(filteredInventory);
+  const filterData = (val) => {
     console.log(val);
-    if(val !== ""){
+    if (val !== "") {
       const filteredList = inventoryData.filter(
         item => {
           return (
             item
+
             .name
             .toLowerCase()
             .includes(val.toLowerCase()) ||
@@ -474,11 +560,12 @@ function DrugDetails(){
             .name
             .toLowerCase()
             .includes(val.toLowerCase())
+
           );
         }
       );
       setFilteredInventory(filteredList);
-    }else{
+    } else {
       setFilteredInventory(inventoryData);
     }
   }
@@ -488,18 +575,18 @@ function DrugDetails(){
   };
 
   const handleCloseFeedback = (value) => {
-    if(value.closeType==1){
-      if(value.type == "alternative"){
+    if (value.closeType == 1) {
+      if (value.type == "alternative") {
         var BreakErr = "";
-        try{
+        try {
           inventoryData.forEach(element => {
-            if(element.drug_name == value.drugName && element.brand_name == element.brand_name){
+            if (element.drug_name == value.drugName && element.brand_name == element.brand_name) {
               element.quantity = element.quantity - value.quantity;
               var cartItem = {
-                id:element.id,
-                name:element.drug_name,
-                quantity:value.quantity,
-                amount:value.quantity*element.unit_price,
+                id: element.id,
+                name: element.drug_name,
+                quantity: value.quantity,
+                amount: value.quantity * element.unit_price,
               }
               var cartList = [];
               cartData.forEach(element => {
@@ -510,13 +597,13 @@ function DrugDetails(){
 
               var feedBackItem = {
                 id: element.id,
-                brand_name:value.brandName,
-                drug_name:value.drugName,
-                quantity:value.quantity,
-                Issuable:'Yes',
-                reason:value.feedback,
-                unit_price:element.unit_price,
-                amount: value.quantity*element.unit_price,
+                brand_name: value.brandName,
+                drug_name: value.drugName,
+                quantity: value.quantity,
+                Issuable: 'Yes',
+                reason: value.feedback,
+                unit_price: element.unit_price,
+                amount: value.quantity * element.unit_price,
               }
               var feedBackList = [];
               feedbackData.forEach(element => {
@@ -527,20 +614,20 @@ function DrugDetails(){
               throw BreakErr;
             }
           });
-        }catch(err){
+        } catch (err) {
           if (err !== BreakErr) throw err;
         }
-        
+
       }
-      if(value.type == "not available"){
+      if (value.type == "not available") {
         var feedBackItem = {
-          id: feedbackData.length + inventoryData.length +1,
-          brand_name:value.brandName,
-          drug_name:value.drugName,
-          quantity:0,
-          Issuable:'No',
-          reason:value.feedback,
-          unit_price:0,
+          id: feedbackData.length + inventoryData.length + 1,
+          brand_name: value.brandName,
+          drug_name: value.drugName,
+          quantity: 0,
+          Issuable: 'No',
+          reason: value.feedback,
+          unit_price: 0,
           amount: 0
         }
         var feedBackList = [];
@@ -562,7 +649,7 @@ function DrugDetails(){
   const handleClearAll = () => {
     cartData.forEach(element => {
       inventoryData.forEach(item => {
-        if(item.id == element.id){
+        if (item.id == element.id) {
           item.quantity = item.quantity + parseInt(element.quantity);
         }
       });
@@ -580,13 +667,15 @@ function DrugDetails(){
   };
 
   const handleCloseInventoryAdd = (value) => {
-    if(value>0){
-      activeInventory.quantity = activeInventory.quantity-value;
+    if (value > 0) {
+      activeInventory.quantity = activeInventory.quantity - value;
       var cartItem = {
+
         id:activeInventory.id,
         name:activeInventory.name,
         quantity:value,
         amount:value*activeInventory.unit_price,
+
       }
       var cartList = [];
       cartData.forEach(element => {
@@ -595,13 +684,14 @@ function DrugDetails(){
       cartList.push(cartItem);
       setCartData(cartList);
       inventoryData.forEach(element => {
-        if(element.id == activeInventory.id){
+        if (element.id == activeInventory.id) {
           element.quantity = activeInventory.quantity;
         }
       });
 
       var feedBackItem = {
         id: activeInventory.id,
+
         brand_name:activeInventory.name,
         drug_name:activeInventory.name,
         quantity:value,
@@ -634,18 +724,18 @@ function DrugDetails(){
     var item = e.row;
     var cartList = [];
     cartData.forEach(element => {
-      if(element.id != item.id){
+      if (element.id != item.id) {
         cartList.push(element);
       }
     });
     var feedbackList = [];
     feedbackData.forEach(element => {
-      if(element.id != item.id){
+      if (element.id != item.id) {
         feedbackList.push(element);
       }
     });
     inventoryData.forEach(element => {
-      if(element.id == item.id){
+      if (element.id == item.id) {
         element.quantity = element.quantity + parseInt(item.quantity);
       }
     });
@@ -655,139 +745,141 @@ function DrugDetails(){
 
   const actionColumnInventory = [
     {
-    field: "action",
-    headerName: "Action",
-    width: 200,
-    renderCell: (params) => {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
         return (
-        <div className="cellAction">
+          <div className="cellAction">
             <div
-            className="addButton"
-            onClick={()=>handleClickOpenInventoryAdd(params)}
+              className="addButton"
+              onClick={() => handleClickOpenInventoryAdd(params)}
             >
-            Add
+              Add
             </div>
-        </div>
+          </div>
         );
-    },
+      },
     },
   ];
 
-  
-const actionColumnCart = [
-  {
-  field: "action",
-  headerName: "Action",
-  width: 200,
-  renderCell: (params) => {
-      return (
-      <div className="cellAction">
-          <div
-          className="removeButton"
-          onClick={()=>deleteCartItem(params)}
-          >
-          Remove
+
+  const actionColumnCart = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <div
+              className="removeButton"
+              onClick={() => deleteCartItem(params)}
+            >
+              Remove
+            </div>
           </div>
+        );
+      },
+    },
+  ];
+
+  return (
+    <div>
+      <div className='header'>
+        <Navbar />
       </div>
-      );
-  },
-  },
-];
+      <div className='title-container'>
+        <span className='title'>Drug Details</span>
+      </div>
+      <div className='big-container'>
+        <div className='image-container' style={{ overflow: 'scroll', padding: 10 }}>
+          <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+            <Page pageNumber={pageNumber} width="400" height="300" />
+          </Document>
+          {/* <img src="https://www.madeformedical.com/wp-content/uploads/2018/07/vio-4.jpg" width="450" height="400"/> */}
 
-    return (
-        <div>
-          <div className='header'>
-            <Navbar/>
-          </div>
-          <div className='title-container'>
-            <span className='title'>Drug Details</span>
-          </div>
-          <div className='big-container'>
-            <div className='image-container' style={{overflow: 'scroll', padding: 10}}>
-            <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
-              <Page pageNumber={pageNumber} width="400" height="300"/>
-            </Document>
-            {/* <img src="https://www.madeformedical.com/wp-content/uploads/2018/07/vio-4.jpg" width="450" height="400"/> */}
-
-            </div>
-            <div className='drug-container'>
-              <div className="datatableTitle" style={{paddingLeft: 10}}>
-              <span className='listTitle'>Cart</span>
-              
-              </div>
-              <Table rows={cartData} columns={cartColumns.concat(actionColumnCart)} />
-            </div>
-          </div>
-          <div className='big-container'>
-            <div className='inventory-container-2'>
-              <span className='listTitle'>Inventory</span>
-              <div className='searchbar-container'>
-                <TextField
-                  hiddenLabel
-                  className='searchbar'
-                  id="filled-hidden-label-small"
-                  placeholder="Search"
-                  variant="filled"
-                  size="small"
-                  value={searchField}
-                  onChange={(val)=>{setSearchField(val.target.value);
-                                    filterData(val.target.value);}}
-                />
-              </div>
-              <Table rows={filteredInventory} columns={drugColumns.concat(actionColumnInventory)} />
-              <div className="datatableTitle">
-              <button onClick={handleClickOpenFeedback} className="link">
-               Add Feedback
-              </button>
-              </div>
-            </div>
-          </div>
-
-          <div className='big-container' style={{margineBottom: 20}}>
-            <div className='inventory-container'>
-            <span className='listTitle'>Feedback Report</span>
-              <Table rows={feedbackData} columns={invoiceColumns} />
-              <div className='totalDiv'>
-                
-             
-                <span className='total'>Total :{calculateTotal(feedbackData)}</span>
-                <div style={{width: 200, flexDirection:'row'}}>
-                <Button variant="contained" onClick={handleClickOpenInvoice} style={{margineLeft: 20}}>
-                  Send
-                </Button>
-                <Button variant="outlined" color="error" onClick={handleClearAll} style={{marginLeft: 20}}>
-                  Clear
-                </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-         
-          <FeedbackDialog
-            feedback={feedback}
-            open={openFeedback}
-            onClose={handleCloseFeedback}
-          />
-
-          <InvoiceDialog
-            open={openInvoice}
-            itemList={feedbackData}
-            onClose={handleCloseInvoice}
-          />
-          <InventoryAddDialog
-            open = {openInventoryAdd}
-            onClose = {handleCloseInventoryAdd}
-            />
-          <ConfirmDialog
-            open = {openConfirmDialog}
-            onClose = {handleCloseConfirmDialog}
-            amount = {activeInventory.quantity}
-            />
-
-          <Footer/>
         </div>
-        
-      );
+        <div className='drug-container'>
+          <div className="datatableTitle" style={{ paddingLeft: 10 }}>
+            <span className='listTitle'>Cart</span>
+
+          </div>
+          <Table rows={cartData} columns={cartColumns.concat(actionColumnCart)} />
+        </div>
+      </div>
+      <div className='big-container'>
+        <div className='inventory-container-2'>
+          <span className='listTitle'>Inventory</span>
+          <div className='searchbar-container'>
+            <TextField
+              hiddenLabel
+              className='searchbar'
+              id="filled-hidden-label-small"
+              placeholder="Search"
+              variant="filled"
+              size="small"
+              value={searchField}
+              onChange={(val) => {
+                setSearchField(val.target.value);
+                filterData(val.target.value);
+              }}
+            />
+          </div>
+          <Table rows={filteredInventory} columns={drugColumns.concat(actionColumnInventory)} />
+          <div className="datatableTitle">
+            <button onClick={handleClickOpenFeedback} className="link">
+              Add Feedback
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className='big-container' style={{ margineBottom: 20 }}>
+        <div className='inventory-container'>
+          <span className='listTitle'>Feedback Report</span>
+          <Table rows={feedbackData} columns={invoiceColumns} />
+          <div className='totalDiv'>
+
+
+            <span className='total'>Total :{calculateTotal(feedbackData)}</span>
+            <div style={{ width: 200, flexDirection: 'row' }}>
+              <Button variant="contained" onClick={handleClickOpenInvoice} style={{ margineLeft: 20 }}>
+                Send
+              </Button>
+              <Button variant="outlined" color="error" onClick={handleClearAll} style={{ marginLeft: 20 }}>
+                Clear
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <FeedbackDialog
+        feedback={feedback}
+        open={openFeedback}
+        onClose={handleCloseFeedback}
+      />
+
+      <InvoiceDialog
+        open={openInvoice}
+        itemList={feedbackData}
+        onClose={handleCloseInvoice}
+      />
+      <InventoryAddDialog
+        open={openInventoryAdd}
+        onClose={handleCloseInventoryAdd}
+      />
+      <ConfirmDialog
+        open={openConfirmDialog}
+        onClose={handleCloseConfirmDialog}
+        amount={activeInventory.quantity}
+      />
+
+      <Footer />
+    </div>
+
+  );
 }
 
 export default DrugDetails;

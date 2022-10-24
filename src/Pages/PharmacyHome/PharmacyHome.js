@@ -21,7 +21,7 @@ import { useEffect } from 'react';
 
 
 //when button click navigate function
-function PharmacyHome({navigation}) {
+function PharmacyHome({ navigation }) {
 
     const navigate = useNavigate();
     const navigateViewDetails = () => {
@@ -91,11 +91,10 @@ function PharmacyHome({navigation}) {
     var Id = localStorage.getItem('userId');
     var SId = Id.toString();
 
+
     var config = {
         method: 'get',
-
         url: ('http://localhost:3000/PharmacyHome/' + SId),
-
         headers: {},
     };
 
@@ -119,7 +118,7 @@ function PharmacyHome({navigation}) {
                     }
                     else if (item.status === 'ongoing') {
                         setOngoing(prevState => [...prevState, item]);
-                    } else {
+                    }else if (item.status === 'completed'){
                         setCompleted(prevState => [...prevState, item]);
                     }
                 })
@@ -151,21 +150,22 @@ function PharmacyHome({navigation}) {
                 {/* <div class="searchbar"> <SearchBar /> </div> */}
             </div>
 
+            
+            <div class="grid">
 
+                {
+                    show & pending.length != 0 ? <PendingOrder test={pending} /> : ''
+                }
+                {show2 & ongoing.length != 0 ? <OngoingOrder test={ongoing} /> : ''
+                }
+                {show3 & complted.length != 0 ? <CompletedOrder test={complted} /> : ''
+                }
+                {show4 & delivery.length != 0 ? <DeliveryOrder test={delivery} /> : ''
+                }
 
-            {
-            show & pending.length != 0 ? <PendingOrder test={pending} /> : ''
-            }
-            {show2 & ongoing.length != 0 ? <OngoingOrder test={ongoing} /> : ''
-            }
-            {show3 & complted.length != 0 ? <CompletedOrder test={complted} /> : ''
-            }
-            {show4 & delivery.length != 0 ? <DeliveryOrder test={delivery} /> : ''
-            }
+            </div>
 
-
-
-
+           
             <div> <Footer /></div>
         </div>
 

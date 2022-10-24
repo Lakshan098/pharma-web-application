@@ -220,4 +220,12 @@
   }
 
  
-  
+  .grid { 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1.5fr));
+    grid-gap: 100px;
+    align-items: center;
+    padding-left:4rem;
+    padding-right:4rem;
+    justify-content: center;
+    }

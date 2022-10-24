@@ -31,7 +31,7 @@ function OngoingOrder({ test }) {
     
     return test.map((order) => (
         <div class="profile-cards">
-            <div class="card">
+            <div class="card card-ongoing">
                 <div class="neworder"><p>{order.status} Order</p></div>
                 <div class="orderId"><p>Order Id: {order.order_id}</p></div>
                 <div class="home-date"><p>{order.time_stamp}</p></div>

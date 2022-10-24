@@ -34,3 +34,22 @@
     height: 25px;
     
   }
+
+  .card{
+    padding: 20px;
+    text-align: center;
+    box-shadow: 3px 8px 8px 3px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+    font-family: arial;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    width:300px;
+
+    }
+
+    .card-ongoing{
+      width:300px;
+    }

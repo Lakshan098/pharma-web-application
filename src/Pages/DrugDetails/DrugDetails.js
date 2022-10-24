@@ -354,6 +354,7 @@ function InventoryAddDialog(props) {
             label="Quantity"
             type="number"
             fullWidth
+            InputProps={{ inputProps: { min: 0, max: amount } }}
             variant="standard"
             value={qty}
             onChange={val => setQty(val.target.value)}
@@ -971,6 +972,7 @@ const actionColumnCart = [
           />
           <InventoryAddDialog
             open = {openInventoryAdd}
+            amount={activeInventory.quantity}
             onClose = {handleCloseInventoryAdd}
             />
           <ConfirmDialog

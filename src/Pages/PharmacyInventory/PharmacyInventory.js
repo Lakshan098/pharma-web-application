@@ -19,6 +19,7 @@ import {  Link, useNavigate } from "react-router-dom";
 import Axios from "../../api/axios";
 import { useEffect } from 'react';
 
+const baseUrl = "http://localhost:3000";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -420,7 +421,7 @@ function PharmacyInventory(){
   const getData = async () => {
     var Id = localStorage.getItem('userId');
       setPID(Id.toString());
-    await Axios.get('http://localhost:3000/PharmacyInventory/'+Id.toString())
+    await Axios.get(baseUrl+'/PharmacyInventory/'+Id.toString())
       .then((response) => {
         let arr =[];
         let i = 0;
@@ -463,7 +464,7 @@ function PharmacyInventory(){
 
   const handleCloseAdd = (value) => {
     if(value.closeType==1){
-      Axios.post("http://localhost:3000/PharmacyInventory", {
+      Axios.post(baseUrl+"/PharmacyInventory", {
         batch_No:value.batch_no,
         pharmacy_id: PId,
         brand_name:value.name,
@@ -493,12 +494,13 @@ function PharmacyInventory(){
   const handleCloseConfirm = (value) => {
     if(value == 1){
       console.log(activeItem);
-      Axios.delete('http://localhost:3000/PharmacyInventory/'+PId+'/'+activeItem.batch_no)
+      Axios.delete(baseUrl+'/PharmacyInventory/'+PId+'/'+activeItem.batch_no)
       .then((response) => {
         if(response.status == '200'){
           setSnackMessage("Deleted Successfully!");
           setSnackType("success");
           setOpenSnack(true);
+          getData();
         }
       })
       .catch(function (err) {

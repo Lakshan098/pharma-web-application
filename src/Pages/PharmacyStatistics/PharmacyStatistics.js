@@ -11,6 +11,7 @@ import React from 'react';
 import Widget from '../../Components/Widget/Widget';
 import Axios from "../../api/axios";
 
+const baseUrl = "http://localhost:3000";
 
 const tableColumns = [{ field: "id", headerName: "Order ID", width: 230 },
 {
@@ -36,26 +37,6 @@ const tableColumns = [{ field: "id", headerName: "Order ID", width: 230 },
   },
 },]
 
-const data = [{
-  name: 'Page A',
-  uv: 4000,
-},
-{
-  name: 'Page B',
-  uv: 3000,
-},
-{
-  name: 'Page C',
-  uv: 2000,
-},
-{
-  name: 'Page D',
-  uv: 2780,
-},
-{
-  name: 'Page E',
-  uv: 1890,
-}]
 
 function PharmacyStatistics(){
   const navigate = useNavigate();
@@ -114,7 +95,7 @@ function PharmacyStatistics(){
     var Id = localStorage.getItem('userId');
     setPID(Id.toString());
     
-    await Axios.get('http://localhost:3000/PharmacyOrder/'+Id.toString())
+    await Axios.get(baseUrl+'/PharmacyOrder/'+Id.toString())
       .then((response) => {
         var completed = 0;
         var ongoing = 0;
@@ -246,7 +227,7 @@ function PharmacyStatistics(){
   const getLowestInventoryItems = async () => {
     var Id = localStorage.getItem('userId');
     setPID(Id.toString());
-    await Axios.get('http://localhost:3000/PharmacyInventory/'+Id.toString()+'/lowest')
+    await Axios.get(baseUrl+'/PharmacyInventory/'+Id.toString()+'/lowest')
     .then((response) => {
       var barDataArr = [];
       response.data.forEach(element => {

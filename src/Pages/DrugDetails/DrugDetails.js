@@ -692,6 +692,7 @@ function DrugDetails(){
         pid : Id,
         items : []
       }
+      let total = 0;
       feedbackData.forEach(element => {
         if(element.Issuable == "Yes"){
           let item = {
@@ -699,6 +700,7 @@ function DrugDetails(){
             expiry_date: element.expiry_date,
             quantity: parseInt(element.quantity)
           }
+          total = total + element.amount;
           inventoryUpdateData.items.push(item);
         }
       });
@@ -718,7 +720,8 @@ function DrugDetails(){
                     console.log(url);
                     let data = {
                       order_id: order.order_id,
-                      url: url
+                      url: url,
+                      total: total
                     }
                     Axios.put(baseUrl+'/PharmacyOrder/feedback/'+Id+'/'+order.order_id,data)
                     .then(async (res) => {

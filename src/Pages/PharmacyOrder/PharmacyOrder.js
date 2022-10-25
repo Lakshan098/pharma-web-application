@@ -16,6 +16,7 @@ function PharmacyOrder() {
   const navigate = useNavigate();
   const navigate2 = useNavigate();
   const navigate3 = useNavigate();
+  
   const navigateViewDetails = () => {
     
     navigate('/PendingViewDetails');

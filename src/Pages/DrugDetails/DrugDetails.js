@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect, useRef} from 'react';
 import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import './DrugDetails.css';
@@ -17,10 +17,17 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FlatList from 'flatlist-react';
 import pdf from '../../Assets/prescription.pdf'
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import { Document, Page, pdfjs   } from "react-pdf";
 import {  Link, useNavigate, useParams } from "react-router-dom";
 import Axios from "../../api/axios";
+import { jsPDF } from "jspdf";
+import {firebase} from "../../config";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+const baseUrl = "http://localhost:3000";
 
 const invoiceColumns = [{ field: "id", headerName: "ID", width: 70 },
 
@@ -222,8 +229,8 @@ function FeedbackDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={()=>handleClose(-1)}>Cancel</Button>
-          <Button onClick={()=>handleClose(1)}>Add feedback</Button>
+          <Button variant="contained" onClick={()=>handleClose(1)}>Add feedback</Button>
+          <Button variant="outlined" onClick={()=>handleClose(-1)}>Cancel</Button>
         </DialogActions>
     </Dialog>
   );
@@ -236,15 +243,26 @@ FeedbackDialog.propTypes = {
 };
 
 const renderItem = (item) => {
-  console.log(item);
   return (<>
-    <Grid item xs={6}>
+    <Grid item xs={2}>
+      <div className='dialog-text'>{item.brand_name}</div>
+    </Grid>
+    <Grid item xs={2}>
       <div className='dialog-text'>{item.drug_name}</div>
     </Grid>
-    <Grid item xs={3}>
-      <div className='dialog-text' style={{paddingLeft:35}}>{item.quantity}</div>
+    <Grid item xs={1}>
+      <div className='dialog-text'>{item.quantity}</div>
+    </Grid>
+    <Grid item xs={1}>
+      <div className='dialog-text'>{item.Issuable}</div>
     </Grid>
     <Grid item xs={3}>
+      <div className='dialog-text'>{item.reason}</div>
+    </Grid>
+    <Grid item xs={2}>
+      <div className='dialog-text'>{item.unit_price}</div>
+    </Grid>
+    <Grid item xs={1}>
       <div className='dialog-text'>{item.amount}</div>
     </Grid>
     </>);
@@ -259,48 +277,53 @@ function calculateTotal(list){
 }
 
 function InvoiceDialog(props) {
-  const { onClose,itemList, open } = props;
-  const handleClose = () => {
-    onClose();
+  const { onClose, open } = props;
+  // const [file, setFile] = useState();
+
+  const handleClose = (value) => {
+    var invoiceRecord = {
+      closeType:value,
+      file:''
+    }
+    onClose(invoiceRecord);
+  };
+  const formHandler = (e) => {
+    e.preventDefault();
+    const file = e.target[0].files[0];
+    var invoiceRecord = {
+      closeType:1,
+      file:file
+    }
+    onClose(invoiceRecord);
   };
 
 
 
   return (
-    <Dialog onClose={handleClose} open={open} fullWidth={100}>
-      <DialogTitle>Invoice</DialogTitle>
+    <Dialog onClose={formHandler} open={open} fullWidth={true} maxWidth="sm">
+      <DialogTitle>Feedback</DialogTitle>
         <DialogContent>
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <div className='dialog-title'>Name</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-title'>Quantity</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-title'>Price</div>
-            </Grid>
-            <FlatList
-              list={itemList}
-              renderItem={renderItem}
-            />
-            <Grid item xs={6}>
-              <div className='dialog-title'>Total</div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-title'></div>
-            </Grid>
-            <Grid item xs={3}>
-              <div className='dialog-title'>{calculateTotal(itemList)}</div>
-            </Grid>
-          </Grid>
-        </Box>
+          <form onSubmit={formHandler}>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="File"
+            type="file"
+            fullWidth
+            variant="standard"
+          />
+          <DialogActions>
+          <Button variant="contained" type="submit">Upload</Button>
+          <Button variant="outlined" onClick={() => handleClose(-1)}>Cancel</Button> 
+          </DialogActions>
+        </form>
+        
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Send feedback</Button>
-        </DialogActions>
+        {/* <DialogActions>
+          <Button onClick={() => handleClose(-1)}>Cancel</Button>
+          <Button onClick={() => handleClose(1)}>Send feedback</Button> */}
+        {/* </DialogActions> */}
     </Dialog>
   );
 }
@@ -331,14 +354,15 @@ function InventoryAddDialog(props) {
             label="Quantity"
             type="number"
             fullWidth
+            InputProps={{ inputProps: { min: 0, max: amount } }}
             variant="standard"
             value={qty}
             onChange={val => setQty(val.target.value)}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleClose(-1)}>Cancel</Button>
-          <Button onClick={() => handleClose(qty)}>Add</Button>
+          <Button variant="contained" onClick={() => handleClose(qty)}>Add</Button>
+          <Button variant="outlined" onClick={() => handleClose(-1)}>Cancel</Button>
         </DialogActions>
     </Dialog>
   );
@@ -366,7 +390,7 @@ function ConfirmDialog(props) {
         <div className='dialog-text'>Remaining balance : {amount}</div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>OK</Button>
+          <Button variant="contained" onClick={handleClose}>OK</Button>
         </DialogActions>
     </Dialog>
   );
@@ -378,10 +402,15 @@ ConfirmDialog.propTypes = {
   feedback: PropTypes.string.isRequired,
 };
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 
 function DrugDetails(){
 
   const navigate = useNavigate();
+  //const ref = collection(firestore,"feedback");
 
   const [feedback, setFeedback] = useState("");
   const [openFeedback, setOpenFeedback] = useState(false);
@@ -401,26 +430,48 @@ function DrugDetails(){
     name:'',
     quantity:'',
     unit_price:''
+  });
+  const [order, setOrder] = useState({
+    customer_id: '',
+    delivery_agent_id : '',
+    order_id : '',
+    pharmacy_id : '',
+    has_prescription : '',
+    address : '',
+    price : '',
+    payment : '',
+    prescription_image : '',
+    prescription_typed : '',
+    delivery_need : '',
+    delivery_fee : '',
+    time_stamp : '',
+    status : '',
+    customer_approval : '',
+    feedback_report : '',
   })
   const [pageNumber, setPageNumber] = useState(1);
-  const { orderId } = useParams();
+  const [snackMessage, setSnackMessage] = useState('');
+  const [snackType, setSnackType] = useState('success');
+  const [openSnack, setOpenSnack] = useState(false);
 
-  function onDocumentLoadSuccess({ numPages }) {
-    setPageNumber(numPages);
-  }
+  const { orderId } = useParams();
+  const pdfRef = useRef(null);
+
+  
 
   const [searchField, setSearchField] = useState("");
   const [filteredInventory, setFilteredInventory] =  useState(inventoryData);
   var [PId , setPID] = useState('');
+  const [progress, setProgress] = useState(0);
   const [loaded,setLoaded] = useState(false);
+  const rootElement = document.getElementById("root");
 
   const getData = async () => {
     var Id = localStorage.getItem('userId');
-      setPID(Id.toString());
-      console.log(orderId);
-    await Axios.get('http://localhost:3000/PharmacyInventory/'+Id.toString())
-      .then((response) => {
-        console.log(response);
+    setPID(Id.toString());
+    
+    await Axios.get(baseUrl+'/PharmacyInventory/'+Id.toString())
+      .then(async (response) => {
         let arr =[];
         let i = 0;
         response.data.forEach(e => {
@@ -439,19 +490,49 @@ function DrugDetails(){
         });
         setInventoryData(arr);
         setFilteredInventory(arr);
-        setLoaded(true);
+       
+
       })
       .catch(function (err) {
           console.log(err);
       });
-      
   }
   
+  const getOrderDetails = async () => {
+    var Id = localStorage.getItem('userId');
+    setPID(Id.toString());
+    await Axios.get(baseUrl+'/PharmacyOrder/'+Id.toString()+'/'+orderId)
+    .then((orderRes) => {
+      let res = orderRes.data[0];
+      var odr = {
+        customer_id: res.customer_id,
+        delivery_agent_id : res.delivery_agent_id,
+        order_id : res.order_id,
+        pharmacy_id : res.pharmacy_id,
+        has_prescription : res.has_prescription,
+        address : res.address,
+        price : res.price,
+        payment : res.payment,
+        prescription_image : res.prescription_image,
+        prescription_typed : res.prescription_typed,
+        delivery_need : res.delivery_need,
+        delivery_fee : res.delivery_fee,
+        time_stamp : res.time_stamp,
+        status : res.status,
+        customer_approval : res.customer_approval,
+        feedback_report : res.feedback_report,
+      }
+      setOrder(odr);
+      setLoaded(true);
+    });
+  }
+
   useEffect(async () => {
     var Id = localStorage.getItem('userId');
     if(Id != null){
       setPID(Id.toString());
         getData();
+        getOrderDetails();
     }else{
         navigate("/");
     }
@@ -461,7 +542,6 @@ function DrugDetails(){
 
 
   const filterData = (val) =>{
-    console.log(val);
     if(val !== ""){
       const filteredList = inventoryData.filter(
         item => {
@@ -493,7 +573,7 @@ function DrugDetails(){
         var BreakErr = "";
         try{
           inventoryData.forEach(element => {
-            if(element.drug_name == value.drugName && element.brand_name == element.brand_name){
+            if(element.name == value.drugName || element.name == value.brandName){
               element.quantity = element.quantity - value.quantity;
               var cartItem = {
                 id:element.id,
@@ -513,6 +593,8 @@ function DrugDetails(){
                 brand_name:value.brandName,
                 drug_name:value.drugName,
                 quantity:value.quantity,
+                batch_no: element.batch_no,
+                expiry_date: element.expiry_date,
                 Issuable:'Yes',
                 reason:value.feedback,
                 unit_price:element.unit_price,
@@ -524,7 +606,6 @@ function DrugDetails(){
               });
               feedBackList.push(feedBackItem);
               setFeedbackData(feedBackList);
-              throw BreakErr;
             }
           });
         }catch(err){
@@ -537,6 +618,8 @@ function DrugDetails(){
           id: feedbackData.length + inventoryData.length +1,
           brand_name:value.brandName,
           drug_name:value.drugName,
+          batch_no: "",
+          expiry_date: "",
           quantity:0,
           Issuable:'No',
           reason:value.feedback,
@@ -571,9 +654,104 @@ function DrugDetails(){
     setFeedbackData([]);
   }
 
-  const handleCloseInvoice = (value) => {
+  const generatePDF = () => {
+    let topic = "Feedback Report";
+    let tableHead = "Brand Name \tDrug Name \tQuantity \tIssuable \tReason \t\tUnit Price \tAmount";
+    let total = 0;
+    let i = 30;
+    var doc = new jsPDF();
+    doc.setFontSize(22);
+    doc.text(5,20,topic);
+    doc.setFontSize(12);
+    doc.text(5,30,tableHead);
+    feedbackData.forEach(element => {
+      let row = "";
+      if(element.reason == ""){
+        row = element.brand_name + "\t\t\t\t" + element.drug_name + "\t\t\t" + element.quantity + "\t\t\t" + element.Issuable + "\t\t\t" + element.reason + "\t\t\t\t" + element.unit_price + "\t\t\t" + element.amount;
+      }else{
+        row = element.brand_name + "\t\t\t\t" + element.drug_name + "\t\t\t" + element.quantity + "\t\t\t" + element.Issuable + "\t\t" + element.reason + "\t\t\t" + element.unit_price + "\t\t\t" + element.amount;
+      }
+      total = total + parseInt(element.amount);
+      i = i+10;
+      doc.setFontSize(10);
+      doc.text(5,i,row);
+    });
+    let row = "Total \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + total;
+    doc.setFontSize(12);
+    doc.text(5,i+10,row);
+    var seconds = new Date().getTime();
+    doc.save(seconds+".pdf");
+  }
+
+
+  const handleCloseInvoice = async (value) => {
+    if(value.closeType ==1){
+      console.log(value.file.name);
+      var Id = localStorage.getItem('userId');
+      let inventoryUpdateData = {
+        pid : Id,
+        items : []
+      }
+      let total = 0;
+      feedbackData.forEach(element => {
+        if(element.Issuable == "Yes"){
+          let item = {
+            batch_no: element.batch_no,
+            expiry_date: element.expiry_date,
+            quantity: parseInt(element.quantity)
+          }
+          total = total + element.amount;
+          inventoryUpdateData.items.push(item);
+        }
+      });
+      
+      var reference = firebase.storage().ref().child(value.file.name+new Date().toISOString()+"feedback").put(value.file);
+      
+      try{
+        await reference;
+        await reference.on("state_changed", (snapshot) => {
+            const prog = Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+        },
+            (err) => console.log(err),
+            () => {
+                getDownloadURL(reference.snapshot.ref).then(  (url) => {
+                    console.log(url);
+                    let data = {
+                      order_id: order.order_id,
+                      url: url,
+                      total: total
+                    }
+                    Axios.put(baseUrl+'/PharmacyOrder/feedback/'+Id+'/'+order.order_id,data)
+                    .then(async (res) => {
+                      if(res.status == '200'){
+                        console.log(res);
+                        await Axios.put(baseUrl+'/PharmacyInventory/reduce_quantity',inventoryUpdateData)
+                        .then(async (response) => {    
+                          if(response.status == '200'){
+                            setSnackMessage("Feedback Send Successfully!");
+                            setSnackType("success");
+                            setOpenSnack(true);
+                          }
+                        }); 
+                      }
+                    });
+                })
+            }
+        )
+      } catch (e){
+        console.log(e);
+      }
+      
+       
+      
+    }
     setOpenInvoice(false);
   };
+
+ 
+
   const handleClickOpenInventoryAdd = (item) => {
     setActiveInventory(item.row);
     setOpenInventoryAdd(true);
@@ -604,6 +782,8 @@ function DrugDetails(){
         id: activeInventory.id,
         brand_name:activeInventory.name,
         drug_name:activeInventory.name,
+        batch_no: activeInventory.batch_no,
+        expiry_date: activeInventory.expiry_date,
         quantity:value,
         Issuable:'Yes',
         reason:'',
@@ -651,6 +831,14 @@ function DrugDetails(){
     });
     setCartData(cartList);
     setFeedbackData(feedbackList);
+  };
+
+  const handleCloseSnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnack(false);
   };
 
   const actionColumnInventory = [
@@ -703,11 +891,18 @@ const actionColumnCart = [
             <span className='title'>Drug Details</span>
           </div>
           <div className='big-container'>
-            <div className='image-container' style={{overflow: 'scroll', padding: 10}}>
-            <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+            <div className='image-container' style={{overflow: 'hidden'}}>
+            {/* <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
               <Page pageNumber={pageNumber} width="400" height="300"/>
-            </Document>
+            </Document> */}
             {/* <img src="https://www.madeformedical.com/wp-content/uploads/2018/07/vio-4.jpg" width="450" height="400"/> */}
+            
+            {order.has_prescription == "1" ? (
+              <img src={order.prescription_image} width="450" height="400"/>
+            ):(
+              <div dangerouslySetInnerHTML={{ __html: order.prescription_image }} />
+              
+            )}
 
             </div>
             <div className='drug-container'>
@@ -736,9 +931,9 @@ const actionColumnCart = [
               </div>
               <Table rows={filteredInventory} columns={drugColumns.concat(actionColumnInventory)} />
               <div className="datatableTitle">
-              <button onClick={handleClickOpenFeedback} className="link">
+              <Button variant="contained" onClick={handleClickOpenFeedback} className="link">
                Add Feedback
-              </button>
+              </Button>
               </div>
             </div>
           </div>
@@ -751,8 +946,11 @@ const actionColumnCart = [
                 
              
                 <span className='total'>Total :{calculateTotal(feedbackData)}</span>
-                <div style={{width: 200, flexDirection:'row'}}>
-                <Button variant="contained" onClick={handleClickOpenInvoice} style={{margineLeft: 20}}>
+                <div style={{width: 400, flexDirection:'row'}}>
+                <Button variant="contained" onClick={generatePDF} style={{margineLeft: 20}}>
+                  Generate
+                </Button>
+                <Button variant="contained" onClick={handleClickOpenInvoice} style={{margineLeft: 20, left:10}}>
                   Send
                 </Button>
                 <Button variant="outlined" color="error" onClick={handleClearAll} style={{marginLeft: 20}}>
@@ -773,9 +971,11 @@ const actionColumnCart = [
             open={openInvoice}
             itemList={feedbackData}
             onClose={handleCloseInvoice}
+            ref={pdfRef}
           />
           <InventoryAddDialog
             open = {openInventoryAdd}
+            amount={activeInventory.quantity}
             onClose = {handleCloseInventoryAdd}
             />
           <ConfirmDialog
@@ -783,6 +983,13 @@ const actionColumnCart = [
             onClose = {handleCloseConfirmDialog}
             amount = {activeInventory.quantity}
             />
+
+            {/* Snackbars */}
+          <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnack}>
+            <Alert onClose={handleCloseSnack} severity={snackType} sx={{ width: '100%' }}>
+              {snackMessage}
+            </Alert>
+          </Snackbar>
 
           <Footer/>
         </div>

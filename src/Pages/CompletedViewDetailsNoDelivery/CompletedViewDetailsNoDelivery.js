@@ -91,7 +91,7 @@ function CompletedViewDetailsNoDelivery() {
 
                         <tr>
                             <td><b>Customer Telephone :</b></td>
-                            <td>{tableData.customer_name}</td>
+                            <td>{tableData.contact}</td>
                         </tr>
 
                         <tr>

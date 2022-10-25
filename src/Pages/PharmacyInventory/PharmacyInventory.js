@@ -25,22 +25,25 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
+
+
 function EditDialog(props) {
-  const { onClose, open, batch_no, name, manufacturer_id, manufacturing_date, expiry_date, quantity, unit_price } = props;
+  const { onClose, open ,item} = props;
 
 
-  const [ebatch_no,setBatchNo] = useState(batch_no);
-  const [ename,setName] = useState(name);
-  const [emanufacturer_id,setManufacturerId] = useState(manufacturer_id);
-  const [emanufacturing_date,setManufacturingDate] = useState(manufacturing_date);
-  const [eexpiry_date,setExpiryDate] = useState(expiry_date);
-  const [equantity,setQuantity] = useState(quantity);
-  const [eunit_price,setUnitPrice] = useState(unit_price);
+  const [ebatch_no,setBatchNo] = useState(item.batch_no);
+  const [ename,setName] = useState(item.name);
+  const [emanufacturer_id,setManufacturerId] = useState(item.manufacturer_id);
+  const [emanufacturing_date,setManufacturingDate] = useState(item.manufacturing_date);
+  const [eexpiry_date,setExpiryDate] = useState(item.expiry_date);
+  const [equantity,setQuantity] = useState(item.quantity);
+  const [eunit_price,setUnitPrice] = useState(item.unit_price);
 
+  
   const handleClose = (e) => {
     var newDrug = {
       closeType:e,
-      batch_no:ebatch_no,
+      batch_no:item.batch_no,
       name:ename,
       manufacturer_id:emanufacturer_id,
       manufacturing_date:emanufacturing_date,
@@ -49,18 +52,22 @@ function EditDialog(props) {
       unit_price:eunit_price,
     }
     onClose(newDrug);
-    //setType('');
-    //setQuantity(0);
-    //setDrugName('');
-    //setBrandName('');
+
+    setExpiryDate('');
+    setUnitPrice(0);
+    setQuantity(0);
+    setName('');
+    setManufacturerId('');
+    setManufacturingDate('');
+
   };
 
 
   return (
     <Dialog onClose={handleClose} open={open} fullWidth={100}>
-      <DialogTitle>Edit Drug</DialogTitle>
+      <DialogTitle>Edit Drug {item.batch_no}</DialogTitle>
       <DialogContent>
-          <TextField
+          {/* <TextField
             margin="dense"
             id="batch_no"
             label="Batch No"
@@ -69,7 +76,7 @@ function EditDialog(props) {
             variant="standard"
             value={ebatch_no}
             onChange={(val) => setBatchNo(val.target.value)}
-          />
+          /> */}
           <TextField
             margin="dense"
             id="name"
@@ -77,7 +84,7 @@ function EditDialog(props) {
             type="text"
             fullWidth
             variant="standard"
-            value={ename}
+            defaultValue={item.name}
             onChange={(val) => setName(val.target.value)}
           />
           <TextField
@@ -87,7 +94,7 @@ function EditDialog(props) {
             type="text"
             fullWidth
             variant="standard"
-            value={emanufacturer_id}
+            defaultValue={item.manufacturer_id}
             onChange={(val) => setManufacturerId(val.target.value)}
           />
 
@@ -96,7 +103,8 @@ function EditDialog(props) {
               id="manufacturing_date"
               label="Manufacturing Date"
               type="date"
-              value={emanufacturing_date}
+              defaultValue={item.manufacturing_date}
+              // value={emanufacturing_date}
               fullWidth
               onChange={(newValue) => {
                 setManufacturingDate(newValue);
@@ -110,7 +118,8 @@ function EditDialog(props) {
               id="expiry_date"
               label="Expiry Date"
               type="date"
-              value={eexpiry_date}
+              defaultValue={item.expiry_date}
+              // value={eexpiry_date}
               fullWidth
               onChange={(newValue) => {
                 setExpiryDate(newValue);
@@ -126,7 +135,7 @@ function EditDialog(props) {
             type="number"
             fullWidth
             variant="standard"
-            value={equantity}
+            defaultValue={item.quantity}
             onChange={(val) => setQuantity(val.target.value)}
           />
 
@@ -137,7 +146,7 @@ function EditDialog(props) {
             type="number"
             fullWidth
             variant="standard"
-            value={eunit_price}
+            defaultValue={item.unit_price}
             onChange={(val) => setUnitPrice(val.target.value)}
           />
              
@@ -447,14 +456,70 @@ function PharmacyInventory(){
   }
 
   const handleClickOpenEdit = (item) => {
+    //console.log(item.row);
     setActiveItem(item.row);
     setOpenEdit(true);
   };
 
   const handleCloseEdit = (value) => {
     if(value.closeType==1){
-      console.log(value);
+      let data = {
+        batch_No : value.batch_no,
+        pharmacy_id : PId,
+        brand_name : activeItem.name,
+        drug_name : activeItem.name,
+        quantity : activeItem.quantity,
+        expiry_date : activeItem.expiry_date,
+        manufacture_date : activeItem.manufacturing_date,
+        licenece_No : activeItem.manufacturer_id,
+        unit_price : activeItem.unit_price,
+      }
+
+      if(value.name != ""){
+        data.brand_name = value.name;
+        data.drug_name = value.name;
+      }
+      if(value.quantity != 0){
+        data.quantity = value.quantity;
+      }
+      if(value.expiry_date != ""){
+        data.expiry_date = value.expiry_date;
+      }
+      if(value.manufacturing_date != ""){
+        data.manufacture_date = value.manufacturing_date;
+      }
+      if(value.manufacturer_id != ""){
+        data.licenece_No = value.manufacturer_id;
+      }
+      if(value.unit_price!=""){
+        data.unit_price = value.unit_price;
+      }
+      console.log(data);
+
+     Axios.put(baseUrl+'/PharmacyInventory/',data)
+      .then((response) => {
+        if(response.status == '200'){
+          setSnackMessage("Updated Successfully!");
+          setSnackType("success");
+          setOpenSnack(true);
+          getData();
+        }
+      })
+      .catch(function (err) {
+          console.log(err);
+      });
     }
+    getData();
+    setActiveItem({
+      batch_no:'',
+      expiry_date:'',
+      id:'',
+      manufacturer_id:'',
+      manufacturing_date:'',
+      name:'',
+      quantity:'',
+      unit_price:''
+    });
     setOpenEdit(false);
   };
 
@@ -493,7 +558,7 @@ function PharmacyInventory(){
 
   const handleCloseConfirm = (value) => {
     if(value == 1){
-      console.log(activeItem);
+      //console.log(activeItem);
       Axios.delete(baseUrl+'/PharmacyInventory/'+PId+'/'+activeItem.batch_no)
       .then((response) => {
         if(response.status == '200'){
@@ -562,14 +627,8 @@ function PharmacyInventory(){
 
           <EditDialog
             open={openEdit}
+            item={activeItem}
             onClose={handleCloseEdit}
-            batch_no= {activeItem.batch_no}
-            name= {activeItem.name}
-            manufacturer_id= {activeItem.manufacturer_id}
-            manufacturing_date= {activeItem.manufacturing_date}
-            expiry_date= {activeItem.expiry_date}
-            quantity= {activeItem.quantity}
-            unit_price= {activeItem.unit_price}
           />
           <AddDialog
             open={openAdd}

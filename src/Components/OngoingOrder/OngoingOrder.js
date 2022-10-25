@@ -5,7 +5,7 @@ import "./OngoingOrder.css";
 
 function OngoingOrder({ test }) {
 
-//    
+   
     const navigate = useNavigate();
 
     const navigateViewDetails = (test,id) => {
@@ -30,9 +30,9 @@ function OngoingOrder({ test }) {
     };
     
     return test.map((order) => (
-        <div class="profile-cards">
+        <div class="card-items-data">
             <div class="card card-ongoing">
-                <div class="neworder"><p>{order.status} Order</p></div>
+                <div class="neworder"><p>On going Order</p></div>
                 <div class="orderId"><p>Order Id: {order.order_id}</p></div>
                 <div class="home-date"><p>{order.time_stamp}</p></div>
                 <div><p>Delivery {Number(order.delivery_need) == 1 ? <FaCheckCircle color="green" /> : <FaTimesCircle color="red" />}</p></div>

@@ -33,17 +33,20 @@ function OngoingViewDetailsSetDelivary() {
                     
                     setTableData({
                         id: object.order_id,
-                        customer_name: object.username,
+                        customer_name: object.cname,
                         placed_date: object.time_stamp,
                         status: object.status,
-                        contact: object.contact_number,
-                        prescription: object.prescription,
+                        customer_contact: object.customertelno,
+                        prescription: object.prescription_image,
                         delivery_need: object.delivery_need,
                         feedback: object.feedback_report,
                         payment: object.payment,
                         customer_approvel: object.customer_approval,
                         delivery_fee: object.delivery_fee,
                         destination:object.address,
+                        delivery_contact: object.deliverytelno,
+                        delivery_agent_name: object.deliveryname,
+                        delivery_profile: object.profile_pic
 
                       });
                           
@@ -89,12 +92,12 @@ function OngoingViewDetailsSetDelivary() {
 
                         <tr>
                             <td><b>Customer Telephone :</b></td>
-                            <td>{tableData.contact}</td>
+                            <td>{tableData.customer_contact}</td>
                         </tr>
 
                         <tr>
                             <td><b>Prescription :</b></td>
-                            <td><b><a href="#">{tableData.prescription}</a></b></td>
+                            <td><b><a href={tableData.prescription}>Click here</a></b></td>
                         </tr>
 
                         <tr>
@@ -130,8 +133,8 @@ function OngoingViewDetailsSetDelivary() {
                 <h4 className="Ongoingorder-details"><b>Delivary Details</b></h4>
                 <div className='agent-details'>
                     <div className="agent-photo">
-                        <img className="agent-photo" src={DeliveryAgent} />
-                        <div className="v-agent-name"><p >K.k.Sahan Dilshan</p>
+                        <img className="agent-photo" src={tableData.profile_pic} />
+                        <div className="v-agent-name"><p >{tableData.delivery_agent_name}</p>
                             </div>
                     </div>
 

@@ -19,7 +19,7 @@ function Verificationpage() {
                 <div>
                     <img src={msglogo} className='#' width={400} height={200} />
                     <h2 class="f-main-topic"><b>Check your email</b></h2>
-                    <p class="f-main-p"><b>we have sent an email verification to your email</b></p>
+                    <p class="f-main-p"><b>we have sent an SMS verification to your mobile number</b></p>
                 </div>
 
             </div>

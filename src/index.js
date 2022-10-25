@@ -40,6 +40,10 @@ import Popup4 from "./Components/Popup4/Popup4";
 import Popup5 from "./Components/Popup5/Popup5";
 import Popup6 from "./Components/Popup6/Popup6";
 import Popup7 from "./Components/Popup7/Popup7";
+import Popup8 from "./Components/Popup8/Popup8";
+import Popup9 from "./Components/Popup9/Popup9";
+import Popup10 from "./Components/Popup10/Popup10";
+import Popup11 from "./Components/Popup11/Popup11";
 import Search from "./Components/Search/Search";
 import DeletePopup from "./Components/DeletePopup/DeletePopup";
 import PharmacyStatistics from "./Pages/PharmacyStatistics/PharmacyStatistics";
@@ -92,6 +96,10 @@ export default function App() {
           <Route path="popup5" element={<Popup5 />} />
           <Route path="popup6" element={<Popup6 />} />
           <Route path="popup7" element={<Popup7 />} />
+          <Route path="popup8" element={<Popup8 />} />
+          <Route path="popup9" element={<Popup9 />} />
+          <Route path="popup10" element={<Popup10 />} />
+          <Route path="popup11" element={<Popup11 />} />
           <Route path="search" element={<Search />} />
           <Route path="DeletePopup" element={<DeletePopup />} />
           <Route path="Pharmacistprofile2" element={<Pharmacistprofile2 />} />

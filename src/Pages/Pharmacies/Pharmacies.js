@@ -3,8 +3,40 @@ import FilterableTable from "react-filterable-table";
 import "./Pharmacies.css";
 import Navbar from "../../Components/Navbar/Admin/Navbar";
 import Footer from "../../Components/Footer/Footer";
+import Axios from "../../api/axios";
+import { useEffect ,useState} from "react";
 
 const Pharmacies = () => {
+  const pharmacy = [];
+  const [pharmacies,setPharmacies] = useState([]);
+  var config = {
+    method: "post",
+
+    url: "http://localhost:3000/User/GetPharmacies",
+
+    headers: {},
+  };
+
+  useEffect(async ()=>{
+    await Axios(config).then((response) => {
+      response.data.map((item) =>{
+        pharmacy.push(
+          {
+            pid: item.uid,
+            pname: item.username,
+            regnum: item.reg_No,
+            address: item.address,
+            contnum: item.contact_number,
+            email: item.email,
+            rating: item.rating,
+          }
+      )
+      })
+      setPharmacies(...[pharmacy]);
+      console.log(pharmacies[0]);
+    })
+  },[])
+
   const data = [
     {
       pid: 1,
@@ -156,7 +188,7 @@ const Pharmacies = () => {
       <FilterableTable
         namespace="People"
         initialSort="name"
-        data={data}
+        data={pharmacies}
         fields={fields}
         noRecordsMessage="There are no people to display"
         noFilteredRecordsMessage="No people match your filters!"

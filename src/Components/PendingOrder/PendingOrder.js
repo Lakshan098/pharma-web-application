@@ -54,9 +54,14 @@ function PendingOrder({ test }) {
                     <div><button class="view-btn" onClick={() => navigateViewDetails(order.order_id)}>View Details</button></div>
 
                     <div class="ar-button">
+
                         <p><button onClick={navigateDrugDetails} class="Accept-btn"><h4>Accept</h4></button></p>
                         {/* <p><button onClick={navigateHome} class="Reject-btn"> Reject</button></p> */}
                         <div><Popup7 test={order.order_id}/></div>
+
+                        <p><button onClick={()=>navigateDrugDetails(order.order_id)} class="Accept-btn">Accept</button></p>
+                        <p><button onClick={navigateHome} class="Reject-btn"> Reject</button></p>
+
                         {/* <DeletePopup /> */}
                     </div>
 

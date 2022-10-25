@@ -25,7 +25,7 @@
     /* background-color: blue; */
     height:20rem;
     text-align: left;
-    padding-top: 60px;
+    padding-top: 40px;
 }
 
 .admin-password{
@@ -42,7 +42,7 @@
 
 .prof-name {
     /* background-color: white; */
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

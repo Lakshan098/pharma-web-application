@@ -11,43 +11,9 @@ function Complaints() {
     <div>
       <Navbar />
       <div>
-        <div className="complaints-head-bar">
-          <div className="complaints-heading">
-            <h3>Complaints Overview</h3>
-          </div>
-          <div className="complaints-detail">
-            <div className="total-complaints">
-              <div className="vl2"></div>
-              <div className="com-val-name">
-                <div className="com-name">
-                  <h4>Total Complaints</h4>
-                </div>
-                <div className="com-value">789</div>
-              </div>
-            </div>
-            <div className="pharmacy-complaints">
-              <div className="vl2"></div>
-              <div className="com-val-name">
-                <div className="com-name">
-                  <h4>Pharmacy Complaints</h4>
-                </div>
-                <div className="com-value">438</div>
-              </div>
-            </div>
-            <div className="agent-complaints">
-              <div className="vl2"></div>
-              <div className="com-val-name">
-                <div className="com-name">
-                  <h4>Agent Complaints</h4>
-                </div>
-                <div className="com-value">351</div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className="complaints-head-bar2">
           <div className="complaints-heading">
-            <h3>Complaints</h3>
+            <h2>Complaints</h2>
           </div>
           <div>
             <div>

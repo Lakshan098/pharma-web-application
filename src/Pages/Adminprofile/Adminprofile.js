@@ -47,7 +47,6 @@ function Adminprofile() {
   response.data.map((object) =>{
         setAdminDetails(
           {
-            name: object.username,
             username: object.username,
             contnum: object.contact_number,
             email: object.email
@@ -88,18 +87,6 @@ console.log(adminDetails);
                   }}
                 ></div>
                 <div className="detail-list">
-                  <div className="detail-one">
-                    <div className="detail-obj">
-                      <FaUserCircle />
-                      <h5>Name</h5>
-                    </div>
-                    <div className="detail-des">
-                      <h5>{adminDetails.username}</h5>
-                    </div>
-                    <div className="detail-ico">
-                      <Popup/>
-                    </div>
-                  </div>
                   <div className="detail-one">
                     <div className="detail-obj">
                       <FaUserCircle />

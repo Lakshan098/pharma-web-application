@@ -86,12 +86,64 @@ const data = [
 ];
 
 function Agentprofile() {
+  var monthly_orders = [{
+    name: "January",
+    Orders: 0,
+  },
+  {
+    name: "February",
+    Orders: 0,
+  },
+  {
+    name: "March",
+    Orders: 0,
+  },
+  {
+    name: "April",
+    Orders: 0,
+  },
+  {
+    name: "May",
+    Orders: 0,
+  },
+  {
+    name: "June",
+    Orders: 0,
+  },
+  {
+    name: "July",
+    Orders: 0,
+  },
+  {
+    name: "Augest",
+    Orders: 0,
+  },
+  {
+    name: "September",
+    Orders: 0,
+  },
+  {
+    name: "October",
+    Orders: 0,
+  },
+  {
+    name: "November",
+    Orders: 0,
+  },
+  {
+    name: "December",
+    Orders: 0,
+  }
+];
+const [monthlyOrders, setMonthlyOrders] = useState([]);
+
 
 
   const navigate = useNavigate();
 
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
+  console.log(id)
 
   const complaints = [];
   var [dataList, setDataList] = React.useState([]);
@@ -102,15 +154,52 @@ function Agentprofile() {
     url: ('http://localhost:3000/admin/GetDeliveryComplaintDetails/' + id),
     headers: {},
   };
+  var configOrder = {
+    method: 'post',
+    url: 'http://localhost:3000/DeliveryAgent/GetAgentOrders/DEL0000071',
+    headers: { }
+  };
 
   useEffect(() => {
+
+    Axios(configOrder).then((response) => {
+      response.data.map((item) => {
+        monthly_orders.forEach((element,index) => {
+          if(element.name==item.Month){
+            monthly_orders[index].Orders=item.Count
+            // monthly_orders.push({
+            //   name: item.Month,
+            //   Orders: item.Count,
+            // });
+          }
+        });
+        
+      });
+
+      setMonthlyOrders(...[monthly_orders]);
+      console.log(monthly_orders);
+    });
+
+
+
+//     Axios(configOrder)
+// .then(function (response) {
+//   console.log(JSON.stringify(response.data));
+// })
+// .catch(function (error) {
+//   console.log(error);
+// });
+
+
     Axios(config)
       .then((response) => {
         setData(response.data[0])
         response.data[0].map((object) => {
+          console.log(response)
           complaints.push(
             {
               id: id,
+              customer_id: object.customer_id,
               dName: object.dName,
               contact_number: object.contact_number,
               email: object.email,
@@ -119,7 +208,9 @@ function Agentprofile() {
               accused_person: object.accused_person,
               cusName: object.cusName,
               complaint: object.complaint,
-              time_stamp: object.time_stamp,
+              month:object.Month,
+              year:object.Year,
+              time_stamp:object.time_stamp,
               cusEmail: object.cusEmail,
               panelty: object.panelty
             }
@@ -128,6 +219,8 @@ function Agentprofile() {
         //console.log(complaints)
         setDataList(complaints);
         setData(complaints);
+        console.log(data)
+        
       })
       .catch(function (err) {
         console.log(err);
@@ -203,7 +296,7 @@ function Agentprofile() {
     });
 
   }
-
+  console.log(data)
 
   return (
     <div>
@@ -298,7 +391,7 @@ function Agentprofile() {
                       <ComposedChart
                         width={400}
                         height={400}
-                        data={data}
+                        data={monthlyOrders}
                         margin={{
                           top: 30,
                           right: 40,
@@ -353,7 +446,8 @@ function Agentprofile() {
                         </div>
                         <div className="complaint-date-time">
                           <div className="complaint-date">
-                            {data.time_stamp}
+                            {/* {data.time_stamp} */}
+                            <h5>2022-10-26 &emsp;&emsp; 1.35pm</h5>
                           </div>
                           {/* <div className="complaint-time">
                                     05:12 pm

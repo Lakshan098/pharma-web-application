@@ -32,7 +32,7 @@
     /* background-color: yellow; */
     height:15rem;
     text-align: left;
-    padding-top: 50px;
+    /* padding-top: 10px; */
 }
 
 .prof-pic {
@@ -54,7 +54,7 @@
     width: 75%;
     height: 80%;
     margin-left: 65px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 .detail-one{
     display: flex;

@@ -51,7 +51,7 @@ function Complaints() {
             }
           )
         })
-        //console.log(complaints)
+        console.log(complaints)
         setDataList(complaints);
         setData(complaints);
       })
@@ -106,6 +106,9 @@ function Complaints() {
               </div>
               </button>
           </div>
+      
+          <button className="view-complaint" onClick={item.status == 'pharmacy' ? ()=>navigatePharmacyProfile(item.key) : () => navigateDeliveryProfile(item.key)}>View Complaint</button>
+          <button className="dismiss-complaint">Dismiss</button>
         </div>
         <hr
           style={{

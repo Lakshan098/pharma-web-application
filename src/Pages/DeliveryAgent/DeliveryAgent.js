@@ -3,13 +3,39 @@ import FilterableTable from "react-filterable-table";
 import "./DeliveryAgent.css";
 import Navbar from "../../Components/Navbar/Admin/Navbar";
 import Footer from "../../Components/Footer/Footer";
+import Axios from "../../api/axios";
+import { useEffect, useState } from "react";
 
 function DeliveryAgent() {
+  const delivery_agent = [];
+  const [delivery_agents, setDeliveryAgent] = useState([]);
+  var config = {
+    method: "post",
+
+    url: "http://localhost:3000/User/GetDeliveryAgents",
+
+    headers: {},
+  };
+
+  useEffect(async () => {
+    await Axios(config).then((response) => {
+      response.data.map((item) => {
+        delivery_agent.push({
+          aid: item.uid,
+          aname: item.username,
+          rating: item.rating,
+          contnum: item.contact_number,
+          email: item.email,
+        });
+      });
+      setDeliveryAgent(...[delivery_agent]);
+      console.log(delivery_agents[0]);
+    });
+  }, []);
   const data = [
     {
       aid: 1,
       aname: "Lanka Pharmacy",
-      address: "ddvgsdgsgsgg",
       contnum: 1,
       email: "lankapharama@gmail.com",
       rating: 4,
@@ -17,7 +43,6 @@ function DeliveryAgent() {
     {
       aid: 1,
       aname: "Lanka Pharmacy",
-      address: "ddvgsdgsgsgg",
       contnum: 2,
       email: "lankapharama@gmail.com",
       rating: 4,
@@ -25,7 +50,6 @@ function DeliveryAgent() {
     {
       aid: 1,
       aname: "Lanka Pharmacy",
-      address: "ddvgsdgsgsgg,kjsdhmnlg,egkjengg",
       contnum: 2555555444,
       email: "lankapharama@gmail.com",
       rating: 4,
@@ -33,7 +57,6 @@ function DeliveryAgent() {
     {
       aid: 1,
       aname: "Lanka Pharmacy",
-      address: "ddvgsdgsgsgg",
       contnum: 0,
       email: "lankapharama@gmail.com",
       rating: 4.7,
@@ -41,7 +64,6 @@ function DeliveryAgent() {
     {
       aid: 1,
       aname: "Lanka Pharmacy",
-      address: "ddvgsdgsgsgg",
       contnum: 2,
       email: "lankapharama@gmail.com",
       rating: 4.7,
@@ -49,7 +71,6 @@ function DeliveryAgent() {
     {
       aid: 1,
       aname: "Lanka Pharmacy",
-      address: "ddvgsdgsgsgg",
       contnum: 4,
       email: "lankapharama@gmail.com",
       rating: 4.7,
@@ -57,7 +78,6 @@ function DeliveryAgent() {
     {
       aid: 1,
       aname: "Lanka Pharmacy",
-      address: "ddvgsdgsgsgg",
       contnum: 2,
       email: "lankapharama@gmail.com",
       rating: 4.7,
@@ -65,7 +85,6 @@ function DeliveryAgent() {
     {
       aid: 1,
       aname: "Lanka Pharmacy",
-      address: "ddvgsdgsgsgg",
       contnum: 2,
       email: "lankapharama@gmail.com",
       rating: 4.7,
@@ -73,7 +92,6 @@ function DeliveryAgent() {
     {
       aid: 1,
       aname: "Lanka Pharmacy",
-      address: "ddvgsdgsgsgg",
       contnum: 2,
       email: "lankapharama@gmail.com",
       rating: 4.7,
@@ -81,7 +99,6 @@ function DeliveryAgent() {
     {
       aid: 1,
       aname: "Lanka Pharmacy",
-      address: "ddvgsdgsgsgg",
       contnum: 2,
       email: "lankapharama@gmail.com",
       rating: 4.7,
@@ -101,12 +118,6 @@ function DeliveryAgent() {
       displayName: "Delivery Agent Name",
       inputFilterable: true,
       exactFilterable: true,
-      sortable: true,
-    },
-    {
-      name: "address",
-      displayName: "Address",
-      inputFilterable: true,
       sortable: true,
     },
     {
@@ -135,14 +146,16 @@ function DeliveryAgent() {
     <div>
       <Navbar />
       <h2 className="phead">Delivery Agents</h2>
-      <FilterableTable
-        namespace="People"
-        initialSort="name"
-        data={data}
-        fields={fields}
-        noRecordsMessage="There are no people to display"
-        noFilteredRecordsMessage="No people match your filters!"
-      />
+      <div className="component-head">
+        <FilterableTable
+          namespace="People"
+          initialSort="name"
+          data={delivery_agents}
+          fields={fields}
+          noRecordsMessage="There are no people to display"
+          noFilteredRecordsMessage="No people match your filters!"
+        />
+      </div>
       <Footer />
     </div>
   );

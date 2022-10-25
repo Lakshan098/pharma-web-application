@@ -229,8 +229,8 @@ function FeedbackDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={()=>handleClose(-1)}>Cancel</Button>
-          <Button onClick={()=>handleClose(1)}>Add feedback</Button>
+          <Button variant="contained" onClick={()=>handleClose(1)}>Add feedback</Button>
+          <Button variant="outlined" onClick={()=>handleClose(-1)}>Cancel</Button>
         </DialogActions>
     </Dialog>
   );
@@ -314,8 +314,8 @@ function InvoiceDialog(props) {
             variant="standard"
           />
           <DialogActions>
-          <Button type="submit">Upload</Button>
-          <Button onClick={() => handleClose(-1)}>Cancel</Button> 
+          <Button variant="contained" type="submit">Upload</Button>
+          <Button variant="outlined" onClick={() => handleClose(-1)}>Cancel</Button> 
           </DialogActions>
         </form>
         
@@ -361,8 +361,8 @@ function InventoryAddDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleClose(-1)}>Cancel</Button>
-          <Button onClick={() => handleClose(qty)}>Add</Button>
+          <Button variant="contained" onClick={() => handleClose(qty)}>Add</Button>
+          <Button variant="outlined" onClick={() => handleClose(-1)}>Cancel</Button>
         </DialogActions>
     </Dialog>
   );
@@ -390,7 +390,7 @@ function ConfirmDialog(props) {
         <div className='dialog-text'>Remaining balance : {amount}</div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>OK</Button>
+          <Button variant="contained" onClick={handleClose}>OK</Button>
         </DialogActions>
     </Dialog>
   );
@@ -931,9 +931,9 @@ const actionColumnCart = [
               </div>
               <Table rows={filteredInventory} columns={drugColumns.concat(actionColumnInventory)} />
               <div className="datatableTitle">
-              <button onClick={handleClickOpenFeedback} className="link">
+              <Button variant="contained" onClick={handleClickOpenFeedback} className="link">
                Add Feedback
-              </button>
+              </Button>
               </div>
             </div>
           </div>

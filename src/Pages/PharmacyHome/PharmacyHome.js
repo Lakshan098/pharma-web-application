@@ -1,28 +1,31 @@
-import Footer from '../../Components/Footer/Footer';
-import Navbar from '../../Components/Navbar/Pharmacist/Navbar';
-import React, { useState } from 'react';
-import './PharmacyHome.css';
-import { MdVerifiedUser, MdOutlineDoNotDisturb } from 'react-icons/md';
-import pharmacyLogo from '../../Assets/Brand/gg.jpg';
-import profilelogo from '../../Assets/Brand/imgprofile.jpg';
-import Card from '../../Components/card/card';
-import { Routes, Route, useNavigate, useLocation, useSearchParams, useParams } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
-import PendingOrder from '../../Components/PendingOrder/PendingOrder';
-import OngoingOrder from '../../Components/OngoingOrder/OngoingOrder';
-import CompletedOrder from '../../Components/CompletedOrder/CompletedOrder';
-import DeliveryOrder from '../../Components/DeliveryOrder/DeliveryOrder';
-import Button from 'react-bootstrap/Button';
-
+import Footer from "../../Components/Footer/Footer";
+import Navbar from "../../Components/Navbar/Pharmacist/Navbar";
+import React, { useState } from "react";
+import "./PharmacyHome.css";
+import { MdVerifiedUser, MdOutlineDoNotDisturb } from "react-icons/md";
+import pharmacyLogo from "../../Assets/Brand/gg.jpg";
+import profilelogo from "../../Assets/Brand/imgprofile.jpg";
+import Card from "../../Components/card/card";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  useSearchParams,
+  useParams,
+} from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import PendingOrder from "../../Components/PendingOrder/PendingOrder";
+import OngoingOrder from "../../Components/OngoingOrder/OngoingOrder";
+import CompletedOrder from "../../Components/CompletedOrder/CompletedOrder";
+import DeliveryOrder from "../../Components/DeliveryOrder/DeliveryOrder";
+import Button from "react-bootstrap/Button";
 
 import Axios from "../../api/axios";
-import { useEffect } from 'react';
-
-
+import { useEffect } from "react";
 
 //when button click navigate function
 function PharmacyHome({ navigation }) {
-
     const navigate = useNavigate();
     const navigateViewDetails = () => {
 
@@ -169,6 +172,12 @@ function PharmacyHome({ navigation }) {
             <div> <Footer /></div>
         </div>
 
-    );
+
+      <div>
+        {" "}
+        <Footer />
+      </div>
+    </div>
+  );
 }
 export default PharmacyHome;

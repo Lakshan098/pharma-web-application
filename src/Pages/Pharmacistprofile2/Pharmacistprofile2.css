@@ -7,7 +7,7 @@
 }
 .pharmacist2-card{
     width: 72%;
-    height: 52rem;
+    height: 60rem;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -201,7 +201,7 @@
     /* background-color: yellow; */
     height:15rem;
     text-align: left;
-    padding-top: 50px;
+    padding-top: 180px;
 }
 
 .prof-form{

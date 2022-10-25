@@ -27,9 +27,9 @@ function CompletedOrder({ test }) {
         }
     };
     return test.map((order) => (
-        <div class="profile-cards">
+        <div class="card-items-data">
             <div class="card">
-                <div class="complete-order"><p>{order.status} Order</p></div>
+                <div class="complete-order"><p>Completed Order</p></div>
                 <div class="orderId"><p>Order Id: {order.order_id}</p></div>
                 <div class="home-date"><p>{order.time_stamp}</p></div>
                 <div><button class="view-btn" onClick={() => navigateViewDetails(order.delivery_need,order.order_id)}>View Details</button></div>

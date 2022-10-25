@@ -6,9 +6,9 @@ import DeliveryAgent from '../../Assets/Brand/imgprofile.jpg';
 import { MdVerifiedUser } from 'react-icons/md';
 import { AiFillFilePdf } from 'react-icons/ai';
 import { FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
+import Popup8 from '../../Components/Popup8/Popup8';
 
 import Axios from "../../api/axios";
-
 import { Routes, Route, useNavigate, createSearchParams, useSearchParams } from 'react-router-dom';
 
 
@@ -57,23 +57,27 @@ function OngoingViewDetailsNoDelivary() {
     }, [])
 
     const orderID = tableData.id;
-    const payment = tableData.payment;
-
+    const pay = tableData.payment;
+    
+    
     const navigate = useNavigate();
-    const changeDeliveryStatus = () => {
+    // var [tData, setTdata] = React.useState([]);
+    // setTdata(tableData);
+    // console.log(tableData);
+    // const changeDeliveryStatus = () => {
 
-        if (payment == 1) {
-            var config = {
-                method: 'get',
-                url: ('http://localhost:3000/OngoingViewDetailsNoDelivery/ChangeOngoingViewDetailsNoDelivery/' + id),
-                headers: {},
-            };
+    //     if (payment == 1) {
+    //         var config = {
+    //             method: 'get',
+    //             url: ('http://localhost:3000/OngoingViewDetailsNoDelivery/ChangeOngoingViewDetailsNoDelivery/' + id),
+    //             headers: {},
+    //         };
        
 
-        Axios(config);
-        navigate('/PharmacyHome');
-    }
-    };
+    //     Axios(config);
+    //     navigate('/PharmacyHome');
+    // }
+    // };
 
     return (
         <div>
@@ -142,10 +146,11 @@ function OngoingViewDetailsNoDelivary() {
 
                 </div>
 
+                 
+                <div className="Completed-div" ><Popup8 test={orderID}/></div>
+                 
 
-                <div className="Completed-div" ><button onClick={changeDeliveryStatus} className="add-complete-btn">Completed Order</button></div>
-
-
+                {/* <div className="Completed-div" ><button onClick={changeDeliveryStatus} className="add-complete-btn">Completed Order</button></div> */}
 
             </div>
             <Footer />

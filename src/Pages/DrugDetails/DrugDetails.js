@@ -474,7 +474,7 @@ function DrugDetails() {
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const [cartData, setCartData] = useState([]);
   const [feedbackData, setFeedbackData] = useState([]);
-  const [inventoryData, setInventoryData] = useState([]);
+  // const [inventoryData, setInventoryData] = useState([]);
   const [activeInventory, setActiveInventory] = useState({
     batch_no:'',
     expiry_date:'',

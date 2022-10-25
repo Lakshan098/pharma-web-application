@@ -14,6 +14,8 @@ import Popup3 from "../../Components/Popup3/Popup3";
 import Popup4 from "../../Components/Popup4/Popup4";
 import Popup5 from "../../Components/Popup5/Popup5";
 import Popup6 from "../../Components/Popup6/Popup6";
+import Popup10 from "../../Components/Popup10/Popup10";
+import Popup11 from "../../Components/Popup11/Popup11";
 import {
   FaUserCircle,
   FaMailBulk,
@@ -22,7 +24,9 @@ import {
   FaUserAlt,
   FaRegistered,
   FaUniversity,
-  FaAddressCard
+  FaAddressCard,
+  FaCalendarTimes,
+  FaClock
 } from "react-icons/fa";
 import {
   ResponsiveContainer,
@@ -38,7 +42,10 @@ import {
   PieChart,
   Pie,
 } from "recharts";
+import Axios from "../../api/axios";
+import { useEffect,useState } from 'react';
 
+    
 const data = [
   {
     name: "Jan",
@@ -91,6 +98,64 @@ const data = [
 ];
 
 function Pharmacistprofile2() {
+
+  var Id = localStorage.getItem('userId');
+  var SId = Id.toString();
+
+
+    var config = {
+        method: 'get',
+        url: ('http://localhost:3000/PharmacyHome/GetProfileData/' + SId),
+        headers: {},
+    };
+    var [data, setData] = React.useState([]);
+    const [tableData, setTableData] = React.useState({});
+    const [newPassword,setNewPassword] = React.useState("");
+    const [currentPassword,currentNewPassword] = React.useState("");
+    const [confirmPassword,setConfirmPassword] = React.useState("");
+    const changePassword = async () => {
+      // var config = {
+      //     method: 'post',
+      //     url: ('http://localhost:3000/User/updateUsername'),
+      //     headers: {},
+      // };
+      await Axios.post('http://localhost:3000/User/updatePassword', {
+        uid: Id,
+        current_password : currentNewPassword,
+        new_password: newPassword
+      });
+      // navigate('/PharmacyHome');
+      window.location.reload();
+    };
+
+    useEffect(async () => {
+      await Axios(config)
+          .then((response) => {
+              console.log(response.data);
+              response.data.map((object) => {
+                
+                  setTableData({
+                      profile_pic: object.profile_pic,
+                      username: object.username,
+                      contact_number: object.contact_number,
+                      email: object.email,
+                      address: object.address,
+                      account_number: object.account_number,
+                      uid:object.uid,
+                      rating: object.rating
+                  });
+
+
+
+              });
+
+          })
+          .catch(function (err) {
+              console.log(err);
+          });
+  }, [])
+
+
   return (
     <div>
       <Navbar />
@@ -101,7 +166,7 @@ function Pharmacistprofile2() {
               <div className="pharmacist-name">
                 <div className="pharmacist-prof-pic">
                   <img
-                    src={logo}
+                    src={tableData.profile_pic}
                     alt="Logo"
                     className="logo2"
                     width={140}
@@ -109,9 +174,9 @@ function Pharmacistprofile2() {
                   />
                 </div>
                 <div className="pharmacist-prof-name">
-                  <h1>Lanka Pharmacy</h1>
+                  <h1>{tableData.username}</h1>
                   <h6>
-                    <Rating readonly="true" initialValue={4} size="25" />
+                    <Rating readonly="true" initialValue={tableData.rating} size="25" />
                   </h6>
                 </div>
               </div>
@@ -135,10 +200,10 @@ function Pharmacistprofile2() {
                       <h5>Name</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>Lanka Pharmacy</h5>
+                      <h5>{tableData.username}</h5>
                     </div>
                     <div className="pharmacy-detail-ico">
-                      <Popup />
+                      <Popup test={tableData.uid} />
                     </div>
                   </div>
 
@@ -148,10 +213,10 @@ function Pharmacistprofile2() {
                       <h5>Contact Number</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>0412224432</h5>
+                      <h5>{tableData.contact_number}</h5>
                     </div>
                     <div className="pharmacy-detail-ico">
-                      <Popup2 />
+                      <Popup2 test={tableData.uid}/>
                     </div>
                   </div>
 
@@ -161,10 +226,10 @@ function Pharmacistprofile2() {
                       <h5>Email</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>lankapharma@gmail.com</h5>
+                      <h5>{tableData.email}</h5>
                     </div>
                     <div className="pharmacy-detail-ico">
-                      <Popup3 />
+                      <Popup3 test={tableData.uid}/>
                     </div>
                   </div>
                 
@@ -175,10 +240,10 @@ function Pharmacistprofile2() {
                       <h5>Address</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>No 215/3, Habarakada, Homagama</h5>
+                      <h5>{tableData.address}</h5>
                     </div>
                     <div className="pharmacy-detail-ico">
-                      <Popup6 />
+                      <Popup6 test={tableData.uid}/>
                     </div>
                   </div>            
 
@@ -188,10 +253,36 @@ function Pharmacistprofile2() {
                       <h5>Bank Account</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>84197230</h5>
+                      <h5>{tableData.account_number}</h5>
                     </div>
                     <div className="pharmacy-detail-ico">
-                      <Popup4 />
+                      <Popup4 test={tableData.uid}/>
+                    </div>
+                  </div>
+
+                  <div className="pharmacist-detail-one">
+                    <div className="pharmacist-detail-obj">
+                      <FaClock />
+                      <h5>Open time</h5>
+                    </div>
+                    <div className="pharmacist-detail-des">
+                      <h5>{tableData.account_number}</h5>
+                    </div>
+                    <div className="pharmacy-detail-ico">
+                      <Popup10 test={tableData.uid}/>
+                    </div>
+                  </div>
+
+                  <div className="pharmacist-detail-one">
+                    <div className="pharmacist-detail-obj">
+                      <FaClock />
+                      <h5>Close time</h5>
+                    </div>
+                    <div className="pharmacist-detail-des">
+                      <h5>{tableData.account_number}</h5>
+                    </div>
+                    <div className="pharmacy-detail-ico">
+                      <Popup11 test={tableData.uid}/>
                     </div>
                   </div>
 
@@ -215,23 +306,23 @@ function Pharmacistprofile2() {
                   <div className="label-head">
                     <label className="prof-label">
                       Old Password
-                      <input className="prof-input" type="password" />
+                      <input className="prof-input" type="password"  onChange={(e) => currentNewPassword(e.target.value)} />
                     </label>
                   </div>
                   <div className="label-head">
                     <label className="prof-label">
                       New Password
-                      <input className="prof-input" type="password" />
+                      <input className="prof-input" type="password" onChange={(e) => setConfirmPassword(e.target.value)} />
                     </label>
                   </div>
                   <div className="label-head">
                     <label className="prof-label">
                       Confirm Password
-                      <input className="prof-input" type="password" />
+                      <input className="prof-input" type="password" onChange={(e) => setNewPassword(e.target.value)}/>
                     </label>
                   </div>
                   <div className="label-head">
-                    <Button size="small" variant="contained">
+                    <Button size="small" variant="contained" onClick = {changePassword}>
                       Update Password
                     </Button>
                   </div>

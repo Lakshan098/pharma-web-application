@@ -32,17 +32,20 @@ function CompletedViewDetails() {
                     
                     setTableData({
                         id: object.order_id,
-                        customer_name: object.username,
+                        customer_name: object.cname,
                         placed_date: object.time_stamp,
                         status: object.status,
-                        contact: object.contact_number,
-                        prescription: object.prescription,
+                        customer_contact: object.customertelno,
+                        prescription: object.prescription_image,
                         delivery_need: object.delivery_need,
                         feedback: object.feedback_report,
                         payment: object.payment,
                         customer_approvel: object.customer_approval,
                         delivery_fee: object.delivery_fee,
                         destination:object.address,
+                        delivery_contact: object.deliverytelno,
+                        delivery_agent_name: object.deliveryname,
+                        delivery_profile: object.profile_pic
 
                       });
                    
@@ -90,12 +93,12 @@ function CompletedViewDetails() {
 
                         <tr>
                             <td><b>Customer Telephone :</b></td>
-                            <td>{tableData.contact}</td>
+                            <td>{tableData.customer_contact}</td>
                         </tr>
 
                         <tr>
                             <td><b>Prescription :</b></td>
-                            <td><a href="#"><b>{tableData.prescription}</b></a></td>
+                            <td><b><a href={tableData.prescription}>Click here</a></b></td>
                         </tr>
 
                         <tr>
@@ -105,7 +108,7 @@ function CompletedViewDetails() {
 
                         <tr>
                             <td><b>Feedback report :</b></td>
-                            <td><a href="#"><b>{tableData.feedback}</b></a></td>
+                            <td><b><a href="#">{tableData.feedback}</a></b></td>
                         </tr>
 
                         <tr>
@@ -120,8 +123,8 @@ function CompletedViewDetails() {
                 <h4 className="Completeorder-details"><b>Delivary Details</b></h4>
                 <div className='agent-details'>
                     <div className="agent-photo">
-                        <img className="agent-photo" src={DeliveryAgent} />
-                        <div className="v-agent-name"><p >M.Dewanarayane</p>
+                        <img className="agent-photo" src={tableData.delivery_profile} />
+                        <div className="v-agent-name"><p >{tableData.delivery_agent_name}</p>
                             </div>
                     </div>
 
@@ -152,7 +155,7 @@ function CompletedViewDetails() {
                             </tr>
                             <tr>
                                 <td><b>Tel.no:</b></td>
-                                <td>0710371977</td>
+                                <td>{tableData.delivery_contact}</td>
                             </tr>
 
                         </table>

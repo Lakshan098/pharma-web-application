@@ -9,9 +9,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Routes, Route, useNavigate, useLocation, useSearchParams, useParams } from 'react-router-dom';
+import Axios from "../../api/axios";
 
-export default function Popup() {
+export default function Popup({test}) {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -20,30 +23,40 @@ export default function Popup() {
   const handleClose = () => {
     setOpen(false);
   };
+  
+   console.log(test);
+   var Id =test;
+   var SId= Id.toString();
+
+   const navigateHome = () => {
+    setOpen(false);
+
+    var config = {
+      method: 'get',
+      url: ('http://localhost:3000/RejectOrder/RejectPendingOrder/' + SId),
+      headers: {},
+  };
+
+  Axios(config);
+  // navigate('/PharmacyHome');
+  window.location.reload();
+};
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-      <FaPencilAlt />
+      <Button class="Reject-btn" variant="outlined" onClick={handleClickOpen}>
+      <h4>Reject</h4>
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        {/* <DialogTitle>Edit Your Username</DialogTitle> */}
+        <DialogTitle>Confirmation</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Are you sure?
           </DialogContentText>
-          {/* <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Username"
-            type="email"
-            fullWidth
-            variant="standard"
-          /> */}
+          
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Yes</Button>
+          <Button  onClick={navigateHome}>Yes</Button>
           <Button onClick={handleClose}>No</Button>
         </DialogActions>
       </Dialog>

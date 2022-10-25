@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from '@mui/material/Button';
 import {
   FaPencilAlt,
@@ -9,17 +10,48 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Routes, Route, useNavigate, useLocation, useSearchParams, useParams } from 'react-router-dom';
+import Axios from "../../api/axios";
 
-export default function Popup() {
-  const [open, setOpen] = React.useState(false);
 
+export default function Popup({test}) {
+  const [open, setOpen] = useState(false);
+  const [username, setUserName] = useState('');
+  console.log(username);
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+  // const validate = (values) => {
+    
+  //   if (!values.username) {
+  //     errors.username = "Username is required";
+  //   }
+   
+  //   return errors;
+  // }
   const handleClose = () => {
     setOpen(false);
   };
+
+  console.log(test);
+    var Id = test;
+    
+
+    const changePharmacyName =async () => {
+      console.log(username);
+        // var config = {
+        //     method: 'post',
+        //     url: ('http://localhost:3000/User/updateUsername'),
+        //     headers: {},
+        // };
+        await Axios.post('http://localhost:3000/User/updateUsername', {
+          uid: test,
+          user_type: "pharmacy",
+          username: username
+        });
+        // navigate('/PharmacyHome');
+        window.location.reload();
+    };
 
   return (
     <div>
@@ -36,8 +68,10 @@ export default function Popup() {
           <TextField
             autoFocus
             margin="dense"
-            id="name"
-            label="Name"
+            id="username"
+            name="username"
+            value={username}
+            onChange={(e) => setUserName(e.target.value)}
             type="email"
             fullWidth
             variant="standard"
@@ -45,7 +79,7 @@ export default function Popup() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Update</Button>
+          <Button onClick={changePharmacyName}>Update</Button>
         </DialogActions>
       </Dialog>
     </div>

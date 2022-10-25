@@ -58,26 +58,10 @@ function PharmacyOrder() {
 
   }, [ ])
   
-  // setRows(tableData);
-  console.log(tableData);
   
-  // var length = data.length;
+  console.log(tableData);
 
-
-  // const tableData=[
-  //   {
-  //     id: "1",
-  //     customer_name:"jj",
-  //     placed_date: "20/08/2022",
-  //     status: "pending",
-  //   },
-  //   {
-  //     id: "2",
-  //     customer_name:"jj",
-  //     placed_date: "20/08/2022",
-  //     status: "pending",
-  //   },]
-
+ 
   const tableColumns = [
     {
       field: "id",
@@ -128,22 +112,6 @@ function PharmacyOrder() {
     },
   ];
 
-
-    // setRows(tableData);
-  
-  
-  
-    //  setRows(tableData);
-    //  setColumns(tableColumns);
-    // console.log(columns);
- 
-
-
-
-
-  
-  
-    // console.log(tableColumns)
   
 
 

@@ -3,6 +3,7 @@ import { FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
 import { Routes, Route, useNavigate, createSearchParams } from 'react-router-dom';
 import "./PendingOrder.css";
 import Axios from "../../api/axios";
+import Popup7 from "../Popup7/Popup7";
 
 
 function PendingOrder({ test }) {
@@ -23,19 +24,19 @@ function PendingOrder({ test }) {
         navigate('/DrugDetails/'+id);
     };
 
-    const id = test[0].order_id;
-    console.log(id);
+    // const id = test[0].order_id;
+    // console.log(id);
 
-    const navigateHome = () => {
-        var config = {
-            method: 'get',
-            url: ('http://localhost:3000/RejectOrder/RejectPendingOrder/' + id),
-            headers: {},
-        };
+    // const navigateHome = () => {
+    //     var config = {
+    //         method: 'get',
+    //         url: ('http://localhost:3000/RejectOrder/RejectPendingOrder/' + id),
+    //         headers: {},
+    //     };
 
-        Axios(config);
-        navigate('/PharmacyHome');
-    };
+    //     Axios(config);
+    //     navigate('/PharmacyHome');
+    // };
 
 
 
@@ -53,8 +54,9 @@ function PendingOrder({ test }) {
                     <div><button class="view-btn" onClick={() => navigateViewDetails(order.order_id)}>View Details</button></div>
 
                     <div class="ar-button">
-                        <p><button onClick={navigateDrugDetails} class="Accept-btn">Accept</button></p>
-                        <p><button onClick={navigateHome} class="Reject-btn"> Reject</button></p>
+                        <p><button onClick={navigateDrugDetails} class="Accept-btn"><h4>Accept</h4></button></p>
+                        {/* <p><button onClick={navigateHome} class="Reject-btn"> Reject</button></p> */}
+                        <div><Popup7 test={order.order_id}/></div>
                         {/* <DeletePopup /> */}
                     </div>
 

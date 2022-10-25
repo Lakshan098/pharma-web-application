@@ -7,6 +7,7 @@ import { MdVerifiedUser } from 'react-icons/md';
 import { AiFillFilePdf } from 'react-icons/ai';
 import { FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
 import queryString from 'query-string';
+import Popup9 from '../../Components/Popup9/Popup9';
 
 import Axios from "../../api/axios";
 import { Routes, Route, useNavigate, createSearchParams, useSearchParams } from 'react-router-dom';
@@ -34,11 +35,11 @@ function OngoingViewDetails() {
 
                     setTableData({
                         id: object.order_id,
-                        customer_name: object.username,
+                        customer_name: object.cname,
                         placed_date: object.time_stamp,
                         status: object.status,
-                        contact: object.contact_number,
-                        prescription: object.prescription,
+                        contact: object.customertelno,
+                        prescription: object.prescription_image,
                         delivery_need: object.delivery_need,
                         feedback: object.feedback_report,
                         payment: object.payment,
@@ -59,18 +60,18 @@ function OngoingViewDetails() {
     console.log(orderID);
 
     const navigate = useNavigate();
-    const changeDeliveryStatus = () => {
+    // const changeDeliveryStatus = () => {
         
         
-        var config = {
-            method: 'get',
-            url: ('http://localhost:3000/OngoingViewDetails/ChangeOngoingViewDetails/'+id),
-            headers: {},
-        };
+    //     var config = {
+    //         method: 'get',
+    //         url: ('http://localhost:3000/OngoingViewDetails/ChangeOngoingViewDetails/'+id),
+    //         headers: {},
+    //     };
         
-        Axios(config);
-        navigate('/PharmacyHome');
-    };
+    //     Axios(config);
+    //     navigate('/PharmacyHome');
+    // };
 
     return (
         <div>
@@ -111,7 +112,7 @@ function OngoingViewDetails() {
 
                         <tr>
                             <td><b>Prescription :</b></td>
-                            <td><b><a href="#">{tableData.prescription}</a></b></td>
+                            <td><b><a href={tableData.prescription}>Click here</a></b></td>
                         </tr>
 
                         <tr>
@@ -142,7 +143,7 @@ function OngoingViewDetails() {
 
 
 
-                <div className="addDelivery-div" ><button onClick={changeDeliveryStatus} className="add-delivary-btn">Set for delivery</button></div>
+                <div className="addDelivery-div" ><Popup9 test={tableData.id}/></div>
 
 
 

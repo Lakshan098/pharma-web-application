@@ -9,10 +9,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Axios from "../../api/axios";
 
-export default function Popup4() {
+export default function Popup4({ test }) {
   const [open, setOpen] = React.useState(false);
-
+  const [accountnumber, setAccountNumber] = React.useState();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -20,14 +21,28 @@ export default function Popup4() {
   const handleClose = () => {
     setOpen(false);
   };
+  const changeAccountNumber = async () => {
+    // var config = {
+    //     method: 'post',
+    //     url: ('http://localhost:3000/User/updateUsername'),
+    //     headers: {},
+    // };
+    await Axios.post('http://localhost:3000/User/updateAccountNumber', {
+      uid: test,
+      user_type: "pharmacy",
+      account_number: accountnumber
+    });
+    // navigate('/PharmacyHome');
+    window.location.reload();
+  };
 
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-      <FaPencilAlt />
+        <FaPencilAlt />
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Edit Your ID Number</DialogTitle>
+        <DialogTitle>Edit Your Account Number</DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
             To subscribe to this website, please enter your email address here. We
@@ -37,15 +52,15 @@ export default function Popup4() {
             autoFocus
             margin="dense"
             id="name"
-            label="ID Number"
             type="text"
             fullWidth
             variant="standard"
+            onChange={(e) => setAccountNumber(e.target.value)}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Update</Button>
+          <Button onClick={changeAccountNumber}>Update</Button>
         </DialogActions>
       </Dialog>
     </div>

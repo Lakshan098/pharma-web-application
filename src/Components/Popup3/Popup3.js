@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect, useRef, useState } from "react";
 import Button from '@mui/material/Button';
 import {
   FaPencilAlt,
@@ -9,17 +10,31 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Axios from "../../api/axios";
 
-
-export default function Popup3() {
+export default function Popup3({test}) {
   const [open, setOpen] = React.useState(false);
-
+  const [email,setEmail] = React.useState('')
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+  };
+  const changeEmails =async () => {
+      // var config = {
+      //     method: 'post',
+      //     url: ('http://localhost:3000/User/updateUsername'),
+      //     headers: {},
+      // };
+      await Axios.post('http://localhost:3000/User/updateEmail', {
+        uid: test,
+        user_type: "pharmacy",
+        email: email
+      });
+      // navigate('/PharmacyHome');
+      window.location.reload();
   };
 
   return (
@@ -40,13 +55,14 @@ export default function Popup3() {
             id="name"
             label="Email"
             type="email"
+            onChange={(e) => setEmail(e.target.value)}
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Update</Button>
+          <Button onClick={changeEmails}>Update</Button>
         </DialogActions>
       </Dialog>
     </div>

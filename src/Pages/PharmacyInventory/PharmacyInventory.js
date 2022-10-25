@@ -152,8 +152,8 @@ function EditDialog(props) {
              
         </DialogContent>
         <DialogActions>
-          <Button onClick={()=>handleClose(-1)}>Cancel</Button>
-          <Button onClick={()=>handleClose(1)}>Save</Button>
+          <Button variant="contained" onClick={()=>handleClose(1)}>Save</Button>
+          <Button variant="outlined" onClick={()=>handleClose(-1)}>Cancel</Button>
         </DialogActions>
     </Dialog>
   );
@@ -290,8 +290,8 @@ function AddDialog(props) {
              
         </DialogContent>
         <DialogActions>
-          <Button onClick={()=>handleClose(-1)}>Cancel</Button>
-          <Button onClick={()=>handleClose(1)}>Save</Button>
+          <Button variant="contained" onClick={()=>handleClose(1)}>Save</Button>
+          <Button variant="outlined" onClick={()=>handleClose(-1)}>Cancel</Button>
         </DialogActions>
     </Dialog>
   );
@@ -319,8 +319,8 @@ function ConfirmDialog(props) {
         <div className='dialog-text'>Are you sure to delete item : {batchNo} </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={()=>handleClose(1)}>OK</Button>
-          <Button onClick={()=>handleClose(-1)}>Cancel</Button>
+          <Button variant="contained" color="error" onClick={()=>handleClose(1)}>Delete</Button>
+          <Button variant="outlined" onClick={()=>handleClose(-1)}>Cancel</Button>
         </DialogActions>
     </Dialog>
   );
@@ -614,9 +614,9 @@ function PharmacyInventory(){
             <div className='grid-container'>
               <span className='listTitle'>Inventory</span>
               <div className="datatableTitle">
-              <button onClick={handleClickOpenAdd} className="link">
+              <Button variant="contained" color="success" onClick={handleClickOpenAdd} className="link">
                 Add new
-              </button>
+              </Button>
               </div>
 
               <Table rows={rows} columns={columns.concat(actionColumn)} />

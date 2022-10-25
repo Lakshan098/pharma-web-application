@@ -168,3 +168,19 @@
 .comp-link{
     text-decoration: none;
 }
+
+.complaint-filter{
+  height: 30px;
+  width: 180px;
+  border-radius: 5px;
+}
+
+.listButton{
+  all: unset;
+  cursor: pointer
+}
+
+.listButton:hover {
+  background-color: white;
+  color: black;
+}

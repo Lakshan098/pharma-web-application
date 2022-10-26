@@ -15,16 +15,30 @@ function Complaints() {
 
   const navigate = useNavigate();
 
-  const navigatePharmacyProfile =(id)=>{
-    navigate('/pharmacistprofile?id='+id);
+  const navigatePharmacyProfile = (id) => {
+    navigate('/pharmacistprofile?id=' + id);
     //console.log(id);
   }
 
-  const navigateDeliveryProfile =(id)=>{
-    navigate('/agentprofile?id='+id);
+  const navigateDeliveryProfile = (id) => {
+    navigate('/agentprofile?id=' + id);
     //console.log(id);
   }
-  
+
+  // const dissmissTheComplaint = (id) => {
+  //   var dissmissTheComplaint = {
+  //     method: 'get',
+  //     url: ('http://localhost:3000/admin/DissmissComplaint/' + id)
+  //   };
+  //   Axios(dissmissTheComplaint)
+  //     .then((response) => {
+  //       window.location.reload()
+  //     })
+  //     .catch(function (err) {
+  //       console.log(err);
+  //     });
+  // }
+
   const complaints = [];
   var [dataList, setDataList] = React.useState([]);
   var [data, setData] = React.useState([]);
@@ -70,24 +84,24 @@ function Complaints() {
 
   const handleChange = event => {
     setSelected(event.target.value);
-    if(event.target.value == 'phComplaints'){
-      for(var key in data){
-        if(data[key].status == 'pharmacy'){
+    if (event.target.value == 'phComplaints') {
+      for (var key in data) {
+        if (data[key].status == 'pharmacy') {
           complaints.push(data[key])
           setDataList(complaints);
         }
       }
-    }else if(event.target.value == 'delComplaints'){
-      for(var key in data){
-        if(data[key].status == 'delivery_agent'){
+    } else if (event.target.value == 'delComplaints') {
+      for (var key in data) {
+        if (data[key].status == 'delivery_agent') {
           complaints.push(data[key])
           setDataList(complaints);
         }
       }
-    }else if(event.target.value == 'allComplaints'){
-      for(var key in data){
-          complaints.push(data[key])
-          setDataList(complaints);
+    } else if (event.target.value == 'allComplaints') {
+      for (var key in data) {
+        complaints.push(data[key])
+        setDataList(complaints);
       }
     }
   };
@@ -97,18 +111,30 @@ function Complaints() {
       <div>
         <div className="complaint-det">
           <div className="p-a-logo1">
-            <button className="listButton" onClick={item.status == 'pharmacy' ? ()=>navigatePharmacyProfile(item.key) : () => navigateDeliveryProfile(item.key)}>
+            <button className="listButton" onClick={item.status == 'pharmacy' ? () => navigatePharmacyProfile(item.key) : () => navigateDeliveryProfile(item.key)}>
               <div>
                 <h5>{item.accused}</h5>
               </div>
               <div className="cmp-det">
                 <h6>{item.text}</h6>
               </div>
-              </button>
+            </button>
           </div>
-      
-          <button className="view-complaint" onClick={item.status == 'pharmacy' ? ()=>navigatePharmacyProfile(item.key) : () => navigateDeliveryProfile(item.key)}>View Complaint</button>
-          <button className="dismiss-complaint">Dismiss</button>
+
+          <button className="view-complaint" onClick={item.status == 'pharmacy' ? () => navigatePharmacyProfile(item.key) : () => navigateDeliveryProfile(item.key)}>View Complaint</button>
+          <button className="dismiss-complaint" onClick={() => {
+            var dissmissTheComplaint = {
+              method: 'get',
+              url: ('http://localhost:3000/admin/DissmissComplaint/' + item.key)
+            };
+            Axios(dissmissTheComplaint)
+              .then((response) => {
+                window.location.reload()
+              })
+              .catch(function (err) {
+                console.log(err);
+              });
+          }}>Dismiss</button>
         </div>
         <hr
           style={{

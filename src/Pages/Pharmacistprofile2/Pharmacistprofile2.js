@@ -142,7 +142,9 @@ function Pharmacistprofile2() {
                       address: object.address,
                       account_number: object.account_number,
                       uid:object.uid,
-                      rating: object.rating
+                      rating: object.rating,
+                      open_time: object.open_time,
+                      close_time: object.close_time
                   });
 
 
@@ -266,7 +268,7 @@ function Pharmacistprofile2() {
                       <h5>Open time</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>{tableData.account_number}</h5>
+                      <h5>{tableData.open_time}</h5>
                     </div>
                     <div className="pharmacy-detail-ico">
                       <Popup10 test={tableData.uid}/>
@@ -279,7 +281,7 @@ function Pharmacistprofile2() {
                       <h5>Close time</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>{tableData.account_number}</h5>
+                      <h5>{tableData.close_time}</h5>
                     </div>
                     <div className="pharmacy-detail-ico">
                       <Popup11 test={tableData.uid}/>

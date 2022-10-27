@@ -14,15 +14,19 @@
 .complaints-head-bar2{
     /* display: flex; */
     width: 75%;
-    height: 28rem;
+    height: 38rem;
     margin-left: 12.5%;
     margin-left: 12.5;
     box-shadow: 2px 2px 2px 2px #a19c9c;
     border-radius: 20px;
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     padding-top: 5px;
     padding-left: 10px;
+}
+
+hr{
+  margin-left: 30px;
 }
 
 .complaints-heading{
@@ -83,54 +87,136 @@
     width: 55%;
     text-align: left;
     padding-top: 8px;
+    padding-left: 40px;
 }
 .p-a-logo2 {
     width: 20%;
     padding-top: 5px;
+    margin-left: 20px;
 }
 .cmp-det{
     padding-top: 5px;
 }
-.dropdown {
+
+
+
+.dropdown1 {
     position: relative;
     display: inline-block;
-  }
-  .dropbtn {
-    background-color: #1789AD;
-    border-radius: 10px;
-    width: 130px;
-    height: 25px;
+}
+
+  .dropbtn2 {
     color: white;
-    padding: 4px;
+    /* padding: 16px; */
     font-size: 16px;
     border: none;
+    cursor: pointer;
+    border-radius:10px;
+    width: 150px;
+    height: 25px;
+    background-color: #091f48;
+    color:white; 
+    text-align: center;
   }
 
   .dropbtn1 {
-    background-color: #1789AD;
-    border-radius: 10px;
-    align-items: right;
-    width: 130px;
-    height: 25px;
     color: white;
-    padding: 4px;
+    /* padding: 16px; */
     font-size: 16px;
     border: none;
+    cursor: pointer;
+    margin-left: 4.5rem;
+    border-radius:10px;
+    width: 150px;
+    height: 25px;
+    background-color: #091f48;
+    color:white;
+    
+    text-align: center;
   }
-  .dropdown-content {
+
+  .dropbtn1:hover, .dropbtn1:focus {
+    background-color: #2980B9;
+  }
+
+  .dropbtn2:hover, .dropbtn2:focus {
+    background-color: #2980B9;
+  }
+
+  .dropdown-content1 {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
-    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    border-radius:10px;
+    width:200px;
   }
-.dropdown-content a:hover {background-color: #ddd;}
 
-.dropdown:hover .dropdown-content {display: block;}
+  .dropdown-content1 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
 
-.dropdown:hover .dropbtn {background-color: #92b6d8;}
+.dropdown-content1 a:hover {background-color: #ddd;}
+
+.show {display:block;}
+
+.dropdown1:hover .dropdown-content1 {display: block;}
+
+.dropdown1:hover .dropbtn1 {background-color: #92b6d8;}
+
+.dropdown1:hover .dropbtn2 {background-color: #92b6d8;}
 
 .comp-link{
     text-decoration: none;
+}
+
+.complaint-filter{
+  height: 30px;
+  width: 180px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+  background-color: #2980B9;
+  border: none;
+}
+
+.listButton{
+  all: unset;
+  cursor: pointer
+}
+
+.listButton:hover {
+  background-color: white;
+  color: black;
+}
+
+.view-complaint{
+  margin-right: 30px;
+  width: 110px;
+  height: 35px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background-color: #92b6d8;
+}
+
+.dismiss-complaint{
+  margin-left: 10px;
+  width: 110px;
+  height: 35px;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: #92b6d8;
+  
+}
+
+.dismiss-complaint :hover{
+  cursor: pointer;
 }

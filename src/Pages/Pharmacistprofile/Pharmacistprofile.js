@@ -7,6 +7,11 @@ import logo from "../../Assets/Brand/centralphar.jpg";
 import ProgressBar from "@ramonak/react-progress-bar";
 import "./Pharmacistprofile.css";
 import "../../index.css";
+import { useState, useEffect } from 'react';
+import Axios from "../../api/axios";
+import { useNavigate } from "react-router-dom";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import {
   FaUserCircle,
   FaMailBulk,
@@ -15,72 +20,184 @@ import {
   FaUserAlt,
 } from "react-icons/fa";
 import {
-    ResponsiveContainer,
-    ComposedChart,
-    Line,
-    Area,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    PieChart,
-    Pie,
-  } from "recharts";
+  ResponsiveContainer,
+  ComposedChart,
+  Line,
+  Area,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  PieChart,
+  Pie,
+} from "recharts";
 
-  const data = [
-    {
-      name: "Jan",
-      Orders: 26,
-    },
-    {
-      name: "Feb",
-      Orders: 34,
-    },
-    {
-      name: "Mar",
-      Orders: 41,
-    },
-    {
-      name: "Apr",
-      Orders: 48,
-    },
-    {
-      name: "May",
-      Orders: 67,
-    },
-    {
-      name: "Jun",
-      Orders: 42,
-    },
-    {
-      name: "Jul",
-      Orders: 51,
-    },
-    {
-      name: "Aug",
-      Orders: 37,
-    },
-    {
-      name: "Sep",
-      Orders: 43,
-    },
-    {
-      name: "Oct",
-      Orders: 28,
-    },
-    {
-      name: "Nov",
-      Orders: 40,
-    },
-    {
-      name: "Dec",
-      Orders: 66,
-    },
-  ];
+const data = [
+  {
+    name: "Jan",
+    Orders: 26,
+  },
+  {
+    name: "Feb",
+    Orders: 34,
+  },
+  {
+    name: "Mar",
+    Orders: 41,
+  },
+  {
+    name: "Apr",
+    Orders: 48,
+  },
+  {
+    name: "May",
+    Orders: 67,
+  },
+  {
+    name: "Jun",
+    Orders: 42,
+  },
+  {
+    name: "Jul",
+    Orders: 51,
+  },
+  {
+    name: "Aug",
+    Orders: 37,
+  },
+  {
+    name: "Sep",
+    Orders: 43,
+  },
+  {
+    name: "Oct",
+    Orders: 28,
+  },
+  {
+    name: "Nov",
+    Orders: 40,
+  },
+  {
+    name: "Dec",
+    Orders: 66,
+  },
+];
 
 function Pharmacistprofile() {
+
+  const navigate = useNavigate();
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  const complaints = [];
+  var [dataList, setDataList] = React.useState([]);
+  var [data, setData] = React.useState([]);
+
+  var config = {
+    method: 'get',
+    url: ('http://localhost:3000/admin/GetComplaintDetails/' + id),
+    headers: {},
+  };
+
+  useEffect(() => {
+    Axios(config)
+      .then((response) => {
+        setData(response.data[0])
+        response.data[0].map((object) => {
+          complaints.push(
+            {
+              key: id,
+              pName: object.pName,
+              contact_number: object.contact_number,
+              address: object.address,
+              email: object.email,
+              rating: object.rating,
+              reg_No: object.reg_No,
+              accused_person: object.accused_person,
+              cusName: object.cusName,
+              complaint: object.complaint,
+              time_stamp: object.time_stamp,
+              cusEmail: object.cusEmail,
+              panelty: object.panelty
+            }
+          )
+        })
+        //console.log(complaints)
+        setDataList(complaints);
+        setData(complaints);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }, [])
+
+  const alertPharmacy = () => {
+    const aID = data.accused_person
+
+    confirmAlert({
+      title: 'Confirm to submit',
+      message: 'Are you sure to alert the user?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            var updatePanelty = {
+              method: 'post',
+              url: ('http://localhost:3000/admin/UpdatePanelty/' + aID)
+            };
+            Axios(updatePanelty)
+              .then((response) => {
+                setData(response.data)
+              })
+              .catch(function (err) {
+                console.log(err);
+              });
+            window.location.reload();
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => { }
+        }
+      ]
+    });
+  }
+
+  const removePharmacy = () => {
+    const aID = data.accused_person
+
+    confirmAlert({
+      title: 'Confirm to submit',
+      message: 'Are you sure to do this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            var deleteUser = {
+              method: 'delete',
+              url: (`http://localhost:3000/admin/DeleteUser/${aID}`)
+            };
+            Axios(deleteUser)
+              .then((response) => {
+                setData(response.data)
+              })
+              .catch(function (err) {
+                console.log(err);
+              });
+            navigate('/complaints')
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => { }
+        }
+      ]
+    });
+  }
+
   return (
     <div>
       <Navbar />
@@ -99,9 +216,9 @@ function Pharmacistprofile() {
                   />
                 </div>
                 <div className="pharmacist-prof-name">
-                  <h1>Central Pharmacy</h1>
+                  <h1>{data.pName}</h1>
                   <h6>
-                    <Rating readonly="true" initialValue={4} size="25" />
+                    <Rating readonly="true" initialValue={data.rating} size="25" />
                   </h6>
                 </div>
               </div>
@@ -124,8 +241,9 @@ function Pharmacistprofile() {
                       <h5>Name</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>Central Pharmacy</h5>
+                      <h5>{data.pName}</h5>
                     </div>
+
                   </div>
                   <div className="pharmacist-detail-one">
                     <div className="pharmacist-detail-obj">
@@ -133,8 +251,9 @@ function Pharmacistprofile() {
                       <h5>ID Number</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>000127</h5>
+                      <h5>{data.accused_person}</h5>
                     </div>
+
                   </div>
                   <div className="pharmacist-detail-one">
                     <div className="pharmacist-detail-obj">
@@ -142,8 +261,9 @@ function Pharmacistprofile() {
                       <h5>Registration Number</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>80270017</h5>
+                      <h5>{data.reg_No}</h5>
                     </div>
+
                   </div>
                   <div className="pharmacist-detail-one">
                     <div className="pharmacist-detail-obj">
@@ -151,17 +271,19 @@ function Pharmacistprofile() {
                       <h5>Address</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>No 215/3, Habarakada, Homagama</h5>
+                      <h5>{data.address}</h5>
                     </div>
+
                   </div>
                   <div className="pharmacist-detail-one">
                     <div className="pharmacist-detail-obj">
-                      <FaMailBulk />
+                      <FaPhoneAlt />
                       <h5>Contact Number</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>+94 41 222 4432</h5>
+                      <h5>{data.contact_number}</h5>
                     </div>
+
                   </div>
                   <div className="pharmacist-detail-one">
                     <div className="pharmacist-detail-obj">
@@ -169,8 +291,9 @@ function Pharmacistprofile() {
                       <h5>Email</h5>
                     </div>
                     <div className="pharmacist-detail-des">
-                      <h5>centralpharma@gmail.com</h5>
+                      <h5>{data.email}</h5>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -195,38 +318,38 @@ function Pharmacistprofile() {
                   </div>
 
                   <div style={{ width: "450px", height: 300 }}>
-              <ResponsiveContainer>
-                <ComposedChart
-                  width={400}
-                  height={400}
-                  data={data}
-                  margin={{
-                    top: 30,
-                    right: 40,
-                    bottom: 10,
-                    left: 20,
-                  }}
-                >
-                  <CartesianGrid stroke="#DCDCDC" strokeDasharray="5 5" />
-                  <XAxis dataKey="name" scale="Month" />
-                  <YAxis
-                    label={{
-                      value: "No.Of Orders",
-                      angle: -90,
-                      position: "insideBottomLeft",
-                    }}
-                  />
-                  <Tooltip />
-                  <Legend />
-                  <Area
-                    type="monotone"
-                    dataKey="Orders"
-                    fill="#ffffff"
-                    stroke="#0a5279"
-                  />
-                </ComposedChart>
-              </ResponsiveContainer>
-            </div>
+                    <ResponsiveContainer>
+                      <ComposedChart
+                        width={400}
+                        height={400}
+                        data={data}
+                        margin={{
+                          top: 30,
+                          right: 40,
+                          bottom: 10,
+                          left: 20,
+                        }}
+                      >
+                        <CartesianGrid stroke="#DCDCDC" strokeDasharray="5 5" />
+                        <XAxis dataKey="name" scale="Month" />
+                        <YAxis
+                          label={{
+                            value: "No.Of Orders",
+                            angle: -90,
+                            position: "insideBottomLeft",
+                          }}
+                        />
+                        <Tooltip />
+                        <Legend />
+                        <Area
+                          type="monotone"
+                          dataKey="Orders"
+                          fill="#ffffff"
+                          stroke="#0a5279"
+                        />
+                      </ComposedChart>
+                    </ResponsiveContainer>
+                  </div>
 
                 </div>
 
@@ -236,80 +359,50 @@ function Pharmacistprofile() {
                   </div>
                   <div>
                     <div className="pharmacist-complaint">
-                        <div class="vl"></div>
-                        <div>
-                            <div className="pharmacist-complaint-by">
-                                <div className="pharmacist-icon-prof">
-                                <FaUserAlt
-                                    size={30}
-                                />
-                                </div>
-                                <div>
-                                    <p className="complainant-name">A.W.S.Rashmika</p>
-                                    <p className="complainant-name">sandunirashmika727@gmail.com</p>
-                                </div>
-                            </div>
-                            <div className="complaint-desc">
-                                <h4>Delivery is too late. Not satisfied.</h4>
-                            </div>
-                            <div className="complaint-date-time">
-                                <div className="complaint-date">
-                                    2022/07/18
-                                </div>
-                                <div className="complaint-time">
-                                    05:12 pm
-                                </div>
-                            </div>
+                      <div class="vl"></div>
+                      <div>
+                        <div className="pharmacist-complaint-by">
+                          <div className="pharmacist-icon-prof">
+                            <FaUserAlt
+                              size={30}
+                            />
+                          </div>
+                          <div>
+                            <p className="complainant-name">{data.cusName}</p>
+                            <p className="complainant-name">{data.cusEmail}</p>
+                          </div>
                         </div>
-                    </div>
-                    <div className="pharmacist-complaint">
-                        <div class="vl"></div>
-                        <div>
-                            <div className="pharmacist-complaint-by">
-                                <div className="pharmacist-icon-prof">
-                                <FaUserAlt
-                                    size={30}
-                                />
-                                </div>
-                                <div>
-                                    <p className="complainant-name">A.W.S.Rashmika</p>
-                                    <p className="complainant-name">sandunirashmika727@gmail.com</p>
-                                </div>
-                            </div>
-                            <div className="complaint-desc">
-                                <h4>Delivery is too late. Not satisfied.</h4>
-                            </div>
-                            <div className="complaint-date-time">
-                                <div className="complaint-date">
-                                    2022/07/18
-                                </div>
-                                <div className="complaint-time">
-                                    05:12 pm
-                                </div>
-                            </div>
+                        <div className="complaint-desc">
+                          <h4>{data.complaint}</h4>
                         </div>
+                        <div className="complaint-date-time">
+                          <div className="complaint-date">
+                            {data.time_stamp}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                
+
               </div>
               <div className="panalty-marks">
-                    <div className="panelty-progress1">
-                        <h4>Panelty Marks</h4>
-                    </div>
-                    <div className="panelty-progress2">
-                        <ProgressBar completed={36} maxCompleted={100} bgColor="#E31723" baseBgColor="#E57676" height="25px"/>
-                    </div>
-                    <div className="panelty-progress3">
-                        <Button size="small" variant="contained">
-                        Alert
-                        </Button>
-                    </div>
-                    <div className="panelty-progress3">
-                        <Button size="small" variant="contained">
-                        Remove
-                        </Button>
-                    </div>
+                <div className="panelty-progress1">
+                  <h4>Panelty Marks</h4>
+                </div>
+                <div className="panelty-progress2">
+                  <ProgressBar completed={data.panelty} maxCompleted={100} bgColor="#E31723" baseBgColor="#E57676" height="25px" />
+                </div>
+                <div className="panelty-progress3">
+                  <Button size="small" variant="contained" onClick={alertPharmacy}>
+                    Alert
+                  </Button>
+                </div>
+                <div className="panelty-progress3">
+                  <Button size="small" variant="contained" onClick={removePharmacy}>
+                    Remove
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

@@ -1,17 +1,13 @@
 import "./Widget.css";
 import React from "react";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import HistoryIcon from '@mui/icons-material/History';
+import TaskIcon from '@mui/icons-material/Task';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
-const Widget = ({ type }) => {
+const Widget = ({ type, amount }) => {
   let data;
-
-  //temporary
-  const amount = 100;
-  const diff = 20;
 
   switch (type) {
     case "pending":
@@ -20,7 +16,22 @@ const Widget = ({ type }) => {
         isMoney: false,
         link: "See all users",
         icon: (
-          <PersonOutlinedIcon
+          <ListAltIcon
+            className="icon"
+            style={{
+              color: "green",
+            }}
+          />
+        ),
+      };
+      break;
+    case "ongoing":
+      data = {
+        title: "Ongoing",
+        isMoney: false,
+        link: "See all users",
+        icon: (
+          <HistoryIcon
             className="icon"
             style={{
               color: "crimson",
@@ -29,13 +40,13 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "order":
+    case "delivery":
       data = {
-        title: "ORDERS",
+        title: "Delivery",
         isMoney: false,
         link: "View all orders",
         icon: (
-          <ShoppingCartOutlinedIcon
+          <LocalShippingIcon
             className="icon"
             style={{
               color: "goldenrod",
@@ -44,13 +55,13 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "earning":
+    case "completed":
       data = {
-        title: "EARNINGS",
+        title: "Completed",
         isMoney: true,
         link: "View net earnings",
         icon: (
-          <MonetizationOnOutlinedIcon
+          <TaskIcon
             className="icon"
           />
         ),
@@ -58,11 +69,11 @@ const Widget = ({ type }) => {
       break;
     case "profit":
       data = {
-        title: "PROFIT",
+        title: "Income",
         isMoney: true,
         link: "See details",
         icon: (
-          <AccountBalanceWalletOutlinedIcon
+          <MonetizationOnOutlinedIcon
             className="icon"
             style={{
               color: "purple",

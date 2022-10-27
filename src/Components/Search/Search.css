@@ -1,0 +1,30 @@
+.form-control-mr-sm-2{
+    height:35px;
+    width: 45%;
+    border-radius: 5px;
+    border: 1px solid #9AE4E9 ;
+}
+
+.form-control-mr-sm-2:visited{
+    border: 1px solid red;
+}
+
+.form-inline{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.btn-outline-success-my-2{
+    width: 100px;
+    height: 35px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #9AE4E9;
+    cursor: pointer;
+}
+
+.btn-outline-success-my-2:hover{
+    background-color: #1789AD;
+    /* border: 2px solid black; */
+}

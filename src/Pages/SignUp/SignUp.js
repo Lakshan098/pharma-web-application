@@ -76,18 +76,18 @@ export default class SignUp extends React.Component {
         this.setState({ errors, [name]: value });
     }
 
-    handleSubmit = (event) => {
-        const navigate = useNavigate();
-        event.preventDefault();
-        if (validateForm(this.state.errors)) {
-            console.info('PharmacyHome');
-            // navigate('/PharmacyHome');
-            // document.getElementById("login-form").submit();
-        } else {
-            navigate('Inavalid page');
-            // document.getElementById("login-form").submit();
-        }
-    }
+    // handleSubmit = (event) => {
+    //     const navigate = useNavigate();
+    //     event.preventDefault();
+    //     if (validateForm(this.state.errors)) {
+    //         console.info('PharmacyHome');
+    //         // navigate('/PharmacyHome');
+    //         // document.getElementById("login-form").submit();
+    //     } else {
+    //         navigate('Inavalid page');
+    //         // document.getElementById("login-form").submit();
+    //     }
+    // }
 
     render() {
         const { errors } = this.state;
@@ -104,9 +104,9 @@ export default class SignUp extends React.Component {
                         <img src={loginlogo} className='signup-image-signup' width={500} height={300} />
                     </div>
                     <div className='form-wrapper'>
-                        <h2><b>Sign Up</b></h2>
+                        <h2 className='Sign-Up-topic'><b>Sign Up</b></h2>
 
-                        <form id="login-form" action="pharmacyHome" method="GET" className="p-sinup-form" onSubmit={this.handleSubmit} noValidate>
+                        <form id="login-form" action="pharmacyHome"  className="p-sinup-form"  noValidate>
 
                         <div className='login-email'>
                                 <label  className="login-lable" htmlFor="email">Pharmacy Name:</label>

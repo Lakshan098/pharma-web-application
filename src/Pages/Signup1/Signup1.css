@@ -1,0 +1,140 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+.signup-container{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://i.postimg.cc/1zbg59pc/login-photo2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.signup-container2 {
+    display: flex;
+    box-shadow: 2px 2px 2px 2px #a19c9c;
+    border-radius: 20px;
+    width: 80%;
+    height:100%;
+    margin-left: 150px;
+    background-color: white;
+}
+
+.xyz{
+    display: flex;
+    flex-direction: row;
+}
+.signup-input {
+    width: 50%;
+    height: 558px;
+    background-color: white;
+    padding-top: 50px;
+    border: none;
+}
+
+
+
+.logo-signup {
+    width: 100%;
+
+    
+    
+}
+
+.logo-signup1 {
+    width: 262.5px;
+
+}
+
+
+.signup-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.signup-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #091f48;
+}
+
+.signup-form-input {
+
+    padding-left: 90px;      
+}
+
+.signup-input-form{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.signup-username-password1{
+    height: 30px;
+    margin-bottom: 20px;
+    border-color: grey;
+    border-radius: 10px;
+}
+.signup-username-password2{
+    height: 30px;
+    border-color: grey;
+    border-radius: 10px;
+}
+
+.signup-forget-pw-link{
+    text-decoration: none;
+    color: #091f48;
+}
+.signup-forget-pw-link1{
+    text-decoration: none;
+    color: #091f48;
+}
+
+.signup-btn {
+    padding-top: 25px;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.signup-btn-btn {
+    width: 100%;
+    color: white;
+    background-color: aqua;
+}
+.to-login {
+    width: 70%;
+    padding-top: 5px;
+    display: flex;
+}
+
+.to-login1{
+    width: 83%;
+    text-align: right;
+    color: #091f48;
+    font-size: 22px;
+}
+.to-login2{
+    width: 17%;
+    text-align: center;
+    font-size: 22px;
+}
+
+.signup-form-label{
+    font-weight: bold;
+}
+
+.form-error-message{
+    color: red;
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}

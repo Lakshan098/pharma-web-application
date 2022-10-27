@@ -2,7 +2,12 @@ import * as React from "react";
 import Navbar from "../../Components/Navbar/Admin/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import Button from "@mui/material/Button";
-import logo from "../../Assets/Brand/sanduni.jpg";
+import Popup from "../../Components/Popup/Popup";
+import Popup1 from "../../Components/Popup1/Popup1";
+import Popup2 from "../../Components/Popup2/Popup2";
+import Popup3 from "../../Components/Popup3/Popup3";
+import Axios from "../../api/axios";
+import { useEffect ,useState} from "react";
 import "./Adminprofile.css";
 import "../../index.css";
 import {
@@ -13,6 +18,49 @@ import {
 } from "react-icons/fa";
 
 function Adminprofile() {
+
+  const [adminDetails,setAdminDetails] = useState([]);
+
+  var id = localStorage.getItem('userId');
+  console.log(id);
+  var data = JSON.stringify({
+    "uid": id
+  });
+
+ 
+
+  var config = {
+    method: 'post',
+    url: 'http://localhost:3000/admin/GetAdminDetails',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  useEffect(async ()=>{
+   
+
+    Axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+  response.data.map((object) =>{
+        setAdminDetails(
+          {
+            username: object.username,
+            contnum: object.contact_number,
+            email: object.email
+          }
+      )
+      })
+})
+.catch(function (error) {
+  console.log(error);
+});
+  },[])
+
+console.log(adminDetails);
+
   return (
     <div>
       <Navbar />
@@ -21,17 +69,8 @@ function Adminprofile() {
           <div class="admin-home-content">
             <div className="admin-card">
               <div className="admin-name">
-                <div className="prof-pic">
-                  <img
-                    src={logo}
-                    alt="Logo"
-                    className="logo2"
-                    width={140}
-                    height={140}
-                  />
-                </div>
                 <div className="prof-name">
-                  <h1>A.W.S.Rashmika</h1>
+                  <h1>{adminDetails.username}</h1>
                   <h6>Admin User</h6>
                 </div>
               </div>
@@ -51,25 +90,13 @@ function Adminprofile() {
                   <div className="detail-one">
                     <div className="detail-obj">
                       <FaUserCircle />
-                      <h5>Name</h5>
-                    </div>
-                    <div className="detail-des">
-                      <h5>A.W.S.Rashmika</h5>
-                    </div>
-                    <div className="detail-ico">
-                      <button><FaPencilAlt /></button>
-                    </div>
-                  </div>
-                  <div className="detail-one">
-                    <div className="detail-obj">
-                      <FaUserCircle />
                       <h5>Username</h5>
                     </div>
                     <div className="detail-des">
-                      <h5>Sanduni</h5>
+                      <h5>{adminDetails.username}</h5>
                     </div>
                     <div className="detail-ico">
-                      <FaPencilAlt />        
+                      <Popup1/>       
                     </div>
                   </div>
                   <div className="detail-one">
@@ -78,10 +105,10 @@ function Adminprofile() {
                       <h5>Contact Number</h5>
                     </div>
                     <div className="detail-des">
-                      <h5>+94 70 203 7127</h5>
+                      <h5>{adminDetails.contnum}</h5>
                     </div>
                     <div className="detail-ico">
-                              <FaPencilAlt />  
+                      <Popup2/>  
                     </div>
                   </div>
                   <div className="detail-one">
@@ -90,17 +117,13 @@ function Adminprofile() {
                       <h5>Email</h5>
                     </div>
                     <div className="detail-des">
-                      <h5>sandunirashmika727@gmail.com</h5>
+                      <h5>{adminDetails.email}</h5>
                     </div>
                     <div className="detail-ico">
-                              <FaPencilAlt />  
+                      <Popup3/> 
                     </div>
                   </div>
-                  <div className="btn-detail">
-                    <Button size="small" variant="contained">
-                      Update
-                    </Button>
-                  </div>
+                  
                 </div>
               </div>
               <div className="admin-password">

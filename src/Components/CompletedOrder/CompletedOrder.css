@@ -25,10 +25,11 @@
     max-height: 30px;
     border-radius: 20px;
     text-align: center;
-    margin-left: 60px;
+    margin-left: 55px;
     margin-top: 20px;
     color: #1789AD;
     font-size: 16px;
+    padding:5px;
   }
 
   .orderId{

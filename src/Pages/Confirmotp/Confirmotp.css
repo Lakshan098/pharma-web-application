@@ -1,0 +1,58 @@
+.forgetpassword-div{
+    display:flex;
+    height: 652px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    text-align: center;
+}
+
+.forgot-input{
+    
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #d6d1d5;
+    background-color: #e7e7e7;
+    height: 1rem;
+    width: 90%;
+     
+}
+
+.forgot-lable{
+    margin-bottom: 0.5em;
+    color: #444;
+    font-weight: lighter;
+    margin-right: 9rem;
+   
+}
+
+.forgot-email{
+    padding-top: 10px;
+}
+.forgot-error{
+    color:red;
+    font-size: 0.630em;
+    font-weight: bold;
+    display: relative; 
+  }
+  
+  .p-reset-btn{
+    border-radius:5px;
+    width: 90px;
+    color:#fff;
+    font-size: 16px;
+    padding:5px;
+  }
+
+  .reset-pswd{
+    padding-top: 15px;
+  }
+
+  .brandname-div{
+   padding-bottom: 25px;
+  }
+
+  .brandname-div2{
+    padding-bottom: 5px;
+  }

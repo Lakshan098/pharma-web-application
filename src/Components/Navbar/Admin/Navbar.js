@@ -3,9 +3,29 @@ import "../../../index.css";
 import logo from "../../../Assets/Brand/Logo1.png";
 import { FaUserCircle, FaAngleDown } from "react-icons/fa";
 import Dropdown from 'react-bootstrap/Dropdown';
-import './Navbar.css';
-import React from 'react'
-import '../../../index.css';
+// import './Navbar.css';
+import React from 'react';
+import BasicMenu from "../../BasicMenu/BasicMenu";
+// import '../../../index.css';
+// import logo from '../../../Assets/Brand/Logo1.png';
+// import { FaUserCircle, FaAngleDown } from 'react-icons/fa';
+
+function myFunction() {
+  document.getElementById("myDropdown-admin").classList.toggle("show");
+}
+
+window.onclick = function (event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
 
 function Navbar() {
   return (
@@ -28,12 +48,12 @@ function Navbar() {
 
       <div className="profile-container">
         <a className="lable-tag" href="adminprofile">
-          A.W.S.Rashmika
+           {localStorage.getItem('username')}
           <br />
           Admin User
         </a>
         <FaUserCircle className="user" />
-        <FaAngleDown className="downarrow" />
+        <BasicMenu/>
         
       </div>
     </div>

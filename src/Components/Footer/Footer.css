@@ -1,5 +1,5 @@
 .footer-container{
-    /* position: fixed; */
+    position: fixed;
     height: 5vh;
     left: 0;
     bottom: 0;
@@ -10,4 +10,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }

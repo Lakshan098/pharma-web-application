@@ -67,18 +67,18 @@ export default class Login extends React.Component {
         this.setState({ errors, [name]: value });
     }
 
-    handleSubmit = (event) => {
-        const navigate = useNavigate();
-        event.preventDefault();
-        if (validateForm(this.state.errors)) {
-            console.info('PharmacyHome');
-            // navigate('/PharmacyHome');
-            // document.getElementById("login-form").submit();
-        } else {
-            navigate('Inavalid page');
-            // document.getElementById("login-form").submit();
-        }
-    }
+    // handleSubmit = (event) => {
+    //     const navigate = useNavigate();
+    //     event.preventDefault();
+    //     if (validateForm(this.state.errors)) {
+    //         console.info('PharmacyHome');
+    //         // navigate('/PharmacyHome');
+    //         // document.getElementById("login-form").submit();
+    //     } else {
+    //         navigate('Inavalid page');
+    //         // document.getElementById("login-form").submit();
+    //     }
+    // }
 
     render() {
         const { errors } = this.state;
@@ -97,7 +97,7 @@ export default class Login extends React.Component {
                     <div className='form-wrapper'>
                         <h2><b>Login</b></h2>
 
-                        <form id="login-form" action="pharmacyHome" method="GET" className="p-login-form" onSubmit={this.handleSubmit} noValidate>
+                        <form id="login-form" action="/pharmacyHome"  className="p-login-form">
 
                             <div className='login-email'>
                                 <label  className="login-lable" htmlFor="email">Email</label>

@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0%;
     padding: 0%;
 }
-.p-container{
+
+.p-container {
     height: 10vh;
     top: 0;
     left: 0;
@@ -11,41 +12,87 @@
     display: flex;
     justify-content: space-between;
 }
-.logo{
+
+.logo {
     padding-left: 50px;
 }
 
-.bar-link{
+.bar-link {
     color: #fff;
     text-decoration: none;
     padding-top: 1.5%;
 }
 
-.user{
+.user {
     color: #fff;
     font-size: 40px;
     margin-left: 10px;
 }
 
-.downarrow{
+.downarrow {
     color: #fff;
     font-size: 30px;
     padding-top: 5px;
 
 }
 
-.links-container{
+.links-container {
     display: flex;
     justify-content: space-between;
-    
+
 }
 
-.profile-container{
+.profile-container {
     padding-right: 50px;
     padding-top: 1%;
     display: flex;
 }
 
-.lable-tag{
-    color:#fff
+.lable-tag {
+    color: #fff
 }
+
+
+
+.dropbtn-pnav {
+    background:#368297;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  
+  .dropdown-div {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content-pnav {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 80px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-right: 160rem;
+    border-radius: 10px;
+    
+  }
+  
+  .dropdown-content-pnav a {
+    color: black;
+    padding: 12px 6px;
+    text-decoration: none;
+    display: block;
+    font-size:12px
+  }
+
+  .dropdown-div a:hover {background-color: #ddd;}
+
+  /* .PharmacyNavbar-Container a:hover {background-color: rgb(151, 231, 144);} */
+  
+  
+  
+  .show {display: block;}

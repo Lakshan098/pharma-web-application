@@ -1,10 +1,11 @@
 import "./Dashboard.css";
 import ProgressBar from "@ramonak/react-progress-bar";
-import React, { useState } from 'react';
-import { Rating } from 'react-simple-star-rating';
-import logo from '../../Assets/Brand/wellness.png';
+import React, { useState } from "react";
+import { Rating } from "react-simple-star-rating";
+import logo from "../../Assets/Brand/wellness.png";
 import { FaHospitalAlt, FaBiking } from "react-icons/fa";
-
+import Axios from "../../api/axios";
+import { useEffect } from "react";
 import {
   ResponsiveContainer,
   ComposedChart,
@@ -19,14 +20,14 @@ import {
   PieChart,
   Pie,
 } from "recharts";
+import { CommentsDisabled } from "@mui/icons-material";
 
 const data2 = [
-  { name: "Ongoing", value: 40, fill: "#0a5279"},
+  { name: "Ongoing", value: 40, fill: "#0a5279" },
   { name: "New", value: 23, fill: "#0000FF" },
   { name: "Finished", value: 42, fill: "#0047AB" },
-  { name: "Cancelled", value: 18, fill: "#ffcccb" },
+  { name: "Cancelled", value: 18, fill: "red" },
 ];
-
 
 const data = [
   {
@@ -80,6 +81,282 @@ const data = [
 ];
 
 function Dashboard() {
+
+  var pie_data=[{
+    name:"delivering",
+    count:0,
+    // fill: "#0a5279"
+  },
+  {
+    name:"ongoing",
+    count:0,
+    
+    // fill: "red"
+  },
+  {
+    name:"completed",
+    count:0,
+    // fill: "#0047AB"
+  },
+  {
+    name:"delivery",
+    count:0,
+    // fill: "#0000FF"
+
+  },
+  {
+    name:"pending",
+    count:0
+    
+  }
+]
+  var monthly_orders = [{
+    name: "January",
+    Orders: 0,
+  },
+  {
+    name: "February",
+    Orders: 0,
+  },
+  {
+    name: "March",
+    Orders: 0,
+  },
+  {
+    name: "April",
+    Orders: 0,
+  },
+  {
+    name: "May",
+    Orders: 0,
+  },
+  {
+    name: "June",
+    Orders: 0,
+  },
+  {
+    name: "July",
+    Orders: 0,
+  },
+  {
+    name: "Augest",
+    Orders: 0,
+  },
+  {
+    name: "September",
+    Orders: 0,
+  },
+  {
+    name: "October",
+    Orders: 0,
+  },
+  {
+    name: "November",
+    Orders: 0,
+  },
+  {
+    name: "December",
+    Orders: 0,
+  }
+];
+  const [monthlyOrders, setMonthlyOrders] = useState([]);
+
+  const best_agents = [];
+  const [bestAgents, setBestAgents] = useState([]);
+
+  const best_pharmacies = [];
+  const [bestPharmacies, setBestPharmacies] = useState([]);
+
+  var [dataList, setDataList] = React.useState([]);
+  var customerSum;
+  var pharmacySum;
+  var agentSum;
+  const [customercount, setCustomerCount] = useState();
+  const [pharmacyCount, setPharmacyCount] = useState();
+  const [agentCount, setAgentCount] = useState();
+  const [pieData,setPieData]=useState([]);
+
+  var configCustomerCount = {
+    method: "post",
+
+    url: "http://localhost:3000/Admin/GetCustomerCount",
+
+    headers: {},
+  };
+
+  var configPharmacyCount = {
+    method: "post",
+
+    url: "http://localhost:3000/admin/GetPharmacyCount",
+
+    headers: {},
+  };
+
+  var configAgentCount = {
+    method: "post",
+
+    url: "http://localhost:3000/admin/GetDeliveryAgentCount",
+
+    headers: {},
+  };
+
+  var configBestAgent = {
+    method: "post",
+
+    url: "http://localhost:3000/Admin/GetBestAgents",
+
+    headers: {},
+  };
+
+  var configBestPharmacy = {
+    method: "post",
+
+    url: "http://localhost:3000/admin/GetBestPharmacies",
+
+    headers: {},
+  };
+
+  var configGraphData = {
+    method: "post",
+
+    url: "http://localhost:3000/Admin/GetGraphData",
+
+    headers: {},
+  };
+
+  var configPieChart = {
+    method: 'post',
+    url: 'http://localhost:3000/admin/GetMonthlyOrderCount',
+    headers: { }
+  };
+  
+
+  useEffect(() => {
+    Axios(configCustomerCount).then((response) => {
+      customerSum = response.data[0].count;
+      setCustomerCount(customerSum);
+    });
+
+    Axios(configPharmacyCount).then((response) => {
+      // console.log("Pharmacies");
+      pharmacySum = response.data[0].count;
+      setPharmacyCount(pharmacySum);
+    });
+
+    Axios(configAgentCount).then((response) => {
+      // console.log("Agents");
+      agentSum = response.data[0].count;
+      setAgentCount(agentSum);
+    });
+
+    Axios(configBestAgent).then((response) => {
+      response.data.map((item) => {
+        best_agents.push({
+          name: item.username,
+          rate: item.rating,
+        });
+      });
+      setBestAgents(...[best_agents]);
+      console.log(bestAgents);
+    });
+
+    Axios(configBestPharmacy).then((response) => {
+      response.data.map((item) => {
+        best_pharmacies.push({
+          name: item.username,
+          rate: item.rating,
+          image: item.profile_pic,
+        });
+      });
+      setBestPharmacies(...[best_pharmacies]);
+      console.log(bestPharmacies);
+    });
+
+    Axios(configGraphData).then((response) => {
+      response.data.map((item) => {
+        monthly_orders.forEach((element,index) => {
+          if(element.name==item.Month){
+            monthly_orders[index].Orders=item.Count
+            // monthly_orders.push({
+            //   name: item.Month,
+            //   Orders: item.Count,
+            // });
+          }
+        });
+        
+      });
+
+      setMonthlyOrders(...[monthly_orders]);
+      console.log(monthly_orders);
+    });
+
+    Axios(configPieChart).then((response) => {
+      response.data.map((item) => {
+        pie_data.forEach((element,index) => {
+          if(element.name==item.status){
+            pie_data[index].count+=1;
+            // monthly_orders.push({
+            //   name: item.Month,
+            //   Orders: item.Count,
+            // });
+          }
+        });
+        
+      });
+
+      setPieData(...[pie_data]);
+      console.log(pieData);
+    })
+
+
+.catch(function (error) {
+  console.log(error);
+});
+
+    
+    
+  }, []);
+
+  const renderItems = bestAgents.map((object) => (
+    <div>
+      <div className="agent-name1">
+        <h5>{object.name}</h5>
+      </div>
+      <div className="p-bar">
+        <ProgressBar
+          completed={(object.rate / 5) * 100}
+          maxCompleted={100}
+          bgColor="#62c1e0"
+          baseBgColor="#d6ffff"
+        />
+      </div>
+    </div>
+  ));
+
+  const renderItems1 = bestPharmacies.map((object) => (
+    <div>
+      <div className="p-rating">
+        <div className="p-rating-co">
+          <img src={object.image} alt="Logo" className="logo" width={100} height={50} />
+        </div>
+        <div className="p-rating-co">
+          <h5>{object.name}</h5>
+        </div>
+        <div className="p-rating-co">
+          <Rating readonly="true" initialValue={object.rate} size="25" />
+        </div>
+      </div>
+      <hr
+        style={{
+          color: "black",
+          background: "black",
+          width: "82%",
+          marginLeft: "50px",
+        }}
+      />
+    </div>
+  ));
+
   return (
     <div className="dashboard">
       <section class="home-section">
@@ -90,27 +367,31 @@ function Dashboard() {
             </div>
             <div>
               <p class="value">Customers</p>
-              <p class="name">2548 Customers</p>
+              <p class="name">{customercount} Customers</p>
             </div>
           </div>
 
           <div class="two">
             <div>
-              <p class="icon"><FaHospitalAlt/></p>
+              <p class="icon">
+                <FaHospitalAlt />
+              </p>
             </div>
             <div>
               <p class="value">Pharmacies</p>
-              <p class="name">589 Pharmacies</p>
+              <p class="name">{pharmacyCount} Pharmacies</p>
             </div>
           </div>
 
           <div class="three">
             <div>
-              <p class="icon"><FaBiking/></p>
+              <p class="icon">
+                <FaBiking />
+              </p>
             </div>
             <div>
               <p class="value">Delivery Agents</p>
-              <p class="name">365 Delivery Agents</p>
+              <p class="name">{agentCount} Delivery Agents</p>
             </div>
           </div>
         </div>
@@ -126,7 +407,7 @@ function Dashboard() {
                 <ComposedChart
                   width={500}
                   height={400}
-                  data={data}
+                  data={monthlyOrders}
                   margin={{
                     top: 30,
                     right: 40,
@@ -134,7 +415,7 @@ function Dashboard() {
                     left: 20,
                   }}
                 >
-                 <CartesianGrid stroke="#DCDCDC" strokeDasharray="5 5"/>
+                  <CartesianGrid stroke="#DCDCDC" strokeDasharray="5 5" />
                   <XAxis dataKey="name" scale="Month" />
                   <YAxis />
                   <Tooltip />
@@ -154,17 +435,16 @@ function Dashboard() {
 
           <div className="orders">
             <div className="order-header">
-              <h3>Monthly Orders</h3>
+              <h3>Current Month Orders</h3>
             </div>
             <div style={{ width: "90%", height: 300 }}>
               <ResponsiveContainer>
                 <PieChart width={400} height={400}>
                   <Pie
-                    dataKey="value"
+                    dataKey="count"
                     startAngle={360}
-                    
                     endAngle={0}
-                    data={data2}
+                    data={pieData}
                     cx={180}
                     cy={150}
                     outerRadius={110}
@@ -183,222 +463,16 @@ function Dashboard() {
             <div className="best-da-header">
               <h3>Best Delivery Agents</h3>
             </div>
-            <div className="agent-details2">
-                <div className="agent-name1">
-                    <h5>G.L.U.Maduranga</h5>
-                </div>
-                <div className="p-bar">
-                    <ProgressBar completed={91} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
-                </div>
-            
 
-            
-                <div className="agent-name1">
-                    <h5>N.S.Wimalaweera</h5>
-                </div>
-                <div className="p-bar">
-                    <ProgressBar completed={84} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
-                </div>
-            
-
-            
-                <div className="agent-name1">
-                    <h5>M.S.Dewanarayana</h5>
-                </div>
-                <div className="p-bar">
-                    <ProgressBar completed={75} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
-                </div>
-            
-
-            
-                <div className="agent-name1">
-                    <h5>K.G.L.Mihiranga</h5>
-                </div>
-                <div className="p-bar">
-                    <ProgressBar completed={71} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
-                </div>
-            
-
-            
-                <div className="agent-name1">
-                    <h5>K.K.S.Dilshan</h5>
-                </div>
-                <div className="p-bar">
-                    <ProgressBar completed={60} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
-                </div>
-            
-
-            
-                <div className="agent-name1">
-                    <h5>H.K.P.S.Perera</h5>
-                </div>
-                <div className="p-bar">
-                    <ProgressBar completed={45} maxCompleted={100} bgColor="#62c1e0" baseBgColor="#d6ffff"/>
-                </div>
-            </div>
-            </div>
-          
+            <div className="agent-details2">{renderItems}</div>
+          </div>
 
           <div class="best-p">
             <div className="best-p-header">
               <h3>Best Pharmacies</h3>
             </div>
-            <div>
-              <div className="p-rating-1">
-                  <div className="p-rating-co">
-                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
-                  </div>
-                  <div className="p-rating-co">
-                    <h5>Central Pharmacy</h5>
-                  </div>
-                  <div className="p-rating-co">
-                    <Rating 
-                      readonly="true"
-                      initialValue={5}
-                      size="25"
-                    />
-                  </div>
-              </div>
-              <hr
-                style={{
-                  color: 'black',
-                  background: 'black',
-                  width: '82%',
-                  marginLeft: '50px',
-                }}
-              />
-            </div>
 
-            <div>
-              <div className="p-rating">
-                  <div className="p-rating-co">
-                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
-                  </div>
-                  <div className="p-rating-co">
-                    <h5>Ragama Pharmacy</h5>
-                  </div>
-                  <div className="p-rating-co">
-                    <Rating 
-                      readonly="true"
-                      initialValue={4}
-                      size="25"
-                    />
-                  </div>
-              </div>
-              <hr
-                style={{
-                  color: 'black',
-                  background: 'black',
-                  width: '82%',
-                  marginLeft: '50px',
-                }}
-              />
-            </div>
-
-            <div>
-              <div className="p-rating">
-                  <div className="p-rating-co">
-                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
-                  </div>
-                  <div className="p-rating-co">
-                    <h5>HealthCare Pharmacy</h5>
-                  </div>
-                  <div className="p-rating-co">
-                    <Rating 
-                      readonly="true"
-                      initialValue={4}
-                      size="25"
-                    />
-                  </div>
-              </div>
-              <hr
-                style={{
-                  color: 'black',
-                  background: 'black',
-                  width: '82%',
-                  marginLeft: '50px',
-                }}
-              />
-            </div>
-
-            <div>
-              <div className="p-rating">
-                  <div className="p-rating-co">
-                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
-                  </div>
-                  <div className="p-rating-co">
-                    <h5>Union Pharmacy</h5>
-                  </div>
-                  <div className="p-rating-co">
-                    <Rating 
-                      readonly="true"
-                      initialValue={3}
-                      size="25"
-                    />
-                  </div>
-              </div>
-              <hr
-                style={{
-                  color: 'black',
-                  background: 'black',
-                  width: '82%',
-                  marginLeft: '50px',
-                }}
-              />
-            </div>
-
-            <div>
-              <div className="p-rating">
-                  <div className="p-rating-co">
-                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
-                  </div>
-                  <div className="p-rating-co">
-                    <h5>Pharma Pharmacy</h5>
-                  </div>
-                  <div className="p-rating-co">
-                    <Rating 
-                      readonly="true"
-                      initialValue={3}
-                      size="25"
-                    />
-                  </div>
-              </div>
-              <hr
-                style={{
-                  color: 'black',
-                  background: 'black',
-                  width: '82%',
-                  marginLeft: '50px',
-                }}
-              />
-            </div>
-
-            <div>
-              <div className="p-rating">
-                  <div className="p-rating-co">
-                    <img src={logo} alt="Logo" className='logo' width={100} height={50} />
-                  </div>
-                  <div className="p-rating-co">
-                    <h5>Sethma Pharmacy</h5>
-                  </div>
-                  <div className="p-rating-co">
-                    <Rating 
-                      readonly="true"
-                      initialValue={2}
-                      size="25"
-                    />
-                  </div>
-              </div>
-              <hr
-                style={{
-                  color: 'black',
-                  background: 'black',
-                  width: '82%',
-                  marginLeft: '50px',
-                }}
-              />
-            </div>
-            
+            <div className="agent-details2">{renderItems1}</div>
           </div>
         </div>
       </section>

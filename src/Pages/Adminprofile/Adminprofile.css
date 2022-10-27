@@ -25,14 +25,14 @@
     /* background-color: blue; */
     height:20rem;
     text-align: left;
-    padding-top: 60px;
+    padding-top: 40px;
 }
 
 .admin-password{
     /* background-color: yellow; */
     height:15rem;
     text-align: left;
-    padding-top: 50px;
+    /* padding-top: 10px; */
 }
 
 .prof-pic {
@@ -42,7 +42,7 @@
 
 .prof-name {
     /* background-color: white; */
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -54,7 +54,7 @@
     width: 75%;
     height: 80%;
     margin-left: 65px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 .detail-one{
     display: flex;
@@ -75,7 +75,7 @@
 }
 
 .detail-ico{
-    width: 33%;
+    width: 60%;
     text-align: right;
     padding-top: 10px;
 }

@@ -1,193 +1,201 @@
-import Navbar from '../../Components/Navbar/Admin/Navbar';
-import React from 'react';
-import Footer from '../../Components/Footer/Footer';
-import SearchBar from '../../Components/SearchBar/Search';
-import './Pharmacies.css';
+import React from "react";
+import FilterableTable from "react-filterable-table";
+import "./Pharmacies.css";
+import Navbar from "../../Components/Navbar/Admin/Navbar";
+import Footer from "../../Components/Footer/Footer";
+import Axios from "../../api/axios";
+import { useEffect ,useState} from "react";
 
+const Pharmacies = () => {
+  const pharmacy = [];
+  const [pharmacies,setPharmacies] = useState([]);
+  var config = {
+    method: "post",
 
-function Pharmacies(){
-    return (
-        <div>
-          <div className='header'>
-            <Navbar/>
-          </div>
-          <h2 className='p-head'>Pharmacies</h2>
-          <div className='p-search'>
-          <SearchBar/>
-          </div>
+    url: "http://localhost:3000/User/GetPharmacies",
 
-          <div class="member-list">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
+    headers: {},
+  };
 
-                            <th>Pharmacy ID</th>
-                            <th>Pharmacy Name</th>
-                            <th>Registration Number</th>
-                            <th>Province</th>
-                            <th>Contact Number</th>
-                            <th>Email</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody class="output" id="output">
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
+  useEffect(async ()=>{
+    await Axios(config).then((response) => {
+      response.data.map((item) =>{
+        pharmacy.push(
+          {
+            pid: item.uid,
+            pname: item.username,
+            regnum: item.reg_No,
+            address: item.address,
+            contnum: item.contact_number,
+            email: item.email,
+            rating: item.rating,
+          }
+      )
+      })
+      setPharmacies(...[pharmacy]);
+      console.log(pharmacies[0]);
+    })
+  },[])
 
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
+  const data = [
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 1,
+      email: "lankapharama@gmail.com",
+      rating: 4,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2555555444,
+      email: "lankapharama@gmail.com",
+      rating: 4,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 0,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 4,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 8,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+    {
+      pid: 1,
+      pname: "Lanka Pharmacy",
+      regnum: 98,
+      address: "ddvgsdgsgsgg",
+      contnum: 2,
+      email: "lankapharama@gmail.com",
+      rating: 4.7,
+    },
+  ];
 
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
+  // Fields to show in the table, and what object properties in the data they bind to
+  const fields = [
+    {
+      name: "pid",
+      displayName: "Pharmacy ID",
+      inputFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "pname",
+      displayName: "Pharmacy Name",
+      inputFilterable: true,
+      exactFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "regnum",
+      displayName: "Register Number",
+      inputFilterable: true,
+      exactFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "address",
+      displayName: "Address",
+      inputFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "contnum",
+      displayName: "Contact Number",
+      inputFilterable: true,
+      exactFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "email",
+      displayName: "Email",
+      inputFilterable: true,
+      exactFilterable: true,
+      sortable: true,
+    },
+    {
+      name: "rating",
+      displayName: "Rating",
+      inputFilterable: true,
+      exactFilterable: true,
+      sortable: true,
+    },
+  ];
 
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-
-                        <tr>
-                          <td>001</td>
-                          <td>Central Pharmacy</td>
-                          <td>8003431</td>
-                          <td>Western Province</td>
-                          <td>0702181481</td>
-                          <td>centralpharma@gmail.com</td>
-                          <td>4.7</td>
-                        </tr>
-                    </tbody>
-                </table>
-          </div>
-
-          <Footer/>
-        </div>
-        
-      );
-}
+  return (
+    <div>
+      <Navbar />
+      <h2 className="phead">Pharmacies</h2>
+      <FilterableTable
+        namespace="People"
+        initialSort="name"
+        data={pharmacies}
+        fields={fields}
+        noRecordsMessage="There are no people to display"
+        noFilteredRecordsMessage="No people match your filters!"
+      />
+      <Footer />
+    </div>
+  );
+};
 
 export default Pharmacies;
